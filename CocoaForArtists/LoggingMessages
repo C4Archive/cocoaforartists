@@ -1,0 +1,27 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@implementation CFACanvas
+
+-(void)setup {
+	CFALog(@"aNumber = %d",0);
+	CFALog(@"aNumber = %d",1);
+	CFALog(@"aNumber = %d",2);
+	CFALog(@"aNumber = %d",3);
+	CFALog(@"aNumber = %d",4);
+	
+	for(int number = 0; number < 5; number++) {
+		CFALog(@"aNumber = %d",number);
+	}
+}
+-(void)draw {
+	CFALog(@"draw was called");
+}
+
+@end

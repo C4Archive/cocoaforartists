@@ -1,0 +1,37 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+int num;
+double c;
+@end
+
+@implementation CFACanvas 
+
+-(void)setup {
+	[self frameRate:30];
+	[self drawStyle:ANIMATED];
+	[self windowWidth:400 andHeight:400];
+	[CFAShape fill:255];
+	[CFAShape stroke:255];
+	num = 20;
+	c = 0;
+}
+
+-(void)draw {
+	[self background:0];
+	c += .09;
+	for(double i = 1; i < [self height]/num; i++){
+		float x = fmodf(c,(float)i)*i*i; //<-cocoa cannot do % with floats, only ints
+		[CFAShape lineFromX:0 Y:i*num toX:x Y:i*num];
+		[CFAShape rectWithXPos:x yPos:i*num-num/2 width:8 andHeight:num];
+	}
+}
+
+@end

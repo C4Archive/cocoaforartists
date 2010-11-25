@@ -1,0 +1,117 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+CGGradientRef gradient;
+float theta0, theta1, theta2, theta3, rowHeight, colWidth;
+float increment;
+int rows, cols;
+NSRect mainRect;
+NSPoint p1, p2, p3, p4, p5, p6, p7, p8;
+float radius;
+@end
+
+@implementation CFACanvas
+
+-(void)setup {
+	mainRect = NSMakeRect(50, 50, 350, 350);
+	rows= 40;
+	cols = 40;
+	rowHeight = (float)mainRect.size.height/(float)rows;
+	colWidth = (float)mainRect.size.width/(float)cols;
+	radius = 115;
+	increment = 0.75;
+	[self drawStyle:ANIMATED];
+	[self flipCoordinates];
+	[self windowWidth:400 andHeight:400];
+	[self background:0];
+}
+
+-(void)draw {
+	p1.x = radius*[CFAMath cos:DEGREES_TO_RADIANS(theta1)] + [self width]/2;
+	p1.y = radius*[CFAMath sin:DEGREES_TO_RADIANS(theta1)] + [self height]/2;
+	p2.x = radius*[CFAMath cos:DEGREES_TO_RADIANS(theta1+180)] + [self width]/2;
+	p2.y = radius*[CFAMath sin:DEGREES_TO_RADIANS(theta1+180)] + [self height]/2;
+	p3.x = radius*[CFAMath cos:DEGREES_TO_RADIANS(theta2)] + [self width]/2;
+	p3.y = radius*[CFAMath sin:DEGREES_TO_RADIANS(theta2)] + [self height]/2;
+	p4.x = radius*[CFAMath cos:DEGREES_TO_RADIANS(theta2+180)] + [self width]/2;
+	p4.y = radius*[CFAMath sin:DEGREES_TO_RADIANS(theta2+180)] + [self height]/2;
+	p5.x = radius*[CFAMath cos:DEGREES_TO_RADIANS(theta3)] + [self width]/2;
+	p5.y = radius*[CFAMath sin:DEGREES_TO_RADIANS(theta3)] + [self height]/2;
+	p6.x = radius*[CFAMath cos:DEGREES_TO_RADIANS(theta3+180)] + [self width]/2;
+	p6.y = radius*[CFAMath sin:DEGREES_TO_RADIANS(theta3+180)] + [self height]/2;
+	p7.x = radius*[CFAMath cos:DEGREES_TO_RADIANS(theta0)] + [self width]/2;
+	p7.y = radius*[CFAMath sin:DEGREES_TO_RADIANS(theta0)] + [self height]/2;
+	p8.x = radius*[CFAMath cos:DEGREES_TO_RADIANS(theta0+180)] + [self width]/2;
+	p8.y = radius*[CFAMath sin:DEGREES_TO_RADIANS(theta0+180)] + [self height]/2;
+	
+	[CFAShape clearCurrentShape];
+	[CFAShape addRectWithXPos:0 yPos:0 width:[self width] andHeight:[self height]];
+	[CFAGradient linearGradientFromPointA:NSMakePoint(0,0)
+								 toPointB:NSMakePoint(0,[self height])
+							  usingColorA:[CFAColor cgColorFromIntValuesRed:190	green:190 blue:190]
+								andColorB:[CFAColor cgColorFromIntValuesRed:0 green:0 blue:0]
+								  inShape:[CFAShape currentShape]];
+	[CFAShape clearCurrentShape];
+	for(int i = 0; i < rows-1; i+=2){
+		for(int j = 0; j < cols-1; j+=2){
+			[CFAShape addRectWithXPos:i*rowHeight+20 yPos:j*colWidth+20 width:colWidth andHeight:rowHeight];
+		}
+	}
+	[CFAGradient linearGradientFromPointA:p1
+								 toPointB:p2
+							  usingColorA:[CFAColor cgColorFromIntValuesRed:255 green:255 blue:255]
+								andColorB:[CFAColor cgColorFromIntValuesRed:0 green:255 blue:0]
+								  inShape:[CFAShape currentShape]];
+	
+	[CFAShape clearCurrentShape];
+	for(int i = 1; i < rows; i+=2){
+		for(int j = 1; j < cols; j+=2){
+			[CFAShape addRectWithXPos:i*rowHeight+20 yPos:j*colWidth+20 width:colWidth andHeight:rowHeight];
+		}
+	}
+	[CFAGradient linearGradientFromPointA:p3
+								 toPointB:p4
+							  usingColorA:[CFAColor cgColorFromIntValuesRed:255 green:255 blue:255]
+								andColorB:[CFAColor cgColorFromIntValuesRed:0 green:0 blue:255]
+								  inShape:[CFAShape currentShape]];
+	
+	[CFAShape clearCurrentShape];
+	for(int i = 1; i < rows; i+=2){
+		for(int j = 0; j < cols-1; j+=2){
+			[CFAShape addRectWithXPos:i*rowHeight+20 yPos:j*colWidth+20 width:colWidth andHeight:rowHeight];
+		}
+	}
+	[CFAGradient linearGradientFromPointA:p5
+								 toPointB:p6
+							  usingColorA:[CFAColor cgColorFromIntValuesRed:255 green:255 blue:255]
+								andColorB:[CFAColor cgColorFromIntValuesRed:255 green:0 blue:0]
+								  inShape:[CFAShape currentShape]];
+	
+	[CFAShape clearCurrentShape];
+	for(int i = 0; i < rows-1; i+=2){
+		for(int j = 1; j < cols; j+=2){
+			[CFAShape addRectWithXPos:i*rowHeight+20 yPos:j*colWidth+20 width:colWidth andHeight:rowHeight];
+		}
+	}
+	[CFAGradient linearGradientFromPointA:p7
+								 toPointB:p8
+							  usingColorA:[CFAColor cgColorFromIntValuesRed:255 green:255 blue:255]
+								andColorB:[CFAColor cgColorFromIntValuesRed:255 green:255 blue:0]
+								  inShape:[CFAShape currentShape]];
+	
+	theta0+=increment;
+	theta1+=increment*2;
+	theta2+=increment*3;
+	theta3+=increment*4;
+	//[CFAShape fill:0];
+	//[CFAShape lineFromX:p1.x Y:p1.y toX:p2.x Y:p2.y];
+}
+
+@end

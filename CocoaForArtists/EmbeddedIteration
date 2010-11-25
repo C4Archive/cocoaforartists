@@ -1,0 +1,34 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+float box_size = 16.0f;
+float box_space = 17.0f;
+int margin = 12;
+@end
+@implementation CFACanvas
+-(void)setup {
+	[self background:0];
+	[self windowWidth:400 andHeight:400];
+	[CFAShape noStroke];
+	[CFAShape fill];
+}
+-(void)draw {
+	for(int i = margin; i <= [self height]-margin && box_size > 1; i+=box_space){
+		if (box_size > 1) {
+			for(int j = margin; j < [self width]-margin; j+=box_space){
+				int fillCol = 255-(box_size*10);
+				[CFAShape fill:fillCol];
+				[CFAShape ellipseWithXPos:j yPos:i width:box_size andHeight:box_size];
+			}
+		}
+		box_size = box_size-.6;
+	}
+}
+@end

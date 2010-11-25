@@ -1,0 +1,29 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+int diameter = 150;
+int angs[] = {30,10,45,35,60,38,75,67};
+float lastAng = 0;
+@end
+@implementation CFACanvas
+-(void)setup {
+	[self flipCoordinates];
+	[self windowWidth:200 andHeight:200];
+	[self background:0];
+	[CFAShape noStroke];
+}
+-(void)draw {
+	for(int i = 0; i < 8; i++) {
+		[CFAShape fill:angs[i]*3];
+		[CFAShape arcWithCenterAt:NSMakePoint([self width]/2, [self height]/2) radius:diameter/2 startAngle:lastAng endAngle:lastAng+angs[i]+5];
+		lastAng += angs[i];
+	}
+}
+@end

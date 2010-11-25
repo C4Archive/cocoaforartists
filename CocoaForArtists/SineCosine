@@ -1,0 +1,57 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+int i, j, sc;
+float p1, p2, p3, p4;
+@end
+
+@implementation CFACanvas 
+-(void)setup {
+	[self drawStyle:ANIMATED];
+	[self windowWidth:400 andHeight:400];
+	[CFAShape noStroke];
+	i = 45;
+	j = 225;
+	sc = 164;
+	p1 = 0;
+	p2 = 0;
+	p3 = 0;
+	p4 = 0;
+}
+
+-(void)draw {
+	[self background:0];
+	
+	[CFAShape fill:51];
+	[CFAShape rectWithXPos:60 yPos:60 width:280 andHeight:280];
+	
+	[CFAShape fill:255];
+	[CFAShape ellipseWithXPos:p1 yPos:36 width:32 andHeight:32];
+	
+	[CFAShape fill:153];
+	[CFAShape ellipseWithXPos:36 yPos:p2 width:32 andHeight:32];
+	
+	[CFAShape fill:255];
+	[CFAShape ellipseWithXPos:p3 yPos:[self height]-36 width:32 andHeight:32];
+	
+	[CFAShape fill:153];
+	[CFAShape ellipseWithXPos:[self width]-36 yPos:p4 width:32 andHeight:32];
+	
+	i+=2;
+	j-=2;
+	
+	float ang1 = DEGREES_TO_RADIANS(i);
+	float ang2 = DEGREES_TO_RADIANS(j);
+	p1 = [self width]/2 + (sc * [CFAMath cos:ang1]);
+	p2 = [self width]/2 + (sc * [CFAMath sin:ang1]);
+	p3 = [self width]/2 + (sc * [CFAMath cos:ang2]);
+	p4 = [self width]/2 + (sc * [CFAMath sin:ang2]);
+}
+@end

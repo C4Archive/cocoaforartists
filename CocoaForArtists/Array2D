@@ -1,0 +1,38 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+int width = 400;
+int height = 400;
+float distances[400][400];
+float maxDistance;
+@end
+
+@implementation CFACanvas
+-(void)setup {
+	[self windowWidth:width andHeight:height];
+	[self background:0];
+	maxDistance = [CFAMath distanceFromX:width/2 Y:height/2 toX:width Y:height];
+	for(int i = 0; i < height; i++){
+		for(int j = 0; j < width; j++){
+			float dist = (float)[CFAMath distanceFromX:(float)width/2 Y:(float)height/2 toX:(float)j Y:(float)i];
+			distances[j][i] = dist/maxDistance *255;
+		}
+	}
+}
+-(void)draw {
+	[self background:0];
+	for(int i = 0; i < height; i+=2) {
+		for(int j = 0; j < width; j+=2) {
+			[CFAShape fill:distances[j][i]];
+			[CFAShape pointAtX:j Y:i];
+		}
+	}
+}
+@end

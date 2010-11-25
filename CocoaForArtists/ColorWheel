@@ -1,0 +1,97 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+int segments;
+int steps;
+float radius;
+float segmentWidth;
+float interval;
+float rotationAdjustment;
+
+-(void)drawShadeWheel;
+-(void)drawTintWheel;
+@end
+
+
+@implementation CFACanvas
+
+-(void)setup {
+	[self windowWidth:200 andHeight:200];
+	[self background:127];
+	[CFAShape noStroke];
+	segments = 12;
+	steps = 6;
+	radius = [CFAMath minOfA:[self width] andB:[self height]]*0.45;
+	segmentWidth = radius / steps;
+	interval = TWO_PI / segments;
+	rotationAdjustment = interval / 2;
+}
+
+-(void)draw {
+	radius = [CFAMath minOfA:[self width] andB:[self height]]*0.45;
+	[self drawShadeWheel];
+	//[self drawTintWheel];
+}
+
+-(void)drawShadeWheel {
+	for(int j = 0; j < steps; j++) {
+		NSArray *colorArray = [NSArray arrayWithObjects:
+							   [CFAColor colorFromIntValuesRed:255-(255/steps)*j green:255-(255/steps)*j blue:0],
+							   [CFAColor colorFromIntValuesRed:255-(255/steps)*j green:255/1.5-((255/1.5)/steps)*j blue:0],
+							   [CFAColor colorFromIntValuesRed:255-(255/steps)*j green:255/2-((255/2)/steps)*j blue:0],
+							   [CFAColor colorFromIntValuesRed:255-(255/steps)*j green:255/2.5-((255/2.5)/steps)*j blue:0],
+							   [CFAColor colorFromIntValuesRed:255-(255/steps)*j green:0 blue:0],
+							   [CFAColor colorFromIntValuesRed:255-(255/steps)*j green:0 blue:255/2-((255/2)/steps)*j],
+							   [CFAColor colorFromIntValuesRed:255-(255/steps)*j green:0 blue:255-(255/steps)*j],
+							   [CFAColor colorFromIntValuesRed:(255/2)-((255/2)/steps)*j green:0 blue:255-(255/steps)*j],
+							   [CFAColor colorFromIntValuesRed:0 green:0 blue:255-(255/steps)*j],
+							   [CFAColor colorFromIntValuesRed:0 green:255-(255/steps)*j blue:255/2.5-((255/2.5)/steps)*j],
+							   [CFAColor colorFromIntValuesRed:0 green:255-(255/steps)*j blue:0],
+							   [CFAColor colorFromIntValuesRed:255/2-((255/2)/steps)*j green:255-(255/steps)*j blue:0],
+							   nil];
+		NSPoint centerPoint = NSMakePoint([self width]/2, [self height]/2);
+		for(int i = 0; i < segments; i++) {
+			[CFAShape fillColor:[colorArray objectAtIndex:i]];
+			[CFAShape arcWithCenterAt:centerPoint radius:radius 
+						   startAngle:RADIANS_TO_DEGREES(interval*i+rotationAdjustment) 
+							 endAngle:RADIANS_TO_DEGREES(interval*(i+1)+rotationAdjustment)];
+		}
+		radius -= segmentWidth;
+	}
+}
+
+-(void)drawTintWheel {
+	for(int j = 0; j < steps; j++) {
+		NSArray *colorArray = [NSArray arrayWithObjects:
+							   [CFAColor colorFromIntValuesRed:(255/steps)*j green:(255/steps)*j blue:0],
+							   [CFAColor colorFromIntValuesRed:(255/steps)*j green:((255/1.5)/steps)*j blue:0],
+							   [CFAColor colorFromIntValuesRed:(255/steps)*j green:((255/2)/steps)*j blue:0],
+							   [CFAColor colorFromIntValuesRed:(255/steps)*j green:((255/2.5)/steps)*j blue:0],
+							   [CFAColor colorFromIntValuesRed:(255/steps)*j green:0 blue:0],
+							   [CFAColor colorFromIntValuesRed:(255/steps)*j green:0 blue:((255/2)/steps)*j],
+							   [CFAColor colorFromIntValuesRed:(255/steps)*j green:0 blue:(255/steps)*j],
+							   [CFAColor colorFromIntValuesRed:((255/2)/steps)*j green:0 blue:(255/steps)*j],
+							   [CFAColor colorFromIntValuesRed:0 green:0 blue:(255/steps)*j],
+							   [CFAColor colorFromIntValuesRed:0 green:(255/steps)*j blue:((255/2.5)/steps)*j],
+							   [CFAColor colorFromIntValuesRed:0 green:(255/steps)*j blue:0],
+							   [CFAColor colorFromIntValuesRed:((255/2)/steps)*j green:(255/steps)*j blue:0],
+							   nil];
+		NSPoint centerPoint = NSMakePoint([self width]/2, [self height]/2);
+		for(int i = 0; i < segments; i++) {
+			[CFAShape fillColor:[colorArray objectAtIndex:i]];
+			[CFAShape arcWithCenterAt:centerPoint radius:radius 
+						   startAngle:RADIANS_TO_DEGREES(interval*i+rotationAdjustment) 
+							 endAngle:RADIANS_TO_DEGREES(interval*(i+1)+rotationAdjustment)];
+		}
+		radius -= segmentWidth;
+	}
+}
+
+@end

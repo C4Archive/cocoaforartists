@@ -1,0 +1,54 @@
+//
+//  @cfacanvas_.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+int thin = 8;
+int thick = 36;
+float x1 = 134.0f;
+float x2 = 44.0f;
+float x3 = 58.0f;
+float x4 = 120.0f;
+@end
+
+@implementation CFACanvas 
+-(void)setup {
+	[self drawStyle:ANIMATED];
+	[self windowWidth:400 andHeight:400];
+	[CFAShape noStroke];
+}
+
+-(void)draw {
+	[self background:0];
+	
+	float mx = mousePos.x * 0.4 - [self width]/5;
+	
+	[CFAShape fill:102];
+	[CFAShape rectWithXPos:x2 yPos:0 width:thick andHeight:[self height]/2];
+	[CFAShape fill:204];
+	[CFAShape rectWithXPos:x1 yPos:0 width:thick andHeight:[self height]/2];
+	[CFAShape fill:102];
+	[CFAShape rectWithXPos:x4 yPos:[self height]/2 width:thin andHeight:[self height]/2];
+	[CFAShape fill:204];
+	[CFAShape rectWithXPos:x3 yPos:[self height]/2 width:thick andHeight:[self height]/2];
+	
+	x1 += mx/16;
+	x2 += mx/64;
+	x3 -= mx/16;
+	x4 -= mx/64;
+	
+	if(x1 < -thick) x1 = [self width];
+	if(x1 > [self width]) x1 = -thick;
+	if(x2 < -thin) x2 = [self width];
+	if(x2 > [self width]) x2 = -thin;
+	if(x3 < -thick) x3 = [self width];
+	if(x3 > [self width]) x3 = -thick;
+	if(x4 < -thin) x4 = [self width];
+	if(x4 > [self width]) x4 = -thin;
+}
+@end

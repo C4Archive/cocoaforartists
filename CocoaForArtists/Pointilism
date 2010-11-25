@@ -1,0 +1,43 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+CFAImage *myImage;
+
+-(void)point;
+@end
+
+@implementation CFACanvas
+-(void)setup {
+	myImage = [CFAImage imageName:@"3dmaze" andType:@"JPG" loadPixelData:YES];
+	
+	[self windowWidth:[myImage width] andHeight:[myImage height]];
+	[self drawStyle:ANIMATED];
+	[self flipCoordinates];
+	[self background:255];
+
+	[CFAShape fill];
+	[CFAShape stroke];
+	[CFAShape strokeWidth:1];
+}
+
+-(void)draw {
+	[self point];
+}
+
+-(void)point {
+	int x = [CFAMath randomInt:[self width]];
+	int y = [CFAMath randomInt:[self height]];
+	NSColor *color = [myImage colorAtX:x andY:y];
+	float pointilize = [CFAMath map:mousePos.x fromMin:0 max:[self width] toMin:2 max:18];
+	[CFAShape strokeColor:color];
+	[CFAShape fillColor:color alpha:[CFAMath randomInt:128]];
+	[CFAShape circleAt:NSMakePoint(x, y) radius:pointilize];
+}
+@end

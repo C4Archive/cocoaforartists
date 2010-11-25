@@ -1,0 +1,68 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+float blockWidth;
+float blockHeight;
+float block;
+float stripeWidth;
+float left;
+float top;
+
+CFAImage *image;
+@end
+
+@implementation CFACanvas
+
+-(void)setup {
+	image = [CFAImage imageName:@"3dmaze" andType:@"JPG" loadPixelData:YES];
+	[self windowWidth:[image width] andHeight:[image height]];
+	[self flipCoordinates];
+	[self background:255];
+	
+	//stripe = width of 1 color
+	stripeWidth = [CFAMath maxOfA:1 andB:[self width]/[image width]];
+	//block = 3 * 3 colors (keeping things square)
+	blockHeight = stripeWidth*3;
+	blockWidth = blockHeight;
+	
+	[CFAShape fill];
+	[CFAShape noStroke];
+}
+
+-(void)draw {
+	[self background:0];
+	//iterate through the y coordinates of our image
+	for(int y = 0; y <= [image height]; y+=blockHeight) {
+		//map a y position from our image to y position in our canvas
+		int y1 = [CFAMath map:y fromMin:0 max:[image height] toMin:0 max:[self height]];
+		//iterate through the x coordinates of our image
+		for(int x = 0; x <= [image width]; x+=blockWidth) {
+			//map an x position from our image to an x position in our canvas
+			int x1 = [CFAMath map:x fromMin:0 max:[image width] toMin:0 max:[self width]];
+			
+			//grab the color from our image at (x,y)
+			NSColor *pixelColor = [image colorAtX:x andY:y];
+			int red = FLOAT_TO_255([pixelColor redComponent]);
+			int green = FLOAT_TO_255([pixelColor greenComponent]);
+			int blue = FLOAT_TO_255([pixelColor blueComponent]);
+			
+			//create a block of colors
+			[CFAShape fillRed:red green:0 blue:0];
+			[CFAShape rectWithXPos:x1+stripeWidth*0 yPos:y1 width:stripeWidth andHeight:blockHeight];
+			
+			[CFAShape fillRed:0 green:green blue:0];
+			[CFAShape rectWithXPos:x1+stripeWidth*1 yPos:y1 width:stripeWidth andHeight:blockHeight];
+			
+			[CFAShape fillRed:0 green:0 blue:blue];
+			[CFAShape rectWithXPos:x1+stripeWidth*2 yPos:y1 width:stripeWidth andHeight:blockHeight];
+		}
+	}
+}
+@end

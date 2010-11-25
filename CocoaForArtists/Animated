@@ -1,0 +1,25 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+	int drawCount = 0;
+@end
+
+@implementation CFACanvas
+
+-(void)setup {
+	[self drawStyle:ANIMATED];
+}
+
+-(void)draw {
+	CFALog(@"When the draw style is ANIMATED the sketch will fire automatically");
+	CFALog(@"drawCount = %d ",drawCount++);
+}
+
+@end

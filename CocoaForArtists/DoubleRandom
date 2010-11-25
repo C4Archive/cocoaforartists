@@ -1,0 +1,41 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+int totalPoints;
+float steps;
+int randomValue;
+@end
+
+@implementation CFACanvas 
+-(void)setup {
+	[self drawStyle:EVENTBASED];
+	[self windowWidth:200 andHeight:200];
+	[CFAShape fill:255];
+	
+	totalPoints = [self width];
+	steps = totalPoints + 1;
+	randomValue = 0;
+	[self background:0];
+}
+
+-(void)draw {
+	randomValue = 0;
+	[self background:0];
+	for(int i = 1; i < steps; i++){
+		int mod = 0;
+		while (mod == 0) {
+			mod = [CFAMath randomIntBetweenA:-1 andB:1];
+		}
+		[CFAShape pointAtX:[self width]/steps*i 
+						 Y:[self height]/2 + mod*randomValue];
+		randomValue += [CFAMath randomIntBetweenA:-10 andB:10];
+	}
+}
+@end

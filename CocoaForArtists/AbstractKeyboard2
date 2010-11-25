@@ -1,0 +1,88 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+int max_height;
+int min_height;
+int letter_height;
+int letter_width;
+int x;
+int y;
+
+BOOL newLetter;
+int numChars;
+@end
+
+@implementation CFACanvas
+
+-(void)setup {
+	[self drawStyle:EVENTBASED];
+	[self flipCoordinates];
+	[self windowWidth:400 andHeight:400];
+	[self background:0];
+	
+	[CFAShape fill];
+	[CFAShape noStroke];
+	
+	max_height = 20;
+	min_height = 10;
+	letter_height = max_height;
+	letter_width = min_height;
+	numChars = 26;
+}
+
+-(void)draw {
+	if (newLetter) {
+		unichar character = keyChar;
+		if (character >= 'A' && character <='z') {
+			int characterIndex;
+			if(character <= 'Z'){
+				characterIndex = character - 'A';
+				letter_height = max_height;
+			} else {
+				characterIndex = character - 'a';
+				letter_height = min_height;
+			}
+			int fill = [CFAMath constrain:characterIndex*10 min:0 max:255];
+			[CFAShape fill:fill];
+		} else {
+			[CFAShape fill:0];
+			letter_height = min_height;
+		}
+		
+		newLetter = YES;
+		
+		x += letter_width;
+		if (x >= [self width]) {
+			x = 0;
+			y += max_height;
+			
+			if (y >= [self height]) {
+				y = 0;
+			}
+		}
+		
+		int y_pos;
+		if(letter_height == max_height) {
+			y_pos = y;
+			[CFAShape rectWithXPos:x yPos:y_pos width:letter_width andHeight:letter_height];
+		} else {
+			y_pos = y + min_height;
+			[CFAShape rectWithXPos:x yPos:y_pos width:letter_width andHeight:letter_height];
+			[CFAShape fill:numChars/2];
+			[CFAShape rectWithXPos:x yPos:y_pos-min_height width:letter_width andHeight:letter_height];
+		}
+		newLetter = NO;
+	}
+}
+
+-(void)keyPressed {
+	newLetter = YES;
+}
+@end

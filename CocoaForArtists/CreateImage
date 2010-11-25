@@ -1,0 +1,26 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+CFAImage *a, *b;
+float offset;
+@end
+
+@implementation CFACanvas
+-(void)setup {
+	[self windowWidth:400 andHeight:400];
+	a = [CFAImage imageName:@"CFATest" andType:@"tif"];
+	b = [CFAImage imageName:@"3dmaze" andType:@"JPG"];
+}
+-(void)draw {
+	[self background:255];
+	[a drawAt:NSZeroPoint];
+	[b drawAt:NSZeroPoint withAlpha:0.5];
+}
+@end

@@ -1,0 +1,28 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+	int drawCount = 0;
+@end
+
+@implementation CFACanvas
+
+-(void)setup {
+	[self drawStyle:ANIMATED];
+}
+
+-(void)draw {
+	CFALog(@"Default framerate is set to 60, the actual framerate will try to match this");
+	drawCount++;
+
+	float timeInSeconds = (float)[CFADateTime millis]/1000.0f;
+	CFALog(@"framerate = %4.2f ",drawCount/timeInSeconds);
+}
+
+@end

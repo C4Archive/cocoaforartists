@@ -1,0 +1,44 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+NSColor *a,*b,*c,*d,*e;
+-(void)drawBandWithColorArray:(NSArray *)colors atYPosition:(int)y withWidth:(int)width;
+@end
+
+@implementation CFACanvas
+
+-(void)setup {
+	[self windowWidth:400 andHeight:400];
+	[CFAShape noStroke];
+	
+	a = [CFAColor colorFromIntValuesRed:165 green:167 blue:20];
+	b = [CFAColor colorFromIntValuesRed:77 green:86 blue:59];
+	c = [CFAColor colorFromIntValuesRed:42 green:106 blue:105];
+	d = [CFAColor colorFromIntValuesRed:165 green:89 blue:20];
+	e = [CFAColor colorFromIntValuesRed:146 green:150 blue:127];
+	
+}
+
+-(void)draw {
+	NSArray *colors = [NSArray arrayWithObjects:a,b,c,d,e,nil];
+	[self drawBandWithColorArray:colors atYPosition:0 withWidth:5];
+	colors = [NSArray arrayWithObjects:c,a,d,b,e,nil];
+	[self drawBandWithColorArray:colors atYPosition:[self height]/2 withWidth:5];
+}
+
+-(void)drawBandWithColorArray:(NSArray *)colors atYPosition:(int)y withWidth:(int)width {
+	for(int i = 0; i < [self width]; i += width*[colors count]) {
+		for(int j = 0; j < [colors count]; j++) {
+			[CFAShape fillColor:[colors objectAtIndex:j]];
+			[CFAShape rectWithXPos:i+j*width yPos:y width:width andHeight:[self height]/2];
+		}
+	}
+}
+@end

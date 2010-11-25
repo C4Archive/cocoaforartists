@@ -1,0 +1,40 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+char c;
+float f;
+int i;
+Byte b;
+@end
+@implementation CFACanvas
+-(void)setup {
+	[self flipCoordinates];
+	[self windowWidth:300 andHeight:200];
+	[self background:225];
+	[CFAShape noStroke];
+	c = 'w';
+	//when you wish to convert between data types
+	//you should alway "cast" them by writing the new type in brackets
+	//do this directly before the variable
+	f = (float)c;		//change to a character to float type
+	i = (int)(f*1.4);	//change a float to an integer
+	b = (Byte)(c/2);	//change an integer to a byte value
+}
+-(void)draw {
+	//if you forget to "cast", you can sometimes get away with it...
+	//but sometimes the result won't be what you expect
+	[CFAShape fillRed:'A' green:0 blue:0];
+	[CFAShape rectWithXPos:f yPos:0 width:40 andHeight:66];
+	[CFAShape fillRed:'a' green:0 blue:0];
+	[CFAShape rectWithXPos:i yPos:67 width:40 andHeight:66];
+	[CFAShape fillRed:'z' green:0 blue:0];
+	[CFAShape rectWithXPos:b yPos:134 width:40 andHeight:66];
+}
+@end

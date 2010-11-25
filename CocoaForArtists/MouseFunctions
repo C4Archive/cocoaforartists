@@ -1,0 +1,68 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+float bx;
+float by;
+int bs = 30;
+BOOL bover = NO;
+BOOL locked = NO;
+float bdifx = 0.0f;
+float bdify = 0.0f;
+@end
+
+@implementation CFACanvas
+-(void)setup {
+	[self drawStyle:EVENTBASED];
+	[self windowWidth:400 andHeight:400];
+	[self background:0];
+	bx = [self width]/2-bs/2;
+	by = [self height]/2-bs/2;
+	[CFAShape strokeWidth:2];
+}
+
+-(void)draw {
+	[self background:0];
+	if (mousePos.x > bx && mousePos.x < bx + bs && mousePos.y > by && mousePos.y < by+bs) {
+		bover = YES;
+		if (!locked) {
+			[CFAShape stroke:255];
+			[CFAShape fill:153];
+		}
+	} else {
+		[CFAShape stroke:153];
+		[CFAShape fill:153];
+		bover = NO;
+	}
+	
+	[CFAShape rectWithXPos:bx yPos:by width:bs andHeight:bs];
+}
+
+-(void)mousePressed {
+	if(bover) {
+		locked = YES;
+		[CFAShape fill:255];
+	} else {
+		locked = NO;
+	}
+	bdifx = mousePos.x-bx;
+	bdify = mousePos.y-by;
+}
+
+-(void)mouseDragged {
+	if(locked) {
+		bx = mousePos.x - bdifx;
+		by = mousePos.y - bdify;
+	}
+}
+
+-(void)mouseReleased {
+	locked = NO;
+}
+@end

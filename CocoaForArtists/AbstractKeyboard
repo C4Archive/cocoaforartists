@@ -1,0 +1,37 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+float rectWidth;
+@end
+
+
+@implementation CFACanvas
+-(void)setup {
+	[self drawStyle:ANIMATED];
+	[self windowWidth:400 andHeight:400];
+	rectWidth = [self width]/26.0f;
+	[CFAShape noStroke];
+	[CFAShape fill:255];
+	[CFAShape fill];
+}
+
+-(void)draw{	
+	[self background:0 alpha:5];
+	if (keyPressed && keyChar >= 'A' && keyChar <= 'z') {
+		if (keyChar <= 'Z') {
+			int mappedKeyValue = keyChar - 'A';
+			[CFAShape rectWithXPos:rectWidth*mappedKeyValue yPos:[self height]/2 width:rectWidth andHeight:[self height]/2];
+		} else {
+			int mappedKeyValue = keyChar - 'a';
+			[CFAShape rectWithXPos:rectWidth*mappedKeyValue yPos:0 width:rectWidth andHeight:[self height]/2];
+		}
+	}
+}
+@end

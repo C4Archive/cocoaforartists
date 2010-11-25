@@ -1,0 +1,57 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+int gx = 15;
+int gy = 35;
+float leftColor = 0.0f;
+float rightColor = 0.0f;
+
+-(void)update:(int)x;
+@end
+
+
+@implementation CFACanvas
+-(void)setup {
+	[self drawStyle:EVENTBASED];
+	[self windowWidth:400 andHeight:400];
+	[self background:0];
+	[CFAShape noStroke];
+	[CFAShape ellipseMode:CORNER];
+}
+
+-(void)draw {
+	[self background:0];
+	[self update:mousePos.x];
+	[CFAShape fillRed:(leftColor + 0.6)*255 green:(leftColor+0.4)*255 blue:0];
+	[CFAShape ellipseWithXPos:[self width]/4-gx yPos:[self width]/2-gx width:gx*2 andHeight:gx*2];
+	[CFAShape fillRed:(rightColor + 0.4)*255 green:(rightColor+0.2)*255 blue:0];
+	[CFAShape ellipseWithXPos:[self width]/1.33-gy yPos:[self width]/2-gy width:gy*2 andHeight:gy*2];
+}
+
+-(void)update:(int)x {
+	leftColor = -0.002 * x/3 + 0.06;
+	rightColor =  0.002 * x/3 + 0.06;
+	
+	gx = x/2;
+	gy = 200-x/2;
+	
+	if (gx < 10) {
+		gx = 10;
+	} else if (gx > 190) {
+		gx = 190;
+	}
+	
+	if (gy > 190) {
+		gy = 190;
+	} else if (gy < 10) {
+		gy = 10;
+	}
+}
+@end

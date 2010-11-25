@@ -1,0 +1,42 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+int size = 80;
+int direction = -1;
+int step = 1;
+@end
+
+@implementation CFACanvas
+-(void)setup {
+	[self windowWidth:400 andHeight:400];
+	[self drawStyle:ANIMATED];
+	[self setupPDF];
+}
+-(void)draw {
+	if(mousePressed){
+		[CFAShape stroke:255];
+		[CFAShape fill:0];
+	} else {
+		[CFAShape stroke:0];
+		[CFAShape fillRed:mousePos.x green:mousePos.y blue:0];
+	}
+	
+	[CFAShape ellipseWithXPos:mousePos.x yPos:mousePos.y width:size andHeight:size];
+	size = size + direction*step;
+	if (size == 10 || size == 90) {
+		direction = direction * -1;
+	}
+}
+
+-(void)mouseReleased {
+	[self endPDF];
+	[self setupPDF];
+}
+@end

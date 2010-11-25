@@ -1,0 +1,45 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+NSPoint current, target;
+float easing = 0.05f;
+@end
+
+@implementation CFACanvas
+
+-(void)setup {
+	[self drawStyle:ANIMATED];
+	[self flipCoordinates];
+	[self windowWidth:400 andHeight:400];
+	[CFAShape stroke];
+	[CFAShape strokeWidth:2];
+	[CFAShape stroke:255];
+}
+
+-(void)draw {
+	[self background:51];
+	
+	target.x = mousePos.x;
+	float dx = target.x - current.x;
+	if([CFAMath abs:dx] > 1) {
+		current.x += dx * easing;
+	}
+	
+	target.y = mousePos.y;
+	float dy = target.y - current.y;
+	if([CFAMath abs:dy] > 1) {
+		current.y += dy * easing;
+	}
+	[CFAShape fill:255 alpha:128];
+	[CFAShape circleAt:current radius:15];
+	[CFAShape circleAt:current radius:10];
+}
+
+@end

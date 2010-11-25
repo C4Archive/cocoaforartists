@@ -1,0 +1,12 @@
+//
+// Prefix header for all source files of the '___PROJECTNAME___' target in the '___PROJECTNAME___' project
+//
+//	A Cocoa For Artists project
+//  Created by ___FULLUSERNAME___ on ___DATE___.
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
+
+#import "CFAImports.h"

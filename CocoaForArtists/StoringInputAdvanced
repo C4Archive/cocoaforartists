@@ -1,0 +1,52 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+NSPoint *points;
+int pointCount = 200;
+float easing = 0.03f;
+
+-(void)updateEasingPoint:(NSPoint *)point usingEaseValue:(float)easeValue;
+@end
+
+@implementation CFACanvas
+
+-(void)setup {
+	points = (NSPoint *)calloc(pointCount,sizeof(NSPoint));
+	
+	for(int i = 0; i < pointCount; i++) {
+		points[i].x = [self width]/2;
+		points[i].y = [self height]/2;
+	}
+	[self drawStyle:ANIMATED];
+	[self flipCoordinates];
+	[self windowWidth:800 andHeight:200];
+	[CFAShape noStroke];
+}
+
+-(void)draw {
+	[self background:51];
+	for(int i = 0; i < pointCount; i++) {
+		[self updateEasingPoint:&points[i] usingEaseValue:easing+(.003*i)];
+		[CFAShape fillRed:255-i green:0 blue:55+i];
+		[CFAShape circleAt:NSMakePoint(points[i].x, points[i].y) radius:30-(i/10)];
+	}
+}
+
+-(void)updateEasingPoint:(NSPoint *)point usingEaseValue:(float)easeValue{
+	float dx = mousePos.x - point->x;
+	if([CFAMath absf:dx] > 1){
+		point->x += dx * easeValue;
+	}
+	float dy = mousePos.y - point->y;
+	if([CFAMath absf:dy] > 1){
+		point->y += dy * easeValue;
+	}
+}
+@end

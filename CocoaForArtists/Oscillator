@@ -1,0 +1,93 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+
+@interface CFACanvas (private)
+int maxHeight;
+int minHeight;
+int step;
+
+int rectHeight;
+int direction;
+
+int startHeight;
+int startdir;
+
+int bars;
+
+NSArray *colorArray;
+
+-(void)animatedLine:(int)rectHeight andXPos:(int)xPos;
+@end
+
+@implementation CFACanvas
+
+-(void)setup {
+	bars = self.width/5;
+	NSMutableArray *mutableColorArray = [[[NSMutableArray alloc] initWithCapacity:0] autorelease];
+	for(int i = 0; i < bars; i++){
+		[mutableColorArray addObject:[CFAColor colorFromIntValuesRed:[CFAMath randomInt:192]+32
+															   green:[CFAMath randomInt:128]+64
+																blue:[CFAMath randomInt:128]+32]];
+	}
+	colorArray = [[NSArray alloc] initWithArray:mutableColorArray];
+	[self drawStyle:ANIMATED];
+	//Setup code goes here
+	[self frameRate:12];
+	[self background:255];
+	[self windowWidth:640 andHeight:360];
+	[CFAShape fill];
+	[CFAShape fillColor:0];
+	[CFAShape rectMode:CENTER];
+	[CFAShape noStroke];
+	
+	maxHeight = [self height]/2;
+	minHeight = 6;
+	step = 12;
+	
+	//	rectHeight = [self height]/2;
+	//	direction = -1;
+	
+	startHeight = 100;
+	startdir = -1;
+}
+
+-(void)draw {
+	[self background:255];
+	
+	rectHeight = startHeight;
+	direction = startdir;
+	
+	for(int aVariable = 5; aVariable <= [self width]; aVariable +=7) {		
+		[CFAShape fillColor:[colorArray objectAtIndex:aVariable%bars]];
+		rectHeight = rectHeight + direction *step ;
+		
+		if(rectHeight < minHeight) rectHeight = minHeight;
+		if(rectHeight > maxHeight) rectHeight = maxHeight;
+		
+		if(rectHeight >= maxHeight || rectHeight <= minHeight){
+			direction = direction * -1 ;
+		}
+		
+		[self animatedLine:rectHeight andXPos:aVariable];
+	}
+	
+	startHeight = startHeight + startdir * step;
+	if(startHeight < minHeight) startHeight = minHeight;
+	if(startHeight > maxHeight) startHeight = maxHeight;
+	if(startHeight >= maxHeight || startHeight <= minHeight){
+		startdir = startdir * -1 ;
+	}
+}
+
+-(void)animatedLine:(int)rectHeight andXPos:(int)xPos{
+	[CFAShape rectWithXPos:xPos yPos:[self height]/2 width:6 andHeight:rectHeight];
+}
+
+@end

@@ -1,0 +1,25 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@implementation CFACanvas
+-(void)setup {
+	[self windowWidth:480 andHeight:120];
+	[self background:255];
+	[self drawStyle:EVENTBASED];
+	[CFAShape stroke];
+}
+-(void)draw {
+	if (mousePressed) {
+		[CFAShape fill:0];
+	} else {
+		[CFAShape fill:255];
+	}
+	[CFAShape ellipseWithXPos:mousePos.x yPos:mousePos.y width:80 andHeight:80];
+}
+@end

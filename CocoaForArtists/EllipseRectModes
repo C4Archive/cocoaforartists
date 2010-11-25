@@ -1,0 +1,24 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@implementation CFACanvas
+-(void)setup {
+	[self windowWidth:300 andHeight:300];
+}
+-(void)draw {
+	[CFAShape rectWithXPos:[self width]/4-20 yPos:[self height]/2 width:80 andHeight:80];
+	[CFAShape ellipseWithXPos:[self width]*3/4-20 yPos:[self height]/2 width:80 andHeight:80];
+	
+	[CFAShape fill:0];
+	[CFAShape rectMode:CENTER];
+	[CFAShape ellipseMode:CORNER];
+	[CFAShape rectWithXPos:[self width]*1/4-20 yPos:[self height]/2 width:80 andHeight:80];
+	[CFAShape ellipseWithXPos:[self width]*3/4-20 yPos:[self height]/2 width:80 andHeight:80];
+}
+@end

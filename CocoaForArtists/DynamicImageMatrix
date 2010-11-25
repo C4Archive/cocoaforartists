@@ -1,0 +1,38 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+CFAImage *myImage;
+float offset;
+@end
+@implementation CFACanvas
+-(void)setup {
+	[self drawStyle:EVENTBASED];
+	[self windowWidth:400 andHeight:400];
+	myImage = [[[CFAImage alloc] initWithImageName:@"CFATest" andType:@"jpg"] retain];
+}
+-(void)draw {
+	[self background:255];
+	int columns = mousePos.x/20;
+	if (columns == 0) {
+		columns = 1;
+	}
+	int rows = mousePos.y/20;
+	if (rows == 0) {
+		rows = 1;
+	}
+	float colWidth = [self width]/(float)columns;
+	float rowHeight = [self height]/(float)rows;
+	for(int i = 0; i < columns; i++) {
+		for(int j = 0; j < rows; j++) {
+			[myImage drawAt:NSMakePoint(i*colWidth, j*rowHeight) withWidth:colWidth andHeight:rowHeight];
+		}
+	}
+}
+@end

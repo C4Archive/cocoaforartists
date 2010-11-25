@@ -1,0 +1,43 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+BOOL op = NO;
+@end
+@implementation CFACanvas
+-(void)setup {
+	[self windowWidth:400 andHeight:400];
+	[self background:180];
+	[CFAShape strokeWidth:2];
+}
+-(void)draw {
+	for(int i = 5; i <= [self height]-5; i+=5){
+		[CFAShape stroke:0];
+		if((i > 70) && (i < 200)) {
+			[CFAShape lineFromX:5 Y:i toX:145 Y:i];
+			op = NO;
+		}
+		[CFAShape stroke:255];
+		if (i <= 70 || i >= 200) {
+			[CFAShape lineFromX:155 Y:i toX:295 Y:i];
+			op = YES;
+		}
+		if(op) {
+			[CFAShape fill:0]; //because we use fill to define point color
+			[CFAShape pointAtX:[self width]/2 Y:i];
+			[CFAShape pointAtX:[self width]/2+2 Y:i-1];
+		}
+		if(!op) {
+			[CFAShape fill:255]; //because we use fill to define point color
+			[CFAShape pointAtX:[self width]/4 Y:i];
+			[CFAShape pointAtX:[self width]/4+2 Y:i-1];
+		}
+	}
+}
+@end

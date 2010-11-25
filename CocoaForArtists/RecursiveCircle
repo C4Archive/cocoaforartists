@@ -1,0 +1,37 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+-(void)recursiveCirclesAtX:(int)x withRadius:(int)radius andLevels:(int)levels;
+@end
+
+@implementation CFACanvas
+
+-(void)setup {
+	[self windowWidth:400 andHeight:400];
+	[self background:51];
+	[CFAShape noStroke];
+}
+
+-(void)draw {
+	[self recursiveCirclesAtX:[self width]*3/4 withRadius:500 andLevels:6];
+}
+
+-(void)recursiveCirclesAtX:(int)x withRadius:(int)radius andLevels:(int)levels {
+	float tt = 126 * levels / 4.0;
+	[CFAShape fill:tt];
+	[CFAShape ellipseWithXPos:x yPos:[self height]/3 width:radius*2 andHeight:radius*2];
+	
+	if(levels > 1) {
+		levels = levels - 1;
+		[self recursiveCirclesAtX:x-radius/2 withRadius:radius/2 andLevels:levels];
+		[self recursiveCirclesAtX:x+radius/2 withRadius:radius/2 andLevels:levels];
+	}
+}
+@end

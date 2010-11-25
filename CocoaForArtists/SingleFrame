@@ -1,0 +1,21 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@implementation CFACanvas
+
+-(void)setup {
+	/* do nothing */
+}
+
+-(void)draw {
+	CFALog(@"The default draw style is SINGLEFRAME");
+	CFALog(@"This sketch should send only 1 message");
+}
+
+@end

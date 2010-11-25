@@ -1,0 +1,60 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+	int y = 100;
+	int drawCount = 0;
+-(void)setNewFramerate;
+@end
+
+@implementation CFACanvas
+
+-(void)setup {
+	[self windowWidth:400 andHeight:400];
+	CFALog(@"Draw style starts as: SINGLEFRAME");	
+}
+
+-(void)draw {
+	[self background:255];
+	y = y + 1;
+	if (y > [self height]) {
+		y = 0;
+	}
+	[CFAShape lineFromX:0 Y:y toX:[self width] Y:y];	
+	drawCount++;
+	CFALog(@"drawCount: %d",drawCount);
+}
+
+-(void)keyPressed {
+	switch (keyChar) {
+		case RETURN :
+			[self setNewFramerate];
+			break;
+		default:
+			break;
+	}
+}
+
+-(void)mousePressed {
+	CFALog(@"Switching draw style to: ANIMATED");
+	[self drawStyle:ANIMATED];
+}
+
+-(void)mouseReleased {
+	CFALog(@"Switching draw style to: EVENTBASED");
+	[self drawStyle:EVENTBASED];
+}
+
+-(void)setNewFramerate {
+		int newFramerate = [CFAMath randomIntBetweenA:1 andB:60];
+		CFALog(@"Setting random framerate to: %d",newFramerate);
+		[self frameRate:newFramerate];
+}
+
+@end

@@ -1,0 +1,35 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@implementation CFACanvas
+-(void)setup {
+	[self windowWidth:200 andHeight:200];
+	[self background:0];
+}
+-(void)draw {
+	int d = 40;
+	int p1 = d;
+	int p2 = p1+d;
+	int p3 = p2+d;
+	int p4 = p3+d;
+	// Draw gray box
+	[CFAShape stroke:153];
+	[CFAShape lineFromX:p3 Y:p3 toX:p2 Y:p3];
+	[CFAShape lineFromX:p2 Y:p3 toX:p2 Y:p2];
+	[CFAShape lineFromX:p2 Y:p2 toX:p3 Y:p2];
+	[CFAShape lineFromX:p3 Y:p2 toX:p3 Y:p3];
+	[CFAShape fill:255];
+	[CFAShape pointAtX:p1 Y:p1];
+	[CFAShape pointAtX:p1 Y:p3];
+	[CFAShape pointAtX:p2 Y:p4];
+	[CFAShape pointAtX:p3 Y:p1];
+	[CFAShape pointAtX:p4 Y:p2];
+	[CFAShape pointAtX:p4 Y:p4];
+}
+@end

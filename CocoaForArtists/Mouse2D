@@ -1,0 +1,28 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@implementation CFACanvas
+-(void)setup {
+	[self windowWidth:400 andHeight:400];
+	[self drawStyle:EVENTBASED];
+	[self background:33];
+	[CFAShape noStroke];
+	[CFAShape rectMode:CENTER];
+}
+colorFromIntValuesRed
+
+-(void)draw {
+	[self background:33];
+	[CFAShape fill:255 alpha:200];
+	[CFAShape rectWithXPos:mousePos.x yPos:[self height]/2 width:mousePos.y/2+10 andHeight:mousePos.y/2+10];
+	int inverseX = [self width]-mousePos.x;
+	int	inverseY = [self height]-mousePos.y;
+	[CFAShape rectWithXPos:inverseX yPos:[self height]/2 width:inverseY/2+10 andHeight:inverseY/2+10];
+}
+@end

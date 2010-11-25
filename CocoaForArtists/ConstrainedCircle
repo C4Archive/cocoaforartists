@@ -1,0 +1,43 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+float mx, my, easing, esize;
+int box;
+@end
+
+@implementation CFACanvas
+
+-(void)setup {
+	[self drawStyle:ANIMATED];
+	[self flipCoordinates];
+	[self windowWidth:300 andHeight:200];
+	[self background:0];
+	[CFAShape stroke];
+	easing = 0.05;
+	esize = 50.0;	
+	box = 30;
+}
+
+-(void)draw {
+	if([CFAMath absf:mousePos.x - mx] > 0.1) mx = mx +(mousePos.x-mx)*easing;
+	if([CFAMath absf:mousePos.y - my] > 0.1) my = my +(mousePos.y-my)*easing;
+	
+	mx = [CFAMath constrain:mx min:box+esize/2 max:[self width]-box-esize/2];
+	my = [CFAMath constrain:my min:box+esize/2 max:[self height]-box-esize/2];
+	
+	[CFAShape stroke:100];
+	[CFAShape fill:100];
+	[CFAShape rectWithXPos:box yPos:box width:[self width]-box*2 andHeight:[self height]-box*2];
+	[CFAShape strokeRed:255 green:120 blue:120];
+	[CFAShape fill:255];
+	[CFAShape ellipseWithXPos:mx yPos:my width:esize andHeight:esize];
+}
+
+@end

@@ -1,0 +1,39 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+float cosWave[400];
+@end
+
+@implementation CFACanvas
+-(void)setup {
+	[CFAShape stroke];
+	[self flipCoordinates];
+	[self windowWidth:400 andHeight:400];
+	for(int i = 0; i < [self width]; i++) {
+		float amount = [CFAMath map:i fromMin:0 max:400 toMin:0 max:PI];
+		cosWave[i] = [CFAMath absf:[CFAMath cos:amount]];
+	}
+}
+-(void)draw {
+	[self background:0];
+	for(int i = 0; i < [self width]; i++) {
+		[CFAShape stroke:cosWave[i]*255];
+		[CFAShape lineFromX:i Y:0 toX:i Y:[self height]/3];
+	}
+	for(int i = 0; i < [self width]; i++) {
+		[CFAShape stroke:cosWave[i]*255/4];
+		[CFAShape lineFromX:i Y:[self height]/3 toX:i Y:[self height]/3*2];
+	}
+	for(int i = 0; i < [self width]; i++) {
+		[CFAShape stroke:255-cosWave[i]*255];
+		[CFAShape lineFromX:i Y:[self height]/3*2 toX:i Y:[self height]];
+	}
+}
+@end

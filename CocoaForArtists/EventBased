@@ -1,0 +1,27 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+	int drawCount = 0;
+@end
+
+@implementation CFACanvas
+
+-(void)setup {
+	[self drawStyle:EVENTBASED];
+}
+
+-(void)draw {
+	CFALog(@"The EVENTBASED draw style makes a sketch run only when there is interaction");
+	CFALog(@"This message will be sent any time the mouse moves, or is pressed");
+	CFALog(@"This message will also be sent when a key is pressed");
+	CFALog(@"drawCount = %d",drawCount++);
+}
+
+@end

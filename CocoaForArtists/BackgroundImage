@@ -1,0 +1,31 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+CFAImage *bg;
+int a;
+@end
+
+@implementation CFACanvas
+-(void)setup {
+	[self drawStyle:ANIMATED];
+
+	bg = [CFAImage imageName:@"3dmaze" andType:@"JPG"];
+	[self windowWidth:200 andHeight:200];
+	//uncomment the following line to set window sizw to the image
+	//[self windowWidth:[bg width] andHeight:[bg height]];
+}
+-(void)draw {
+	[self backgroundImage:bg];
+	a = (a + 1) % ([self width]+32);
+	[CFAShape strokeRed:255 green:0 blue:0];
+	[CFAShape lineFromX:0 Y:a toX:[self width] Y:a-26];
+	[CFAShape lineFromX:0 Y:a-6 toX:[self width] Y:a-32];
+}
+@end

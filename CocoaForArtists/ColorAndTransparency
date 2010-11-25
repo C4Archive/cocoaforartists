@@ -1,0 +1,33 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@implementation CFACanvas
+-(void)setup {
+	[self windowWidth:200 andHeight:200];
+	[self background:0];
+	[CFAShape rectMode:CORNER];
+	[CFAShape noStroke];
+}
+-(void)draw {
+	[CFAShape fillRed:0 green:0 blue:255];
+	[CFAShape rectWithXPos:0 yPos:0 width:100 andHeight:200];
+	//255 means 100% opacity
+	[CFAShape fillRed:255 green:0 blue:0 alpha:255];
+	[CFAShape rectWithXPos:0 yPos:0 width:200 andHeight:40];
+	//75% opacity
+	[CFAShape fillRed:255 green:0 blue:0 alpha:191];
+	[CFAShape rectWithXPos:0 yPos:50 width:200 andHeight:40];
+	//50% opacity
+	[CFAShape fillRed:255 green:0 blue:0 alpha:127];
+	[CFAShape rectWithXPos:0 yPos:100 width:200 andHeight:40];
+	//25% opacity
+	[CFAShape fillRed:255 green:0 blue:0 alpha:63];
+	[CFAShape rectWithXPos:0 yPos:150 width:200 andHeight:40];
+}
+@end

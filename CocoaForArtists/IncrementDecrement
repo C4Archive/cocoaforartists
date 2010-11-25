@@ -1,0 +1,54 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+float a, b;
+float colorIncrement;
+BOOL direction;
+@end
+
+@implementation CFACanvas 
+
+-(void)setup {
+	[self drawStyle:ANIMATED];
+	[self windowWidth:400 andHeight:400];
+	a = 0;
+	b = [self width];
+	colorIncrement = 255.0f/(float)[self width];
+	direction = YES;
+	[CFAShape strokeWidth:2];
+}
+
+-(void)draw {
+	a++;
+	if(a > [self width]){
+		a = 0;
+		direction = !direction;
+	}
+		
+	if(direction){
+		[CFAShape stroke:a*colorIncrement];
+	} else {
+		[CFAShape stroke:255-a*colorIncrement];
+	}
+	[CFAShape lineFromX:a Y:0 toX:a Y:[self height]/2];
+	
+	b--;
+	if (b < 0) {
+		b = [self width];
+	}
+	if (direction) {
+		[CFAShape stroke:255-b*colorIncrement];
+	} else {
+		[CFAShape stroke:b*colorIncrement];
+	}
+	[CFAShape lineFromX:b Y:[self height]/2+1 toX:b Y:[self height]];
+}
+
+@end

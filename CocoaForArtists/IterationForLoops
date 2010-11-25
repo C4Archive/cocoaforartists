@@ -1,0 +1,51 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+int k;
+int xpos1 = 100;
+int xpos2 = 118;
+int count = 0;
+int timey = 0;
+int num = 12;
+@end
+
+@implementation CFACanvas
+-(void)setup {
+	[self flipCoordinates];
+	[self windowWidth:400 andHeight:400];
+	[self background:102];
+	[CFAShape noStroke];
+}
+-(void)draw {
+	[CFAShape fill:255];
+	k = 65;
+	for(int i = 0; i < num/3; i++) {
+		[CFAShape rectWithXPos:25 yPos:k width:155 andHeight:10];
+		k+=20;
+	}
+	[CFAShape fill:51];
+	k = 100;
+	for(int i = 0; i < num; i++) {
+		[CFAShape rectWithXPos:160 yPos:k width:30 andHeight:10];
+		k+=20;
+	}
+	k = 15;
+	for(int i = 0; i < num; i++) {
+		[CFAShape rectWithXPos:225 yPos:k width:30 andHeight:10];
+		k+=20;
+	}
+	[CFAShape fill:0];
+	k = 50;
+	for(int i = 0; i < num-1; i++) {
+		[CFAShape rectWithXPos:36 yPos:k width:20 andHeight:2];
+		k+=20;
+	}
+}
+@end

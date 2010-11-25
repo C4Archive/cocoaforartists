@@ -1,0 +1,64 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+int xspacing = 8;
+int w = 416;
+int maxwaves = 6;
+float theta = 0.0f;
+float amplitude[6];
+float dx[6];
+float yValueCount = 51;
+float yValues[51];
+
+-(void)calcWave;
+-(void)renderWave;
+@end
+
+@implementation CFACanvas
+-(void)setup {
+	[self drawStyle:ANIMATED];
+	[self windowWidth:400 andHeight:400];
+	for(int i = 0; i < maxwaves; i++) {
+		amplitude[i] = [CFAMath randomIntBetweenA:10 andB:30];
+		float period = [CFAMath randomIntBetweenA:100 andB:300];
+		dx[i] = (TWO_PI / (float)period) * xspacing;
+	}
+}
+-(void)draw {
+	[self background:0];
+	[self calcWave];
+	[self renderWave];
+}
+-(void)calcWave {
+	theta += 0.02;
+	for(int i = 0; i < yValueCount; i++) {
+		yValues[i] = 0;
+	}
+	for(int j = 0; j < maxwaves; j++) {
+		float x = theta;
+		for(int i = 0; i < yValueCount; i++) {
+			if(j%2 == 0){
+				yValues[i] += [CFAMath sin:x]*amplitude[j];
+			}
+			else {
+				yValues[i] += [CFAMath cos:x]*amplitude[j];
+			}
+			x += dx[j];
+		}
+	}
+}
+-(void)renderWave {
+	[CFAShape noStroke];
+	[CFAShape fill:255 alpha:150];
+	for(int x = 0; x < yValueCount; x++) {
+		[CFAShape ellipseWithXPos:x*xspacing yPos:[self width]/2+yValues[x] width:16 andHeight:16];
+	}
+}
+@end

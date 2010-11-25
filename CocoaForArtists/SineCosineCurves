@@ -1,0 +1,49 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@implementation CFACanvas
+-(void)setup {
+	[self background:99];
+	[self windowWidth:360 andHeight:180];
+}
+-(void)draw {
+	[CFAShape fillRed:255 green:120 blue:120];
+	[CFAShape beginShape];
+	for(int x = 0; x <= [self width]; x+=5) {
+		float y = [CFAMath sin:DEGREES_TO_RADIANS(x)];
+		y *= [self height]/2.1;
+		y += [self height]/2;
+		[CFAShape vertexAt:NSMakePoint(x, y)];
+	}
+	[CFAShape endShape];
+
+	[CFAShape stroke:255];
+	[CFAShape fillRed:120 green:120 blue:255];
+	[CFAShape beginShape];
+	for(int x = 0; x <=[self width]; x+=5) {
+		float y = [CFAMath sin:DEGREES_TO_RADIANS(x)];
+		y *= [self height]/6;
+		y += [self height]/2;
+		[CFAShape vertexAt:NSMakePoint(x/2, y)];
+	}
+	[CFAShape endShape];
+	
+	[CFAShape noStroke];
+	[CFAShape fillRed:120 green:255 blue:120];
+	[CFAShape beginShape];
+	for(int x = 0; x <=[self width]/2; x+=5) {
+		if(x >= [self width]/2) [CFAShape stroke:0];
+		float y = [CFAMath cos:DEGREES_TO_RADIANS(x*2)];
+		y *= -[self height]/6;
+		y += [self height]*2/3;
+		[CFAShape vertexAt:NSMakePoint(x+[self width]/2, y)];
+	}
+	[CFAShape endShape];
+}
+@end
