@@ -28,13 +28,13 @@ float x4 = 120.0f;
 	
 	float mx = mousePos.x * 0.4 - [self width]/5;
 	
-	[CFAShape fill:102];
+	[CFAShape fill:0.4f];
 	[CFAShape rectWithXPos:x2 yPos:0 width:thick andHeight:[self height]/2];
-	[CFAShape fill:204];
+	[CFAShape fill:0.8f];
 	[CFAShape rectWithXPos:x1 yPos:0 width:thick andHeight:[self height]/2];
-	[CFAShape fill:102];
+	[CFAShape fill:0.4f];
 	[CFAShape rectWithXPos:x4 yPos:[self height]/2 width:thin andHeight:[self height]/2];
-	[CFAShape fill:204];
+	[CFAShape fill:0.8f];
 	[CFAShape rectWithXPos:x3 yPos:[self height]/2 width:thick andHeight:[self height]/2];
 	
 	x1 += mx/16;

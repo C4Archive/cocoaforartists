@@ -17,7 +17,7 @@
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-	cfaColor		= [[[CFAColor alloc] initWithIntValuesRed:0 green:0 blue:0 alpha:0] retain];
+	cfaColor		= [[[CFAColor alloc] initWithRed:0 green:0 blue:0 alpha:0] retain];
 	cfaDateTime		= [[[CFADateTime alloc] _init] retain];
 	cfaFoundation	= [[[CFAFoundation alloc] _init] retain];
 	cfaMath			= [[[CFAMath alloc] _init] retain];

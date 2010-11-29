@@ -32,15 +32,15 @@ NSArray *colorArray;
 	bars = self.width/5;
 	NSMutableArray *mutableColorArray = [[[NSMutableArray alloc] initWithCapacity:0] autorelease];
 	for(int i = 0; i < bars; i++){
-		[mutableColorArray addObject:[CFAColor colorFromIntValuesRed:[CFAMath randomInt:192]+32
-															   green:[CFAMath randomInt:128]+64
-																blue:[CFAMath randomInt:128]+32]];
+		[mutableColorArray addObject:[CFAColor colorWithRed:[CFAMath randomInt:75]/100.0f+0.15
+													  green:[CFAMath randomInt:50]/100.0f+0.25
+													   blue:[CFAMath randomInt:50]/100.0f+0.15]];
 	}
 	colorArray = [[NSArray alloc] initWithArray:mutableColorArray];
 	[self drawStyle:ANIMATED];
 	//Setup code goes here
-	[self frameRate:12];
-	[self background:255];
+	[self frameRate:24];
+	[self background:1.0f];
 	[self windowWidth:640 andHeight:360];
 	[CFAShape fill];
 	[CFAShape fillColor:0];
@@ -51,15 +51,12 @@ NSArray *colorArray;
 	minHeight = 6;
 	step = 12;
 	
-	//	rectHeight = [self height]/2;
-	//	direction = -1;
-	
 	startHeight = 100;
 	startdir = -1;
 }
 
 -(void)draw {
-	[self background:255];
+	[self background:1.0f];
 	
 	rectHeight = startHeight;
 	direction = startdir;

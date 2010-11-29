@@ -49,8 +49,9 @@ int numChars;
 				characterIndex = character - 'a';
 				letter_height = min_height;
 			}
+			
 			int fill = [CFAMath constrain:characterIndex*10 min:0 max:255];
-			[CFAShape fill:fill];
+			[CFAShape fill:FLOAT_FROM_255(fill)];
 		} else {
 			[CFAShape fill:0];
 			letter_height = min_height;
@@ -75,7 +76,7 @@ int numChars;
 		} else {
 			y_pos = y + min_height;
 			[CFAShape rectWithXPos:x yPos:y_pos width:letter_width andHeight:letter_height];
-			[CFAShape fill:numChars/2];
+			[CFAShape fill:FLOAT_FROM_255(numChars/2)];
 			[CFAShape rectWithXPos:x yPos:y_pos-min_height width:letter_width andHeight:letter_height];
 		}
 		newLetter = NO;

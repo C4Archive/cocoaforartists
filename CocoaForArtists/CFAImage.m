@@ -90,14 +90,14 @@ NSUInteger bytesPerPixel = 4;
 	CGContextRelease(context);
 }
 
--(NSColor *)colorAtX:(int)x andY:(int)y {
+-(CFAColor *)colorAtX:(int)x andY:(int)y {
 	int byteIndex = (bytesPerPixel * [self width] * y) + x * bytesPerPixel;
 	CGFloat red   = (rawData[byteIndex]     * 1.0) / 255.0;
 	CGFloat green = (rawData[byteIndex + 1] * 1.0) / 255.0;
 	CGFloat blue  = (rawData[byteIndex + 2] * 1.0) / 255.0;
 	CGFloat alpha = (rawData[byteIndex + 3] * 1.0) / 255.0;
 	
-	return [NSColor colorWithCalibratedRed:red green:green blue:blue alpha:alpha];
+	return [CFAColor colorWithRed:red green:green blue:blue alpha:alpha];
 }
 
 -(void)drawAt:(NSPoint)p {

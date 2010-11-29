@@ -16,10 +16,10 @@ float b = 0.0f;
 	[self drawStyle:ANIMATED];
 	[self windowWidth:400 andHeight:400];
 	[CFAShape strokeWidth:4];
-	[CFAShape stroke:255];
+	[CFAShape stroke:1.0f];
 }
 -(void)draw {
-	[self background:51];
+	[self background:0.2f];
 	a = a+2;
 	b = b+0.75;
 	[CFAShape lineFromX:a Y:0 toX:a Y:[self height]/2];

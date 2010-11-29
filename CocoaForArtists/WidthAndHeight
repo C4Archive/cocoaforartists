@@ -10,9 +10,9 @@
 @implementation CFACanvas
 
 -(void)setup {
-	[self windowWidth:200 andHeight:200];
+	[self windowWidth:400 andHeight:400];
 	[self flipCoordinates];
-	[self background:127];
+	[self background:0.5f];
 	[CFAShape noStroke];
 }
 

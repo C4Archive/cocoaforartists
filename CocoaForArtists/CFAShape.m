@@ -25,11 +25,11 @@ int ellipseMode = CENTER;
 
 float strokeWidth = 0.1f;
 
-NSColor *fillColor;
-NSColor *strokeColor;
-NSBezierPath *vertexPath;
-CGFloat fillColorComponents[4];
-CGFloat strokeColorComponents[4];
+CFAColor		*fillColor;
+CFAColor		*strokeColor;
+NSBezierPath	*vertexPath;
+CGFloat			fillColorComponents[4];
+CGFloat			strokeColorComponents[4];
 
 CGMutablePathRef currentShape;
 
@@ -45,8 +45,8 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 +(void)load {
 	if(VERBOSELOAD) printf("CFAShape\n");
 	strokeWidth = 1.0f;
-	fillColor = [NSColor whiteColor];
-	strokeColor = [NSColor blackColor];
+	fillColor = [CFAColor colorWithGrey:1];		//white
+	strokeColor = [CFAColor	colorWithGrey:0];	//black
 	ellipseMode = CENTER;
 	rectMode = CORNER;
 }
@@ -500,7 +500,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 }
 
 #pragma mark Attributes
-+(void)strokeWidth:(int)width {
++(void)strokeWidth:(float)width {
 	if (strokeWidth > 0) {
 		strokeWidth = width;
 	} else {
@@ -543,39 +543,29 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 }
 
 #pragma mark Colors
-+(void)fillColor:(NSColor *)color {
-	fillColor = color;
-	[fillColor getRed:&fillColorComponents[0] green:&fillColorComponents[1] blue:&fillColorComponents[2] alpha:&fillColorComponents[3]];
++(void)fillColor:(CFAColor *)color {
+	[fillColor release];
+	fillColor = [color retain];
 }
 
-+(void)fillColor:(NSColor *)color alpha:(int)alpha{
-	fillColor = [color colorWithAlphaComponent:FLOAT_FROM_255(alpha)];
-	[fillColor getRed:&fillColorComponents[0] green:&fillColorComponents[1] blue:&fillColorComponents[2] alpha:&fillColorComponents[3]];
++(void)fill:(float)grey {
+	[fillColor release];
+	fillColor = [[CFAColor colorWithGrey:grey] retain];
 }
 
-+(void)fill:(int)grey {
-	fillColor = [CFAColor colorFromIntValuesRed:grey green:grey blue:grey alpha:255];
-	[fillColor getRed:&fillColorComponents[0] green:&fillColorComponents[1] blue:&fillColorComponents[2] alpha:&fillColorComponents[3]];
++(void)fill:(float)grey alpha:(float)alpha{
+	[fillColor release];
+	fillColor = [[CFAColor colorWithGrey:grey alpha:alpha] retain];
 }
 
-+(void)fill:(int)grey alpha:(int)alpha{
-	
-	/*
-	crashes when called in -(void)setup{}
-	 */
-	fillColor = [CFAColor colorFromIntValuesRed:grey green:grey blue:grey alpha:alpha];
-	[fillColor getRed:&fillColorComponents[0] green:&fillColorComponents[1] blue:&fillColorComponents[2] alpha:&fillColorComponents[3]];
++(void)fillRed:(float)red green:(float)green blue:(float)blue {
+	[fillColor release];
+	fillColor = [[CFAColor colorWithRed:red green:green blue:blue] retain];
 }
 
-+(void)fillRed:(int)red green:(int)green blue:(int)blue {
-	fillColor = [CFAColor colorFromIntValuesRed:red green:green blue:blue alpha:255];
-	[fillColor getRed:&fillColorComponents[0] green:&fillColorComponents[1] blue:&fillColorComponents[2] alpha:&fillColorComponents[3]];
-	//CFALog(@"%4.2f,%4.2f,%4.2f,%4.2f",fillColorComponents[0],fillColorComponents[1],fillColorComponents[2],fillColorComponents[3]);
-}
-
-+(void)fillRed:(int)red green:(int)green blue:(int)blue alpha:(int)alpha{
-	fillColor = [CFAColor colorFromIntValuesRed:red green:green blue:blue alpha:alpha];
-	[fillColor getRed:&fillColorComponents[0] green:&fillColorComponents[1] blue:&fillColorComponents[2] alpha:&fillColorComponents[3]];
++(void)fillRed:(float)red green:(float)green blue:(float)blue alpha:(float)alpha{
+	[fillColor release];
+	fillColor = [[CFAColor colorWithRed:red green:green blue:blue alpha:alpha] retain];
 }
 
 +(void)noFill {
@@ -590,34 +580,29 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	useStroke = YES;
 }
 
-+(void)strokeColor:(NSColor *)color {
-	strokeColor = color;
-	[strokeColor getComponents:strokeColorComponents];
++(void)strokeColor:(CFAColor *)color {
+	[strokeColor release];
+	strokeColor = [color retain];
 }
 
-+(void)strokeColor:(NSColor *)color alpha:(int)alpha{
-	strokeColor = [color colorWithAlphaComponent:FLOAT_FROM_255(alpha)];
-	[strokeColor getComponents:strokeColorComponents];
++(void)stroke:(float)grey {
+	[strokeColor release];
+	strokeColor = [[CFAColor colorWithRed:grey green:grey blue:grey alpha:1.0f] retain];
 }
 
-+(void)stroke:(int)grey {
-	strokeColor = [CFAColor colorFromIntValuesRed:grey green:grey blue:grey alpha:255];
-	[strokeColor getComponents:strokeColorComponents];
++(void)stroke:(float)grey alpha:(float)alpha {
+	[strokeColor release];
+	strokeColor = [[CFAColor colorWithRed:grey green:grey blue:grey alpha:alpha] retain];
 }
 
-+(void)stroke:(int)grey alpha:(int)alpha {
-	strokeColor = [CFAColor colorFromIntValuesRed:grey green:grey blue:grey alpha:alpha];
-	[strokeColor getComponents:strokeColorComponents];
++(void)strokeRed:(float)red green:(float)green blue:(float)blue {
+	[strokeColor release];
+	strokeColor = [[CFAColor colorWithRed:red green:green blue:blue alpha:255] retain];
 }
 
-+(void)strokeRed:(int)red green:(int)green blue:(int)blue {
-	strokeColor = [CFAColor colorFromIntValuesRed:red green:green blue:blue alpha:255];
-	[strokeColor getComponents:strokeColorComponents];
-}
-
-+(void)strokeRed:(int)red green:(int)green blue:(int)blue alpha:(int)alpha{
-	strokeColor = [CFAColor colorFromIntValuesRed:red green:green blue:blue alpha:alpha];
-	[strokeColor getComponents:strokeColorComponents];
++(void)strokeRed:(float)red green:(float)green blue:(float)blue alpha:(float)alpha{
+	[strokeColor release];
+	strokeColor = [[CFAColor colorWithRed:red green:green blue:blue alpha:alpha] retain];
 }
 
 +(void)noStroke {
@@ -640,7 +625,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 }
 
 +(void)cgFillColorSet {
-	if(useFill == YES) CGContextSetRGBFillColor(pdfContext,fillColorComponents[0],fillColorComponents[1],fillColorComponents[2],fillColorComponents[3]);
+	if(useFill == YES) CGContextSetFillColor(pdfContext, CGColorGetComponents([fillColor cgColor]));
 	else CGContextSetRGBFillColor(pdfContext, 0, 0, 0, 0);
 }
 
@@ -649,7 +634,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 		strokeWidth = 1;
 	}
 	CGContextSetLineWidth(pdfContext, strokeWidth);
-	if(useStroke == YES) CGContextSetRGBStrokeColor(pdfContext, strokeColorComponents[0], strokeColorComponents[1], strokeColorComponents[2], strokeColorComponents[3]);
+	if(useStroke == YES) CGContextSetStrokeColor(pdfContext, CGColorGetComponents([strokeColor cgColor]));
 	else CGContextSetRGBStrokeColor(pdfContext, 0, 0, 0, 0);
 }
 

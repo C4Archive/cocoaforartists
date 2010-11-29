@@ -17,9 +17,10 @@ int box;
 -(void)setup {
 	[self drawStyle:ANIMATED];
 	[self flipCoordinates];
-	[self windowWidth:300 andHeight:200];
+	[self windowWidth:400 andHeight:400];
 	[self background:0];
 	[CFAShape stroke];
+	[CFAShape strokeWidth:15.0f];
 	easing = 0.05;
 	esize = 50.0;	
 	box = 30;
@@ -32,12 +33,11 @@ int box;
 	mx = [CFAMath constrain:mx min:box+esize/2 max:[self width]-box-esize/2];
 	my = [CFAMath constrain:my min:box+esize/2 max:[self height]-box-esize/2];
 	
-	[CFAShape stroke:100];
-	[CFAShape fill:100];
+	[CFAShape stroke:0.4f];
+	[CFAShape fill:0.4f];
 	[CFAShape rectWithXPos:box yPos:box width:[self width]-box*2 andHeight:[self height]-box*2];
-	[CFAShape strokeRed:255 green:120 blue:120];
-	[CFAShape fill:255];
+	[CFAShape strokeRed:0.33f green:0.66f blue:1.0f];
+	[CFAShape fill:1.0f];
 	[CFAShape ellipseWithXPos:mx yPos:my width:esize andHeight:esize];
 }
-
 @end

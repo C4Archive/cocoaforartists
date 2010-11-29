@@ -18,12 +18,12 @@ float rectWidth;
 	[self windowWidth:400 andHeight:400];
 	rectWidth = [self width]/26.0f;
 	[CFAShape noStroke];
-	[CFAShape fill:255];
+	[CFAShape fill:1.0f];
 	[CFAShape fill];
 }
 
 -(void)draw{	
-	[self background:0 alpha:5];
+	[self background:0 alpha:0.02f];
 	if (keyPressed && keyChar >= 'A' && keyChar <= 'z') {
 		if (keyChar <= 'Z') {
 			int mappedKeyValue = keyChar - 'A';

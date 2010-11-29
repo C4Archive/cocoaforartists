@@ -8,7 +8,7 @@
 
 #import "CFACanvas.h"
 @interface CFACanvas (private)
-NSColor *a,*b,*c,*d,*e;
+CFAColor *a,*b,*c,*d,*e;
 -(void)drawBandWithColorArray:(NSArray *)colors atYPosition:(int)y withWidth:(int)width;
 @end
 
@@ -18,11 +18,11 @@ NSColor *a,*b,*c,*d,*e;
 	[self windowWidth:400 andHeight:400];
 	[CFAShape noStroke];
 	
-	a = [CFAColor colorFromIntValuesRed:165 green:167 blue:20];
-	b = [CFAColor colorFromIntValuesRed:77 green:86 blue:59];
-	c = [CFAColor colorFromIntValuesRed:42 green:106 blue:105];
-	d = [CFAColor colorFromIntValuesRed:165 green:89 blue:20];
-	e = [CFAColor colorFromIntValuesRed:146 green:150 blue:127];
+	a = [CFAColor colorFromIntValuesRed:0.65f green:0.66f blue:0.08f];
+	b = [CFAColor colorFromIntValuesRed:0.3f green:0.34f blue:0.23f];
+	c = [CFAColor colorFromIntValuesRed:0.16f green:0.42f blue:0.41f];
+	d = [CFAColor colorFromIntValuesRed:0.65f green:0.35f blue:0.08f];
+	e = [CFAColor colorFromIntValuesRed:0.57 green:0.59f blue:0.50f];
 	
 }
 

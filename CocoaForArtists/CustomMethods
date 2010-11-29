@@ -25,7 +25,7 @@
 }
 
 -(void)drawTargetAtX:(float)x Y:(float)y withSize:(float)size andNumber:(float)num {
-	float greyValues = 255.0f/num;
+	float greyValues = 1.0f/num;
 	float steps = size/num;
 	for(int i = 0; i < num; i ++){
 		[CFAShape fill:i*greyValues];

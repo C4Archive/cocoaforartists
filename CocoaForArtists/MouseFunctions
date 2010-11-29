@@ -36,8 +36,8 @@ float bdify = 0.0f;
 			[CFAShape fill:153];
 		}
 	} else {
-		[CFAShape stroke:153];
-		[CFAShape fill:153];
+		[CFAShape stroke:0.6f];
+		[CFAShape fill:0.6f];
 		bover = NO;
 	}
 	
@@ -47,7 +47,7 @@ float bdify = 0.0f;
 -(void)mousePressed {
 	if(bover) {
 		locked = YES;
-		[CFAShape fill:255];
+		[CFAShape fill:1.0f];
 	} else {
 		locked = NO;
 	}

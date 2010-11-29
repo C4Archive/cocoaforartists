@@ -22,7 +22,7 @@
 
 -(int)width;
 -(int)height;
--(NSColor*)colorAtX:(int)x andY:(int)y;
+-(CFAColor *)colorAtX:(int)x andY:(int)y;
 -(void)loadPixelData;
 
 @property(readwrite, retain) CIImage *ciimage;

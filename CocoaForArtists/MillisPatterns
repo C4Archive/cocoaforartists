@@ -9,6 +9,7 @@
 #import "CFACanvas.h"
 @interface CFACanvas (private)
 float scale;
+int divisions = 40;
 @end
 
 @implementation CFACanvas
@@ -16,15 +17,15 @@ float scale;
 	[self drawStyle:ANIMATED];
 	[self windowWidth:400 andHeight:400];
 	[CFAShape noStroke];
-	scale = [self width]/20;
+	scale = [self width]/divisions;
 }
 
 -(void)draw {
-	for(int i = 0; i < scale; i++) {
+	for(int i = 0; i < divisions; i++) {
 		int scalefactor = (int)((i+1) * scale *10);
-		int color = [CFADateTime millis]%(scalefactor);
-		color = [CFAMath map:color fromMin:0 max:scalefactor toMin:0 max:255];
-		[CFAShape fill:color];
+		float grey = [CFADateTime millis]%(scalefactor);
+		grey = [CFAMath map:grey fromMin:0 max:scalefactor toMin:0 max:1];
+		[CFAShape fill:grey];
 		[CFAShape rectWithXPos:i*scale yPos:0 width:scale andHeight:[self height]];
 	}
 }

@@ -14,25 +14,25 @@
 @implementation CFACanvas
 
 -(void)setup { 
-	[self windowWidth:200 andHeight:200]; 
+	[self windowWidth:400 andHeight:400]; 
 	[CFAShape noStroke]; 
 	[self drawStyle:EVENTBASED]; 
 } 
 -(void)draw { 
-	[self background:255]; 
-	[self recursiveCircle:NSMakePoint(100, 100) radius:80 level:8]; 
+	[self background:1.0f]; 
+	[self recursiveCircle:NSMakePoint(200, 200) radius:160 level:8]; 
 } 
 
 -(void)recursiveCircle:(NSPoint)p radius:(int)radius level:(int)level { 
-	float greyValue = 126 * level/6.0; 
-	[CFAShape fill:greyValue alpha:153]; 
+	float greyValue = 0.5 * level/6.0; 
+	[CFAShape fill:greyValue alpha:0.5]; 
 	[CFAShape circleAt:p radius:radius*2]; if (level > 1) {
 		level--;
 		int num = [CFAMath randomIntBetweenA:2 andB:6];
 		for(int i = 0; i < num; i++) {
 			float a = [CFAMath randomIntBetweenA:0 andB:TWO_PI*100]/100.0f;
-			float newX = p.x + [CFAMath cos:a] * 6.0 * level;
-			float newY = p.y + [CFAMath sin:a] * 6.0 * level;
+			float newX = p.x + [CFAMath cos:a] * 12.0 * level;
+			float newY = p.y + [CFAMath sin:a] * 12.0 * level;
 			[self recursiveCircle:NSMakePoint(newX, newY) radius:radius/2 level:level];
 		}
 	}

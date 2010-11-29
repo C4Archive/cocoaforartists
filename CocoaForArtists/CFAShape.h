@@ -65,7 +65,7 @@
 +(void)addQuadFromX:(int)x1 Y:(int)y1 toX:(int)x2 Y:(int)y2 toX:(int)x3 Y:(int)y3 toX:(int)x4 Y:(int)y4;
 
 #pragma mark Attributes
-+(void)strokeWidth:(int)width;
++(void)strokeWidth:(float)width;
 +(void)rectMode:(int)mode;
 +(void)ellipseMode:(int)mode;
 +(void)strokeCapMode:(int)mode;
@@ -74,20 +74,18 @@
 
 #pragma mark Colors
 +(void)fill;
-+(void)fillColor:(NSColor *)color;
-+(void)fillColor:(NSColor *)color alpha:(int)alpha;
-+(void)fill:(int)grey;
-+(void)fill:(int)grey alpha:(int)alpha;
-+(void)fillRed:(int)red green:(int)green blue:(int)blue;
-+(void)fillRed:(int)red green:(int)green blue:(int)blue alpha:(int)alpha;
++(void)fillColor:(CFAColor *)color;
++(void)fill:(float)grey;
++(void)fill:(float)grey alpha:(float)alpha;
++(void)fillRed:(float)red green:(float)green blue:(float)blue;
++(void)fillRed:(float)red green:(float)green blue:(float)blue alpha:(float)alpha;
 +(void)noFill;
 +(void)stroke;
-+(void)strokeColor:(NSColor *)color;
-+(void)strokeColor:(NSColor *)color alpha:(int)alpha;
-+(void)stroke:(int)grey;
-+(void)stroke:(int)grey alpha:(int)alpha;
-+(void)strokeRed:(int)red green:(int)green blue:(int)blue;
-+(void)strokeRed:(int)red green:(int)green blue:(int)blue alpha:(int)a;
++(void)strokeColor:(CFAColor *)color;
++(void)stroke:(float)grey;
++(void)stroke:(float)grey alpha:(float)alpha;
++(void)strokeRed:(float)red green:(float)green blue:(float)blue;
++(void)strokeRed:(float)red green:(float)green blue:(float)blue alpha:(float)a;
 +(void)noStroke;
 
 #pragma mark Coordinates

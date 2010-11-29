@@ -6,6 +6,7 @@
 //  Created by ___FULLUSERNAME___ on ___DATE___.
 //
 
+
 #import "CFACanvas.h"
 
 @interface CFACanvas (private)
@@ -21,9 +22,5 @@
 -(void)draw {
 	// draw stuff here
 }
-
-/* 
- custom methods here (if you need them)
- */
 
 @end

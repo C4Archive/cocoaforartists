@@ -14,7 +14,7 @@
 }
 -(void)draw {
 	[CFAShape noStroke];
-	[CFAShape fill:102];
+	[CFAShape fill:0.4f];
 	[CFAShape beginShape];
 	[CFAShape vertexAt:NSMakePoint(60,40)];
 	[CFAShape vertexAt:NSMakePoint(160,10)];
@@ -23,7 +23,7 @@
 	[CFAShape endShape];
 	[CFAShape noFill];
 	[CFAShape stroke];
-	[CFAShape stroke:201];
+	[CFAShape stroke:0.8f];
 	[CFAShape beginShape];
 	[CFAShape vertexAt:NSMakePoint(40,60)];
 	[CFAShape vertexAt:NSMakePoint(10,160)];

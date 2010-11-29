@@ -11,21 +11,23 @@
 int size = 80;
 int direction = -1;
 int step = 1;
+BOOL createPDF;
 @end
 
 @implementation CFACanvas
 -(void)setup {
 	[self windowWidth:400 andHeight:400];
 	[self drawStyle:ANIMATED];
-	[self setupPDF];
+	createPDF = NO;
+	if(createPDF) [self setupPDF];
 }
 -(void)draw {
 	if(mousePressed){
-		[CFAShape stroke:255];
-		[CFAShape fill:0];
+		[CFAShape stroke:1.0f];
+		[CFAShape fill:0.0f];
 	} else {
-		[CFAShape stroke:0];
-		[CFAShape fillRed:mousePos.x green:mousePos.y blue:0];
+		[CFAShape stroke:0.0f];
+		[CFAShape fillRed:mousePos.x/[self width] green:mousePos.y/[self width] blue:0.0f];
 	}
 	
 	[CFAShape ellipseWithXPos:mousePos.x yPos:mousePos.y width:size andHeight:size];
@@ -36,7 +38,9 @@ int step = 1;
 }
 
 -(void)mouseReleased {
-	[self endPDF];
-	[self setupPDF];
+	if(createPDF) {
+		[self endPDF];
+		[self setupPDF];
+	}
 }
 @end

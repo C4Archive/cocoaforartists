@@ -23,8 +23,7 @@ int margin = 12;
 	for(int i = margin; i <= [self height]-margin && box_size > 1; i+=box_space){
 		if (box_size > 1) {
 			for(int j = margin; j < [self width]-margin; j+=box_space){
-				int fillCol = 255-(box_size*10);
-				[CFAShape fill:fillCol];
+				[CFAShape fill:3*[self height]/(i*box_space)];
 				[CFAShape ellipseWithXPos:j yPos:i width:box_size andHeight:box_size];
 			}
 		}

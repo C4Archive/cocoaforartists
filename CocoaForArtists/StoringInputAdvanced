@@ -31,10 +31,10 @@ float easing = 0.03f;
 }
 
 -(void)draw {
-	[self background:51];
+	[self background:0.2f];
 	for(int i = 0; i < pointCount; i++) {
 		[self updateEasingPoint:&points[i] usingEaseValue:easing+(.003*i)];
-		[CFAShape fillRed:255-i green:0 blue:55+i];
+		[CFAShape fillRed:1-(float)i/(float)pointCount green:0 blue:(float)i/(float)pointCount];
 		[CFAShape circleAt:NSMakePoint(points[i].x, points[i].y) radius:30-(i/10)];
 	}
 }

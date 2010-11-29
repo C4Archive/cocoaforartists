@@ -18,8 +18,8 @@ double c;
 	[self frameRate:30];
 	[self drawStyle:ANIMATED];
 	[self windowWidth:400 andHeight:400];
-	[CFAShape fill:255];
-	[CFAShape stroke:255];
+	[CFAShape fill:1.0f];
+	[CFAShape stroke:1.0f];
 	num = 20;
 	c = 0;
 }
@@ -28,7 +28,7 @@ double c;
 	[self background:0];
 	c += .09;
 	for(double i = 1; i < [self height]/num; i++){
-		float x = fmodf(c,(float)i)*i*i; //<-cocoa cannot do % with floats, only ints
+		float x = fmodf(c,(float)i)*i*i; //<-cocoa cannot do % with floats, only ints, so use fmodf() if you need
 		[CFAShape lineFromX:0 Y:i*num toX:x Y:i*num];
 		[CFAShape rectWithXPos:x yPos:i*num-num/2 width:8 andHeight:num];
 	}

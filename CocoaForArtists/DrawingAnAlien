@@ -11,7 +11,7 @@
 -(void)setup {
 	[self windowWidth:200 andHeight:200];
 	[self flipCoordinates];
-	[self background:180];
+	[self background:0.75f];
 	[CFAShape rectMode:CENTER];
 }
 -(void)draw {

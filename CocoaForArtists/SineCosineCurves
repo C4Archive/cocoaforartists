@@ -9,11 +9,11 @@
 #import "CFACanvas.h"
 @implementation CFACanvas
 -(void)setup {
-	[self background:99];
+	[self background:0.3f];
 	[self windowWidth:360 andHeight:180];
 }
 -(void)draw {
-	[CFAShape fillRed:255 green:120 blue:120];
+	[CFAShape fillRed:1.0f green:0.48f blue:0.48f];
 	[CFAShape beginShape];
 	for(int x = 0; x <= [self width]; x+=5) {
 		float y = [CFAMath sin:DEGREES_TO_RADIANS(x)];
@@ -22,9 +22,9 @@
 		[CFAShape vertexAt:NSMakePoint(x, y)];
 	}
 	[CFAShape endShape];
-
-	[CFAShape stroke:255];
-	[CFAShape fillRed:120 green:120 blue:255];
+	
+	[CFAShape stroke:1.0f];
+	[CFAShape fillRed:0.48f green:0.48f blue:1.0f];
 	[CFAShape beginShape];
 	for(int x = 0; x <=[self width]; x+=5) {
 		float y = [CFAMath sin:DEGREES_TO_RADIANS(x)];
@@ -35,7 +35,7 @@
 	[CFAShape endShape];
 	
 	[CFAShape noStroke];
-	[CFAShape fillRed:120 green:255 blue:120];
+	[CFAShape fillRed:0.48f green:1.0f blue:0.48f];
 	[CFAShape beginShape];
 	for(int x = 0; x <=[self width]/2; x+=5) {
 		if(x >= [self width]/2) [CFAShape stroke:0];

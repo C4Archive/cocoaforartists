@@ -16,8 +16,8 @@
 	return self;
 }
 
-+(void)linearGradientFromPointA:(NSPoint)pointA toPointB:(NSPoint)pointB usingColorA:(CGColorRef)colorA andColorB:(CGColorRef)colorB inShape:(CGMutablePathRef)shape{	
-	const void *colors[2] = {colorA,colorB};	
++(void)linearGradientFromPointA:(NSPoint)pointA toPointB:(NSPoint)pointB usingColorA:(CFAColor *)colorA andColorB:(CFAColor *)colorB inShape:(CGMutablePathRef)shape{	
+	const void *colors[2] = {[colorA cgColor],[colorB cgColor]};	
 	
 	CFArrayRef colorArrayRef = CFArrayCreate(kCFAllocatorDefault, colors, 2, &kCFTypeArrayCallBacks);	
 	
@@ -32,8 +32,8 @@
 	CGContextRestoreGState(context);
 }
 
-+(void)linearGradientFromPointA:(NSPoint)pointA toPointB:(NSPoint)pointB toPointC:(NSPoint)pointC usingColorA:(CGColorRef)colorA andColorB:(CGColorRef)colorB andColorC:(CGColorRef)colorC inShape:(CGMutablePathRef)shape{	
-	const void *colors[3] = {colorA,colorB,colorC};	
++(void)linearGradientFromPointA:(NSPoint)pointA toPointB:(NSPoint)pointB toPointC:(NSPoint)pointC usingColorA:(CFAColor *)colorA andColorB:(CFAColor *)colorB andColorC:(CFAColor *)colorC inShape:(CGMutablePathRef)shape{	
+	const void *colors[3] = {[colorA cgColor],[colorB cgColor],[colorC cgColor]};	
 	CFArrayRef colorArrayRef = CFArrayCreate(kCFAllocatorDefault, colors, 3, &kCFTypeArrayCallBacks);	
 
 	CGFloat midDist = [CFAMath distFromX:pointA.x Y:pointA.y toX:pointB.x Y:pointB.y];

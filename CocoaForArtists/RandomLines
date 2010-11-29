@@ -15,7 +15,7 @@
 
 -(void)draw {
 	for(int i = 0; i < [self width]; i++){
-		float r = [CFAMath randomInt:255];
+		float r = FLOAT_FROM_255([CFAMath randomInt:255]);
 		float x = [CFAMath randomIntBetweenA:0 andB:[self width]];
 		[CFAShape stroke:r alpha:100];
 		[CFAShape lineFromX:i Y:0 toX:x Y:[self height]];

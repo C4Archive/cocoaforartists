@@ -19,12 +19,12 @@ float easing = 0.05f;
 	[self flipCoordinates];
 	[self windowWidth:400 andHeight:400];
 	[CFAShape stroke];
-	[CFAShape strokeWidth:2];
-	[CFAShape stroke:255];
+	[CFAShape strokeWidth:1];
+	[CFAShape stroke:1.0f];
 }
 
 -(void)draw {
-	[self background:51];
+	[self background:0.1f alpha:0.025f];
 	
 	target.x = mousePos.x;
 	float dx = target.x - current.x;
@@ -37,8 +37,8 @@ float easing = 0.05f;
 	if([CFAMath abs:dy] > 1) {
 		current.y += dy * easing;
 	}
-	[CFAShape fill:255 alpha:128];
-	[CFAShape circleAt:current radius:15];
+	[CFAShape fill:1.0f alpha:0.2f];
+	[CFAShape circleAt:current radius:20];
 	[CFAShape circleAt:current radius:10];
 }
 

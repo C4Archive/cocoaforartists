@@ -18,7 +18,7 @@
 	
 @private
 	BOOL isClean;
-	NSColor *backgroundColor;
+	CFAColor *backgroundColor;
 	NSString *exportDir, *exportFileName, *exportFileType;
 }
 
@@ -48,10 +48,10 @@
 
 #pragma mark Background
 -(void)drawBackground;
--(void)background:(int)grey;
--(void)background:(int)grey alpha:(int)alpha;
--(void)backgroundRed:(int)red green:(int)green blue:(int)blue;
--(void)backgroundRed:(int)red green:(int)green blue:(int)blue alpha:(int)alpha;
+-(void)background:(float)grey;
+-(void)background:(float)grey alpha:(float)alpha;
+-(void)backgroundRed:(float)red green:(float)green blue:(float)blue;
+-(void)backgroundRed:(float)red green:(float)green blue:(float)blue alpha:(float)alpha;
 -(void)backgroundImage:(CFAImage*)bgImage;
 
 #pragma mark Input
@@ -69,7 +69,7 @@
 -(void)setupPDF;
 -(void)endPDF;
 
-@property(readwrite,retain) NSColor *backgroundColor;
+@property(readwrite,retain) CFAColor *backgroundColor;
 @property(readwrite,retain) NSString *exportDir;
 @property(readwrite,retain) NSString *exportFileName;
 @property(readwrite,retain) NSString *exportFileType;

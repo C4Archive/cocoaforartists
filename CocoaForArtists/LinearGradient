@@ -24,36 +24,36 @@ CGGradientRef gradient;
 	[CFAShape addRectWithXPos:0 yPos:0 width:[self width] andHeight:[self height]];
 	[CFAGradient linearGradientFromPointA:NSMakePoint(0,0)
 								 toPointB:NSMakePoint(0,[self height])
-							  usingColorA:[CFAColor cgColorFromIntValuesRed:190	green:190 blue:190]
-								andColorB:[CFAColor cgColorFromIntValuesRed:0 green:0 blue:0]
+							  usingColorA:[CFAColor colorWithRed:0.75f green:0.75f blue:0.75f]
+								andColorB:[CFAColor colorWithRed:0.0f green:0.0f blue:0.0f]
 								  inShape:[CFAShape currentShape]];
 	[CFAShape clearCurrentShape];
 	[CFAShape addRectWithXPos:50 yPos:50 width:150 andHeight:150];
 	[CFAGradient linearGradientFromPointA:NSMakePoint(50,50)
 								 toPointB:NSMakePoint(50,350)
-							  usingColorA:[CFAColor cgColorFromIntValuesRed:255 green:120 blue:0]
-								andColorB:[CFAColor cgColorFromIntValuesRed:10 green:45 blue:255]
+							  usingColorA:[CFAColor colorWithRed:1.0f green:0.48f blue:0.0f]
+								andColorB:[CFAColor colorWithRed:0.04f green:0.18f blue:1.0f]
 								  inShape:[CFAShape currentShape]];
 	[CFAShape clearCurrentShape];
 	[CFAShape addRectWithXPos:200 yPos:50 width:150 andHeight:150];
 	[CFAGradient linearGradientFromPointA:NSMakePoint(200,50)
 								 toPointB:NSMakePoint(350,50)
-							  usingColorA:[CFAColor cgColorFromIntValuesRed:10 green:255 blue:15]
-								andColorB:[CFAColor cgColorFromIntValuesRed:125 green:2 blue:140]
+							  usingColorA:[CFAColor colorWithRed:0.04f green:1.0f blue:15]
+								andColorB:[CFAColor colorWithRed:0.50f green:0.01f blue:0.55f]
 								  inShape:[CFAShape currentShape]];
 	[CFAShape clearCurrentShape];
 	[CFAShape addRectWithXPos:50 yPos:200 width:150 andHeight:150];
 	[CFAGradient linearGradientFromPointA:NSMakePoint(50,200)
 								 toPointB:NSMakePoint(200,200)
-							  usingColorA:[CFAColor cgColorFromIntValuesRed:10 green:45	blue:255]
-								andColorB:[CFAColor cgColorFromIntValuesRed:255 green:255 blue:0]
+							  usingColorA:[CFAColor colorWithRed:0.04f green:45 blue:1.0f]
+								andColorB:[CFAColor colorWithRed:1.0f green:1.0f blue:0.0f]
 								  inShape:[CFAShape currentShape]];
 	[CFAShape clearCurrentShape];
 	[CFAShape addRectWithXPos:200 yPos:200 width:150 andHeight:150];
 	[CFAGradient linearGradientFromPointA:NSMakePoint(200,200)
 								 toPointB:NSMakePoint(200,350)
-							  usingColorA:[CFAColor cgColorFromIntValuesRed:125 green:2	blue:140]
-								andColorB:[CFAColor cgColorFromIntValuesRed:25 green:255 blue:200]
+							  usingColorA:[CFAColor colorWithRed:0.50f green:0.01f blue:0.55f]
+								andColorB:[CFAColor colorWithRed:0.10f green:1.0f blue:0.78f]
 								  inShape:[CFAShape currentShape]];
 	
 }

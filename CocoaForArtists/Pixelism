@@ -24,7 +24,7 @@ CFAImage *image;
 	image = [CFAImage imageName:@"3dmaze" andType:@"JPG" loadPixelData:YES];
 	[self windowWidth:[image width] andHeight:[image height]];
 	[self flipCoordinates];
-	[self background:255];
+	[self background:1.0f];
 	
 	//stripe = width of 1 color
 	stripeWidth = [CFAMath maxOfA:1 andB:[self width]/[image width]];
@@ -48,19 +48,16 @@ CFAImage *image;
 			int x1 = [CFAMath map:x fromMin:0 max:[image width] toMin:0 max:[self width]];
 			
 			//grab the color from our image at (x,y)
-			NSColor *pixelColor = [image colorAtX:x andY:y];
-			int red = FLOAT_TO_255([pixelColor redComponent]);
-			int green = FLOAT_TO_255([pixelColor greenComponent]);
-			int blue = FLOAT_TO_255([pixelColor blueComponent]);
+			CFAColor *pixelColor = [image colorAtX:x andY:y];
 			
 			//create a block of colors
-			[CFAShape fillRed:red green:0 blue:0];
+			[CFAShape fillRed:[[pixelColor nsColor] redComponent] green:0 blue:0];
 			[CFAShape rectWithXPos:x1+stripeWidth*0 yPos:y1 width:stripeWidth andHeight:blockHeight];
 			
-			[CFAShape fillRed:0 green:green blue:0];
+			[CFAShape fillRed:0 green:[[pixelColor nsColor] greenComponent] blue:0];
 			[CFAShape rectWithXPos:x1+stripeWidth*1 yPos:y1 width:stripeWidth andHeight:blockHeight];
 			
-			[CFAShape fillRed:0 green:0 blue:blue];
+			[CFAShape fillRed:0 green:0 blue:[[pixelColor nsColor] blueComponent]];
 			[CFAShape rectWithXPos:x1+stripeWidth*2 yPos:y1 width:stripeWidth andHeight:blockHeight];
 		}
 	}

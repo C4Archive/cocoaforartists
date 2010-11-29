@@ -15,7 +15,7 @@
 
 -(void)setup {
 	[self windowWidth:400 andHeight:400];
-	[self background:51];
+	[self background:0.2f];
 	[CFAShape noStroke];
 }
 
@@ -24,7 +24,7 @@
 }
 
 -(void)recursiveCirclesAtX:(int)x withRadius:(int)radius andLevels:(int)levels {
-	float tt = 126 * levels / 4.0;
+	float tt = 0.5 * levels / 4.0;
 	[CFAShape fill:tt];
 	[CFAShape ellipseWithXPos:x yPos:[self height]/3 width:radius*2 andHeight:radius*2];
 	

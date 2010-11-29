@@ -19,7 +19,7 @@ float offset;
 	b = [CFAImage imageName:@"3dmaze" andType:@"JPG"];
 }
 -(void)draw {
-	[self background:255];
+	[self background:1.0f];
 	[a drawAt:NSZeroPoint];
 	[b drawAt:NSZeroPoint withAlpha:0.5];
 }

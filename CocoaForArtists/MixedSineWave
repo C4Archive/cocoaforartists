@@ -56,7 +56,7 @@ float yValues[51];
 }
 -(void)renderWave {
 	[CFAShape noStroke];
-	[CFAShape fill:255 alpha:150];
+	[CFAShape fill:1.0f alpha:0.6f];
 	for(int x = 0; x < yValueCount; x++) {
 		[CFAShape ellipseWithXPos:x*xspacing yPos:[self width]/2+yValues[x] width:16 andHeight:16];
 	}

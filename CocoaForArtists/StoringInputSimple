@@ -25,14 +25,14 @@ int pointCount = 60;
 }
 
 -(void)draw {
-	[self background:51];
+	[self background:0.2f];
 	for(int i = 1; i < pointCount; i++){
 		xvals[i-1] = xvals[i];
 		yvals[i-1] = yvals[i];
 	}
 	xvals[pointCount-1] = mousePos.x;
 	yvals[pointCount-1] = mousePos.y;
-	[CFAShape fill:255 alpha:153];
+	[CFAShape fill:1.0f alpha:0.6f];
 	for(int i = 0; i < pointCount; i++) {
 		[CFAShape ellipseWithXPos:xvals[i] yPos:yvals[i] width:i/2 andHeight:i/2];
 	}

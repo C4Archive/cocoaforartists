@@ -18,7 +18,7 @@ float offset;
 	myImage = [[[CFAImage alloc] initWithImageName:@"CFATest" andType:@"jpg"] retain];
 }
 -(void)draw {
-	[self background:255];
+	[self background:1.0f];
 	int columns = mousePos.x/20;
 	if (columns == 0) {
 		columns = 1;

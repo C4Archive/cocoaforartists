@@ -11,18 +11,22 @@
 
 @interface CFAColor : NSObject {
 	@private
-	CGFloat components[4];
+	NSColor *color;
 }
 
-+(NSColor*)colorFromIntValuesRed:(int)red green:(int)green blue:(int)blue;
-+(NSColor*)colorFromIntValuesRed:(int)red green:(int)green blue:(int)blue alpha:(int)alpha;
++(CFAColor *)colorWithGrey:(CGFloat)grey;
++(CFAColor *)colorWithGrey:(CGFloat)grey alpha:(CGFloat)alpha;
++(CFAColor *)colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;
++(CFAColor *)colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
 
-+(CGColorRef)cgColorFromIntValuesRed:(int)red green:(int)green blue:(int)blue;
-+(CGColorRef)cgColorFromIntValuesRed:(int)red green:(int)green blue:(int)blue alpha:(int)alpha;
+-(id)initWithGrey:(CGFloat)grey;
+-(id)initWithGrey:(CGFloat)grey alpha:(CGFloat)alpha;
+-(id)initWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;
+-(id)initWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
 
--(id)initWithIntValuesRed:(int)red green:(int)green blue:(int)blue;
--(id)initWithIntValuesRed:(int)red green:(int)green blue:(int)blue alpha:(int)alpha;
+-(void)set;
 
 -(CGColorRef)cgColor;
 -(NSColor *)nsColor;
+
 @end

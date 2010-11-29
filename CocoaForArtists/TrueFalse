@@ -14,8 +14,8 @@ BOOL x = NO;
 -(void)setup {
 	[self flipCoordinates];
 	[self windowWidth:400 andHeight:400];
-	[self background:0];
-	[CFAShape stroke:0];
+	[self background:0.0f];
+	[CFAShape stroke:0.0f];
 	[CFAShape strokeWidth:2];
 }
 -(void)draw {
@@ -26,11 +26,11 @@ BOOL x = NO;
 			x = NO;
 		}
 		if(x) {
-			[CFAShape stroke:255];
+			[CFAShape stroke:1.0f];
 			[CFAShape lineFromX:i Y:1 toX:i Y:[self height]-1];
 		}
 		if(!x) {
-			[CFAShape stroke:126];
+			[CFAShape stroke:0.5f];
 			[CFAShape lineFromX:[self width]/2 Y:i toX:[self width]-1 Y:i];
 		}
 	}

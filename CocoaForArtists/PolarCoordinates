@@ -25,8 +25,8 @@ float theta_acc;
 }
 
 -(void)draw {
-	[self background:0];
-	[CFAShape fill:200];
+	[self background:0 alpha:0.1f];
+	[CFAShape fill:0.8f];
 	
 	NSPoint p1 = NSMakePoint(radius*[CFAMath cos:theta] + [self width]/2,
 							 radius*[CFAMath sin:theta] + [self height]/2);

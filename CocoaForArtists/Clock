@@ -7,29 +7,35 @@
 //
 
 #import "CFACanvas.h"
+
+@interface CFACanvas (private)
+float radius;
+@end
+
 @implementation CFACanvas
 -(void)setup {
 	[self flipCoordinates];
 	[self drawStyle:ANIMATED];
 	[self windowWidth:400 andHeight:400];
-	[CFAShape stroke:255];
+	[CFAShape stroke:1.0f];
+	radius = [CFAMath minOfA:[self width] andB:[self height]]/2*0.9;
 }
 -(void)draw {
 	[self background:0];
-	[CFAShape fill:80];
+	[CFAShape fill:0.33f];
 	[CFAShape noStroke];
-	[CFAShape circleAt:NSMakePoint([self width]/2, [self height]/2) radius:80];
+	[CFAShape circleAt:NSMakePoint([self width]/2, [self height]/2) radius:radius];
 	float s = [CFAMath map:[CFADateTime second] fromMin:0 max:60 toMin:0 max:TWO_PI]-HALF_PI;
 	float m = [CFAMath map:[CFADateTime minute] fromMin:0 max:60 toMin:0 max:TWO_PI]-HALF_PI;
 	float h = [CFAMath map:[CFADateTime hour] fromMin:0 max:24 toMin:0 max:TWO_PI*2]-HALF_PI;
 	[CFAShape stroke];
-	[CFAShape lineFromX:[self width]/2 Y:[self height]/2 toX:[CFAMath cos:s]*72+[self width]/2 Y:[CFAMath sin:s]*72+[self height]/2];
-	[CFAShape lineFromX:[self width]/2 Y:[self height]/2 toX:[CFAMath cos:m]*60+[self width]/2 Y:[CFAMath sin:m]*60+[self height]/2];
-	[CFAShape lineFromX:[self width]/2 Y:[self height]/2 toX:[CFAMath cos:h]*50+[self width]/2 Y:[CFAMath sin:h]*50+[self height]/2];
-	[CFAShape fill:255];
+	[CFAShape lineFromX:[self width]/2 Y:[self height]/2 toX:[CFAMath cos:s]*(radius*0.9)+[self width]/2 Y:[CFAMath sin:s]*(radius*0.9)+[self height]/2];
+	[CFAShape lineFromX:[self width]/2 Y:[self height]/2 toX:[CFAMath cos:m]*(radius*0.75)+[self width]/2 Y:[CFAMath sin:m]*(radius*0.75)+[self height]/2];
+	[CFAShape lineFromX:[self width]/2 Y:[self height]/2 toX:[CFAMath cos:h]*(radius*0.6)+[self width]/2 Y:[CFAMath sin:h]*(radius*0.6)+[self height]/2];
+	[CFAShape fill:1.0f];
 	for (int a = 0; a < 360; a+=6) {
-		float x = [self width]/2 + [CFAMath cos:[CFAMath radians:a]] * 72 ;
-		float y = [self height]/2 + [CFAMath sin:[CFAMath radians:a]] * 72;
+		float x = [self width]/2 + [CFAMath cos:[CFAMath radians:a]] * (radius*0.95) ;
+		float y = [self height]/2 + [CFAMath sin:[CFAMath radians:a]] * (radius*0.95);
 		[CFAShape pointAt:NSMakePoint(x, y)];
 	}
 }

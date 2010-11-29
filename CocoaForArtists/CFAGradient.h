@@ -13,6 +13,6 @@
 	CGGradientRef gradient;
 }
 
-+(void)linearGradientFromPointA:(NSPoint)pointA toPointB:(NSPoint)pointB usingColorA:(CGColorRef)colorA andColorB:(CGColorRef)colorB inShape:(CGMutablePathRef)shape;
-+(void)linearGradientFromPointA:(NSPoint)pointA toPointB:(NSPoint)pointB toPointC:(NSPoint)pointC usingColorA:(CGColorRef)colorA andColorB:(CGColorRef)colorB andColorC:(CGColorRef)colorC inShape:(CGMutablePathRef)shape;
++(void)linearGradientFromPointA:(NSPoint)pointA toPointB:(NSPoint)pointB usingColorA:(CFAColor *)colorA andColorB:(CFAColor *)colorB inShape:(CGMutablePathRef)shape;
++(void)linearGradientFromPointA:(NSPoint)pointA toPointB:(NSPoint)pointB toPointC:(NSPoint)pointC usingColorA:(CFAColor *)colorA andColorB:(CFAColor *)colorB andColorC:(CFAColor*)colorC inShape:(CGMutablePathRef)shape;
 @end

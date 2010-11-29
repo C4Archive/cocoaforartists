@@ -10,15 +10,15 @@
 @implementation CFACanvas
 -(void)setup {
 	[self windowWidth:480 andHeight:120];
-	[self background:255];
+	[self background:1.0f];
 	[self drawStyle:EVENTBASED];
 	[CFAShape stroke];
 }
 -(void)draw {
 	if (mousePressed) {
-		[CFAShape fill:0];
+		[CFAShape fill:0.0f];
 	} else {
-		[CFAShape fill:255];
+		[CFAShape fill:1.0f];
 	}
 	[CFAShape ellipseWithXPos:mousePos.x yPos:mousePos.y width:80 andHeight:80];
 }

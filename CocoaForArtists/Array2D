@@ -22,7 +22,7 @@ float maxDistance;
 	for(int i = 0; i < height; i++){
 		for(int j = 0; j < width; j++){
 			float dist = (float)[CFAMath distanceFromX:(float)width/2 Y:(float)height/2 toX:(float)j Y:(float)i];
-			distances[j][i] = dist/maxDistance *255;
+			distances[j][i] = dist/maxDistance;
 		}
 	}
 }

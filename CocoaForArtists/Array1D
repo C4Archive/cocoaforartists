@@ -24,15 +24,15 @@ float cosWave[400];
 -(void)draw {
 	[self background:0];
 	for(int i = 0; i < [self width]; i++) {
-		[CFAShape stroke:cosWave[i]*255];
+		[CFAShape stroke:cosWave[i]];
 		[CFAShape lineFromX:i Y:0 toX:i Y:[self height]/3];
 	}
 	for(int i = 0; i < [self width]; i++) {
-		[CFAShape stroke:cosWave[i]*255/4];
+		[CFAShape stroke:cosWave[i]/4];
 		[CFAShape lineFromX:i Y:[self height]/3 toX:i Y:[self height]/3*2];
 	}
 	for(int i = 0; i < [self width]; i++) {
-		[CFAShape stroke:255-cosWave[i]*255];
+		[CFAShape stroke:1-cosWave[i]];
 		[CFAShape lineFromX:i Y:[self height]/3*2 toX:i Y:[self height]];
 	}
 }

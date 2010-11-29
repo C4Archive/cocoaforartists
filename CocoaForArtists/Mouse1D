@@ -29,9 +29,9 @@ float rightColor = 0.0f;
 -(void)draw {
 	[self background:0];
 	[self update:mousePos.x];
-	[CFAShape fillRed:(leftColor + 0.6)*255 green:(leftColor+0.4)*255 blue:0];
+	[CFAShape fillRed:(leftColor + 0.6) green:(leftColor+0.4) blue:0];
 	[CFAShape ellipseWithXPos:[self width]/4-gx yPos:[self width]/2-gx width:gx*2 andHeight:gx*2];
-	[CFAShape fillRed:(rightColor + 0.4)*255 green:(rightColor+0.2)*255 blue:0];
+	[CFAShape fillRed:(rightColor + 0.4) green:(rightColor+0.2) blue:0];
 	[CFAShape ellipseWithXPos:[self width]/1.33-gy yPos:[self width]/2-gy width:gy*2 andHeight:gy*2];
 }
 

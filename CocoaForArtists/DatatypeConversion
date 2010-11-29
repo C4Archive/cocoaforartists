@@ -13,11 +13,11 @@ float f;
 int i;
 Byte b;
 @end
+
 @implementation CFACanvas
 -(void)setup {
-	[self flipCoordinates];
 	[self windowWidth:300 andHeight:200];
-	[self background:225];
+	[self background:0.9f];
 	[CFAShape noStroke];
 	c = 'w';
 	//when you wish to convert between data types
@@ -30,11 +30,14 @@ Byte b;
 -(void)draw {
 	//if you forget to "cast", you can sometimes get away with it...
 	//but sometimes the result won't be what you expect
-	[CFAShape fillRed:'A' green:0 blue:0];
-	[CFAShape rectWithXPos:f yPos:0 width:40 andHeight:66];
-	[CFAShape fillRed:'a' green:0 blue:0];
-	[CFAShape rectWithXPos:i yPos:67 width:40 andHeight:66];
-	[CFAShape fillRed:'z' green:0 blue:0];
-	[CFAShape rectWithXPos:b yPos:134 width:40 andHeight:66];
+	
+	//because the values here will convert to integers larger than 1
+	//we need to convert them down to float values (between 0 and 1) to use for colors
+	[CFAShape fillRed:FLOAT_FROM_255('A') green:0 blue:0];
+	[CFAShape rectWithXPos:f yPos:1 width:'A' andHeight:'A'];
+	[CFAShape fillRed:FLOAT_FROM_255('a') green:0 blue:0];
+	[CFAShape rectWithXPos:i yPos:67 width:c andHeight:c];
+	[CFAShape fillRed:FLOAT_FROM_255('z') green:0 blue:0];
+	[CFAShape rectWithXPos:b yPos:134 width:b andHeight:-1*'z'];
 }
 @end

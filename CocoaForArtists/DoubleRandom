@@ -17,7 +17,7 @@ int randomValue;
 -(void)setup {
 	[self drawStyle:EVENTBASED];
 	[self windowWidth:200 andHeight:200];
-	[CFAShape fill:255];
+	[CFAShape fill:1.0f];
 	
 	totalPoints = [self width];
 	steps = totalPoints + 1;

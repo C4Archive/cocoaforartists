@@ -18,14 +18,14 @@
 
 @implementation CFACanvas
 -(void)setup {
-	[self windowWidth:200 andHeight:200];
+	[self windowWidth:400 andHeight:400];
 	[self background:0];
 	[CFAShape noFill];
 	[CFAShape strokeWidth:1];
 }
 
 -(void)draw {
-	[CFAShape stroke:155];
+	[CFAShape stroke:0.2f];
 	[CFAShape beginShape];
 	for(int i = 0; i < [self width]; i++) {
 		float value = [self sinGraph:((float)i/[self width])]*[self height];
@@ -33,7 +33,7 @@
 	}
 	[CFAShape endShape];
 	
-	[CFAShape stroke:180];
+	[CFAShape stroke:0.4f];
 	[CFAShape beginShape];
 	for(int i = 0; i < [self width]; i++) {
 		float value = [self quad:((float)i)/[self width]]*[self height];
@@ -41,7 +41,7 @@
 	}
 	[CFAShape endShape];
 	
-	[CFAShape stroke:205];
+	[CFAShape stroke:0.6f];
 	[CFAShape beginShape];
 	for(int i = 0; i < [self width]; i++) {
 		float value = [self quadHump:((float)i)/[self width]]*[self height];
@@ -49,7 +49,7 @@
 	}
 	[CFAShape endShape];
 	
-	[CFAShape stroke:230];
+	[CFAShape stroke:0.8f];
 	[CFAShape beginShape];
 	for(int i = 0; i < [self width]; i++) {
 		float value = [self hump:((float)i)/[self width]]*[self height];
@@ -57,7 +57,7 @@
 	}
 	[CFAShape endShape];
 	
-	[CFAShape stroke:255];
+	[CFAShape stroke:1.0f];
 	[CFAShape beginShape];
 	for(int i = 0; i < [self width]; i++) {
 		float value = [self squared:((float)i)/[self width]]*[self height];
@@ -95,7 +95,7 @@
 -(float)hump:(float)value {
 	value = (value - 0.5) * 2; // scale from -2 to 2
 	value = [self squared:value];
-
+	
 	if(value > 1) {
 		value = 1;
 	}

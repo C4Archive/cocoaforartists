@@ -99,6 +99,7 @@
 		EDD92AC3129A9B9800C6A1F7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDD92AC1129A9B9800C6A1F7 /* MainMenu.xib */; };
 		EDD92AC8129A9BCE00C6A1F7 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD92AC7129A9BCE00C6A1F7 /* OpenGL.framework */; };
 		EDE538291237633C0041895C /* CFACanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE538281237633C0041895C /* CFACanvas.m */; };
+		EDECAAA312A2E55E00C79F56 /* Kandinskyish in Resources */ = {isa = PBXBuildFile; fileRef = EDECAAA212A2E55E00C79F56 /* Kandinskyish */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -214,6 +215,7 @@
 		EDD92AC7129A9BCE00C6A1F7 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		EDE538271237633C0041895C /* CFACanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFACanvas.h; sourceTree = "<group>"; };
 		EDE538281237633C0041895C /* CFACanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFACanvas.m; sourceTree = "<group>"; };
+		EDECAAA212A2E55E00C79F56 /* Kandinskyish */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Kandinskyish; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -373,6 +375,7 @@
 			children = (
 				EDD92A27129A9ACB00C6A1F7 /* StoringInputAdvanced */,
 				ED6961EA129AB07C0082D888 /* Oscillator */,
+				EDECAAA212A2E55E00C79F56 /* Kandinskyish */,
 			);
 			name = Advanced;
 			sourceTree = "<group>";
@@ -636,6 +639,7 @@
 				EDD92ABD129A9AE800C6A1F7 /* 3dmaze.JPG in Resources */,
 				EDD92AC3129A9B9800C6A1F7 /* MainMenu.xib in Resources */,
 				ED6961EB129AB07C0082D888 /* Oscillator in Resources */,
+				EDECAAA312A2E55E00C79F56 /* Kandinskyish in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

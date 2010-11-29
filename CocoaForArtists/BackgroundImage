@@ -24,7 +24,7 @@ int a;
 -(void)draw {
 	[self backgroundImage:bg];
 	a = (a + 1) % ([self width]+32);
-	[CFAShape strokeRed:255 green:0 blue:0];
+	[CFAShape strokeRed:1.0f green:0 blue:0];
 	[CFAShape lineFromX:0 Y:a toX:[self width] Y:a-26];
 	[CFAShape lineFromX:0 Y:a-6 toX:[self width] Y:a-32];
 }

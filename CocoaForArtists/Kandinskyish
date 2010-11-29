@@ -1,0 +1,282 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@implementation CFACanvas
+-(void)setup {
+	[self windowWidth:600 andHeight:400];
+	[self background:1.0f];
+	[CFAShape stroke];
+}
+-(void)draw {
+	[self backgroundRed:0.945 green:0.88 blue:0.72];
+	[self drawBackground];
+	
+	//GRADIENTS
+	[CFAShape clearCurrentShape];
+	[CFAShape addTriangleFromX:108 Y:208.5 toX:200.5 Y:305 toX:365 Y:161];
+	[CFAGradient linearGradientFromPointA:NSMakePoint(255,385)
+								 toPointB:NSMakePoint(205,205)
+							  usingColorA:[CFAColor colorWithRed:0.36f green:0.68f blue:0.85f]
+								andColorB:[CFAColor colorWithRed:0.36f green:0.68f blue:0.85f alpha:0.0f]
+								  inShape:[CFAShape currentShape]];
+	
+	[CFAShape clearCurrentShape];
+	[CFAShape addTriangleFromX:255.5 Y:40 toX:359 Y:402.5 toX:470 Y:20.5];
+	[CFAGradient linearGradientFromPointA:NSMakePoint(0,[self height])
+								 toPointB:NSMakePoint(0,150)
+							  usingColorA:[CFAColor colorWithRed:1.0f green:1.0f blue:1.0f]
+								andColorB:[CFAColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.0f]
+								  inShape:[CFAShape currentShape]];
+	
+	[CFAShape noStroke];
+	[CFAShape fill];
+	//CIRCLES
+	[CFAShape fillRed:0.78 green:0.42 blue:0.3];
+	[CFAShape circleAt:NSMakePoint(70, 330) radius:75];
+	
+	[CFAShape fillRed:0.87 green:0.55 blue:0.5 alpha:0.9];
+	[CFAShape circleAt:NSMakePoint(70, 330) radius:69];
+	
+	[CFAShape fillRed:0.68 green:.08 blue:0];
+	[CFAShape circleAt:NSMakePoint(118, 268) radius:24];
+	
+	[CFAShape fill:0];
+	[CFAShape circleAt:NSMakePoint(70, 330) radius:60];
+	
+	[CFAShape fillRed:0.325 green:0.185 blue:0.35];
+	[CFAShape circleAt:NSMakePoint(70, 330) radius:29];
+	
+	[CFAShape fillRed:0.41 green:0.59 blue:0.8 alpha:.8];
+	[CFAShape circleAt:NSMakePoint(60, 112) radius:33];
+	
+	[CFAShape stroke];
+	[CFAShape fillRed:0.91 green:0.7 blue:.235];
+	[CFAShape circleAt:NSMakePoint(60, 112) radius:21];
+	
+	[CFAShape noStroke];
+	[CFAShape fillRed:0.96 green:0.84 blue:0.37];
+	[CFAShape circleAt:NSMakePoint(225.5, 44.5) radius:26];
+	
+	[CFAShape fillRed:0.92 green:0.65 blue:0.5];
+	[CFAShape circleAt:NSMakePoint(224, 44.5) radius:18.5];
+	
+	[CFAShape strokeWidth:0.5];
+	[CFAShape stroke];
+	[CFAShape fillRed:0.24 green:0.5 blue:0.64];
+	[CFAShape circleAt:NSMakePoint(222.5, 46.5) radius:16.5];
+	
+	[CFAShape strokeWidth:0.5];
+	[CFAShape fill:1];
+	[CFAShape circleAt:NSMakePoint(299, 283.5) radius:20.5];
+	
+	[CFAShape strokeWidth:4];
+	[CFAShape circleAt:NSMakePoint(299, 283.5) radius:13];
+	
+	[CFAShape strokeWidth:1.5];
+	[CFAShape fillRed:0.68 green:.08 blue:0];
+	[CFAShape circleAt:NSMakePoint(297, 326) radius:5];
+	
+	[CFAShape strokeWidth:0.25];
+	[CFAShape fillRed:0.24 green:0.50 blue:0.64];
+	[CFAShape circleAt:NSMakePoint(329, 373) radius:7.5];
+	
+	[CFAShape fill:1];
+	[CFAShape strokeWidth:0.75];
+	[CFAShape circleAt:NSMakePoint(358, 307) radius:7.25];
+	
+	[CFAShape strokeWidth:1];
+	[CFAShape fillRed:0.84 green:0.88 blue:0.83];
+	[CFAShape circleAt:NSMakePoint(398, 350.5) radius:10.5];
+	
+	[CFAShape noStroke];
+	[CFAShape fillRed:0.32 green:0.41 blue:0.596];
+	[CFAShape circleAt:NSMakePoint(398, 350.5) radius:7.75];
+	
+	[CFAShape fillRed:0.68 green:0.36 blue:0.165];
+	[CFAShape circleAt:NSMakePoint(469, 321) radius:18];
+	[CFAShape stroke];
+	[CFAShape fillRed:0.9 green:0.66 blue:0.2 alpha:0.5];
+	[CFAShape circleAt:NSMakePoint(461, 321) radius:19.5];
+	
+	[CFAShape strokeWidth:0.25];
+	[CFAShape fillRed:0.89 green:0.835 blue:0.38];
+	[CFAShape circleAt:NSMakePoint(534, 336) radius:13.5];
+	[CFAShape fillRed:0.46 green:0.71 blue:0.8];
+	[CFAShape circleAt:NSMakePoint(534.833, 335) radius:11.75];
+	
+	[CFAShape strokeWidth:1];
+	[CFAShape fill:1];
+	[CFAShape circleAt:NSMakePoint(578, 324) radius:12.5];
+	
+	[CFAShape noStroke];
+	[CFAShape fillRed:0.79 green:0.25 blue:0.18];
+	[CFAShape circleAt:NSMakePoint(536, 300) radius:13.5];
+	[CFAShape fillRed:0.71 green:0.655 blue:0.65];
+	[CFAShape circleAt:NSMakePoint(535, 301) radius:12.5];
+	
+	[CFAShape strokeWidth:0.25];
+	[CFAShape stroke];
+	[CFAShape fillRed:0.195 green:0.49 blue:0.635];
+	[CFAShape circleAt:NSMakePoint(483, 231) radius:19];
+	
+	[CFAShape fillRed:0.533 green:0.45 blue:0.62];
+	[CFAShape circleAt:NSMakePoint(449, 89) radius:16.75];
+	
+	[CFAShape fillRed:0.6 green:0.63 blue:0.47];
+	[CFAShape circleAt:NSMakePoint(518.5, 59.5) radius:29.5];
+	
+	//ARCS
+	[CFAShape fill];
+	[CFAShape fill:1 alpha:0.7];
+	[CFAShape strokeWidth:3];
+	[CFAShape strokeRed:0.67 green:0.68 blue:0.65];
+	[CFAShape arcWithCenterAt:NSMakePoint(280, 140) radius:25.5 startAngle:0 endAngle:180];
+	[CFAShape noFill];
+	[CFAShape strokeWidth:1];
+	[CFAShape stroke:0];
+	[CFAShape arcWithCenterAt:NSMakePoint(280, 140) radius:27 startAngle:0 endAngle:180];
+	
+	[CFAShape fill];
+	[CFAShape fill:1 alpha:0.7];
+	[CFAShape strokeWidth:3];
+	[CFAShape strokeRed:0.96 green:0.90 blue:0.51];
+	[CFAShape arcWithCenterAt:NSMakePoint(335, 140) radius:25.5 startAngle:0 endAngle:180];
+	[CFAShape noFill];
+	[CFAShape strokeWidth:1];
+	[CFAShape stroke:0];
+	[CFAShape arcWithCenterAt:NSMakePoint(335, 140) radius:27 startAngle:0 endAngle:180];
+	
+	[CFAShape fill];
+	[CFAShape fill:1 alpha:0.7];
+	[CFAShape strokeWidth:3];
+	[CFAShape strokeRed:0.85 green:0.345 blue:0.18];
+	[CFAShape arcWithCenterAt:NSMakePoint(390, 140) radius:25.5 startAngle:0 endAngle:180];
+	[CFAShape noFill];
+	[CFAShape strokeWidth:1];
+	[CFAShape stroke:0];
+	[CFAShape arcWithCenterAt:NSMakePoint(390, 140) radius:27 startAngle:0 endAngle:180];
+	
+	[CFAShape arcWithCenterAt:NSMakePoint(443, 140) radius:25.5 startAngle:0 endAngle:180];
+	
+	[CFAShape arcWithCenterAt:NSMakePoint(305.5, 112.5) radius:25.5 startAngle:0 endAngle:180];
+	[CFAShape arcWithCenterAt:NSMakePoint(356.5, 112.5) radius:25.5 startAngle:0 endAngle:180];
+	
+	[CFAShape arcWithCenterAt:NSMakePoint(382, 84.5) radius:25.5 startAngle:0 endAngle:180];
+	
+	[CFAShape arcWithCenterAt:NSMakePoint(407.5, 56.5) radius:25.5 startAngle:0 endAngle:180];
+	
+	[CFAShape arcWithCenterAt:NSMakePoint(420, 377) radius:9 startAngle:90 endAngle:270];
+	
+	//ARCS
+	[CFAShape strokeWidth:2];
+	[CFAShape strokeRed:0.78 green:0.36 blue:0.46];
+	[CFAShape arcWithCenterAt:NSMakePoint(360.66, 227.5) radius:17.5 startAngle:43 endAngle:223];
+	[CFAShape stroke:0];
+	[CFAShape strokeWidth:1];
+	[CFAShape arcWithCenterAt:NSMakePoint(360.66, 227.5) radius:16.5 startAngle:43 endAngle:223];
+	
+	[CFAShape strokeWidth:2];
+	[CFAShape strokeRed:0.82 green:0.05 blue:0.17];
+	[CFAShape arcWithCenterAt:NSMakePoint(386.5, 251.5) radius:16.25 startAngle:43 endAngle:223];
+	[CFAShape stroke:0];
+	[CFAShape strokeWidth:1];
+	[CFAShape arcWithCenterAt:NSMakePoint(386.5, 251.5) radius:15.25 startAngle:43 endAngle:223];
+	
+	
+	[CFAShape strokeWidth:2];
+	[CFAShape strokeRed:0.82 green:0.05 blue:0.17];
+	[CFAShape arcWithCenterAt:NSMakePoint(410.25, 273.5) radius:15 startAngle:43 endAngle:223];
+	[CFAShape stroke:0];
+	[CFAShape strokeWidth:1];
+	[CFAShape arcWithCenterAt:NSMakePoint(410.25, 273.5) radius:14 startAngle:43 endAngle:223];
+	
+	[CFAShape strokeWidth:1.5];
+	[CFAShape strokeRed:0.78 green:0.36 blue:0.46];
+	[CFAShape arcWithCenterAt:NSMakePoint(427.5, 289.5) radius:7.75 startAngle:43 endAngle:223];
+	[CFAShape stroke:0];
+	[CFAShape strokeWidth:0.75];
+	[CFAShape arcWithCenterAt:NSMakePoint(427.5, 289.5) radius:7 startAngle:43 endAngle:223];
+	
+	//TRIANGLE 
+	[CFAShape noStroke];
+	[CFAShape fill];
+	[CFAShape fillRed:0.4 green:0.54 blue:0.38];
+	[CFAShape quadFromX:423.5 Y:182.5 toX:452.5 Y:182.5 toX:411.5 Y:245.5 toX:406.5 Y:242.75];
+	[CFAShape fillRed:0.61 green:0.48 blue:0.24];
+	[CFAShape triangleFromX:319 Y:182.5 toX:423.5 Y:182.5 toX:406.5 Y:242.75];
+	
+	//ARCS
+	[CFAShape fill];
+	[CFAShape noStroke];
+	[CFAShape fillRed:0.85 green:0.345 blue:0.18];
+	[CFAShape arcWithCenterAt:NSMakePoint(430.5, 214.5) radius:24.86 startAngle:-56.5 endAngle:123.5];
+	[CFAShape fill:1 alpha:0.94];
+	[CFAShape arcWithCenterAt:NSMakePoint(430.5, 214.5) radius:21.86 startAngle:-56.5 endAngle:123.5];
+	[CFAShape fillRed:0.96 green:0.90 blue:0.51];
+	[CFAShape arcWithCenterAt:NSMakePoint(430.5, 214.5) radius:15.5 startAngle:-56.5 endAngle:123.5];
+	[CFAShape fill:1];
+	[CFAShape arcWithCenterAt:NSMakePoint(430.5, 214.5) radius:12.5 startAngle:-56.5 endAngle:123.5];
+	
+	[CFAShape fill:0];
+	[CFAShape arcWithCenterAt:NSMakePoint(430.5, 214.5) radius:6.5 startAngle:-56.5 endAngle:123.5];
+	[CFAShape stroke];
+	[CFAShape stroke:0];
+	[CFAShape fill:1];
+	[CFAShape arcWithCenterAt:NSMakePoint(430.5, 214.5) radius:6.5 startAngle:123.5 endAngle:-56.5];
+	
+	//TRIANGLE 
+	[CFAShape stroke];
+	[CFAShape stroke:0];
+	[CFAShape noFill];
+	[CFAShape triangleFromX:319 Y:182.5 toX:452.5 Y:182.5 toX:411.5 Y:245.5];
+	
+	//LINES
+	[CFAShape noFill];
+	[CFAShape beginShape];
+	[CFAShape vertexAt:NSMakePoint(108, 208.5)];
+	[CFAShape vertexAt:NSMakePoint(200.5, 305)];
+	[CFAShape vertexAt:NSMakePoint(365, 161)];
+	[CFAShape endShape];
+	
+	
+	[CFAShape noFill];
+	[CFAShape beginShape];
+	[CFAShape vertexAt:NSMakePoint(255.5, 40)];
+	[CFAShape vertexAt:NSMakePoint(359, 402.5)];
+	[CFAShape vertexAt:NSMakePoint(470, 20.5)];
+	[CFAShape endShape];
+	
+	[CFAShape lineFromX:340.5 Y:217 toX:430.5 Y:301.5];
+	[CFAShape lineFromX:63 Y:205 toX:276 Y:263.5];
+	[CFAShape lineFromX:176.5 Y:369.5 toX:250 Y:335];
+	[CFAShape lineFromX:183 Y:333 toX:222 Y:334];
+	[CFAShape lineFromX:187.5 Y:325.5 toX:223 Y:327];
+	[CFAShape lineFromX:200 Y:264 toX:199 Y:372.5];
+	[CFAShape lineFromX:189 Y:151 toX:367 Y:186];
+	[CFAShape lineFromX:182 Y:126 toX:348 Y:176];
+	[CFAShape lineFromX:156.5 Y:28 toX:264 Y:100];
+	[CFAShape lineFromX:174.5 Y:4 toX:250.5 Y:77];
+	[CFAShape lineFromX:245 Y:80 toX:300.5 Y:79];
+	[CFAShape lineFromX:246.5 Y:68.5 toX:302.5 Y:68];
+	[CFAShape lineFromX:302.5 Y:348 toX:408.5 Y:304.5];
+	[CFAShape lineFromX:301 Y:372.5 toX:399 Y:310.5];
+	[CFAShape lineFromX:415.5 Y:333.5 toX:415 Y:407.5];
+	[CFAShape lineFromX:418.5 Y:333.5 toX:418 Y:407.5];
+	[CFAShape lineFromX:408.5 Y:338 toX:425.5 Y:339];
+	[CFAShape lineFromX:408.5 Y:342 toX:425.5 Y:343];
+	[CFAShape lineFromX:323 Y:102 toX:570.5 Y:288];
+	[CFAShape lineFromX:407 Y:178 toX:515 Y:62];
+	[CFAShape lineFromX:406.5 Y:90 toX:502 Y:89];
+	[CFAShape lineFromX:436 Y:42.5 toX:508.5 Y:42.5];
+	[CFAShape lineFromX:406.5 Y:394.5 toX:426 Y:396];
+	[CFAShape lineFromX:406.5 Y:394.5 toX:426 Y:393];
+	[CFAShape lineFromX:199 Y:140 toX:516 Y:139];
+	
+}
+@end

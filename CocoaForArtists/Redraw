@@ -16,7 +16,7 @@
 -(void)setup {
 	[self windowWidth:200 andHeight:200];
 	[self background:0];
-	[CFAShape stroke:255];
+	[CFAShape stroke:1.0f];
 	[self drawStyle:SINGLEFRAME];
 }
 

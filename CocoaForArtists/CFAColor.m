@@ -16,43 +16,61 @@
 	if(VERBOSELOAD) printf("CFAColor\n");
 }
 
++(CFAColor *)colorWithGrey:(CGFloat)grey {
+	return [self colorWithRed:grey green:grey blue:grey alpha:1.0f];
+}
+
++(CFAColor *)colorWithGrey:(CGFloat)grey alpha:(CGFloat)alpha {
+	return [self colorWithRed:grey green:grey blue:grey alpha:alpha];
+}
+
++(CFAColor *)colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue {
+	return [self colorWithRed:red green:green blue:blue alpha:1.0f];
+}
+																			
++(CFAColor *)colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha {
+	CFAColor *newColor = [[CFAColor alloc] initWithRed:red green:green blue:blue alpha:alpha];
+	return newColor;
+}
+
+
 -(id)init {
+	if(![super init]) {
+		return nil;
+	}
+
+	//default to black
+	color = [[NSColor blackColor] retain];
 	return self;
 }
 
-+(NSColor*)colorFromIntValuesRed:(int)red green:(int)green blue:(int)blue {
-	return [self colorFromIntValuesRed:red green:green blue:blue alpha:255];
+-(id)initWithGrey:(CGFloat)grey {
+	return [self initWithRed:grey green:grey blue:grey alpha:1.0f];
 }
 
-+(NSColor*)colorFromIntValuesRed:(int)red green:(int)green blue:(int)blue alpha:(int)alpha{
-	return [NSColor colorWithCalibratedRed:FLOAT_FROM_255(red) green:FLOAT_FROM_255(green) blue:FLOAT_FROM_255(blue) alpha:FLOAT_FROM_255(alpha)];
+-(id)initWithGrey:(CGFloat)grey alpha:(CGFloat)alpha {
+	return [self initWithRed:grey green:grey blue:grey alpha:alpha];
 }
 
-+(CGColorRef)cgColorFromIntValuesRed:(int)red green:(int)green blue:(int)blue {
-	return [self cgColorFromIntValuesRed:red green:green blue:blue alpha:255];
+-(id)initWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue {
+	return [self initWithRed:red green:green blue:blue alpha:1.0f];
 }
 
-+(CGColorRef)cgColorFromIntValuesRed:(int)red green:(int)green blue:(int)blue alpha:(int)alpha {
-	return CGColorCreateGenericRGB(FLOAT_FROM_255(red),FLOAT_FROM_255(green),FLOAT_FROM_255(blue),FLOAT_FROM_255(alpha));
-}
-
--(id)initWithIntValuesRed:(int)red green:(int)green blue:(int)blue {
-	return [self initWithIntValuesRed:red green:green blue:blue alpha:255];
-}
-
--(id)initWithIntValuesRed:(int)red green:(int)green blue:(int)blue alpha:(int)alpha {
-	components[0] = FLOAT_FROM_255(red);
-	components[1] = FLOAT_FROM_255(green);
-	components[2] = FLOAT_FROM_255(blue);
-	components[3] = FLOAT_FROM_255(alpha);
+-(id)initWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha {
+	[color release];
+	color = [[NSColor colorWithCalibratedRed:red green:green blue:blue alpha:alpha] retain];
 	return self;
+}
+
+-(void)set {
+	[[self nsColor] set];
 }
 
 -(CGColorRef)cgColor {
-	return CGColorCreateGenericRGB(components[0], components[1], components[2], components[3]);
+	return CGColorCreateGenericRGB([color redComponent], [color greenComponent], [color blueComponent], [color alphaComponent]);
 }
 
 -(NSColor *)nsColor {
-	return [NSColor colorWithCalibratedRed:components[0] green:components[1] blue:components[2] alpha:components[3]];
+	return [color copy];
 }
 @end

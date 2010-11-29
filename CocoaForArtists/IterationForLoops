@@ -20,17 +20,17 @@ int num = 12;
 -(void)setup {
 	[self flipCoordinates];
 	[self windowWidth:400 andHeight:400];
-	[self background:102];
+	[self background:0.4f];
 	[CFAShape noStroke];
 }
 -(void)draw {
-	[CFAShape fill:255];
+	[CFAShape fill:1.0f];
 	k = 65;
 	for(int i = 0; i < num/3; i++) {
 		[CFAShape rectWithXPos:25 yPos:k width:155 andHeight:10];
 		k+=20;
 	}
-	[CFAShape fill:51];
+	[CFAShape fill:0.2f];
 	k = 100;
 	for(int i = 0; i < num; i++) {
 		[CFAShape rectWithXPos:160 yPos:k width:30 andHeight:10];

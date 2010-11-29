@@ -16,13 +16,13 @@
 -(void)draw {
 	for(int i = 2; i < [self width]-2; i+=2){
 		if (i%20 == 0) {
-			[CFAShape stroke:255];
+			[CFAShape stroke:1.0f];
 			[CFAShape lineFromX:i Y:40 toX:i Y:[self height]/2];
 		} else if (i%10 == 0) {
-			[CFAShape stroke:153];
+			[CFAShape stroke:0.5f];
 			[CFAShape lineFromX:i Y:20 toX:i Y:180];
 		} else {
-			[CFAShape stroke:102];
+			[CFAShape stroke:0.4f];
 			[CFAShape lineFromX:i Y:[self height]/2 toX:i Y:[self height]-40];
 		}
 	}

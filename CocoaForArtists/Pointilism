@@ -20,11 +20,10 @@ CFAImage *myImage;
 	[self windowWidth:[myImage width] andHeight:[myImage height]];
 	[self drawStyle:ANIMATED];
 	[self flipCoordinates];
-	[self background:255];
+	[self background:1.0f];
 
-	[CFAShape fill];
-	[CFAShape stroke];
 	[CFAShape strokeWidth:1];
+	[CFAShape strokeColor: 
 }
 
 -(void)draw {
@@ -36,8 +35,7 @@ CFAImage *myImage;
 	int y = [CFAMath randomInt:[self height]];
 	NSColor *color = [myImage colorAtX:x andY:y];
 	float pointilize = [CFAMath map:mousePos.x fromMin:0 max:[self width] toMin:2 max:18];
-	[CFAShape strokeColor:color];
-	[CFAShape fillColor:color alpha:[CFAMath randomInt:128]];
+	[CFAShape fillColor:color];
 	[CFAShape circleAt:NSMakePoint(x, y) radius:pointilize];
 }
 @end

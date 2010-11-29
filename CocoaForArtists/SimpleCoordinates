@@ -10,24 +10,28 @@
 @implementation CFACanvas
 
 -(void)setup {
-	[self windowWidth:200 andHeight:200];
+	[self windowWidth:400 andHeight:400];
 	[self background:0];
 }
 
 -(void)draw {
-	[CFAShape fill:255];
+	[CFAShape fill:1.0f];
 	[CFAShape pointAtX:[self width]/2 Y:[self height]/2];
-	[CFAShape pointAtX:[self width]/2 Y:[self height]/4];
-	[CFAShape pointAtX:60 Y:30];
-	[CFAShape pointAtX:60 Y:134];
-	[CFAShape pointAtX:160 Y:50];
-	[CFAShape pointAtX:280 Y:-800];
-	[CFAShape pointAtX:201 Y:100];
+	[CFAShape pointAtX:[self width]/2 Y:[self height]/3];
 	
 	[CFAShape noFill];
-	[CFAShape stroke:204];
-	[CFAShape lineFromX:0 Y:73 toX:[self width] Y:73];
-	[CFAShape rectWithXPos:110 yPos:55 width:40 andHeight:36];
-}
+	[CFAShape strokeRed:1.0f green:1.0f blue:0.0f];
+	[CFAShape lineFromX:0 Y:[self height]/4 toX:[self width] Y:[self height]/4];
+	[CFAShape rectWithXPos:100 yPos:75 width:75 andHeight:50];
+	
+	[CFAShape fillRed:1.0f green:0.0f blue:0.0f];
+	for(int x = 0; x < [self width]; x+=2) {
+		[CFAShape pointAtX:x Y:[self height]*3/4];
+	}
 
+	[CFAShape fillRed:1.0f green:0.0f blue:1.0f];
+	for(int y = 0; y < [self height]; y+=2) {
+		[CFAShape pointAtX:y Y:y/2+[self height]/4];
+	}
+}
 @end

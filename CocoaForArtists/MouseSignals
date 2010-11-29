@@ -21,10 +21,10 @@ int arrayIndex = 0;
 	[self windowWidth:totalPixels andHeight:totalPixels];
 	[CFAShape strokeWidth:2];
 	[CFAShape noStroke];
-	[CFAShape stroke:255];
+	[CFAShape stroke:1.0f];
 }
 -(void)draw {
-	[self background:102];
+	[self background:0.5f];
 	for(int i = 1; i < [self width]; i++) {
 		xvals[i-1] = xvals[i];
 		yvals[i-1] = yvals[i];
@@ -40,11 +40,11 @@ int arrayIndex = 0;
 	}
 	
 	[CFAShape noStroke];
-	[CFAShape fill:255];
+	[CFAShape fill:1.0f];
 	[CFAShape rectWithXPos:0 yPos:[self height]/3 width:[self width] andHeight:[self height]/3+1];
 	
 	for(int i = 1; i < totalPixels; i++) {
-		[CFAShape fill:255];
+		[CFAShape fill:1.0f];
 		[CFAShape pointAtX:i Y:xvals[i]/3+2*[self height]/3];
 		[CFAShape fill:0];
 		[CFAShape pointAtX:i Y:yvals[i]/3+[self height]/3];

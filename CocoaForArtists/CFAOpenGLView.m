@@ -220,20 +220,20 @@ NSTimer *animationTimer;
 }
 
 #pragma mark Background 
--(void)background:(int)grey {
-	[self backgroundRed:grey green:grey blue:grey alpha:255];
+-(void)background:(float)grey {
+	[self backgroundRed:grey green:grey blue:grey alpha:1.0f];
 }
 
--(void)background:(int)grey alpha:(int)alpha {
+-(void)background:(float)grey alpha:(float)alpha {
 	[self backgroundRed:grey green:grey blue:grey alpha:alpha];
 }
 
--(void)backgroundRed:(int)red green:(int)green blue:(int)blue {
-	[self backgroundRed:red green:green blue:blue alpha:255];
+-(void)backgroundRed:(float)red green:(float)green blue:(float)blue {
+	[self backgroundRed:red green:green blue:blue alpha:1.0f];
 }
 
--(void)backgroundRed:(int)red green:(int)green blue:(int)blue alpha:(int)alpha{
-	[self setBackgroundColor:[CFAColor colorFromIntValuesRed:red green:green blue:blue alpha:alpha]];
+-(void)backgroundRed:(float)red green:(float)green blue:(float)blue alpha:(float)alpha{
+	[self setBackgroundColor:[CFAColor colorWithRed:red green:green blue:blue alpha:alpha]];
 	backgroundShouldDraw = YES;
 }
 
@@ -246,7 +246,7 @@ NSTimer *animationTimer;
 	[NSBezierPath fillRect:backgroundRect];
 	if(drawToPDF){
 		CGFloat components[4];
-		[[self backgroundColor] getRed:&components[0] green:&components[1] blue:&components[2] alpha:&components[3]];
+		[[[self backgroundColor] nsColor] getRed:&components[0] green:&components[1] blue:&components[2] alpha:&components[3]];
 		CGContextSetRGBFillColor(pdfContext,components[0],components[1],components[2],components[3]);
 		CGContextFillRect(pdfContext, NSRectToCGRect(backgroundRect));
 	}
