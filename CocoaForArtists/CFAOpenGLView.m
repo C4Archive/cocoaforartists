@@ -156,12 +156,12 @@ NSTimer *animationTimer;
 	NSRect contentRect = [NSWindow contentRectForFrameRect:NSMakeRect(0, 0, width, height) 
 													  styleMask:NSTitledWindowMask];
 	float titleBarHeight = height - contentRect.size.height;
-	[[self window] setFrame:NSMakeRect(0, screenSize.height, width, height+titleBarHeight) display:YES];
+	[self.window setFrame:NSMakeRect(0, screenSize.height, width, height+titleBarHeight) display:YES];
 }
 
 -(void)addTrackingArea {
-	[self addTrackingArea:[[NSTrackingArea alloc] initWithRect:[self visibleRect] options:(NSTrackingMouseEnteredAndExited | NSTrackingMouseMoved | NSTrackingActiveInKeyWindow ) owner:self userInfo:nil]];
-	backgroundRect = NSMakeRect([self visibleRect].origin.x-5, [self visibleRect].origin.y-5, [self visibleRect].size.width+10, [self visibleRect].size.height+10);
+	[self addTrackingArea:[[NSTrackingArea alloc] initWithRect:self.visibleRect options:(NSTrackingMouseEnteredAndExited | NSTrackingMouseMoved | NSTrackingActiveInKeyWindow ) owner:self userInfo:nil]];
+	backgroundRect = NSMakeRect(self.visibleRect.origin.x-5, self.visibleRect.origin.y-5, self.visibleRect.size.width+10, self.visibleRect.size.height+10);
 }
 
 -(void)flipCoordinates {
@@ -208,15 +208,15 @@ NSTimer *animationTimer;
 }
 
 -(int)width {
-	return [self size].width;
+	return self.size.width;
 }
 
 -(int)height {
-	return [self size].height;
+	return self.size.height;
 }
 
 -(NSSize)size {
-	return [self visibleRect].size;
+	return self.visibleRect.size;
 }
 
 #pragma mark Background 
@@ -238,7 +238,7 @@ NSTimer *animationTimer;
 }
 
 -(void)backgroundImage:(CFAImage*)bgImage {
-	[bgImage drawAt:NSZeroPoint withWidth:[self width] andHeight:[self height]];
+	[bgImage drawAt:NSZeroPoint withWidth:self.width andHeight:self.height];
 }
 
 -(void)drawBackground {
@@ -278,7 +278,7 @@ NSTimer *animationTimer;
 	mousePos = [theEvent locationInWindow];
 	if([self isFlipped]) {
 		mousePos.y *= -1;
-		mousePos.y += [self visibleRect].size.height;
+		mousePos.y += self.visibleRect.size.height;
 	}
 	if (drawstyle == EVENTBASED) [self redraw];
 	[self mouseMoved];
@@ -289,7 +289,7 @@ NSTimer *animationTimer;
 	mousePos = [theEvent locationInWindow];
 	if([self isFlipped]) {
 		mousePos.y *= -1;
-		mousePos.y += [self visibleRect].size.height;
+		mousePos.y += self.visibleRect.size.height;
 	}
 	if(drawstyle == EVENTBASED) [self redraw];
 	[self mouseDragged];
@@ -397,7 +397,7 @@ NSTimer *animationTimer;
 		NSMutableData *data = [[[NSMutableData alloc] init] autorelease];
 		pdfConsumer = CGDataConsumerCreateWithCFData((CFMutableDataRef)data);
 		CGDataConsumerRetain(pdfConsumer);
-		CGRect bounds = CGRectMake(0, 0, [self width], [self height]);
+		CGRect bounds = CGRectMake(0, 0, self.width, self.height);
 		pdfContext = CGPDFContextCreateWithURL(pdfURL, &bounds, NULL);
 		CGContextRetain(pdfContext);
 		CGContextBeginPage(pdfContext, &bounds);

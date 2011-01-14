@@ -7,15 +7,9 @@
 //
 
 #import "CFAImage.h"
-@interface CFAImage (private)
-CIImage *ciimage;
-unsigned char *rawData;
-NSUInteger bytesPerPixel = 4;
-@end
-
 @implementation CFAImage
 
-@synthesize ciimage;
+@synthesize ciimage, width, height, size;
 
 +(void)load {
 	if(VERBOSELOAD) printf("CFAImage\n");
@@ -25,7 +19,7 @@ NSUInteger bytesPerPixel = 4;
 	if (![super init]) {
 		return nil;
 	}
-	[self setCiimage:[CIImage emptyImage]];
+	self.ciimage = [CIImage emptyImage];
 	return self;
 }
 
@@ -53,7 +47,8 @@ NSUInteger bytesPerPixel = 4;
 														ofType:type];
 	NSURL *      url = [NSURL fileURLWithPath: path];
 	
-	[self setCiimage:[CIImage imageWithContentsOfURL:url]];
+	self.ciimage = [CIImage imageWithContentsOfURL:url];
+	size = [ciimage extent].size;
 	return self;
 }
 
@@ -61,12 +56,12 @@ NSUInteger bytesPerPixel = 4;
 	return [self initWithImageName:name andType:nil];
 }
 
--(int)width {
-	return (int)[ciimage extent].size.width;
+-(float)width {
+	return size.width;
 }
 
--(int)height {
-	return (int)[ciimage extent].size.height;
+-(float)height {
+	return size.height;
 }
 
 -(void)loadPixelData {
@@ -74,24 +69,24 @@ NSUInteger bytesPerPixel = 4;
 	
 	// First get the image into your data buffer
 	CGImageRef imageRef = [rep CGImage];
-	NSUInteger width = CGImageGetWidth(imageRef);
-	NSUInteger height = CGImageGetHeight(imageRef);
+	NSUInteger w = CGImageGetWidth(imageRef);
+	NSUInteger h = CGImageGetHeight(imageRef);
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-	rawData = malloc(height * width * 4);
+	rawData = malloc(h * w * 4);
 	bytesPerPixel = 4;
-	NSUInteger bytesPerRow = bytesPerPixel * width;
+	NSUInteger bytesPerRow = bytesPerPixel * w;
 	NSUInteger bitsPerComponent = 8;
-	CGContextRef context = CGBitmapContextCreate(rawData, width, height,
+	CGContextRef context = CGBitmapContextCreate(rawData, w, h,
 												 bitsPerComponent, bytesPerRow, colorSpace,
 												 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
 	CGColorSpaceRelease(colorSpace);
 	
-	CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
+	CGContextDrawImage(context, CGRectMake(0, 0, w, h), imageRef);
 	CGContextRelease(context);
 }
 
 -(CFAColor *)colorAtX:(int)x andY:(int)y {
-	int byteIndex = (bytesPerPixel * [self width] * y) + x * bytesPerPixel;
+	int byteIndex = (bytesPerPixel * self.width * y) + x * bytesPerPixel;
 	CGFloat red   = (rawData[byteIndex]     * 1.0) / 255.0;
 	CGFloat green = (rawData[byteIndex + 1] * 1.0) / 255.0;
 	CGFloat blue  = (rawData[byteIndex + 2] * 1.0) / 255.0;
@@ -101,19 +96,19 @@ NSUInteger bytesPerPixel = 4;
 }
 
 -(void)drawAt:(NSPoint)p {
-	[[self ciimage] drawAtPoint:p fromRect:NSRectFromCGRect([[self ciimage] extent]) operation:NSCompositeCopy fraction:1.0];
+	[ciimage drawAtPoint:p fromRect:NSRectFromCGRect([ciimage extent]) operation:NSCompositeCopy fraction:1.0];
 }
 
 -(void)drawAt:(NSPoint)p withAlpha:(float)alpha{
-	[[self ciimage] drawAtPoint:p fromRect:NSRectFromCGRect([[self ciimage] extent]) operation:NSCompositeSourceOver fraction:alpha];
+	[ciimage drawAtPoint:p fromRect:NSRectFromCGRect([ciimage extent]) operation:NSCompositeSourceOver fraction:alpha];
 }
 
--(void)drawAt:(NSPoint)p withWidth:(float)width andHeight:(float)height {
-	[[self ciimage] drawInRect:NSMakeRect(p.x, p.y, width, height) fromRect:NSRectFromCGRect([[self ciimage] extent]) operation:NSCompositeCopy fraction:1.0];
+-(void)drawAt:(NSPoint)p withWidth:(float)w andHeight:(float)h {
+	[ciimage drawInRect:NSMakeRect(p.x, p.y, w, h) fromRect:NSRectFromCGRect([ciimage extent]) operation:NSCompositeCopy fraction:1.0];
 }
 
--(void)drawAt:(NSPoint)p withWidth:(float)width andHeight:(float)height withAlpha:(float)alpha{
-	[[self ciimage] drawInRect:NSMakeRect(p.x, p.y, width, height) fromRect:NSRectFromCGRect([[self ciimage] extent]) operation:NSCompositeSourceOver fraction:alpha];
+-(void)drawAt:(NSPoint)p withWidth:(float)w andHeight:(float)h withAlpha:(float)a{
+	[ciimage drawInRect:NSMakeRect(p.x, p.y, w, h) fromRect:NSRectFromCGRect([ciimage extent]) operation:NSCompositeSourceOver fraction:a];
 }
 
 @end

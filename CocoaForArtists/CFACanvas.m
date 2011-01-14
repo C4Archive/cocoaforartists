@@ -1,26 +1,23 @@
 //
 //  CFACanvas.h
-//  ___PROJECTNAME___
+//  CodeSamples
 //
 //	A Cocoa For Artists project
-//  Created by ___FULLUSERNAME___ on ___DATE___.
+//  Created by Travis Kirton
 //
 
-
 #import "CFACanvas.h"
-
-@interface CFACanvas (private)
-	//private stuff here
-@end
-
 @implementation CFACanvas
-
 -(void)setup {
-	// setup stuff here
+	[self windowWidth:931 andHeight:1660];
 }
-
 -(void)draw {
-	// draw stuff here
+	[self setupPDF];
+	[self background:1];
+	for(int i = 0; i < 1000; i++){
+		[CFAShape strokeRed:FLOAT_FROM_255([CFAMath randomInt:255]) green:FLOAT_FROM_255([CFAMath randomInt:255]) blue:FLOAT_FROM_255([CFAMath randomInt:255])];
+		[CFAShape lineFromX:[CFAMath randomInt:931] Y:0 toX:[CFAMath randomInt:931] Y:1660];
+	}
+	[self endPDF];
 }
-
 @end

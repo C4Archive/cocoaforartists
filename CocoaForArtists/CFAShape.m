@@ -174,6 +174,9 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	
 	if (drawToPDF) {
 		[self cgStrokeColorSet];
+		
+		
+		
 		CGContextSetLineCap(pdfContext,kCGLineCapRound);
 		CGContextBeginPath(pdfContext);
 		CGContextMoveToPoint(pdfContext, p1.x, p1.y);
@@ -625,8 +628,11 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 }
 
 +(void)cgFillColorSet {
-	if(useFill == YES) CGContextSetFillColor(pdfContext, CGColorGetComponents([fillColor cgColor]));
+	CGColorRef c = [strokeColor cgColor];	
+	const CGFloat *colorComponents = CGColorGetComponents(c);
+	if(useFill == YES) CGContextSetRGBFillColor(pdfContext,colorComponents[0],colorComponents[1],colorComponents[2],colorComponents[3]);
 	else CGContextSetRGBFillColor(pdfContext, 0, 0, 0, 0);
+	CGColorRelease(c);
 }
 
 +(void)cgStrokeColorSet {
@@ -634,8 +640,12 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 		strokeWidth = 1;
 	}
 	CGContextSetLineWidth(pdfContext, strokeWidth);
-	if(useStroke == YES) CGContextSetStrokeColor(pdfContext, CGColorGetComponents([strokeColor cgColor]));
+	
+	CGColorRef c = [strokeColor cgColor];	
+	const CGFloat *colorComponents = CGColorGetComponents(c);
+	if(useStroke == YES) CGContextSetRGBStrokeColor(pdfContext,colorComponents[0],colorComponents[1],colorComponents[2],colorComponents[3]);
 	else CGContextSetRGBStrokeColor(pdfContext, 0, 0, 0, 0);
+	CGColorRelease(c);
 }
 
 #pragma mark Coordinates

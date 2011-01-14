@@ -52,7 +52,7 @@
 -(void)background:(float)grey alpha:(float)alpha;
 -(void)backgroundRed:(float)red green:(float)green blue:(float)blue;
 -(void)backgroundRed:(float)red green:(float)green blue:(float)blue alpha:(float)alpha;
--(void)backgroundImage:(CFAImage*)bgImage;
+-(void)backgroundImage:(CFAImage *)bgImage;
 
 #pragma mark Input
 -(void)keyPressed;

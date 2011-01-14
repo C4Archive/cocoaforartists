@@ -63,7 +63,7 @@
 }
 
 -(void)set {
-	[[self nsColor] set];
+	[color set];
 }
 
 -(CGColorRef)cgColor {
@@ -71,6 +71,6 @@
 }
 
 -(NSColor *)nsColor {
-	return [color copy];
+	return color;
 }
 @end

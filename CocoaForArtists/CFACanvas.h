@@ -10,7 +10,5 @@
 #import "CFAOpenGLView.h"
 
 @interface CFACanvas : CFAOpenGLView {
-
 }
-
 @end
