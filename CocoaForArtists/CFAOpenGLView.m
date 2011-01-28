@@ -39,6 +39,7 @@ NSTimer *animationTimer;
 -(void)initDefaults;
 -(void)setupRect;
 -(void)addTrackingArea;
+
 @end
 
 @implementation CFAOpenGLView
@@ -424,4 +425,5 @@ NSTimer *animationTimer;
 	glEnable( GL_DEPTH_TEST );
 	[self redraw];
 }
+
 @end

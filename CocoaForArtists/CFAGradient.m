@@ -1,6 +1,6 @@
 //
 //  CFAGradient.m
-//  CodeSamples
+//  C4A
 //
 //  Created by Travis Kirton on 10-09-27.
 //  Copyright 2010 Travis Kirton. All rights reserved.

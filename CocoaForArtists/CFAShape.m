@@ -504,10 +504,11 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 
 #pragma mark Attributes
 +(void)strokeWidth:(float)width {
-	if (strokeWidth > 0) {
+	if (strokeWidth > 0.1) {
 		strokeWidth = width;
 	} else {
-		NSLog(@"stroke width must be greater than 0");
+		strokeWidth = 0.1;
+		NSLog(@"stroke width set to 0.1, it cannot be smaller than this");
 	}
 }
 
@@ -613,11 +614,6 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 }
 
 +(void)fillColorSet {
-	/*
-	 THIS CRASHES RANDOMLY SOMETIMES
-	 FIGURE OUT WHY... NOTICED IT WHEN I WAS WORKING ON THE KEYBOARDFUNCTIONS EXAMPLE
-	 */
-	
 	if (useFill == YES) [fillColor set];
 	else [[NSColor colorWithCalibratedWhite:1.0f alpha:0.0f] set];
 }
@@ -636,9 +632,6 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 }
 
 +(void)cgStrokeColorSet {
-	if (strokeWidth < 1) {
-		strokeWidth = 1;
-	}
 	CGContextSetLineWidth(pdfContext, strokeWidth);
 	
 	CGColorRef c = [strokeColor cgColor];	
