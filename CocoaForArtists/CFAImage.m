@@ -1,9 +1,6 @@
 //
 //  CFAImage.m
-//  CFADevelop
-//
-//  Created by Travis Kirton on 10-09-12.
-//  Copyright 2010 Travis Kirton. All rights reserved.
+//  Created by Travis Kirton
 //
 
 #import "CFAImage.h"
@@ -48,7 +45,7 @@
 	NSURL *      url = [NSURL fileURLWithPath: path];
 	
 	self.ciimage = [CIImage imageWithContentsOfURL:url];
-	size = [ciimage extent].size;
+	size = NSSizeFromCGSize([ciimage extent].size);
 	return self;
 }
 

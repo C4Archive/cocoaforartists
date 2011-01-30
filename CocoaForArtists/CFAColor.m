@@ -1,12 +1,7 @@
 //
 //  CFAColor.m
-//  CFADevelop
+//  Created by Travis Kirton
 //
-//  Created by Travis Kirton on 10-09-13.
-//  Copyright 2010 Travis Kirton. All rights reserved.
-//
-
-/* WHAT THE FUCK HAVE I DONE TO COLORS???? */
 
 #import "CFAColor.h"
 
@@ -33,6 +28,18 @@
 	return newColor;
 }
 
++(NSColor *)colorFromObject:(id)aColor {
+	NSColor *newColor;
+	if ([aColor isKindOfClass:[NSColor class]]) {
+		newColor = (NSColor *)aColor;
+	} else if ([aColor isKindOfClass:[CFAColor class]]) {
+		newColor = (NSColor *)[(CFAColor *)aColor nsColor];
+	} else {
+		CFALog(@"color object must be NSColor or CFAColor");
+		return nil;
+	}
+	return newColor;
+}
 
 -(id)init {
 	if(![super init]) {

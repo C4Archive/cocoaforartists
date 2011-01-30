@@ -1,9 +1,6 @@
 //
 //  CFAFoundation.m
-//  CocoaForArtists
-//
-//  Created by Travis Kirton on 10-09-12.
-//  Copyright 2010 Travis Kirton. All rights reserved.
+//  Created by Travis Kirton
 //
 
 #import "CFAFoundation.h"
@@ -35,6 +32,7 @@ void CFALog(NSString *logString,...) {
     
 	fprintf(stderr,"CFALog: %s",[finalString UTF8String]);
 }
+
 NSInteger basicSort(id obj1, id obj2, void *context) {
 	if([obj1 class] == [NSNumber class]){
 		return numSort(obj1, obj2, context);
@@ -43,7 +41,6 @@ NSInteger basicSort(id obj1, id obj2, void *context) {
 	if([obj1 class] == [@"" class] || [obj1 class] == [NSString class]){
 		return strSort(obj1, obj2, context);
 	}
-	
 	return floatSort(obj1, obj2, context);
 }
 

@@ -1,7 +1,5 @@
 //
-//  CFAView.h
-//  Cocoa For Artists
-//
+//  CFAOpenGLView.h
 //  Created by Travis Kirton.
 //
 

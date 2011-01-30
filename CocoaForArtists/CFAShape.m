@@ -1,9 +1,6 @@
 //
 //  CFAShape.m
-//  CocoaForArtists
-//
-//  Created by Travis Kirton on 10-09-12.
-//  Copyright 2010 Travis Kirton. All rights reserved.
+//  Created by Travis Kirton
 //
 
 #import "CFAShape.h"
@@ -15,7 +12,7 @@ BOOL useFill = YES;
 BOOL useStroke = YES;
 BOOL checkShape = NO;
 BOOL firstPoint	= YES;
-BOOL drawToPDF = NO;
+BOOL drawShapesToPDF = NO;
 BOOL isClean;
 
 CGContextRef pdfContext;
@@ -64,7 +61,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 		[arcPath closePath];
 		[self fillColorSet];
 		[arcPath fill];
-		if (drawToPDF) {
+		if (drawShapesToPDF) {
 			[self cgFillColorSet];
 			CGContextBeginPath(pdfContext);
 			CGContextAddArc(pdfContext, p.x, p.y, r, DEGREES_TO_RADIANS(startAngle),DEGREES_TO_RADIANS(endAngle), 0);
@@ -79,7 +76,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 		[self strokeColorSet];
 		[arcPath setLineWidth:strokeWidth];
 		[arcPath stroke];
-		if (drawToPDF) {
+		if (drawShapesToPDF) {
 			[self cgStrokeColorSet];
 			CGContextBeginPath(pdfContext);
 			CGContextAddArc(pdfContext, p.x, p.y, r, startAngle, endAngle, 0);
@@ -88,7 +85,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 		}
 	}
 	
-	if (drawToPDF) {
+	if (drawShapesToPDF) {
 		CFALog(@"Should draw - arc");
 	}
 }
@@ -101,7 +98,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 		[self strokeColorSet];
 		[curvePath setLineWidth:strokeWidth];
 		[curvePath stroke];
-		if (drawToPDF) {
+		if (drawShapesToPDF) {
 			[self cgStrokeColorSet];
 			CGContextBeginPath(pdfContext);
 			CGContextMoveToPoint(pdfContext, p1.x, p1.y);
@@ -109,7 +106,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 			CGContextStrokePath(pdfContext);
 		}
 	}
-	if (drawToPDF) {
+	if (drawShapesToPDF) {
 		CFALog(@"Should draw - curve");
 	}
 }
@@ -138,7 +135,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	if(useFill == YES) {
 		[self fillColorSet];
 		[ellipse fill];
-		if (drawToPDF) {
+		if (drawShapesToPDF) {
 			[self cgFillColorSet];
 			CGContextFillEllipseInRect(pdfContext, NSRectToCGRect(circleRect));
 		}
@@ -148,7 +145,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 		[ellipse setLineWidth:strokeWidth];
 		[self strokeColorSet];
 		[ellipse stroke];
-		if (drawToPDF) {
+		if (drawShapesToPDF) {
 			[self cgStrokeColorSet];
 			CGContextStrokeEllipseInRect(pdfContext, NSRectToCGRect(circleRect));
 		}
@@ -172,7 +169,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 		[linePath setLineWidth:strokeWidth];
 		[linePath stroke];
 	
-	if (drawToPDF) {
+	if (drawShapesToPDF) {
 		[self cgStrokeColorSet];
 		
 		
@@ -223,7 +220,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	if (useFill == YES) {
 		[self fillColorSet];
 		[rectPath fill];
-		if (drawToPDF) {
+		if (drawShapesToPDF) {
 			[self cgFillColorSet];
 			CGContextFillRect(pdfContext, NSRectToCGRect(rect));
 		}
@@ -232,7 +229,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 		[self strokeColorSet];
 		[rectPath setLineWidth:strokeWidth];
 		[rectPath stroke];
-		if (drawToPDF) {
+		if (drawShapesToPDF) {
 			[self cgStrokeColorSet];
 			CGContextStrokeRect(pdfContext, CGRectMake(x, y, w, h));
 		}
@@ -253,7 +250,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	if (useFill == YES) {
 		[self fillColorSet];
 		[trianglePath fill];
-		if(drawToPDF) {
+		if(drawShapesToPDF) {
 			[self cgFillColorSet];
 			CGContextBeginPath(pdfContext);
 			CGContextMoveToPoint(pdfContext, p1.x, p1.y);
@@ -267,7 +264,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 		[self strokeColorSet];
 		[trianglePath setLineWidth:strokeWidth];
 		[trianglePath stroke];
-		if (drawToPDF) {
+		if (drawShapesToPDF) {
 			[self cgStrokeColorSet];
 			
 			CGContextBeginPath(pdfContext);
@@ -292,7 +289,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	if(useFill == YES) {
 		[self fillColorSet];
 		[quadPath fill];
-		if(drawToPDF) {
+		if(drawShapesToPDF) {
 			[self cgFillColorSet];
 			CGContextBeginPath(pdfContext);
 			CGContextMoveToPoint(pdfContext, p1.x, p1.y);
@@ -307,7 +304,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 		[self strokeColorSet];
 		[quadPath setLineWidth:strokeWidth];
 		[quadPath stroke];
-		if (drawToPDF) {
+		if (drawShapesToPDF) {
 			[self cgStrokeColorSet];
 			CGContextBeginPath(pdfContext);
 			CGContextMoveToPoint(pdfContext, p1.x, p1.y);
@@ -333,7 +330,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	checkShape = YES;
 	firstPoint = YES;
 	vertexPath = [NSBezierPath bezierPath];
-	if (drawToPDF) {
+	if (drawShapesToPDF) {
 		CGContextBeginPath(pdfContext);
 	}
 }
@@ -349,7 +346,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	if(useFill == YES) {
 		[self fillColorSet];
 		[vertexPath fill];
-		if (drawToPDF) {
+		if (drawShapesToPDF) {
 			[self cgFillColorSet];
 			CGContextFillPath(pdfContext);
 		}
@@ -358,7 +355,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 		[self strokeColorSet];
 		[vertexPath setLineWidth:strokeWidth];
 		[vertexPath stroke];
-		if(drawToPDF) {
+		if(drawShapesToPDF) {
 			[self cgStrokeColorSet];
 			CGContextStrokePath(pdfContext);
 		}
@@ -385,13 +382,13 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	}
 	if (firstPoint) {
 		[vertexPath moveToPoint:point];
-		if (drawToPDF) {
+		if (drawShapesToPDF) {
 			CGContextMoveToPoint(pdfContext, point.x, point.y);
 		}
 		firstPoint = NO;
 	} else {
 		[vertexPath lineToPoint:point];
-		if (drawToPDF) {
+		if (drawShapesToPDF) {
 			CGContextAddLineToPoint(pdfContext, point.x, point.y);
 		}
 	}
@@ -415,7 +412,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 
 +(void)addCircleAt:(NSPoint)p radius:(int)r{
 	CGRect circleRect;
-	circleRect.origin = (CGPoint)p;
+	circleRect.origin = NSPointToCGPoint(p);
 	circleRect.size = CGSizeMake(r*2, r*2);
 	if (ellipseMode == CENTER) {
 		circleRect.origin.x -= r;
@@ -437,8 +434,8 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 
 +(void)addEllipseAt:(NSPoint)p size:(NSSize)s {
 	CGRect ellipseRect;
-	ellipseRect.origin = (CGPoint)p;
-	ellipseRect.size = s;
+	ellipseRect.origin = NSPointToCGPoint(p);
+	ellipseRect.size = NSSizeToCGSize(s);
 	if (ellipseMode == CENTER) {
 		ellipseRect.origin.x -= ellipseRect.size.width/2;
 		ellipseRect.origin.y -= ellipseRect.size.height/2;
@@ -653,18 +650,19 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	return isClean;
 }
 
-+(void)beginDrawToPDFContext:(CGContextRef)context {
++(void)beginDrawShapesToPDFContext:(CGContextRef)context {
+	CFALog(@"beginDrawShapesToPDFContext");
 	pdfContext = context;
 	CGContextRetain(pdfContext);
-	drawToPDF = YES;
+	drawShapesToPDF = YES;
 	isClean = NO;
 }
 
-+(void)endDrawToPDFContext {
-	drawToPDF = NO;
++(void)endDrawShapesToPDFContext {
+	drawShapesToPDF = NO;
 	CGContextRelease(pdfContext);
 	isClean = YES;
-	CFALog(@"endDrawToPDFContext");
+	CFALog(@"endDrawShapesToPDFContext");
 }
 
 @end

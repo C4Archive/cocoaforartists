@@ -1,9 +1,6 @@
 //
 //  CFAImports.h
-//  CocoaForArtists
-//
-//  Created by Travis Kirton on 10-09-12.
-//  Copyright 2010 Travis Kirton. All rights reserved.
+//  Created by Travis Kirton
 //
 
 #import "CFAColor.h"
@@ -15,5 +12,8 @@
 #import "CFAMath.h"
 #import	"CFAShape.h"
 #import "CFATransform.h"
+#import	"CFAString.h"
+#import "CFAFont.h"
+#import "CFAGlobalTypeAttributes.h"
 
 #import "Singleton.h"

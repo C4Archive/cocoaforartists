@@ -1,7 +1,5 @@
 //
-//  ___PROJECTNAMEASIDENTIFIER___AppDelegate.m
 //  ___PROJECTNAME___
-//
 //	A Cocoa For Artists project
 //  Created by ___FULLUSERNAME___ on ___DATE___.
 //
@@ -23,6 +21,8 @@
 	cfaMath			= [[[CFAMath alloc] _init] retain];
 	cfaShape		= [[[CFAShape alloc] _init] retain];
 	cfaTransform	= [[[CFATransform alloc] _init] retain];
+	cfaString		= [[[CFAString alloc] init] retain];
+	cfaGlobalTypeAttributes = [[[CFAGlobalTypeAttributes alloc] _init] retain];
 }
 
 @end

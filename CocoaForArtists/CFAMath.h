@@ -1,9 +1,6 @@
 //
 //  CFAMath.h
-//  CocoaForArtists
-//
-//  Created by Travis Kirton on 10-09-12.
-//  Copyright 2010 Travis Kirton. All rights reserved.
+//  Created by Travis Kirton
 //
 
 #import <Cocoa/Cocoa.h>
@@ -16,6 +13,7 @@
 #define eCONSTANT	2.71828182845904523536
 
 @interface CFAMath : NSObject {
+	
 }
 
 #pragma mark Singleton

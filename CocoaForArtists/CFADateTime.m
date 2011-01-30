@@ -1,9 +1,6 @@
 //
 //  CFADateTime.m
-//  CocoaForArtists
-//
-//  Created by Travis Kirton on 10-09-12.
-//  Copyright 2010 Travis Kirton. All rights reserved.
+//  Created by Travis Kirton
 //
 
 #import "CFADateTime.h"
@@ -36,7 +33,7 @@ GENERATE_SINGLETON(CFADateTime, cfaDateTime);
 #pragma mark Date & Time
 +(int)year{
 	NSDateComponents *dateComponents = [gregorian components:NSYearCalendarUnit fromDate:[NSDate date]];
-	CFALog(@"year:%d",[dateComponents year]);
+	//CFALog(@"year:%d",[dateComponents year]);
 	return [dateComponents year];
 }
 

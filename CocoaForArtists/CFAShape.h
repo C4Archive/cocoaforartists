@@ -1,24 +1,25 @@
 //
 //  CFAShape.h
-//  CocoaForArtists
+//  Created by Travis Kirton
 //
-//  Created by Travis Kirton on 10-09-12.
-//  Copyright 2010 Travis Kirton. All rights reserved.
-//
+
 
 #import <Cocoa/Cocoa.h>
 
 @interface CFAShape : NSObject {
+	
 }
 
 #pragma mark Singleton
 -(id)_init;
 +(CFAShape *)sharedManager;
+
 /*
  Not too sure what to do...
  Should I make this an object container?
  At the moment it simply draws shapes, but doesn't keep them in memory.
  */
+
 #pragma mark Shapes
 +(void)arcWithCenterAt:(NSPoint)p radius:(float)r startAngle:(float)startAngle endAngle:(float)endAngle;
 +(void)circleAt:(NSPoint)p radius:(int)r;
@@ -94,7 +95,7 @@
 
 #pragma mark Output
 +(BOOL)isClean;
-+(void)beginDrawToPDFContext:(CGContextRef)context;
-+(void)endDrawToPDFContext;
++(void)beginDrawShapesToPDFContext:(CGContextRef)context;
++(void)endDrawShapesToPDFContext;
 
 @end

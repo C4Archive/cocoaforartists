@@ -1,7 +1,5 @@
 //
-//  CFAView.m
-//  Cocoa For Artists
-//
+//  CFAOpenGLView.m
 //  Created by Travis Kirton.
 //
 
@@ -403,13 +401,15 @@ NSTimer *animationTimer;
 		CGContextRetain(pdfContext);
 		CGContextBeginPage(pdfContext, &bounds);
 		CGContextSetFillColorSpace(pdfContext,CGColorSpaceCreateDeviceRGB());
-		[CFAShape beginDrawToPDFContext:pdfContext];
+		[CFAShape beginDrawShapesToPDFContext:pdfContext];
+		[CFAString beginDrawStringsToPDFContext:pdfContext];
 	}
 }
 
 -(void)endPDF {
 	drawToPDF = NO;
-	[CFAShape endDrawToPDFContext];
+	[CFAShape endDrawShapesToPDFContext];
+	[CFAString endDrawStringsToPDFContext];
 	CGContextEndPage(pdfContext);
 	CGPDFContextClose(pdfContext);
 	CGDataConsumerRelease(pdfConsumer);

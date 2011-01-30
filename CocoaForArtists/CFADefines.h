@@ -1,7 +1,5 @@
 //
 //  CFADefines.h
-//  Cocoa For Artists
-//
 //  Created by Travis Kirton.
 //
 
@@ -68,3 +66,8 @@
 #define JOINMITRE	NSMiterLineJoinStyle
 #define JOINROUND	NSRoundLineJoinStyle
 #define JOINBEVEL	NSBevelLineJoinStyle
+
+#define NONE		NSUnderlineStyleNone
+#define SINGLE		NSUnderlineStyleSingle
+#define THICK		NSUnderlineStyleThick
+#define DOUBLE		NSUnderlineStyleDouble

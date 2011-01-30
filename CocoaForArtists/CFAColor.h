@@ -1,9 +1,6 @@
 //
 //  CFAColor.h
-//  CFADevelop
-//
-//  Created by Travis Kirton on 10-09-13.
-//  Copyright 2010 Travis Kirton. All rights reserved.
+//  Created by Travis Kirton
 //
 
 #import <Cocoa/Cocoa.h>
@@ -28,5 +25,7 @@
 
 -(CGColorRef)cgColor;
 -(NSColor *)nsColor;
+
++(NSColor *)colorFromObject:(id)aColor;
 
 @end

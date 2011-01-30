@@ -1,13 +1,9 @@
 //
 //  CFAGradient.m
-//  C4A
-//
-//  Created by Travis Kirton on 10-09-27.
-//  Copyright 2010 Travis Kirton. All rights reserved.
+//  Created by Travis Kirton
 //
 
 #import "CFAGradient.h"
-
 
 @implementation CFAGradient
 
@@ -28,7 +24,7 @@
 	CGContextSaveGState(context);
 	CGContextAddPath(context, shape);
 	CGContextClip(context);
-	CGContextDrawLinearGradient(context, gradient, (CGPoint)pointA, (CGPoint)pointB, 0);
+	CGContextDrawLinearGradient(context, gradient, NSPointToCGPoint(pointA), NSPointToCGPoint(pointB), 0);
 	CGContextRestoreGState(context);
 }
 
@@ -46,7 +42,7 @@
 	CGContextSaveGState(context);
 	CGContextAddPath(context, shape);
 	CGContextClip(context);
-	CGContextDrawLinearGradient(context, gradient, (CGPoint)pointA, (CGPoint)pointC, 0);
+	CGContextDrawLinearGradient(context, gradient, NSPointToCGPoint(pointA), NSPointToCGPoint(pointC), 0);
 	CGContextRestoreGState(context);	
 	
 }
