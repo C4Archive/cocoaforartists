@@ -37,4 +37,69 @@ GENERATE_SINGLETON(CFAGlobalTypeAttributes, cfaGlobalTypeAttributes);
 	[self.attributes removeObjectForKey:key];
 }
 
+-(id)objectForKey:(NSString *)key {
+	return [self.attributes objectForKey:key];
+}
+
+-(CFAString *)description {
+	return [CFAString stringWithString:[self.attributes description]];
+}
+
+-(CFDictionaryRef)attributesAsCFDictionaryRef {
+	return [self CFDictionaryRefFrom:self.attributes];
+}
+-(CFDictionaryRef)CFDictionaryRefFrom:(NSDictionary *)dictionary {
+	CFMutableDictionaryRef mDict = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, NULL, NULL);
+	NSArray *keys = [dictionary allKeys];
+	
+	for(NSString *aKey in keys){
+		if([aKey isEqualTo:NSFontAttributeName]) {
+			CTFontRef font = (CTFontRef)[dictionary objectForKey:aKey];
+			CFDictionaryAddValue(mDict, kCTFontAttributeName, font);
+		}
+		else if([aKey isEqualTo:NSKernAttributeName]) {
+			CGFloat value[1]; 
+			value[0] = [[dictionary objectForKey:aKey] floatValue];
+			CFNumberRef kernValue = CFNumberCreate(kCFAllocatorDefault, kCFNumberFloatType, &value[0]);
+			CFDictionaryAddValue(mDict, kCTKernAttributeName, kernValue);
+		}
+		else if([aKey isEqualTo:NSForegroundColorAttributeName]) {
+			CFDictionaryAddValue(mDict, kCTForegroundColorAttributeName, [CFAColor NSColorToCGColor:[dictionary objectForKey:aKey]]);
+		}
+		else if([aKey isEqualTo:NSStrokeWidthAttributeName]) {
+			CGFloat value[1]; 
+			value[0] = [[dictionary objectForKey:aKey] floatValue];
+			CFNumberRef strokeWidthValue = CFNumberCreate(kCFAllocatorDefault, kCFNumberFloatType, &value[0]);
+			CFDictionaryAddValue(mDict, kCTStrokeWidthAttributeName, strokeWidthValue);
+		}
+		else if([aKey isEqualTo:NSStrokeColorAttributeName]) {
+			CFDictionaryAddValue(mDict, kCTStrokeColorAttributeName, [CFAColor NSColorToCGColor:[dictionary objectForKey:aKey]]);
+		}
+		else if([aKey isEqualTo:NSUnderlineStyleAttributeName]) {
+			int32_t value[1]; 
+			value[0] = [[dictionary objectForKey:aKey] intValue];
+			if (value[0] == kCTUnderlineStyleSingle) {
+				CFALog(@"works");
+			}
+			CFNumberRef underlineStyleValue = CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, &value[0]);
+			CFALog(@"%d",value[0]);
+			CFDictionaryAddValue(mDict, kCTUnderlineStyleAttributeName, underlineStyleValue);
+		}
+		else if([aKey isEqualTo:NSUnderlineColorAttributeName]) {
+			CFDictionaryAddValue(mDict, kCTUnderlineColorAttributeName, [CFAColor NSColorToCGColor:[dictionary objectForKey:aKey]]);
+		}
+		/*
+		else if([aKey isEqualTo:NSBackgroundColorAttributeName]) {
+			//Unfortunately, there is no backgroundColor for strings in CoreText (as of Jan '11)
+		}
+		else if([aKey isEqualTo:NSStrikethroughColorAttributeName]) {
+			//Unfortunately, there is no strikethrough for strings in CoreText (as of Jan '11)
+		}
+		else if([aKey isEqualTo:NSStrikethroughStyleAttributeName]) {
+			//Unfortunately, there is no strikethrough for strings in CoreText (as of Jan '11)
+		}
+		 */
+	}
+	return mDict;
+}
 @end

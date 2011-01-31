@@ -6,17 +6,13 @@
 #import <Cocoa/Cocoa.h>
 
 /*
- eventually it might be nice to integrate with CFString, for drawing...
  advice from cocoa-dev: change method names, change CFA prefix...
- */
-
-/*
  
-
- NEEEEEED
- to fix drawing to PDFContext...
- the position defaults to 0,0
+ NOT TOO SERIOUS
+ CFAttributedString objects have problems in drawing underlines and strikthrough.
  
+ In particular, there are NO strikethrough options for drawing and the underline objects appear over top of one another.
+ I wonder if Apple will fix these in the future... Not entirely essential...
  
  */
 
@@ -112,6 +108,8 @@
 +(void)kern:(float)value;
 +(void)noFill;
 +(void)noStroke;
+
++(CFAString *)globalAttributes;
 
 +(void)beginDrawStringsToPDFContext:(CGContextRef)context;
 +(void)endDrawStringsToPDFContext;

@@ -27,5 +27,5 @@
 -(NSColor *)nsColor;
 
 +(NSColor *)colorFromObject:(id)aColor;
-
++(CGColorRef)NSColorToCGColor:(NSColor *)aColor;
 @end

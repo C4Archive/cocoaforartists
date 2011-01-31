@@ -80,4 +80,13 @@
 -(NSColor *)nsColor {
 	return color;
 }
+
++(CGColorRef)NSColorToCGColor:(NSColor *)aColor {
+	CGFloat colorComponents[4];
+	colorComponents[0] = [aColor redComponent];
+	colorComponents[1] = [aColor greenComponent];
+	colorComponents[2] = [aColor blueComponent];
+	colorComponents[3] = [aColor alphaComponent];
+	return CGColorCreate(CGColorSpaceCreateDeviceRGB(), colorComponents);
+}
 @end

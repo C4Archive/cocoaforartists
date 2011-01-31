@@ -9,6 +9,7 @@ CGContextRef pdfContext;
 BOOL drawStringsToPDF = NO;
 BOOL isClean;
 -(NSColor *)colorFromObject:(id)color;
+-(CFDictionaryRef)CFDictionaryRefFrom:(NSDictionary *)dictionary;
 @end
 
 @implementation CFAString
@@ -55,7 +56,6 @@ BOOL isClean;
 }
 
 -(CFAString *)stringByAppendingString:(id)aString {
-	NSString *oldString = self.string;
 	NSString *newString;
 	if([aString isKindOfClass:[NSString class]]) {
 		newString = (NSString *)aString;
@@ -67,19 +67,19 @@ BOOL isClean;
 		CFALog(@"Type is not CFAString or NSString");
 		return nil;
 	}
-	return [CFAString stringWithString:[oldString stringByAppendingString:newString]];
+	return [CFAString stringWithString:newString];
 }
 
 -(CFAString *)stringByAppendingFormat:(NSString *)aFormatString, ... {
-	NSString *oldString = self.string;
 	NSString *newString;
 	
 	va_list args;
 	va_start (args, aFormatString);
 	newString = [[[NSString alloc] initWithFormat:aFormatString arguments:args] autorelease];
 	va_end (args);
-	
-	return [CFAString stringWithString:[oldString stringByAppendingString:newString]];
+
+	NSString *s = [self.string stringByAppendingString:newString];
+	return [CFAString stringWithString:s];
 }
 
 -(int)length {
@@ -202,23 +202,25 @@ BOOL isClean;
 	else [self drawAtPoint:point withAttributes:self.attributes];
 }
 
--(void)drawAtPoint:(NSPoint)point withAttributes:(NSDictionary *)attribs {	
+-(void)drawAtPoint:(NSPoint)point withAttributes:(NSDictionary *)attribs {
 	[self.string drawAtPoint:point withAttributes:attribs];
+
+	CFDictionaryRef cfAttribs = [[CFAGlobalTypeAttributes sharedManager] CFDictionaryRefFrom:attribs];
+	
 	if(drawStringsToPDF) {
-		NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:self.string attributes:attribs];
-		CTLineRef line = CTLineCreateWithAttributedString((CFAttributedStringRef)attributedString);
+		CFAttributedStringRef attributedString = CFAttributedStringCreate (kCFAllocatorDefault,
+																		   (CFStringRef)self.string,
+																		   cfAttribs);
+		
+		CTLineRef line = CTLineCreateWithAttributedString(attributedString);
+				
 		CGContextSetFillColorSpace(pdfContext,CGColorSpaceCreateDeviceRGB());
 		NSColor *color = [[attribs objectForKey:NSForegroundColorAttributeName] colorUsingColorSpaceName:NSDeviceRGBColorSpace];
 		CGFloat components[4];
 		[color getRed:&components[0] green: &components[1] blue: &components[2] alpha: &components[3]];		
-		CGContextSetFillColor(pdfContext, components);
-	
-		/*this doesn't work*/
-		/*why the fuck not?*/
-		/*strings are offset in the x axis, ONLY*/
-		
+		CGContextSetFillColor(pdfContext, components);	
 		CGContextSaveGState(pdfContext);
-		CGContextTranslateCTM(pdfContext,point.x,point.y);
+		CGContextSetTextPosition(pdfContext,point.x,point.y);
 		CTLineDraw(line,pdfContext);
 		CGContextRestoreGState(pdfContext);
 	}
@@ -250,6 +252,11 @@ BOOL isClean;
 
 -(void)fillColor:(id)color {
 	[self.attributes setObject:[CFAColor colorFromObject:color] forKey:NSForegroundColorAttributeName];
+	CFALog(@"->%@",[self.attributes objectForKey:NSUnderlineStyleAttributeName]);
+	if ([self.attributes objectForKey:NSUnderlineStyleAttributeName] == nil) {
+		CFALog(@"log");
+		[self.attributes setObject:[CFAColor colorFromObject:color] forKey:NSUnderlineColorAttributeName];
+	}
 }
 
 -(void)fill:(float)grey {
@@ -316,6 +323,8 @@ BOOL isClean;
 		[self.attributes removeObjectForKey:NSUnderlineColorAttributeName];
 	} else if (style == SINGLE || style == DOUBLE || style == THICK ) {
 		[self.attributes setValue:[NSNumber numberWithInt:style] forKey:NSUnderlineStyleAttributeName];
+		[self.attributes setObject:[self.attributes objectForKey:NSForegroundColorAttributeName]
+							forKey:NSUnderlineColorAttributeName];
 	} else {
 		CFALog(@"underline style must be NONE, SINGLE, THICK, or DOUBLE) -> %d",style);
 	}
@@ -362,6 +371,9 @@ BOOL isClean;
 
 +(void)fillColor:(id)color {
 	[[CFAGlobalTypeAttributes sharedManager] setObject:[CFAColor colorFromObject:color] forKey:NSForegroundColorAttributeName];
+	if ([[CFAGlobalTypeAttributes sharedManager] objectForKey:NSUnderlineStyleAttributeName] == nil) {
+		[[CFAGlobalTypeAttributes sharedManager] setObject:[CFAColor colorFromObject:color] forKey:NSUnderlineColorAttributeName];
+	}
 }
 
 +(void)fill:(float)grey {
@@ -444,7 +456,7 @@ BOOL isClean;
 		[[CFAGlobalTypeAttributes sharedManager] removeObjectForKey:NSStrikethroughColorAttributeName];
 	}
 	else if(style == SINGLE || style == DOUBLE || style == THICK ) {
-		[[CFAGlobalTypeAttributes sharedManager] setValue:[NSNumber numberWithInt:style] forKey:NSStrikethroughColorAttributeName];
+		[[CFAGlobalTypeAttributes sharedManager] setValue:[NSNumber numberWithInt:style] forKey:NSStrikethroughStyleAttributeName];
 	} else {
 		CFALog(@"strikethrough style must be NONE, SINGLE, THICK, or DOUBLE) -> %d",style);
 	}
@@ -497,6 +509,10 @@ BOOL isClean;
 	CGContextRelease(pdfContext);
 	isClean = YES;
 	CFALog(@"endDrawStringsToPDFContext");
+}
+
++(CFAString *)globalAttributes {
+	return [[CFAGlobalTypeAttributes sharedManager] description];
 }
 
 -(NSString *)description {
