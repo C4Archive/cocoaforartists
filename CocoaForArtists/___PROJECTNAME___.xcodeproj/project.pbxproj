@@ -12,12 +12,20 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		ED16792912377BEB00A1C814 /* cfaicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = ED16792812377BEB00A1C814 /* cfaicon.icns */; };
+		ED1BFEFB12F9C28A0085091A /* CFAVoice.m in Sources */ = {isa = PBXBuildFile; fileRef = ED1BFEFA12F9C28A0085091A /* CFAVoice.m */; };
 		ED25C7ED12F59ECE00BB0D84 /* CFAGlobalTypeAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = ED25C7EC12F59ECE00BB0D84 /* CFAGlobalTypeAttributes.m */; };
+		ED2B6E3D1300F32A005BB540 /* TuioClient.qtz in Resources */ = {isa = PBXBuildFile; fileRef = ED2B6E3C1300F32A005BB540 /* TuioClient.qtz */; };
+		ED2B6E401300F342005BB540 /* CFATuio.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2B6E3F1300F342005BB540 /* CFATuio.m */; };
+		ED2B6E6F1300F456005BB540 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2B6E6E1300F456005BB540 /* Quartz.framework */; };
+		ED2B6EFF1300FC9F005BB540 /* TuioObject.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2B6EFE1300FC9F005BB540 /* TuioObject.m */; };
+		ED2B6F021300FCB6005BB540 /* TuioCursor.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2B6F011300FCB6005BB540 /* TuioCursor.m */; };
 		ED321DEC12F5979F0063E57E /* CFAFont.m in Sources */ = {isa = PBXBuildFile; fileRef = ED321DEB12F5979F0063E57E /* CFAFont.m */; };
 		ED3B216E124CC28100AB9816 /* CFATest.tif in Resources */ = {isa = PBXBuildFile; fileRef = ED3B216B124CC28100AB9816 /* CFATest.tif */; };
 		ED3B2170124CC28100AB9816 /* CFATest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED3B216D124CC28100AB9816 /* CFATest.jpg */; };
 		ED6961EB129AB07C0082D888 /* Oscillator in Resources */ = {isa = PBXBuildFile; fileRef = ED6961EA129AB07C0082D888 /* Oscillator */; };
 		ED95222A123DE54E00AE9E0D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED952229123DE54E00AE9E0D /* QuartzCore.framework */; };
+		ED992CDF130158D00079B98B /* CFASound.m in Sources */ = {isa = PBXBuildFile; fileRef = ED992CDE130158D00079B98B /* CFASound.m */; };
+		EDB2D26212FA127800BD2B2C /* EveryLetterEveryFont in Resources */ = {isa = PBXBuildFile; fileRef = EDB2D26112FA127800BD2B2C /* EveryLetterEveryFont */; };
 		EDC2D1AC12F32FB8000B143A /* CFAString.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC2D1AB12F32FB8000B143A /* CFAString.m */; };
 		EDD92A1C129A9ABD00C6A1F7 /* CFAImage.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD92A0B129A9ABD00C6A1F7 /* CFAImage.m */; };
 		EDD92A1D129A9ABD00C6A1F7 /* CFAOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD92A0D129A9ABD00C6A1F7 /* CFAOpenGLView.m */; };
@@ -116,10 +124,19 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* ___PROJECTNAMEASIDENTIFIER___-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "___PROJECTNAMEASIDENTIFIER___-Info.plist"; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* ___PROJECTNAME___.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "___PROJECTNAME___.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED16792812377BEB00A1C814 /* cfaicon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = cfaicon.icns; sourceTree = "<group>"; };
+		ED1BFEF912F9C28A0085091A /* CFAVoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFAVoice.h; sourceTree = "<group>"; };
+		ED1BFEFA12F9C28A0085091A /* CFAVoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFAVoice.m; sourceTree = "<group>"; };
 		ED25C7EB12F59ECE00BB0D84 /* CFAGlobalTypeAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFAGlobalTypeAttributes.h; sourceTree = "<group>"; };
 		ED25C7EC12F59ECE00BB0D84 /* CFAGlobalTypeAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFAGlobalTypeAttributes.m; sourceTree = "<group>"; };
+		ED2B6E3C1300F32A005BB540 /* TuioClient.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = TuioClient.qtz; sourceTree = "<group>"; };
+		ED2B6E3E1300F342005BB540 /* CFATuio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFATuio.h; sourceTree = "<group>"; };
+		ED2B6E3F1300F342005BB540 /* CFATuio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFATuio.m; sourceTree = "<group>"; };
+		ED2B6E6E1300F456005BB540 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		ED2B6EFD1300FC9F005BB540 /* TuioObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuioObject.h; sourceTree = "<group>"; };
+		ED2B6EFE1300FC9F005BB540 /* TuioObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuioObject.m; sourceTree = "<group>"; };
+		ED2B6F001300FCB6005BB540 /* TuioCursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuioCursor.h; sourceTree = "<group>"; };
+		ED2B6F011300FCB6005BB540 /* TuioCursor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuioCursor.m; sourceTree = "<group>"; };
 		ED321DEA12F5979F0063E57E /* CFAFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFAFont.h; sourceTree = "<group>"; };
 		ED321DEB12F5979F0063E57E /* CFAFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFAFont.m; sourceTree = "<group>"; };
 		ED36CA5A123D7FDE0055951E /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
@@ -128,7 +145,11 @@
 		ED3B216B124CC28100AB9816 /* CFATest.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = CFATest.tif; sourceTree = "<group>"; };
 		ED3B216D124CC28100AB9816 /* CFATest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = CFATest.jpg; sourceTree = "<group>"; };
 		ED6961EA129AB07C0082D888 /* Oscillator */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Oscillator; sourceTree = "<group>"; };
+		ED89C7571300560C00EAF2CF /* ___PROJECTNAME___.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "___PROJECTNAME___.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED952229123DE54E00AE9E0D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		ED992CDD130158D00079B98B /* CFASound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFASound.h; sourceTree = "<group>"; };
+		ED992CDE130158D00079B98B /* CFASound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFASound.m; sourceTree = "<group>"; };
+		EDB2D26112FA127800BD2B2C /* EveryLetterEveryFont */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EveryLetterEveryFont; sourceTree = "<group>"; };
 		EDC2D1AA12F32FB8000B143A /* CFAString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFAString.h; sourceTree = "<group>"; };
 		EDC2D1AB12F32FB8000B143A /* CFAString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFAString.m; sourceTree = "<group>"; };
 		EDD92A0A129A9ABD00C6A1F7 /* CFAImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFAImage.h; sourceTree = "<group>"; };
@@ -235,6 +256,7 @@
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				ED95222A123DE54E00AE9E0D /* QuartzCore.framework in Frameworks */,
 				EDD92AC8129A9BCE00C6A1F7 /* OpenGL.framework in Frameworks */,
+				ED2B6E6F1300F456005BB540 /* Quartz.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,7 +294,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107320486CEB800E47090 /* ___PROJECTNAME___.app */,
+				ED89C7571300560C00EAF2CF /* ___PROJECTNAME___.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -281,7 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				080E96DDFE201D6D7F000001 /* Project */,
-				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97315FDCFA39411CA2CEA /* CFA Code & Samples */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -289,7 +311,7 @@
 			name = "___PROJECTNAMEASXML___";
 			sourceTree = "<group>";
 		};
-		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+		29B97315FDCFA39411CA2CEA /* CFA Code & Samples */ = {
 			isa = PBXGroup;
 			children = (
 				EDE538271237633C0041895C /* CFACanvas.h */,
@@ -297,7 +319,7 @@
 				ED36CA63123D80020055951E /* CFA Classes */,
 				EDD92A25129A9ACB00C6A1F7 /* CFA CodeSamples */,
 			);
-			name = "Other Sources";
+			name = "CFA Code & Samples";
 			sourceTree = "<group>";
 		};
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
@@ -319,8 +341,23 @@
 			children = (
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+				ED2B6E6E1300F456005BB540 /* Quartz.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ED2B6E381300F2C5005BB540 /* CFATuio */ = {
+			isa = PBXGroup;
+			children = (
+				ED2B6E3C1300F32A005BB540 /* TuioClient.qtz */,
+				ED2B6EFD1300FC9F005BB540 /* TuioObject.h */,
+				ED2B6EFE1300FC9F005BB540 /* TuioObject.m */,
+				ED2B6E3E1300F342005BB540 /* CFATuio.h */,
+				ED2B6E3F1300F342005BB540 /* CFATuio.m */,
+				ED2B6F001300FCB6005BB540 /* TuioCursor.h */,
+				ED2B6F011300FCB6005BB540 /* TuioCursor.m */,
+			);
+			name = CFATuio;
 			sourceTree = "<group>";
 		};
 		ED36CA62123D7FE10055951E /* CFA Application */ = {
@@ -340,6 +377,7 @@
 		ED36CA63123D80020055951E /* CFA Classes */ = {
 			isa = PBXGroup;
 			children = (
+				ED2B6E381300F2C5005BB540 /* CFATuio */,
 				EDD92A0A129A9ABD00C6A1F7 /* CFAImage.h */,
 				EDD92A0B129A9ABD00C6A1F7 /* CFAImage.m */,
 				EDD92A0C129A9ABD00C6A1F7 /* CFAOpenGLView.h */,
@@ -364,6 +402,10 @@
 				ED321DEB12F5979F0063E57E /* CFAFont.m */,
 				ED25C7EB12F59ECE00BB0D84 /* CFAGlobalTypeAttributes.h */,
 				ED25C7EC12F59ECE00BB0D84 /* CFAGlobalTypeAttributes.m */,
+				ED1BFEF912F9C28A0085091A /* CFAVoice.h */,
+				ED1BFEFA12F9C28A0085091A /* CFAVoice.m */,
+				ED992CDD130158D00079B98B /* CFASound.h */,
+				ED992CDE130158D00079B98B /* CFASound.m */,
 			);
 			name = "CFA Classes";
 			sourceTree = "<group>";
@@ -391,6 +433,7 @@
 				EDD92A27129A9ACB00C6A1F7 /* StoringInputAdvanced */,
 				ED6961EA129AB07C0082D888 /* Oscillator */,
 				EDECAAA212A2E55E00C79F56 /* Kandinskyish */,
+				EDB2D26112FA127800BD2B2C /* EveryLetterEveryFont */,
 			);
 			name = Advanced;
 			sourceTree = "<group>";
@@ -545,7 +588,7 @@
 			name = "___PROJECTNAME___";
 			productInstallPath = "$(HOME)/Applications";
 			productName = "___PROJECTNAME___";
-			productReference = 8D1107320486CEB800E47090 /* ___PROJECTNAME___.app */;
+			productReference = ED89C7571300560C00EAF2CF /* ___PROJECTNAME___.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -655,6 +698,8 @@
 				EDD92AC3129A9B9800C6A1F7 /* MainMenu.xib in Resources */,
 				ED6961EB129AB07C0082D888 /* Oscillator in Resources */,
 				EDECAAA312A2E55E00C79F56 /* Kandinskyish in Resources */,
+				EDB2D26212FA127800BD2B2C /* EveryLetterEveryFont in Resources */,
+				ED2B6E3D1300F32A005BB540 /* TuioClient.qtz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -680,6 +725,11 @@
 				EDC2D1AC12F32FB8000B143A /* CFAString.m in Sources */,
 				ED321DEC12F5979F0063E57E /* CFAFont.m in Sources */,
 				ED25C7ED12F59ECE00BB0D84 /* CFAGlobalTypeAttributes.m in Sources */,
+				ED1BFEFB12F9C28A0085091A /* CFAVoice.m in Sources */,
+				ED2B6E401300F342005BB540 /* CFATuio.m in Sources */,
+				ED2B6EFF1300FC9F005BB540 /* TuioObject.m in Sources */,
+				ED2B6F021300FCB6005BB540 /* TuioCursor.m in Sources */,
+				ED992CDF130158D00079B98B /* CFASound.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -236,6 +236,11 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	}
 }
 
++(void)rectAt:(NSPoint)p size:(NSSize)s {
+	[self rectWithXPos:p.x yPos:p.y width:s.width andHeight:s.height];
+}
+
+
 +(void)triangleFromX:(int)x1 Y:(int)y1 toX:(int)x2 Y:(int)y2 toX:(int)x3 Y:(int)y3 {
 	[self triangleUsingPoint:NSMakePoint(x1, y1) point:NSMakePoint(x2, y2) point:NSMakePoint(x3, y3)];
 }

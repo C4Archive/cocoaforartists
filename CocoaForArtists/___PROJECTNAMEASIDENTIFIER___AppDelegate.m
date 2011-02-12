@@ -23,6 +23,8 @@
 	cfaTransform	= [[[CFATransform alloc] _init] retain];
 	cfaString		= [[[CFAString alloc] init] retain];
 	cfaGlobalTypeAttributes = [[[CFAGlobalTypeAttributes alloc] _init] retain];
+	cfaTuio			= [[[CFATuio alloc] _init] retain];
+
 }
 
 @end

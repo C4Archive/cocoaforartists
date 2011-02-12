@@ -71,3 +71,32 @@
 #define SINGLE		NSUnderlineStyleSingle
 #define THICK		NSUnderlineStyleThick
 #define DOUBLE		NSUnderlineStyleDouble
+
+#define IMMEDIATELY		NSSpeechImmediateBoundary
+#define ENDOFWORD		NSSpeechWordBoundary
+#define ENDOFSENTENCE	NSSpeechSentenceBoundary
+
+#define	AGNES		@"com.apple.speech.synthesis.voice.Agnes"
+#define	ALBERT		@"com.apple.speech.synthesis.voice.Albert"
+#define	ALEX		@"com.apple.speech.synthesis.voice.Alex"
+#define	BADNEWS		@"com.apple.speech.synthesis.voice.BadNews"
+#define	BAHH		@"com.apple.speech.synthesis.voice.Bahh"
+#define	BELLS		@"com.apple.speech.synthesis.voice.Bells"
+#define	BOING		@"com.apple.speech.synthesis.voice.Boing"
+#define	BRUCE		@"com.apple.speech.synthesis.voice.Bruce"
+#define	BUBBLES		@"com.apple.speech.synthesis.voice.Bubbles"
+#define	CELLOS		@"com.apple.speech.synthesis.voice.Cellos"
+#define	DERANGED	@"com.apple.speech.synthesis.voice.Deranged"
+#define	FRED		@"com.apple.speech.synthesis.voice.Fred"
+#define	GOODNEWS	@"com.apple.speech.synthesis.voice.GoodNews"
+#define	HYSTERICAL	@"com.apple.speech.synthesis.voice.Hysterical"
+#define	JUNIOR		@"com.apple.speech.synthesis.voice.Junior"
+#define	KATHY		@"com.apple.speech.synthesis.voice.Kathy"
+#define	ORGAN		@"com.apple.speech.synthesis.voice.Organ"
+#define	PRINCESS	@"com.apple.speech.synthesis.voice.Princess"
+#define	RALPH		@"com.apple.speech.synthesis.voice.Ralph"
+#define	TRINOIDS	@"com.apple.speech.synthesis.voice.Trinoids"
+#define	VICKI		@"com.apple.speech.synthesis.voice.Vicki"
+#define	VICTORIA	@"com.apple.speech.synthesis.voice.Victoria"
+#define	WHISPER		@"com.apple.speech.synthesis.voice.Whisper"
+#define	ZARVOX		@"com.apple.speech.synthesis.voice.Zarvox"

@@ -19,7 +19,7 @@ CGContextRef pdfContext;
 CGDataConsumerRef pdfConsumer;
 
 int frameCount = 0;
-int frameRate = 60;
+CGFloat frameRate = 60;
 int drawstyle = SINGLEFRAME;
 int saveFrameCount = 0;
 
@@ -29,7 +29,7 @@ NSTimer *animationTimer;
 
 -(void)prepareOpenGL;
 -(void)getPixelData;
--(void)setAnimationTimer:(int)framerate;
+-(void)setAnimationTimer:(CGFloat)framerate;
 -(void)stopAnimating;
 -(void)checkClickCount:(NSEvent *)theEvent;
 -(char const*)keyChar:(unichar)currentkey;
@@ -50,14 +50,18 @@ NSTimer *animationTimer;
 
 -(void)awakeFromNib {
 	backgroundRect = NSZeroRect;
-	screenSize = NSZeroSize;
+	screenSize = [[NSScreen mainScreen] frame].size;
 	mousePressed = NO;
 	isClean = YES;
 	[self background:255];
 	[self setCanDrawConcurrently:YES];
 	[self prepareOpenGL];
+	[self windowWidth:100 andHeight:100];
 	[self setupRect];
 	[self addTrackingArea];
+	
+	//need to bury this here, because the openGLview needs to be completely initialized
+	[CFATuio initWithOpenGLContext:[self openGLContext] pixelFormat:[self pixelFormat]];
 }
 
 -(void)dealloc {
@@ -106,14 +110,17 @@ NSTimer *animationTimer;
 	}
 }
 
--(void)frameRate:(int)rate {
+-(void)frameRate:(CGFloat)rate {
 	frameRate = rate;
+	if (frameRate <= 0.0f) {
+		frameRate = 0.001;
+	}
 	[self setAnimationTimer:frameRate];
 }
 
--(void)setAnimationTimer:(int)framerate {
+-(void)setAnimationTimer:(CGFloat)framerate {
 	if (animationTimer != nil) [self stopAnimating];
-	animationTimer = [NSTimer timerWithTimeInterval:(1.0f/(float)framerate)
+	animationTimer = [NSTimer timerWithTimeInterval:(1.0f/framerate)
 											 target:self
 										   selector:@selector(redraw)
 										   userInfo:nil
@@ -151,11 +158,12 @@ NSTimer *animationTimer;
 }
 
 -(void)windowWidth:(int)width andHeight:(int)height {
-	screenSize = [[NSScreen mainScreen] frame].size;
 	NSRect contentRect = [NSWindow contentRectForFrameRect:NSMakeRect(0, 0, width, height) 
 													  styleMask:NSTitledWindowMask];
 	float titleBarHeight = height - contentRect.size.height;
-	[self.window setFrame:NSMakeRect(0, screenSize.height, width, height+titleBarHeight) display:YES];
+	// this centers the window to the screen
+	[self.window setFrame:NSMakeRect((self.screenWidth-width)/2, (self.screenHeight-titleBarHeight-height) / 2 , width, height+titleBarHeight) display:YES];
+	[CFATuio setSize:NSMakeSize(width, height)];
 }
 
 -(void)addTrackingArea {

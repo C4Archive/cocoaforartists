@@ -32,6 +32,7 @@
 +(void)pointAtX:(int)x1 Y:(int)y1;
 +(void)pointAt:(NSPoint)p;
 +(void)rectWithXPos:(int)x yPos:(int)y width:(float)w andHeight:(float)h;
++(void)rectAt:(NSPoint)p size:(NSSize)s;
 +(void)triangleFromX:(int)x1 Y:(int)y1 toX:(int)x2 Y:(int)y2 toX:(int)x3 Y:(int)y3;
 +(void)triangleUsingPoint:(NSPoint)p1 point:(NSPoint)p2 point:(NSPoint)p3;
 +(void)quadUsingPoint:(NSPoint)p1 point:(NSPoint)p2 point:(NSPoint)p3 point:(NSPoint)p4;

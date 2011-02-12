@@ -175,6 +175,7 @@ GENERATE_SINGLETON(CFAMath, cfaMath);
 }
 #pragma mark Random
 +(int)randomInt:(int)value {
+	srandomdev();
 	return random()%value;
 }
 

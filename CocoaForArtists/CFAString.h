@@ -114,6 +114,8 @@
 +(void)beginDrawStringsToPDFContext:(CGContextRef)context;
 +(void)endDrawStringsToPDFContext;
 
++(NSString *)nsStringFromObject:(id)object;
+
 @property(readwrite, retain) NSString *string;
 @property(readwrite, retain) NSMutableDictionary *attributes;
 @end

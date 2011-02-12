@@ -24,6 +24,7 @@
 		CFATransform	*cfaTransform;
 		CFAString		*cfaString;
 		CFAGlobalTypeAttributes	*cfaGlobalTypeAttributes;
+		CFATuio			*cfaTuio;
 	}
 	
 @property (assign) IBOutlet NSWindow *window;

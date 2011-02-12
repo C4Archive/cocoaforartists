@@ -82,6 +82,7 @@
 }
 
 +(CGColorRef)NSColorToCGColor:(NSColor *)aColor {
+	aColor = [aColor colorUsingColorSpaceName:NSDeviceRGBColorSpace];
 	CGFloat colorComponents[4];
 	colorComponents[0] = [aColor redComponent];
 	colorComponents[1] = [aColor greenComponent];

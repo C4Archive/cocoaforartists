@@ -29,7 +29,7 @@ NSArray *colorArray;
 @implementation CFACanvas
 
 -(void)setup {
-	bars = self.width/5;
+	bars = canvasWidth/5;
 	NSMutableArray *mutableColorArray = [[[NSMutableArray alloc] initWithCapacity:0] autorelease];
 	for(int i = 0; i < bars; i++){
 		[mutableColorArray addObject:[CFAColor colorWithRed:[CFAMath randomInt:75]/100.0f+0.15

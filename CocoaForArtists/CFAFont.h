@@ -13,11 +13,18 @@
 	NSFont *font;
 }
 
-+(CFAFont *)fontWithName:(id)name size:(float)size;
-+(CFAFont *)userFontOfSize:(float)size;
-+(CFAFont *)boldSystemFontOfSize:(float)size;
-+(CFAFont *)messageFontOfSize:(float)size;
-+(CFAFont *)systemFontOfSize:(float)size;
+-(id)init;
+-(id)initWithName:(id)name;
+-(id)initWithName:(id)name size:(CGFloat)size;
+-(id)initWithFont:(id)aFont;
+
++(CFAFont *)fontWithFont:(id)aFont;
++(CFAFont *)fontWithName:(id)name size:(CGFloat)size;
++(CFAFont *)userFontOfSize:(CGFloat)size;
++(CFAFont *)boldSystemFontOfSize:(CGFloat)size;
++(CFAFont *)messageFontOfSize:(CGFloat)size;
++(CFAFont *)systemFontOfSize:(CGFloat)size;
+
 +(CGFloat)smallSystemFontSize;
 +(CGFloat)systemFontSize;
 
@@ -34,6 +41,8 @@
 -(CFAString *)displayName;
 -(CFAString *)familyName;
 -(CFAString *)fontName;
+
++(NSArray *)availableFonts;
 
 @property(readwrite, retain) NSFont *font;
 @end

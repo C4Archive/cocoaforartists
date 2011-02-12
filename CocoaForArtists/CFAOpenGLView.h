@@ -34,7 +34,7 @@
 -(void)noCursor;
 -(int)frameCount;
 -(int)frameRate;
--(void)frameRate:(int)rate;
+-(void)frameRate:(CGFloat)rate;
 
 -(int)height;
 -(int)width;

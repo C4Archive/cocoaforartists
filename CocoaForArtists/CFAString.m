@@ -519,4 +519,14 @@ BOOL isClean;
 	return self.string;
 }
 
++(NSString *)nsStringFromObject:(id)object {
+	if([object isKindOfClass:[NSString class]]) {
+		return (NSString *)object;
+	} else if ([object isKindOfClass:[CFAString class]]) {
+		return ((CFAString *)object).string;
+	}
+	CFALog(@"object must be CFAString or NSString");
+	return nil;
+}
+
 @end
