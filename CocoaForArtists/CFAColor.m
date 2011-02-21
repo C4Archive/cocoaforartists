@@ -81,6 +81,19 @@
 	return color;
 }
 
+-(CGFloat)redComponent {
+	return [color redComponent];
+}
+
+-(CGFloat)greenComponent {
+	return [color greenComponent];
+}
+
+-(CGFloat)blueComponent {
+	return [color blueComponent];
+}
+
+
 +(CGColorRef)NSColorToCGColor:(NSColor *)aColor {
 	aColor = [aColor colorUsingColorSpaceName:NSDeviceRGBColorSpace];
 	CGFloat colorComponents[4];

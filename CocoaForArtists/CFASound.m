@@ -10,8 +10,12 @@
 
 
 @implementation CFASound
-+(CFASound *)initWithName:(NSString *)fileName andType:(NSString *)extension {
-	return [[CFASound alloc] initWithName:fileName andType:extension];
++(void)load {
+	if(VERBOSELOAD) printf("CFASound\n");
+}
+
++(CFASound *)withName:(NSString *)fileName andType:(NSString *)extension {
+	return [[[CFASound alloc] initWithName:fileName andType:extension] retain];
 }
 
 -(id)initWithName:(NSString *)fileName andType:(NSString *)extension {

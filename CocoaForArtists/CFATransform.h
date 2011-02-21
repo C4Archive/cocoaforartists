@@ -6,6 +6,7 @@
 #import <Cocoa/Cocoa.h>
 
 @interface CFATransform : NSObject {
+
 }
 
 -(id)_init;

@@ -15,10 +15,10 @@
 -(void)draw {
 	[CFAShape fillRed:1.0f green:0.48f blue:0.48f];
 	[CFAShape beginShape];
-	for(int x = 0; x <= [self width]; x+=5) {
+	for(int x = 0; x <= self.canvasWidth; x+=5) {
 		float y = [CFAMath sin:DEGREES_TO_RADIANS(x)];
-		y *= [self height]/2.1;
-		y += [self height]/2;
+		y *= self.canvasHeight/2.1;
+		y += self.canvasHeight/2;
 		[CFAShape vertexAt:NSMakePoint(x, y)];
 	}
 	[CFAShape endShape];
@@ -26,10 +26,10 @@
 	[CFAShape stroke:1.0f];
 	[CFAShape fillRed:0.48f green:0.48f blue:1.0f];
 	[CFAShape beginShape];
-	for(int x = 0; x <=[self width]; x+=5) {
+	for(int x = 0; x <=self.canvasWidth; x+=5) {
 		float y = [CFAMath sin:DEGREES_TO_RADIANS(x)];
-		y *= [self height]/6;
-		y += [self height]/2;
+		y *= self.canvasHeight/6;
+		y += self.canvasHeight/2;
 		[CFAShape vertexAt:NSMakePoint(x/2, y)];
 	}
 	[CFAShape endShape];
@@ -37,12 +37,12 @@
 	[CFAShape noStroke];
 	[CFAShape fillRed:0.48f green:1.0f blue:0.48f];
 	[CFAShape beginShape];
-	for(int x = 0; x <=[self width]/2; x+=5) {
-		if(x >= [self width]/2) [CFAShape stroke:0];
+	for(int x = 0; x <=self.canvasWidth/2; x+=5) {
+		if(x >= self.canvasWidth/2) [CFAShape stroke:0];
 		float y = [CFAMath cos:DEGREES_TO_RADIANS(x*2)];
-		y *= -[self height]/6;
-		y += [self height]*2/3;
-		[CFAShape vertexAt:NSMakePoint(x+[self width]/2, y)];
+		y *= -self.canvasHeight/6;
+		y += self.canvasHeight*2/3;
+		[CFAShape vertexAt:NSMakePoint(x+self.canvasWidth/2, y)];
 	}
 	[CFAShape endShape];
 }

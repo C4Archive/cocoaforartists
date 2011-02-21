@@ -24,10 +24,10 @@ float y = 100;
 -(void)draw {
 	[self background:0];
 	y = y + 1;
-	if (y > [self height]) {
+	if (y > self.canvasHeight) {
 		y = 0;
 	}
-	[CFAShape lineFromX:0 Y:y toX:[self width] Y:y];
+	[CFAShape lineFromX:0 Y:y toX:self.canvasWidth Y:y];
 }
 
 @end

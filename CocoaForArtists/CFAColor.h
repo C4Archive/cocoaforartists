@@ -26,6 +26,10 @@
 -(CGColorRef)cgColor;
 -(NSColor *)nsColor;
 
+-(CGFloat)redComponent;
+-(CGFloat)greenComponent;
+-(CGFloat)blueComponent;
+
 +(NSColor *)colorFromObject:(id)aColor;
 +(CGColorRef)NSColorToCGColor:(NSColor *)aColor;
 @end

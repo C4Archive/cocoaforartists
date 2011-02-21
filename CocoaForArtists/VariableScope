@@ -20,23 +20,23 @@ int a = 20;
 	[CFAShape stroke:1.0f];
 }
 -(void)draw {
-	[CFAShape lineFromX:a Y:0 toX:a Y:[self height]];
+	[CFAShape lineFromX:a Y:0 toX:a Y:self.canvasHeight];
 	for(int a = 60; a < 160; a += 4) {
-		[CFAShape lineFromX:a Y:0 toX:a Y:[self height]];
+		[CFAShape lineFromX:a Y:0 toX:a Y:self.canvasHeight];
 	}
 	int a = 200;
 	[CFAShape strokeRed:0.0f green:0.0f blue:1.0f];
-	[CFAShape lineFromX:a Y:0 toX:a Y:[self height]];
+	[CFAShape lineFromX:a Y:0 toX:a Y:self.canvasHeight];
 	[self drawAnotherLine];
 	[self drawYetAnotherLine];
 }
 -(void)drawAnotherLine {
 	int a = 385;
 	[CFAShape strokeRed:1.0f green:0.0f blue:0.0f];
-	[CFAShape lineFromX:a Y:0 toX:a Y:[self height]];
+	[CFAShape lineFromX:a Y:0 toX:a Y:self.canvasHeight];
 }
 -(void)drawYetAnotherLine {
 	[CFAShape strokeRed:0.0f green:1.0f blue:0.0f];
-	[CFAShape lineFromX:a+2 Y:0 toX:a+2 Y:[self height]];
+	[CFAShape lineFromX:a+2 Y:0 toX:a+2 Y:self.canvasHeight];
 }
 @end

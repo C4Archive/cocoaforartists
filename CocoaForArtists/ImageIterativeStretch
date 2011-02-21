@@ -16,9 +16,9 @@ CFAImage *a;
 	a = [CFAImage imageName:@"CFATest" andType:@"tif"];
 }
 -(void)draw {
-	for(int x = 20, y = 0; x < [self width]; y += x, x += x) {
+	for(int x = 20, y = 0; x < self.canvasWidth; y += x, x += x) {
 		[a drawAt:NSMakePoint(0, y) withWidth:x andHeight:x];
-		[a drawAt:NSMakePoint(x,y) withWidth:[self width]-x andHeight:x];
+		[a drawAt:NSMakePoint(x,y) withWidth:self.canvasWidth-x andHeight:x];
 	}
 }
 @end

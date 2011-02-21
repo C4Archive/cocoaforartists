@@ -34,27 +34,27 @@ float radius;
 }
 
 -(void)draw {
-	p1.x = radius*[CFAMath cos:DEGREES_TO_RADIANS(theta1)] + [self width]/2;
-	p1.y = radius*[CFAMath sin:DEGREES_TO_RADIANS(theta1)] + [self height]/2;
-	p2.x = radius*[CFAMath cos:DEGREES_TO_RADIANS(theta1+180)] + [self width]/2;
-	p2.y = radius*[CFAMath sin:DEGREES_TO_RADIANS(theta1+180)] + [self height]/2;
-	p3.x = radius*[CFAMath cos:DEGREES_TO_RADIANS(theta2)] + [self width]/2;
-	p3.y = radius*[CFAMath sin:DEGREES_TO_RADIANS(theta2)] + [self height]/2;
-	p4.x = radius*[CFAMath cos:DEGREES_TO_RADIANS(theta2+180)] + [self width]/2;
-	p4.y = radius*[CFAMath sin:DEGREES_TO_RADIANS(theta2+180)] + [self height]/2;
-	p5.x = radius*[CFAMath cos:DEGREES_TO_RADIANS(theta3)] + [self width]/2;
-	p5.y = radius*[CFAMath sin:DEGREES_TO_RADIANS(theta3)] + [self height]/2;
-	p6.x = radius*[CFAMath cos:DEGREES_TO_RADIANS(theta3+180)] + [self width]/2;
-	p6.y = radius*[CFAMath sin:DEGREES_TO_RADIANS(theta3+180)] + [self height]/2;
-	p7.x = radius*[CFAMath cos:DEGREES_TO_RADIANS(theta0)] + [self width]/2;
-	p7.y = radius*[CFAMath sin:DEGREES_TO_RADIANS(theta0)] + [self height]/2;
-	p8.x = radius*[CFAMath cos:DEGREES_TO_RADIANS(theta0+180)] + [self width]/2;
-	p8.y = radius*[CFAMath sin:DEGREES_TO_RADIANS(theta0+180)] + [self height]/2;
+	p1.x = radius*[CFAMath cos:DEGREES_TO_RADIANS(theta1)] + self.canvasWidth/2;
+	p1.y = radius*[CFAMath sin:DEGREES_TO_RADIANS(theta1)] + self.canvasHeight/2;
+	p2.x = radius*[CFAMath cos:DEGREES_TO_RADIANS(theta1+180)] + self.canvasWidth/2;
+	p2.y = radius*[CFAMath sin:DEGREES_TO_RADIANS(theta1+180)] + self.canvasHeight/2;
+	p3.x = radius*[CFAMath cos:DEGREES_TO_RADIANS(theta2)] + self.canvasWidth/2;
+	p3.y = radius*[CFAMath sin:DEGREES_TO_RADIANS(theta2)] + self.canvasHeight/2;
+	p4.x = radius*[CFAMath cos:DEGREES_TO_RADIANS(theta2+180)] + self.canvasWidth/2;
+	p4.y = radius*[CFAMath sin:DEGREES_TO_RADIANS(theta2+180)] + self.canvasHeight/2;
+	p5.x = radius*[CFAMath cos:DEGREES_TO_RADIANS(theta3)] + self.canvasWidth/2;
+	p5.y = radius*[CFAMath sin:DEGREES_TO_RADIANS(theta3)] + self.canvasHeight/2;
+	p6.x = radius*[CFAMath cos:DEGREES_TO_RADIANS(theta3+180)] + self.canvasWidth/2;
+	p6.y = radius*[CFAMath sin:DEGREES_TO_RADIANS(theta3+180)] + self.canvasHeight/2;
+	p7.x = radius*[CFAMath cos:DEGREES_TO_RADIANS(theta0)] + self.canvasWidth/2;
+	p7.y = radius*[CFAMath sin:DEGREES_TO_RADIANS(theta0)] + self.canvasHeight/2;
+	p8.x = radius*[CFAMath cos:DEGREES_TO_RADIANS(theta0+180)] + self.canvasWidth/2;
+	p8.y = radius*[CFAMath sin:DEGREES_TO_RADIANS(theta0+180)] + self.canvasHeight/2;
 	
 	[CFAShape clearCurrentShape];
-	[CFAShape addRectWithXPos:0 yPos:0 width:[self width] andHeight:[self height]];
+	[CFAShape addRectWithXPos:0 yPos:0 width:self.canvasWidth andHeight:self.canvasHeight];
 	[CFAGradient linearGradientFromPointA:NSMakePoint(0,0)
-								 toPointB:NSMakePoint(0,[self height])
+								 toPointB:NSMakePoint(0,self.canvasHeight)
 							  usingColorA:[CFAColor colorWithRed:0.75f green:0.75f blue:0.75f]
 								andColorB:[CFAColor colorWithRed:0.0f green:0.0f blue:0.0f]
 								  inShape:[CFAShape currentShape]];

@@ -8,8 +8,8 @@
 
 #import "CFACanvas.h"
 @interface CFACanvas (private)
-	int y = 100;
-	int drawCount = 0;
+int y = 100;
+int drawCount = 0;
 -(void)setNewFramerate;
 @end
 
@@ -23,10 +23,10 @@
 -(void)draw {
 	[self background:1.0f];
 	y = y + 1;
-	if (y > [self height]) {
+	if (y > self.canvasHeight) {
 		y = 0;
 	}
-	[CFAShape lineFromX:0 Y:y toX:[self width] Y:y];	
+	[CFAShape lineFromX:0 Y:y toX:self.canvasWidth Y:y];	
 	drawCount++;
 	CFALog(@"drawCount: %d",drawCount);
 }
@@ -52,9 +52,9 @@
 }
 
 -(void)setNewFramerate {
-		int newFramerate = [CFAMath randomIntBetweenA:1 andB:60];
-		CFALog(@"Setting random framerate to: %d",newFramerate);
-		[self frameRate:newFramerate];
+	int newFramerate = [CFAMath randomIntBetweenA:1 andB:60];
+	CFALog(@"Setting random framerate to: %d",newFramerate);
+	[self setFrameRate:newFramerate];
 }
 
 @end

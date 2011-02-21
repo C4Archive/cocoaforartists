@@ -6,19 +6,16 @@
 #import <Cocoa/Cocoa.h>
 
 @interface CFAOpenGLView : NSOpenGLView {
-	BOOL keyPressed;
-	unichar keyChar;
-	int	 keyCode;
-	BOOL mousePressed;
-	int currentMouseButton;
-	NSPoint mousePos;
-	NSPoint prevMousePos;
 	
-@private
-	BOOL isClean;
-	CFAColor *backgroundColor;
-	NSString *exportDir, *exportFileName, *exportFileType;
+	BOOL keyIsPressed, mouseIsPressed;
+	NSUInteger keyChar, keyCode, mouseButton;
+	NSPoint mousePos, prevMousePos;
+	
 }
+
+#pragma mark Singleton
+-(id)_init;
++(CFAOpenGLView *)sharedManager;
 
 #pragma mark Structure
 -(void)setup;
@@ -32,17 +29,15 @@
 #pragma mark Environment
 -(void)cursor;
 -(void)noCursor;
--(int)frameCount;
--(int)frameRate;
--(void)frameRate:(CGFloat)rate;
-
--(int)height;
--(int)width;
--(NSSize)size;
-
--(int)screenWidth;
--(int)screenHeight;
--(NSSize)screenSize;
+-(void)enterFullScreen;
+-(void)exitFullScreen;
++(CGFloat)getScreenWidth;
++(CGFloat)getScreenHeight;
++(CGFloat)getCanvasWidth;
++(CGFloat)getCanvasHeight;
++(NSRect)getCanvasRect;
++(NSPoint)getMousePos;
++(NSUInteger)getMouseButton;
 
 #pragma mark Background
 -(void)drawBackground;
@@ -55,7 +50,6 @@
 #pragma mark Input
 -(void)keyPressed;
 -(void)keyReleased;
-
 -(void)mousePressed;
 -(void)mouseReleased;
 -(void)mouseDragged;
@@ -67,8 +61,55 @@
 -(void)setupPDF;
 -(void)endPDF;
 
+@property(readonly) BOOL keyIsPressed, mouseIsPressed;
+@property(readonly) NSUInteger keyChar, keyCode, mouseButton, frameCount, drawStyle;
+@property(readonly) NSPoint mousePos, prevMousePos;
+@property(readonly) NSSize canvasSize, screenSize;
+@property(readonly) NSRect canvasRect;
+@property(readonly) CGFloat canvasWidth, canvasHeight, screenWidth, screenHeight;
+@property(readwrite) CGFloat frameRate;
+
 @property(readwrite,retain) CFAColor *backgroundColor;
 @property(readwrite,retain) NSString *exportDir;
 @property(readwrite,retain) NSString *exportFileName;
 @property(readwrite,retain) NSString *exportFileType;
+
+@end
+
+@interface CFAOpenGLView (private)
+NSRect canvasRect;
+NSSize canvasSize, screenSize;
+CGFloat canvasWidth, canvasHeight, screenWidth, screenHeight;
+
+BOOL isClean;
+CFAColor *backgroundColor;
+NSString *exportDir, *exportFileName, *exportFileType;
+
+BOOL readyToDraw;
+BOOL backgroundShouldDraw;
+BOOL flipped;
+BOOL isSetup;
+BOOL drawToPDF;
+
+CFURLRef pdfURL;
+CGContextRef pdfContext;
+CGDataConsumerRef pdfConsumer;
+
+NSUInteger frameCount, drawstyle;
+CGFloat frameRate;
+
+NSRect	backgroundRect;
+NSTimer *animationTimer;
+NSDictionary *fullScreenOptions;
+
+-(void)prepareOpenGL;
+-(void)getPixelData;
+-(void)setAnimationTimer:(CGFloat)framerate;
+-(void)stopAnimating;
+-(void)checkClickCount:(NSEvent *)theEvent;
+-(char const*)keyChar:(unichar)currentkey;
+-(void)releaseOpenGLViewSnapshot;
+-(void)initDefaults;
+-(void)setupRect;
+-(void)addTrackingArea;
 @end

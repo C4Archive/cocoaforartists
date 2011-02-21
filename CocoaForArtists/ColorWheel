@@ -27,15 +27,15 @@ float rotationAdjustment;
 	[self background:0.5f];
 	[CFAShape noStroke];
 	segments = 12;
-	steps = 6;
-	radius = [CFAMath minOfA:[self width] andB:[self height]]*0.45f;
+	steps = 12;
+	radius = [CFAMath minOfA:self.canvasWidth andB:self.canvasHeight]*0.45f;
 	segmentWidth = radius / steps;
 	interval = TWO_PI / segments;
 	rotationAdjustment = interval / 2;
 }
 
 -(void)draw {
-	radius = [CFAMath minOfA:[self width] andB:[self height]]*0.45f;
+	radius = [CFAMath minOfA:self.canvasWidth andB:self.canvasHeight]*0.45f;
 	[self drawShadeWheel];
 	//[self drawTintWheel];
 }
@@ -56,7 +56,7 @@ float rotationAdjustment;
 							   [CFAColor colorWithRed:0 green:1.0f-(1.0f/steps)*j blue:0],
 							   [CFAColor colorWithRed:1.0f/2-((1.0f/2)/steps)*j green:1.0f-(1.0f/steps)*j blue:0],
 							   nil];
-		NSPoint centerPoint = NSMakePoint([self width]/2, [self height]/2);
+		NSPoint centerPoint = NSMakePoint(self.canvasWidth/2, self.canvasHeight/2);
 		for(int i = 0; i < segments; i++) {
 			[CFAShape fillColor:[colorArray objectAtIndex:i]];
 			[CFAShape arcWithCenterAt:centerPoint radius:radius 
@@ -83,7 +83,7 @@ float rotationAdjustment;
 							   [CFAColor colorWithRed:0 green:(1.0f/steps)*j blue:0],
 							   [CFAColor colorWithRed:((1.0f/2)/steps)*j green:(1.0f/steps)*j blue:0],
 							   nil];
-		NSPoint centerPoint = NSMakePoint([self width]/2, [self height]/2);
+		NSPoint centerPoint = NSMakePoint(self.canvasWidth/2, self.canvasHeight/2);
 		for(int i = 0; i < segments; i++) {
 			[CFAShape fillColor:[colorArray objectAtIndex:i]];
 			[CFAShape arcWithCenterAt:centerPoint radius:radius 

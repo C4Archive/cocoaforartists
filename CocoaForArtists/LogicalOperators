@@ -17,7 +17,7 @@ BOOL op = NO;
 	[CFAShape strokeWidth:2];
 }
 -(void)draw {
-	for(int i = 5; i <= [self height]-5; i+=5){
+	for(int i = 5; i <= self.canvasHeight-5; i+=5){
 		[CFAShape stroke:0.0f];
 		if((i > 70) && (i < 200)) {
 			[CFAShape lineFromX:5 Y:i toX:145 Y:i];
@@ -30,13 +30,13 @@ BOOL op = NO;
 		}
 		if(op) {
 			[CFAShape fill:0.0f]; //because we use fill to define point color
-			[CFAShape pointAtX:[self width]/2 Y:i];
-			[CFAShape pointAtX:[self width]/2+2 Y:i-1];
+			[CFAShape pointAtX:self.canvasWidth/2 Y:i];
+			[CFAShape pointAtX:self.canvasWidth/2+2 Y:i-1];
 		}
 		if(!op) {
 			[CFAShape fill:1.0f]; //because we use fill to define point color
-			[CFAShape pointAtX:[self width]/4 Y:i];
-			[CFAShape pointAtX:[self width]/4+2 Y:i-1];
+			[CFAShape pointAtX:self.canvasWidth/4 Y:i];
+			[CFAShape pointAtX:self.canvasWidth/4+2 Y:i-1];
 		}
 	}
 }

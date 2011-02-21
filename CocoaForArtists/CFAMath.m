@@ -43,10 +43,6 @@ GENERATE_SINGLETON(CFAMath, cfaMath);
 	else return max;
 }
 
-+(float)distFromX:(float)x1 Y:(float)y1 toX:(float)x2 Y:(float)y2 {
-	return (sqrt(pow(x2-x1,2)+pow(y2-y1,2)));
-}
-
 +(float)exp:(float)value {
 	return [self pow:eCONSTANT raiseTo:value];
 }
@@ -61,14 +57,6 @@ GENERATE_SINGLETON(CFAMath, cfaMath);
 
 +(float)log:(float)value {
 	return logf(value);
-}
-
-+(float)magPoint:(NSPoint)p {
-	return [self magX:p.x Y:p.y];
-}
-
-+(float)magX:(float)x Y:(float)y {
-	return [self distFromX:0 Y:0 toX:x Y:y];
 }
 
 +(float)map:(float)value fromMin:(float)min1 max:(float)max1 toMin:(float)min2 max:(float)max2 {
@@ -88,11 +76,6 @@ GENERATE_SINGLETON(CFAMath, cfaMath);
 	return [self maxOfA:[self maxOfA:a andB:b] andB:c];
 }
 
-/*
- +(float)maxOfArray:(NSArray *)array {
-	return 0;
-}
- */
 
 +(float)minOfA:(float)a andB:(float)b {
 	float min = a < b ? a : b;
@@ -102,12 +85,6 @@ GENERATE_SINGLETON(CFAMath, cfaMath);
 +(float)minOfA:(float)a B:(float)b andC:(float)c {
 	return [self minOfA:[self minOfA:a andB:b] andB:c];
 }
-
-/*
-+(float)minOfArray:(NSArray *)array {
-	return 0;
-}
- */
 
 +(float)norm:(float)value fromMin:(float)min toMax:(float)max {
 	return 0;
@@ -127,14 +104,6 @@ GENERATE_SINGLETON(CFAMath, cfaMath);
 
 +(float)sqrt:(float)value {
 	return sqrtf(value);
-}
-
-+(float)distanceFromPoint:(NSPoint)p1 toPoint:(NSPoint)p2 {
-	return [self distanceFromX:p2.x Y:p2.y toX:p1.x Y:p1.y];
-}
-
-+(float)distanceFromX:(float)x1 Y:(float)y1 toX:(float)x2 Y:(float)y2 {
-	return (sqrt(pow(x2-x1,2)+pow(y2-y1,2)));
 }
 
 #pragma mark Trigonometry
@@ -189,5 +158,42 @@ GENERATE_SINGLETON(CFAMath, cfaMath);
 	srandomdev();
 	return (random()%(max-min) + min);
 }
+
+#pragma mark Unused
+/*
+ 
+ NOTE
+ Took out methods that calculate distances between points.
+ Leaving this for the CFAVector class...
+ Is this a good idea (consistent), or should these still be included in CFAMath?
+ */
+
+// +(float)distFromX:(float)x1 Y:(float)y1 toX:(float)x2 Y:(float)y2 {
+// return (sqrt(pow(x2-x1,2)+pow(y2-y1,2)));
+// }
+ 
+// +(float)magPoint:(NSPoint)p {
+// return [self magX:p.x Y:p.y];
+// }
+ 
+// +(float)magX:(float)x Y:(float)y {
+// return [self distFromX:0 Y:0 toX:x Y:y];
+// }
+ 
+// +(float)maxOfArray:(NSArray *)array {
+// return 0;
+// } 
+ 
+// +(float)minOfArray:(NSArray *)array {
+// return 0;
+// }
+
+// +(float)distanceFromPoint:(NSPoint)p1 toPoint:(NSPoint)p2 {
+// return [self distanceFromX:p2.x Y:p2.y toX:p1.x Y:p1.y];
+// }
+ 
+// +(float)distanceFromX:(float)x1 Y:(float)y1 toX:(float)x2 Y:(float)y2 {
+// return (sqrt(pow(x2-x1,2)+pow(y2-y1,2)));
+// }
 
 @end

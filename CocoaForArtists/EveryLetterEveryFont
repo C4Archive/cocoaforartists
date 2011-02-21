@@ -20,15 +20,16 @@ CFAString *description, *character;
 -(void)setup {
 	[self drawStyle:ANIMATED];
 	[self windowWidth:[self screenWidth]-30 andHeight:[self screenHeight]-60];
+	[self background:1];
 	fontArray = [CFAFont availableFonts];
 	fontCount = [fontArray count];
 	currentFont = 0;
-
+	
 	size = 18;
 	characterArray = [[[NSArray alloc] initWithArray:[[CFAString stringWithString:@"a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,1,2,3,4,5,6,7,8,9,0"] componentsSeparatedByString:@","]] retain];
 	characterIndex = 0;
 	character = [[CFAString stringWithString:[characterArray objectAtIndex:characterIndex]] retain];
-
+	
 	[CFAShape noStroke];
 	[description font:[CFAFont fontWithFont:[CFAFont userFontOfSize:12]]];
 	
@@ -37,26 +38,26 @@ CFAString *description, *character;
 
 -(void)draw {
 	[CFAShape fill:0.2];
-	[CFAShape rectWithXPos:0 yPos:0 width:canvasWidth andHeight:26];
+	[CFAShape rectWithXPos:0 yPos:0 width:self.canvasWidth andHeight:26];
 	
 	description = [CFAString stringWithFormat:@"current font: %@ (%d/%d)",[fontArray objectAtIndex:currentFont], currentFont, fontCount];
 	[description fill:1];
 	[description drawAtPoint:NSMakePoint(10, 6)];
-
+	
 	[CFAShape fill:1];
 	[CFAShape rectAt:point size:backgroundRectSize];
 	[character font:[CFAFont fontWithName:[fontArray objectAtIndex:currentFont] size:size]];
 	[character drawAtPoint:point];
-
+	
 	point.x += [character size].width;
-	if (point.x + [character size].width >= canvasWidth-size) {
+	if (point.x + [character size].width >= self.canvasWidth-size) {
 		point.x = size;
 		point.y += size;
-		if(point.y >= canvasHeight-size) {
+		if(point.y >= self.canvasHeight-size) {
 			point.y = size*2;
 		}
 	}
-		
+	
 	currentFont++;
 	
 	if(currentFont >= fontCount) {
@@ -67,3 +68,4 @@ CFAString *description, *character;
 		[character fillRed:FLOAT_FROM_255([CFAMath randomInt:255]) green:FLOAT_FROM_255([CFAMath randomInt:255]) blue:FLOAT_FROM_255([CFAMath randomInt:255])];
 	}
 }
+@end

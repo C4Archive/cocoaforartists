@@ -19,15 +19,15 @@ BOOL direction;
 	[self drawStyle:ANIMATED];
 	[self windowWidth:400 andHeight:400];
 	a = 0;
-	b = [self width];
-	colorIncrement = 1.0f/(float)[self width];
+	b = self.canvasWidth;
+	colorIncrement = 1.0f/(float)self.canvasWidth;
 	direction = YES;
 	[CFAShape strokeWidth:2];
 }
 
 -(void)draw {
 	a++;
-	if(a > [self width]){
+	if(a > self.canvasWidth){
 		a = 0;
 		direction = !direction;
 	}
@@ -37,18 +37,18 @@ BOOL direction;
 	} else {
 		[CFAShape stroke:1.0f-a*colorIncrement];
 	}
-	[CFAShape lineFromX:a Y:0 toX:a Y:[self height]/2];
+	[CFAShape lineFromX:a Y:0 toX:a Y:self.canvasHeight/2];
 	
 	b--;
 	if (b < 0) {
-		b = [self width];
+		b = self.canvasWidth;
 	}
 	if (direction) {
 		[CFAShape stroke:1.0f-b*colorIncrement];
 	} else {
 		[CFAShape stroke:b*colorIncrement];
 	}
-	[CFAShape lineFromX:b Y:[self height]/2+1 toX:b Y:[self height]];
+	[CFAShape lineFromX:b Y:self.canvasHeight/2+1 toX:b Y:self.canvasHeight];
 }
 
 @end

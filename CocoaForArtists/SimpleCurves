@@ -27,40 +27,40 @@
 -(void)draw {
 	[CFAShape stroke:0.2f];
 	[CFAShape beginShape];
-	for(int i = 0; i < [self width]; i++) {
-		float value = [self sinGraph:((float)i/[self width])]*[self height];
+	for(int i = 0; i < self.canvasWidth; i++) {
+		float value = [self sinGraph:((float)i/self.canvasWidth)]*self.canvasHeight;
 		[CFAShape vertexAtX:i Y:value];
 	}
 	[CFAShape endShape];
 	
 	[CFAShape stroke:0.4f];
 	[CFAShape beginShape];
-	for(int i = 0; i < [self width]; i++) {
-		float value = [self quad:((float)i)/[self width]]*[self height];
+	for(int i = 0; i < self.canvasWidth; i++) {
+		float value = [self quad:((float)i)/self.canvasWidth]*self.canvasHeight;
 		[CFAShape vertexAtX:i Y:value];
 	}
 	[CFAShape endShape];
 	
 	[CFAShape stroke:0.6f];
 	[CFAShape beginShape];
-	for(int i = 0; i < [self width]; i++) {
-		float value = [self quadHump:((float)i)/[self width]]*[self height];
+	for(int i = 0; i < self.canvasWidth; i++) {
+		float value = [self quadHump:((float)i)/self.canvasWidth]*self.canvasHeight;
 		[CFAShape vertexAtX:i Y:value];
 	}
 	[CFAShape endShape];
 	
 	[CFAShape stroke:0.8f];
 	[CFAShape beginShape];
-	for(int i = 0; i < [self width]; i++) {
-		float value = [self hump:((float)i)/[self width]]*[self height];
+	for(int i = 0; i < self.canvasWidth; i++) {
+		float value = [self hump:((float)i)/self.canvasWidth]*self.canvasHeight;
 		[CFAShape vertexAtX:i Y:value];
 	}
 	[CFAShape endShape];
 	
 	[CFAShape stroke:1.0f];
 	[CFAShape beginShape];
-	for(int i = 0; i < [self width]; i++) {
-		float value = [self squared:((float)i)/[self width]]*[self height];
+	for(int i = 0; i < self.canvasWidth; i++) {
+		float value = [self squared:((float)i)/self.canvasWidth]*self.canvasHeight;
 		[CFAShape vertexAtX:i Y:value];
 	}
 	[CFAShape endShape];

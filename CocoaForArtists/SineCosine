@@ -39,19 +39,19 @@ float p1, p2, p3, p4;
 	[CFAShape ellipseWithXPos:36 yPos:p2 width:32 andHeight:32];
 	
 	[CFAShape fill:255];
-	[CFAShape ellipseWithXPos:p3 yPos:[self height]-36 width:32 andHeight:32];
+	[CFAShape ellipseWithXPos:p3 yPos:self.canvasHeight-36 width:32 andHeight:32];
 	
 	[CFAShape fill:153];
-	[CFAShape ellipseWithXPos:[self width]-36 yPos:p4 width:32 andHeight:32];
+	[CFAShape ellipseWithXPos:self.canvasWidth-36 yPos:p4 width:32 andHeight:32];
 	
 	i+=2;
 	j-=2;
 	
 	float ang1 = DEGREES_TO_RADIANS(i);
 	float ang2 = DEGREES_TO_RADIANS(j);
-	p1 = [self width]/2 + (sc * [CFAMath cos:ang1]);
-	p2 = [self width]/2 + (sc * [CFAMath sin:ang1]);
-	p3 = [self width]/2 + (sc * [CFAMath cos:ang2]);
-	p4 = [self width]/2 + (sc * [CFAMath sin:ang2]);
+	p1 = self.canvasWidth/2 + (sc * [CFAMath cos:ang1]);
+	p2 = self.canvasWidth/2 + (sc * [CFAMath sin:ang1]);
+	p3 = self.canvasWidth/2 + (sc * [CFAMath cos:ang2]);
+	p4 = self.canvasWidth/2 + (sc * [CFAMath sin:ang2]);
 }
 @end

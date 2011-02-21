@@ -100,3 +100,9 @@
 #define	VICTORIA	@"com.apple.speech.synthesis.voice.Victoria"
 #define	WHISPER		@"com.apple.speech.synthesis.voice.Whisper"
 #define	ZARVOX		@"com.apple.speech.synthesis.voice.Zarvox"
+
+#define MOUSEPRESSED	@"MouseDownNotification"
+#define MOUSERELEASED	@"MouseReleasedNotification"
+#define MOUSEDRAGGED	@"MouseDraggedNotification"
+#define MOUSEMOVED		@"MouseMovedNotification"
+#define FULLSCREEN		@"FullScreenNotification"

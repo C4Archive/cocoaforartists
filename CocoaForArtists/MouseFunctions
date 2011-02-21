@@ -22,8 +22,8 @@ float bdify = 0.0f;
 	[self drawStyle:EVENTBASED];
 	[self windowWidth:400 andHeight:400];
 	[self background:0];
-	bx = [self width]/2-bs/2;
-	by = [self height]/2-bs/2;
+	bx = self.canvasWidth/2-bs/2;
+	by = self.canvasHeight/2-bs/2;
 	[CFAShape strokeWidth:2];
 }
 

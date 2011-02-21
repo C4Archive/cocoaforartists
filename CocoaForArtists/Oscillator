@@ -29,17 +29,9 @@ NSArray *colorArray;
 @implementation CFACanvas
 
 -(void)setup {
-	bars = canvasWidth/5;
-	NSMutableArray *mutableColorArray = [[[NSMutableArray alloc] initWithCapacity:0] autorelease];
-	for(int i = 0; i < bars; i++){
-		[mutableColorArray addObject:[CFAColor colorWithRed:[CFAMath randomInt:75]/100.0f+0.15
-													  green:[CFAMath randomInt:50]/100.0f+0.25
-													   blue:[CFAMath randomInt:50]/100.0f+0.15]];
-	}
-	colorArray = [[NSArray alloc] initWithArray:mutableColorArray];
 	[self drawStyle:ANIMATED];
 	//Setup code goes here
-	[self frameRate:24];
+	self.frameRate = 24;
 	[self background:1.0f];
 	[self windowWidth:640 andHeight:360];
 	[CFAShape fill];
@@ -47,12 +39,21 @@ NSArray *colorArray;
 	[CFAShape rectMode:CENTER];
 	[CFAShape noStroke];
 	
-	maxHeight = [self height]/2;
+	maxHeight = self.canvasHeight/2;
 	minHeight = 6;
 	step = 12;
 	
 	startHeight = 100;
 	startdir = -1;
+	
+	bars = self.canvasWidth/5;
+	NSMutableArray *mutableColorArray = [[[NSMutableArray alloc] initWithCapacity:0] autorelease];
+	for(int i = 0; i < bars; i++){
+		[mutableColorArray addObject:[CFAColor colorWithRed:[CFAMath randomInt:75]/100.0f+0.15
+													  green:[CFAMath randomInt:50]/100.0f+0.25
+													   blue:[CFAMath randomInt:50]/100.0f+0.15]];
+	}
+	colorArray = [[NSArray alloc] initWithArray:mutableColorArray];
 }
 
 -(void)draw {
@@ -61,7 +62,7 @@ NSArray *colorArray;
 	rectHeight = startHeight;
 	direction = startdir;
 	
-	for(int aVariable = 5; aVariable <= [self width]; aVariable +=7) {		
+	for(int aVariable = 5; aVariable <= self.canvasWidth; aVariable +=7) {		
 		[CFAShape fillColor:[colorArray objectAtIndex:aVariable%bars]];
 		rectHeight = rectHeight + direction *step ;
 		
@@ -84,7 +85,7 @@ NSArray *colorArray;
 }
 
 -(void)animatedLine:(int)rectHeight andXPos:(int)xPos{
-	[CFAShape rectWithXPos:xPos yPos:[self height]/2 width:6 andHeight:rectHeight];
+	[CFAShape rectWithXPos:xPos yPos:self.canvasHeight/2 width:6 andHeight:rectHeight];
 }
 
 @end

@@ -10,6 +10,10 @@
 
 
 @implementation CFAVoice
++(void)load {
+	if(VERBOSELOAD) printf("CFAVoice\n");
+}
+
 -(id)init {
 	if(!(self = [super init])){
 		return nil;

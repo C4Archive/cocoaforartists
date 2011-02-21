@@ -27,7 +27,7 @@ BOOL createPDF;
 		[CFAShape fill:0.0f];
 	} else {
 		[CFAShape stroke:0.0f];
-		[CFAShape fillRed:mousePos.x/[self width] green:mousePos.y/[self width] blue:0.0f];
+		[CFAShape fillRed:mousePos.x/self.canvasWidth green:mousePos.y/self.canvasWidth blue:0.0f];
 	}
 	
 	[CFAShape ellipseWithXPos:mousePos.x yPos:mousePos.y width:size andHeight:size];

@@ -14,10 +14,10 @@
 	[CFAShape strokeWidth:2];
 }
 -(void)draw {
-	for(int i = 10; i < [self width]; i+=10) {
+	for(int i = 10; i < self.canvasWidth; i+=10) {
 		if (i%20 == 0) {
 			[CFAShape stroke:0.6f];
-			[CFAShape lineFromX:i Y:40 toX:i Y:[self height]/2];
+			[CFAShape lineFromX:i Y:40 toX:i Y:self.canvasHeight/2];
 		}
 		else {
 			[CFAShape stroke:0.4f];

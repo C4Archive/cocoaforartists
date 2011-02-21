@@ -14,16 +14,16 @@
 	[CFAShape strokeWidth:2];
 }
 -(void)draw {
-	for(int i = 2; i < [self width]-2; i+=2){
+	for(int i = 2; i < self.canvasWidth-2; i+=2){
 		if (i%20 == 0) {
 			[CFAShape stroke:1.0f];
-			[CFAShape lineFromX:i Y:40 toX:i Y:[self height]/2];
+			[CFAShape lineFromX:i Y:40 toX:i Y:self.canvasHeight/2];
 		} else if (i%10 == 0) {
 			[CFAShape stroke:0.5f];
 			[CFAShape lineFromX:i Y:20 toX:i Y:180];
 		} else {
 			[CFAShape stroke:0.4f];
-			[CFAShape lineFromX:i Y:[self height]/2 toX:i Y:[self height]-40];
+			[CFAShape lineFromX:i Y:self.canvasHeight/2 toX:i Y:self.canvasHeight-40];
 		}
 	}
 }

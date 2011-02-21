@@ -16,24 +16,24 @@ float cosWave[400];
 	[CFAShape stroke];
 	[self flipCoordinates];
 	[self windowWidth:400 andHeight:400];
-	for(int i = 0; i < [self width]; i++) {
+	for(int i = 0; i < self.canvasWidth; i++) {
 		float amount = [CFAMath map:i fromMin:0 max:400 toMin:0 max:PI];
 		cosWave[i] = [CFAMath absf:[CFAMath cos:amount]];
 	}
 }
 -(void)draw {
 	[self background:0];
-	for(int i = 0; i < [self width]; i++) {
+	for(int i = 0; i < self.canvasWidth; i++) {
 		[CFAShape stroke:cosWave[i]];
-		[CFAShape lineFromX:i Y:0 toX:i Y:[self height]/3];
+		[CFAShape lineFromX:i Y:0 toX:i Y:self.canvasHeight/3];
 	}
-	for(int i = 0; i < [self width]; i++) {
+	for(int i = 0; i < self.canvasWidth; i++) {
 		[CFAShape stroke:cosWave[i]/4];
-		[CFAShape lineFromX:i Y:[self height]/3 toX:i Y:[self height]/3*2];
+		[CFAShape lineFromX:i Y:self.canvasHeight/3 toX:i Y:self.canvasHeight/3*2];
 	}
-	for(int i = 0; i < [self width]; i++) {
+	for(int i = 0; i < self.canvasWidth; i++) {
 		[CFAShape stroke:1-cosWave[i]];
-		[CFAShape lineFromX:i Y:[self height]/3*2 toX:i Y:[self height]];
+		[CFAShape lineFromX:i Y:self.canvasHeight/3*2 toX:i Y:self.canvasHeight];
 	}
 }
 @end

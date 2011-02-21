@@ -28,7 +28,7 @@
 	
 	[CFAShape clearCurrentShape];
 	[CFAShape addTriangleFromX:255.5 Y:40 toX:359 Y:402.5 toX:470 Y:20.5];
-	[CFAGradient linearGradientFromPointA:NSMakePoint(0,[self height])
+	[CFAGradient linearGradientFromPointA:NSMakePoint(0,self.canvasHeight)
 								 toPointB:NSMakePoint(0,150)
 							  usingColorA:[CFAColor colorWithRed:1.0f green:1.0f blue:1.0f]
 								andColorB:[CFAColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.0f]

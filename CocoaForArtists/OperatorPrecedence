@@ -23,7 +23,7 @@ BOOL direction;
 -(void)draw {
 	[self background:0.2f];
 	[CFAShape stroke:0.8f];
-	for(int i = 0; i < [self width]-20; i+=4){
+	for(int i = 0; i < self.canvasWidth-20; i+=4){
 		if (i > 30 + 70) {
 			[CFAShape lineFromX:i Y:0 toX:i Y:50];
 		}
@@ -34,9 +34,9 @@ BOOL direction;
 	[CFAShape rectWithXPos:(4+2)*8 yPos:100 width:90 andHeight:49];
 	
 	[CFAShape stroke:0.6f];
-	for(int i = 0; i < [self width]; i += 4){
-		if (i > 20 && i < 50 || i > 100 && i < [self width]-20) {
-			[CFAShape lineFromX:i Y:151 toX:i Y:[self height]-1];
+	for(int i = 0; i < self.canvasWidth; i += 4){
+		if (i > 20 && i < 50 || i > 100 && i < self.canvasWidth-20) {
+			[CFAShape lineFromX:i Y:151 toX:i Y:self.canvasHeight-1];
 		}
 	}
 }

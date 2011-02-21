@@ -30,14 +30,14 @@ CFAColor *a,*b,*c,*d,*e;
 	NSArray *colors = [NSArray arrayWithObjects:a,b,c,d,e,nil];
 	[self drawBandWithColorArray:colors atYPosition:0 withWidth:5];
 	colors = [NSArray arrayWithObjects:c,a,d,b,e,nil];
-	[self drawBandWithColorArray:colors atYPosition:[self height]/2 withWidth:5];
+	[self drawBandWithColorArray:colors atYPosition:self.canvasHeight/2 withWidth:5];
 }
 
 -(void)drawBandWithColorArray:(NSArray *)colors atYPosition:(int)y withWidth:(int)width {
-	for(int i = 0; i < [self width]; i += width*[colors count]) {
+	for(int i = 0; i < self.canvasWidth; i += width*[colors count]) {
 		for(int j = 0; j < [colors count]; j++) {
 			[CFAShape fillColor:[colors objectAtIndex:j]];
-			[CFAShape rectWithXPos:i+j*width yPos:y width:width andHeight:[self height]/2];
+			[CFAShape rectWithXPos:i+j*width yPos:y width:width andHeight:self.canvasHeight/2];
 		}
 	}
 }

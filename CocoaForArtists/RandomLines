@@ -14,11 +14,11 @@
 }
 
 -(void)draw {
-	for(int i = 0; i < [self width]; i++){
+	for(int i = 0; i < self.canvasWidth; i++){
 		float r = FLOAT_FROM_255([CFAMath randomInt:255]);
-		float x = [CFAMath randomIntBetweenA:0 andB:[self width]];
+		float x = [CFAMath randomIntBetweenA:0 andB:self.canvasWidth];
 		[CFAShape stroke:r alpha:100];
-		[CFAShape lineFromX:i Y:0 toX:x Y:[self height]];
+		[CFAShape lineFromX:i Y:0 toX:x Y:self.canvasHeight];
 	}
 }
 @end

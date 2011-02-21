@@ -14,7 +14,7 @@
 	NSSound *sound;
 }
 
-+(CFASound *)initWithName:(NSString *)file andType:(NSString *)extension;
++(CFASound *)withName:(NSString *)file andType:(NSString *)extension;
 -(id)initWithName:(NSString *)file andType:(NSString *)extension;
 
 -(CGFloat)volume;

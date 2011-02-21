@@ -19,8 +19,8 @@ int pointCount = 60;
 	[self windowWidth:400 andHeight:400];
 	[CFAShape noStroke];
 	for (int i = 0; i < pointCount; i++) {
-		xvals[i] = [self width]/2;
-		yvals[i] = [self height]/2;
+		xvals[i] = self.canvasWidth/2;
+		yvals[i] = self.canvasHeight/2;
 	}
 }
 

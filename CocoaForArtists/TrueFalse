@@ -19,19 +19,19 @@ BOOL x = NO;
 	[CFAShape strokeWidth:2];
 }
 -(void)draw {
-	for(int i = 1; i < [self width]; i+=4){
-		if (i < [self width]/2) {
+	for(int i = 1; i < self.canvasWidth; i+=4){
+		if (i < self.canvasWidth/2) {
 			x = YES;
 		} else {
 			x = NO;
 		}
 		if(x) {
 			[CFAShape stroke:1.0f];
-			[CFAShape lineFromX:i Y:1 toX:i Y:[self height]-1];
+			[CFAShape lineFromX:i Y:1 toX:i Y:self.canvasHeight-1];
 		}
 		if(!x) {
 			[CFAShape stroke:0.5f];
-			[CFAShape lineFromX:[self width]/2 Y:i toX:[self width]-1 Y:i];
+			[CFAShape lineFromX:self.canvasWidth/2 Y:i toX:self.canvasWidth-1 Y:i];
 		}
 	}
 }

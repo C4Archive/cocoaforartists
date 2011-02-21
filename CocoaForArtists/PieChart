@@ -21,8 +21,8 @@ float lastAng = 0;
 }
 -(void)draw {
 	for(int i = 0; i < 8; i++) {
-		[CFAShape fill:angs[i]*3];
-		[CFAShape arcWithCenterAt:NSMakePoint([self width]/2, [self height]/2) radius:diameter/2 startAngle:lastAng endAngle:lastAng+angs[i]+5];
+		[CFAShape fill:FLOAT_FROM_255(angs[i]*3)];
+		[CFAShape arcWithCenterAt:NSMakePoint(self.canvasWidth/2, self.canvasHeight/2) radius:diameter/2 startAngle:lastAng endAngle:lastAng+angs[i]+5];
 		lastAng += angs[i];
 	}
 }

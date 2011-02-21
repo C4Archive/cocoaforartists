@@ -19,7 +19,7 @@ int randomValue;
 	[self windowWidth:200 andHeight:200];
 	[CFAShape fill:1.0f];
 	
-	totalPoints = [self width];
+	totalPoints = self.canvasWidth;
 	steps = totalPoints + 1;
 	randomValue = 0;
 	[self background:0];
@@ -33,8 +33,8 @@ int randomValue;
 		while (mod == 0) {
 			mod = [CFAMath randomIntBetweenA:-1 andB:1];
 		}
-		[CFAShape pointAtX:[self width]/steps*i 
-						 Y:[self height]/2 + mod*randomValue];
+		[CFAShape pointAtX:self.canvasWidth/steps*i 
+						 Y:self.canvasHeight/2 + mod*randomValue];
 		randomValue += [CFAMath randomIntBetweenA:-10 andB:10];
 	}
 }

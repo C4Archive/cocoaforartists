@@ -16,22 +16,22 @@
 
 -(void)draw {
 	[CFAShape fill:1.0f];
-	[CFAShape pointAtX:[self width]/2 Y:[self height]/2];
-	[CFAShape pointAtX:[self width]/2 Y:[self height]/3];
+	[CFAShape pointAtX:self.canvasWidth/2 Y:self.canvasHeight/2];
+	[CFAShape pointAtX:self.canvasWidth/2 Y:self.canvasHeight/3];
 	
 	[CFAShape noFill];
 	[CFAShape strokeRed:1.0f green:1.0f blue:0.0f];
-	[CFAShape lineFromX:0 Y:[self height]/4 toX:[self width] Y:[self height]/4];
+	[CFAShape lineFromX:0 Y:self.canvasHeight/4 toX:self.canvasWidth Y:self.canvasHeight/4];
 	[CFAShape rectWithXPos:100 yPos:75 width:75 andHeight:50];
 	
 	[CFAShape fillRed:1.0f green:0.0f blue:0.0f];
-	for(int x = 0; x < [self width]; x+=2) {
-		[CFAShape pointAtX:x Y:[self height]*3/4];
+	for(int x = 0; x < self.canvasWidth; x+=2) {
+		[CFAShape pointAtX:x Y:self.canvasHeight*3/4];
 	}
 
 	[CFAShape fillRed:1.0f green:0.0f blue:1.0f];
-	for(int y = 0; y < [self height]; y+=2) {
-		[CFAShape pointAtX:y Y:y/2+[self height]/4];
+	for(int y = 0; y < self.canvasHeight; y+=2) {
+		[CFAShape pointAtX:y Y:y/2+self.canvasHeight/4];
 	}
 }
 @end

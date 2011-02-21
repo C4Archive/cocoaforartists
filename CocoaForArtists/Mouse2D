@@ -19,9 +19,9 @@
 -(void)draw {
 	[self background:0.15f];
 	[CFAShape fill:1.0f alpha:0.8f];
-	[CFAShape rectWithXPos:mousePos.x yPos:[self height]/2 width:mousePos.y/2+10 andHeight:mousePos.y/2+10];
-	int inverseX = [self width]-mousePos.x;
-	int	inverseY = [self height]-mousePos.y;
-	[CFAShape rectWithXPos:inverseX yPos:[self height]/2 width:inverseY/2+10 andHeight:inverseY/2+10];
+	[CFAShape rectWithXPos:mousePos.x yPos:self.canvasHeight/2 width:mousePos.y/2+10 andHeight:mousePos.y/2+10];
+	int inverseX = self.canvasWidth-mousePos.x;
+	int	inverseY = self.canvasHeight-mousePos.y;
+	[CFAShape rectWithXPos:inverseX yPos:self.canvasHeight/2 width:inverseY/2+10 andHeight:inverseY/2+10];
 }
 @end

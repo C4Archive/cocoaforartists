@@ -20,10 +20,10 @@ int margin = 12;
 	[CFAShape fill];
 }
 -(void)draw {
-	for(int i = margin; i <= [self height]-margin && box_size > 1; i+=box_space){
+	for(int i = margin; i <= self.canvasHeight-margin && box_size > 1; i+=box_space){
 		if (box_size > 1) {
-			for(int j = margin; j < [self width]-margin; j+=box_space){
-				[CFAShape fill:3*[self height]/(i*box_space)];
+			for(int j = margin; j < self.canvasWidth-margin; j+=box_space){
+				[CFAShape fill:3*self.canvasHeight/(i*box_space)];
 				[CFAShape ellipseWithXPos:j yPos:i width:box_size andHeight:box_size];
 			}
 		}

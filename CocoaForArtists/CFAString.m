@@ -14,8 +14,11 @@ BOOL isClean;
 
 @implementation CFAString
 
-@synthesize string;
-@synthesize attributes;
+@synthesize string, attributes;
+
++(void)load {
+	if(VERBOSELOAD) printf("CFAString\n");
+}
 
 -(id)init {
 	if(![super init]){
@@ -198,8 +201,16 @@ BOOL isClean;
 }
 
 -(void)drawAtPoint:(NSPoint)point {
-	if([self.attributes count] == 0) [self drawAtPoint:point withAttributes:[[CFAGlobalTypeAttributes sharedManager] attributes]];
-	else [self drawAtPoint:point withAttributes:self.attributes];
+	NSDictionary *attribs;
+	if([self.attributes count] == 0){
+		attribs = [[CFAGlobalTypeAttributes sharedManager] attributes];
+		[self drawAtPoint:point withAttributes:attribs];
+		//CFALog(@"\n -- SharedManager Attributes At Draw-- \n %@ \n",[attribs description]);
+	}
+	else {
+		[self drawAtPoint:point withAttributes:self.attributes];
+		//CFALog(@"\n -- Instance Attributes At Draw-- \n %@ \n",[self.attributes description]);
+	}
 }
 
 -(void)drawAtPoint:(NSPoint)point withAttributes:(NSDictionary *)attribs {
@@ -250,21 +261,12 @@ BOOL isClean;
 	[self.attributes setObject:newFont forKey:NSFontAttributeName];
 }
 
--(void)fillColor:(id)color {
-	[self.attributes setObject:[CFAColor colorFromObject:color] forKey:NSForegroundColorAttributeName];
-	CFALog(@"->%@",[self.attributes objectForKey:NSUnderlineStyleAttributeName]);
-	if ([self.attributes objectForKey:NSUnderlineStyleAttributeName] == nil) {
-		CFALog(@"log");
-		[self.attributes setObject:[CFAColor colorFromObject:color] forKey:NSUnderlineColorAttributeName];
-	}
-}
-
 -(void)fill:(float)grey {
 	[self fillRed:grey green:grey blue:grey alpha:1];
 }
 
 -(void)fill:(float)grey alpha:(float)alpha {
-	[self fillRed:grey green:grey blue:grey alpha:1];
+	[self fillRed:grey green:grey blue:grey alpha:alpha];
 }
 
 -(void)fillRed:(float)red green:(float)green blue:(float)blue {
@@ -273,7 +275,15 @@ BOOL isClean;
 
 -(void)fillRed:(float)red green:(float)green blue:(float)blue alpha:(float)alpha{
 	NSColor *newColor = [NSColor colorWithDeviceRed:red green:green blue:blue alpha:alpha];
-	[self.attributes setObject:newColor forKey:NSForegroundColorAttributeName];
+	[self fillColor:newColor];
+}
+
+-(void)fillColor:(id)color {
+	[self.attributes setObject:[CFAColor colorFromObject:color] forKey:NSForegroundColorAttributeName];
+	if ([self.attributes objectForKey:NSUnderlineStyleAttributeName] == nil) {
+		[self.attributes setObject:[CFAColor colorFromObject:color] forKey:NSUnderlineColorAttributeName];
+	}
+	//CFALog(@"\n-- Instance Attributes AFTER FILL-- \n %@ \n",[self.attributes description]);
 }
 
 -(void)strokeColor:(id)color {
@@ -281,15 +291,15 @@ BOOL isClean;
 }
 
 -(void)stroke:(float)grey {
-	[self fillRed:grey green:grey blue:grey alpha:1];
+	[self strokeRed:grey green:grey blue:grey alpha:1];
 }
 
 -(void)stroke:(float)grey alpha:(float)alpha {
-	[self fillRed:grey green:grey blue:grey alpha:1];
+	[self strokeRed:grey green:grey blue:grey alpha:1];
 }
 
 -(void)strokeRed:(float)red green:(float)green blue:(float)blue {
-	[self fillRed:red green:green blue:blue alpha:1];
+	[self strokeRed:red green:green blue:blue alpha:1];
 }
 
 -(void)strokeRed:(float)red green:(float)green blue:(float)blue alpha:(float)alpha{
@@ -298,11 +308,7 @@ BOOL isClean;
 }
 
 -(void)strokeWidth:(float)width {
-	if (width < 0.1f){
-		width = 0.1f;
-		NSLog(@"stroke width set to 0.1, it cannot be smaller than this");
-	}
-	[self.attributes setValue:[NSNumber numberWithFloat:width] forKey:NSStrokeWidthAttributeName];
+	[self.attributes setValue:[NSNumber numberWithFloat:-1*width] forKey:NSStrokeWidthAttributeName];
 }
 
 -(void)underlineColor:(id)color {
@@ -369,31 +375,31 @@ BOOL isClean;
 	[[CFAGlobalTypeAttributes sharedManager] setObject:newFont forKey:NSFontAttributeName];
 }
 
-+(void)fillColor:(id)color {
-	[[CFAGlobalTypeAttributes sharedManager] setObject:[CFAColor colorFromObject:color] forKey:NSForegroundColorAttributeName];
-	if ([[CFAGlobalTypeAttributes sharedManager] objectForKey:NSUnderlineStyleAttributeName] == nil) {
-		[[CFAGlobalTypeAttributes sharedManager] setObject:[CFAColor colorFromObject:color] forKey:NSUnderlineColorAttributeName];
-	}
-}
-
 +(void)fill:(float)grey {
-	NSColor *newColor = [NSColor colorWithDeviceRed:grey green:grey blue:grey alpha:1];
-	[[CFAGlobalTypeAttributes sharedManager] setObject:newColor forKey:NSForegroundColorAttributeName];
+	[CFAString fillRed:grey green:grey blue:grey alpha:1.0f];
 }
 
 +(void)fill:(float)grey alpha:(float)alpha {
-	NSColor *newColor = [NSColor colorWithDeviceRed:grey green:grey blue:grey alpha:alpha];
-	[[CFAGlobalTypeAttributes sharedManager] setObject:newColor forKey:NSForegroundColorAttributeName];
+	[CFAString fillRed:grey green:grey blue:grey alpha:alpha];
 }
 
 +(void)fillRed:(float)red green:(float)green blue:(float)blue {
-	NSColor *newColor = [NSColor colorWithDeviceRed:red green:green blue:blue alpha:1];
-	[[CFAGlobalTypeAttributes sharedManager] setObject:newColor forKey:NSForegroundColorAttributeName];
+	[CFAString fillRed:red green:green blue:blue alpha:1.0f];
 }
 
 +(void)fillRed:(float)red green:(float)green blue:(float)blue alpha:(float)alpha{
 	NSColor *newColor = [NSColor colorWithDeviceRed:red green:green blue:blue alpha:alpha];
-	[[CFAGlobalTypeAttributes sharedManager] setObject:newColor forKey:NSForegroundColorAttributeName];
+	[CFAString fillColor:newColor];
+}
+
++(void)fillColor:(id)color {
+	NSColor *aColor = [CFAColor colorFromObject:color];
+	[[CFAGlobalTypeAttributes sharedManager] setObject:aColor forKey:NSForegroundColorAttributeName];
+	if ([[CFAGlobalTypeAttributes sharedManager] objectForKey:NSUnderlineStyleAttributeName] == nil) {
+		[[CFAGlobalTypeAttributes sharedManager] setObject:[CFAColor colorFromObject:color] forKey:NSUnderlineColorAttributeName];
+	}
+	
+	//CFALog(@"\n-- SharedManager Attributes At Fill-- \n %@ \n",[[CFAGlobalTypeAttributes sharedManager].attributes description]);
 }
 
 +(void)strokeColor:(id)color {
@@ -401,15 +407,15 @@ BOOL isClean;
 }
 
 +(void)stroke:(float)grey {
-	[self fillRed:grey green:grey blue:grey alpha:1];
+	[self strokeRed:grey green:grey blue:grey alpha:1];
 }
 
 +(void)stroke:(float)grey alpha:(float)alpha {
-	[self fillRed:grey green:grey blue:grey alpha:1];
+	[self strokeRed:grey green:grey blue:grey alpha:1];
 }
 
 +(void)strokeRed:(float)red green:(float)green blue:(float)blue {
-	[self fillRed:red green:green blue:blue alpha:1];
+	[self strokeRed:red green:green blue:blue alpha:1];
 }
 
 +(void)strokeRed:(float)red green:(float)green blue:(float)blue alpha:(float)alpha{

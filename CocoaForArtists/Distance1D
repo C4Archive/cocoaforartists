@@ -26,29 +26,29 @@ float x4 = 120.0f;
 -(void)draw {
 	[self background:0];
 	
-	float mx = mousePos.x * 0.4 - [self width]/5;
+	float mx = mousePos.x * 0.4 - self.canvasWidth/5;
 	
 	[CFAShape fill:0.4f];
-	[CFAShape rectWithXPos:x2 yPos:0 width:thick andHeight:[self height]/2];
+	[CFAShape rectWithXPos:x2 yPos:0 width:thick andHeight:self.canvasHeight/2];
 	[CFAShape fill:0.8f];
-	[CFAShape rectWithXPos:x1 yPos:0 width:thick andHeight:[self height]/2];
+	[CFAShape rectWithXPos:x1 yPos:0 width:thick andHeight:self.canvasHeight/2];
 	[CFAShape fill:0.4f];
-	[CFAShape rectWithXPos:x4 yPos:[self height]/2 width:thin andHeight:[self height]/2];
+	[CFAShape rectWithXPos:x4 yPos:self.canvasHeight/2 width:thin andHeight:self.canvasHeight/2];
 	[CFAShape fill:0.8f];
-	[CFAShape rectWithXPos:x3 yPos:[self height]/2 width:thick andHeight:[self height]/2];
+	[CFAShape rectWithXPos:x3 yPos:self.canvasHeight/2 width:thick andHeight:self.canvasHeight/2];
 	
 	x1 += mx/16;
 	x2 += mx/64;
 	x3 -= mx/16;
 	x4 -= mx/64;
 	
-	if(x1 < -thick) x1 = [self width];
-	if(x1 > [self width]) x1 = -thick;
-	if(x2 < -thin) x2 = [self width];
-	if(x2 > [self width]) x2 = -thin;
-	if(x3 < -thick) x3 = [self width];
-	if(x3 > [self width]) x3 = -thick;
-	if(x4 < -thin) x4 = [self width];
-	if(x4 > [self width]) x4 = -thin;
+	if(x1 < -thick) x1 = self.canvasWidth;
+	if(x1 > self.canvasWidth) x1 = -thick;
+	if(x2 < -thin) x2 = self.canvasWidth;
+	if(x2 > self.canvasWidth) x2 = -thin;
+	if(x3 < -thick) x3 = self.canvasWidth;
+	if(x3 > self.canvasWidth) x3 = -thick;
+	if(x4 < -thin) x4 = self.canvasWidth;
+	if(x4 > self.canvasWidth) x4 = -thin;
 }
 @end

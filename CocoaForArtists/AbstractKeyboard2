@@ -60,11 +60,11 @@ int numChars;
 		newLetter = YES;
 		
 		x += letter_width;
-		if (x >= [self width]) {
+		if (x >= self.canvasWidth) {
 			x = 0;
 			y += max_height;
 			
-			if (y >= [self height]) {
+			if (y >= self.canvasHeight) {
 				y = 0;
 			}
 		}

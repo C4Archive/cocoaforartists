@@ -30,12 +30,12 @@ int box;
 	if([CFAMath absf:mousePos.x - mx] > 0.1) mx = mx +(mousePos.x-mx)*easing;
 	if([CFAMath absf:mousePos.y - my] > 0.1) my = my +(mousePos.y-my)*easing;
 	
-	mx = [CFAMath constrain:mx min:box+esize/2 max:[self width]-box-esize/2];
-	my = [CFAMath constrain:my min:box+esize/2 max:[self height]-box-esize/2];
+	mx = [CFAMath constrain:mx min:box+esize/2 max:self.canvasWidth-box-esize/2];
+	my = [CFAMath constrain:my min:box+esize/2 max:self.canvasHeight-box-esize/2];
 	
 	[CFAShape stroke:0.4f];
 	[CFAShape fill:0.4f];
-	[CFAShape rectWithXPos:box yPos:box width:[self width]-box*2 andHeight:[self height]-box*2];
+	[CFAShape rectWithXPos:box yPos:box width:self.canvasWidth-box*2 andHeight:self.canvasHeight-box*2];
 	[CFAShape strokeRed:0.33f green:0.66f blue:1.0f];
 	[CFAShape fill:1.0f];
 	[CFAShape ellipseWithXPos:mx yPos:my width:esize andHeight:esize];

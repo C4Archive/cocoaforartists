@@ -30,9 +30,9 @@ float rightColor = 0.0f;
 	[self background:0];
 	[self update:mousePos.x];
 	[CFAShape fillRed:(leftColor + 0.6) green:(leftColor+0.4) blue:0];
-	[CFAShape ellipseWithXPos:[self width]/4-gx yPos:[self width]/2-gx width:gx*2 andHeight:gx*2];
+	[CFAShape ellipseWithXPos:self.canvasWidth/4-gx yPos:self.canvasWidth/2-gx width:gx*2 andHeight:gx*2];
 	[CFAShape fillRed:(rightColor + 0.4) green:(rightColor+0.2) blue:0];
-	[CFAShape ellipseWithXPos:[self width]/1.33-gy yPos:[self width]/2-gy width:gy*2 andHeight:gy*2];
+	[CFAShape ellipseWithXPos:self.canvasWidth/1.33-gy yPos:self.canvasWidth/2-gy width:gy*2 andHeight:gy*2];
 }
 
 -(void)update:(int)x {

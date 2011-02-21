@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>TuioClient</string>
+	<key>CFBundleGetInfoString</key>
+	<string>TuioClient version 1.4</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.reactable.TuioClient</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>TuioClient</string>
+	<key>CFBundlePackageType</key>
+	<string>BNDL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.4</string>
+	<key>CFBundleSignature</key>
+	<string>TUIO</string>
+	<key>CFBundleVersion</key>
+	<string>1.4</string>
+	<key>QCPlugInClasses</key>
+	<array>
+		<string>TuioPlugIn</string>
+	</array>
+</dict>
+</plist>

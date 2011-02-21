@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CounterpartTemplateFile</key>
+	<string>class.h</string>
+	<key>Description</key>
+	<string>An Objective-C class file, with an optional header which includes the &lt;Cocoa/Cocoa.h&gt; header.</string>
+	<key>MainTemplateFile</key>
+	<string>class.m</string>
+</dict>
+</plist>

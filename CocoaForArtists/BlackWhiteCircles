@@ -15,7 +15,7 @@
 	[CFAShape stroke];
 }
 -(void)draw {
-	if (mousePressed) {
+	if (mouseIsPressed) {
 		[CFAShape fill:0.0f];
 	} else {
 		[CFAShape fill:1.0f];

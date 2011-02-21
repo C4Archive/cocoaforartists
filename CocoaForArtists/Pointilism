@@ -15,7 +15,8 @@ CFAImage *myImage;
 
 @implementation CFACanvas
 -(void)setup {
-	myImage = [CFAImage imageName:@"3dmaze" andType:@"JPG" loadPixelData:YES];
+	myImage = [CFAImage imageName:@"3dmaze" andType:@"JPG"];
+	[myImage loadPixelData];
 	
 	[self windowWidth:[myImage width] andHeight:[myImage height]];
 	[self drawStyle:ANIMATED];
@@ -23,7 +24,7 @@ CFAImage *myImage;
 	[self background:1.0f];
 
 	[CFAShape strokeWidth:1];
-	[CFAShape strokeColor: 
+	[CFAShape strokeColor:1];
 }
 
 -(void)draw {
@@ -31,10 +32,10 @@ CFAImage *myImage;
 }
 
 -(void)point {
-	int x = [CFAMath randomInt:[self width]];
-	int y = [CFAMath randomInt:[self height]];
-	NSColor *color = [myImage colorAtX:x andY:y];
-	float pointilize = [CFAMath map:mousePos.x fromMin:0 max:[self width] toMin:2 max:18];
+	int x = [CFAMath randomInt:self.canvasWidth];
+	int y = [CFAMath randomInt:self.canvasHeight];
+	CFAColor *color = [myImage colorAtX:x andY:y];
+	float pointilize = [CFAMath map:mousePos.x fromMin:0 max:self.canvasWidth toMin:2 max:18];
 	[CFAShape fillColor:color];
 	[CFAShape circleAt:NSMakePoint(x, y) radius:pointilize];
 }

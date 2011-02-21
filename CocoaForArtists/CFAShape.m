@@ -41,14 +41,15 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 
 +(void)load {
 	if(VERBOSELOAD) printf("CFAShape\n");
+}
+
+-(id)_init {
 	strokeWidth = 1.0f;
 	fillColor = [CFAColor colorWithGrey:1];		//white
 	strokeColor = [CFAColor	colorWithGrey:0];	//black
 	ellipseMode = CENTER;
 	rectMode = CORNER;
-}
-
--(id)_init {
+	//CFALog(@"%d",[CFACanvas screenWidth]);
 	return self;
 }
 

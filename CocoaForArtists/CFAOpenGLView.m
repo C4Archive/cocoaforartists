@@ -5,77 +5,59 @@
 
 #import "CFAOpenGLView.h"
 
-@interface CFAOpenGLView (private)
-BOOL readyToDraw = NO;
-BOOL backgroundShouldDraw = YES;
-BOOL firstFrame = YES;
-BOOL flipped = NO;
-BOOL firstSave = YES;
-BOOL isSetup;
-BOOL drawToPDF;
-
-CFURLRef pdfURL;
-CGContextRef pdfContext;
-CGDataConsumerRef pdfConsumer;
-
-int frameCount = 0;
-CGFloat frameRate = 60;
-int drawstyle = SINGLEFRAME;
-int saveFrameCount = 0;
-
-NSRect	backgroundRect;
-NSSize	screenSize;
-NSTimer *animationTimer;
-
--(void)prepareOpenGL;
--(void)getPixelData;
--(void)setAnimationTimer:(CGFloat)framerate;
--(void)stopAnimating;
--(void)checkClickCount:(NSEvent *)theEvent;
--(char const*)keyChar:(unichar)currentkey;
--(void)releaseOpenGLViewSnapshot;
--(void)initDefaults;
--(void)setupRect;
--(void)addTrackingArea;
-
-@end
-
+static CFAOpenGLView *cfaOpenGLView;
 @implementation CFAOpenGLView
+GENERATE_SINGLETON(CFAOpenGLView, cfaOpenGLView);
 
 @synthesize backgroundColor, exportDir, exportFileName, exportFileType;
+@synthesize keyIsPressed, mouseIsPressed;
+@synthesize keyChar, keyCode, mouseButton, frameCount, frameRate;
+@synthesize mousePos, prevMousePos;
+@synthesize canvasSize, screenSize;
+@synthesize canvasRect;
+@synthesize canvasWidth, canvasHeight, screenWidth, screenHeight, drawStyle;
 
 +(void)load {
 	if(VERBOSELOAD) printf("CFAOpenGLView\n");
 }
 
+-(id)_init {
+	return self;
+}
+
 -(void)awakeFromNib {
+	readyToDraw = NO;
+	backgroundShouldDraw = YES;
+	flipped = NO;
+	isSetup = NO;
+	drawToPDF = NO;
+	
+	frameCount = 0;
+	frameRate = 60.0f;
+	drawStyle = SINGLEFRAME;
+	
 	backgroundRect = NSZeroRect;
-	screenSize = [[NSScreen mainScreen] frame].size;
-	mousePressed = NO;
+	mouseIsPressed = NO;
 	isClean = YES;
-	[self background:255];
+	screenSize = [[NSScreen mainScreen] frame].size;
+	screenWidth = screenSize.width;
+	screenHeight = screenSize.height;
 	[self setCanDrawConcurrently:YES];
 	[self prepareOpenGL];
 	[self windowWidth:100 andHeight:100];
-	[self setupRect];
-	[self addTrackingArea];
+	fullScreenOptions = [[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES]  
+													 forKey:NSFullScreenModeAllScreens] retain];
 	
 	//need to bury this here, because the openGLview needs to be completely initialized
 	[CFATuio initWithOpenGLContext:[self openGLContext] pixelFormat:[self pixelFormat]];
 }
 
--(void)dealloc {
-	if (drawToPDF) {
-		[self endPDF];
-	}
-	[super dealloc];
-}
-
 #pragma mark Structure
 -(void)setupRect{
 	[self setup];
-	[self redraw];
+	[self addTrackingArea];
 	isSetup = YES;
+	[self redraw];
 }
 	 
 -(void)setup {
@@ -90,8 +72,6 @@ NSTimer *animationTimer;
 			}
 			[self draw];
 			frameCount++;
-		} else {
-			[self setupRect];
 		}
 	} else {
 		[self prepareOpenGL];
@@ -110,7 +90,7 @@ NSTimer *animationTimer;
 	}
 }
 
--(void)frameRate:(CGFloat)rate {
+-(void)setFrameRate:(CGFloat)rate {
 	frameRate = rate;
 	if (frameRate <= 0.0f) {
 		frameRate = 0.001;
@@ -158,12 +138,17 @@ NSTimer *animationTimer;
 }
 
 -(void)windowWidth:(int)width andHeight:(int)height {
-	NSRect contentRect = [NSWindow contentRectForFrameRect:NSMakeRect(0, 0, width, height) 
+	canvasSize = NSMakeSize(width, height);
+	canvasWidth = canvasSize.width;
+	canvasHeight = canvasSize.height;
+	canvasRect.size = canvasSize;
+	canvasRect.origin = NSZeroPoint;
+	NSRect contentRect = [NSWindow contentRectForFrameRect:canvasRect 
 													  styleMask:NSTitledWindowMask];
 	float titleBarHeight = height - contentRect.size.height;
 	// this centers the window to the screen
-	[self.window setFrame:NSMakeRect((self.screenWidth-width)/2, (self.screenHeight-titleBarHeight-height) / 2 , width, height+titleBarHeight) display:YES];
-	[CFATuio setSize:NSMakeSize(width, height)];
+	[self.window setFrame:NSMakeRect((screenWidth-canvasWidth)/2, (screenHeight-titleBarHeight-canvasHeight) / 2 , canvasWidth, canvasHeight+titleBarHeight) display:YES];
+	[CFATuio setSize:canvasSize];
 }
 
 -(void)addTrackingArea {
@@ -194,36 +179,47 @@ NSTimer *animationTimer;
 	[NSCursor hide];
 }
 
--(int)frameCount {
-	return frameCount;
++(CGFloat)getScreenWidth {
+	return [self sharedManager].screenWidth;
+}
++(CGFloat)getScreenHeight {
+	return [self sharedManager].screenHeight;
+}
++(CGFloat)getCanvasWidth {
+	return [self sharedManager].canvasWidth;
+}
++(CGFloat)getCanvasHeight {
+	return [self sharedManager].canvasHeight;
+}
++(NSRect)getCanvasRect {
+	return [self sharedManager].canvasRect;
+}
++(NSPoint)getMousePos {
+	return [self sharedManager].mousePos;
 }
 
--(int)frameRate {
-	return frameRate;
++(NSUInteger)getMouseButton {
+	return [self sharedManager].mouseButton;
 }
 
--(int)screenHeight {
-	return screenSize.height;
+-(void)enterFullScreen {
+	[[NSNotificationCenter defaultCenter] postNotificationName:FULLSCREEN object:self];
+	[self enterFullScreenMode:[NSScreen mainScreen] withOptions:fullScreenOptions];
+	[self removeTrackingArea:[[self trackingAreas] objectAtIndex:0]];
+	[self addTrackingArea];
+	canvasSize = screenSize;
+	canvasHeight = canvasSize.height;
+	canvasWidth = canvasSize.width;
 }
 
--(int)screenWidth {
-	return screenSize.width;
-}
-
--(NSSize)screenSize {
-	return screenSize;
-}
-
--(int)width {
-	return self.size.width;
-}
-
--(int)height {
-	return self.size.height;
-}
-
--(NSSize)size {
-	return self.visibleRect.size;
+-(void)exitFullScreen {
+	[[NSNotificationCenter defaultCenter] postNotificationName:FULLSCREEN object:self];
+	[self exitFullScreenModeWithOptions:fullScreenOptions];
+	[self removeTrackingArea:[[self trackingAreas] objectAtIndex:0]];
+	[self addTrackingArea];
+	canvasSize = self.visibleRect.size;
+	canvasHeight = canvasSize.height;
+	canvasWidth = canvasSize.width;
 }
 
 #pragma mark Background 
@@ -245,7 +241,7 @@ NSTimer *animationTimer;
 }
 
 -(void)backgroundImage:(CFAImage*)bgImage {
-	[bgImage drawAt:NSZeroPoint withWidth:self.width andHeight:self.height];
+	[bgImage drawAt:NSZeroPoint withWidth:canvasWidth andHeight:canvasHeight];
 }
 
 -(void)drawBackground {
@@ -269,39 +265,16 @@ NSTimer *animationTimer;
 -(void)keyDown:(NSEvent *)theEvent {
 	keyCode = [theEvent keyCode];
 	keyChar = [[theEvent charactersIgnoringModifiers] characterAtIndex:0];
-	keyPressed = YES;
+	keyIsPressed = YES;
 	if(drawstyle == EVENTBASED) [self redraw];
 	[self keyPressed];
 }
 
 -(void)keyUp:(NSEvent *)theEvent {
-	keyPressed = NO;
+	keyIsPressed = NO;
 	if(drawstyle == EVENTBASED) [self redraw];
 	[self keyReleased];
 }
-
--(void)mouseMoved:(NSEvent *)theEvent {
-	prevMousePos = mousePos;
-	mousePos = [theEvent locationInWindow];
-	if([self isFlipped]) {
-		mousePos.y *= -1;
-		mousePos.y += self.visibleRect.size.height;
-	}
-	if (drawstyle == EVENTBASED) [self redraw];
-	[self mouseMoved];
-}
-
--(void)mouseDragged:(NSEvent *)theEvent {
-	prevMousePos = mousePos;
-	mousePos = [theEvent locationInWindow];
-	if([self isFlipped]) {
-		mousePos.y *= -1;
-		mousePos.y += self.visibleRect.size.height;
-	}
-	if(drawstyle == EVENTBASED) [self redraw];
-	[self mouseDragged];
-}
-
 
 -(void)mousePressed {
 }
@@ -321,47 +294,75 @@ NSTimer *animationTimer;
 -(void)mouseMoved{
 }
 
+-(void)mouseMoved:(NSEvent *)theEvent {
+	//[[NSNotificationCenter defaultCenter] postNotificationName:MOUSEMOVED object:self];
+	prevMousePos = mousePos;
+	mousePos = [theEvent locationInWindow];
+	if([self isFlipped]) {
+		mousePos.y *= -1;
+		mousePos.y += self.visibleRect.size.height;
+	}
+	if (drawstyle == EVENTBASED) [self redraw];
+	[self mouseMoved];
+}
+
 -(void)mouseDown:(NSEvent *)theEvent {
-	currentMouseButton = MOUSELEFT;
-	mousePressed = YES;
+	[[NSNotificationCenter defaultCenter] postNotificationName:MOUSEPRESSED object:self];
+	mouseButton = MOUSELEFT;
+	mouseIsPressed = YES;
 	if(drawstyle == EVENTBASED) [self redraw];
 	[self mousePressed];
 }
 
+-(void)mouseDragged:(NSEvent *)theEvent {
+	[[NSNotificationCenter defaultCenter] postNotificationName:MOUSEDRAGGED object:self];
+	prevMousePos = mousePos;
+	mousePos = [theEvent locationInWindow];
+	if([self isFlipped]) {
+		mousePos.y *= -1;
+		mousePos.y += self.visibleRect.size.height;
+	}
+	if(drawstyle == EVENTBASED) [self redraw];
+	[self mouseDragged];
+}
+
 -(void)mouseUp:(NSEvent *)theEvent {
+	[[NSNotificationCenter defaultCenter] postNotificationName:MOUSERELEASED object:self];
 	[self checkClickCount:theEvent];
-	currentMouseButton = NOMOUSE;
-	mousePressed = NO;
+	mouseButton = NOMOUSE;
+	mouseIsPressed = NO;
 	if(drawstyle == EVENTBASED) [self redraw];
 	[self mouseReleased];
 }
 
 -(void)rightMouseDown:(NSEvent *)theEvent {
-	currentMouseButton = MOUSERIGHT;
-	mousePressed = YES;
+	mouseButton = MOUSERIGHT;
+	mouseIsPressed = YES;
 	if(drawstyle == EVENTBASED) [self redraw];
 	[self mousePressed];
 }
 
 -(void)rightMouseUp:(NSEvent *)theEvent {
 	[self checkClickCount:theEvent];
-	currentMouseButton = NOMOUSE;
-	mousePressed = NO;
+	mouseButton = NOMOUSE;
+	mouseIsPressed = NO;
 	if(drawstyle == EVENTBASED) [self redraw];
 	[self mouseReleased];
 }
 
 -(void)otherMouseDown:(NSEvent *)theEvent {
-	currentMouseButton = ([theEvent buttonNumber] == 2) ? MOUSECENTER : (int)[theEvent buttonNumber];
-	mousePressed = YES;
+	//[[NSNotificationCenter defaultCenter] postNotificationName: object:self];
+	mouseButton = ([theEvent buttonNumber] == 2) ? MOUSECENTER : (int)[theEvent buttonNumber];
+	mouseIsPressed = YES;
 	if(drawstyle == EVENTBASED) [self redraw];
 	[self mousePressed];
 }
 
 -(void)otherMouseUp:(NSEvent *)theEvent {
+	//[[NSNotificationCenter defaultCenter] postNotificationName: object:self];
 	[self checkClickCount:theEvent];
-	currentMouseButton = NOMOUSE;
-	mousePressed = NO;
+	mouseButton = NOMOUSE;
+	mouseIsPressed = NO;
 	if(drawstyle == EVENTBASED) [self redraw];
 	[self mouseReleased];
 }
@@ -404,7 +405,7 @@ NSTimer *animationTimer;
 		NSMutableData *data = [[[NSMutableData alloc] init] autorelease];
 		pdfConsumer = CGDataConsumerCreateWithCFData((CFMutableDataRef)data);
 		CGDataConsumerRetain(pdfConsumer);
-		CGRect bounds = CGRectMake(0, 0, self.width, self.height);
+		CGRect bounds = CGRectMake(0, 0, canvasWidth, canvasHeight);
 		pdfContext = CGPDFContextCreateWithURL(pdfURL, &bounds, NULL);
 		CGContextRetain(pdfContext);
 		CGContextBeginPage(pdfContext, &bounds);
@@ -431,7 +432,6 @@ NSTimer *animationTimer;
 	[[self openGLContext] setValues:&opacity forParameter:NSOpenGLCPSurfaceOpacity];	
 	readyToDraw = YES;
 	glEnable( GL_DEPTH_TEST );
-	[self redraw];
 }
 
 @end

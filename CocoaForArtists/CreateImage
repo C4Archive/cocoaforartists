@@ -21,6 +21,6 @@ float offset;
 -(void)draw {
 	[self background:1.0f];
 	[a drawAt:NSZeroPoint];
-	[b drawAt:NSZeroPoint withAlpha:0.5];
+	[b drawAt:NSZeroPoint withAlpha:0.66];
 }
 @end

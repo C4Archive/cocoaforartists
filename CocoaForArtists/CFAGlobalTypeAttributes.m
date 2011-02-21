@@ -15,6 +15,10 @@ GENERATE_SINGLETON(CFAGlobalTypeAttributes, cfaGlobalTypeAttributes);
 
 @synthesize attributes;
 
++(void)load {
+	if(VERBOSELOAD) printf("CFAGlobalTypeAttributes\n");
+}
+
 -(id)_init {
 	self.attributes = [[[NSMutableDictionary alloc] initWithCapacity:0] retain];
 
@@ -78,11 +82,7 @@ GENERATE_SINGLETON(CFAGlobalTypeAttributes, cfaGlobalTypeAttributes);
 		else if([aKey isEqualTo:NSUnderlineStyleAttributeName]) {
 			int32_t value[1]; 
 			value[0] = [[dictionary objectForKey:aKey] intValue];
-			if (value[0] == kCTUnderlineStyleSingle) {
-				CFALog(@"works");
-			}
 			CFNumberRef underlineStyleValue = CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, &value[0]);
-			CFALog(@"%d",value[0]);
 			CFDictionaryAddValue(mDict, kCTUnderlineStyleAttributeName, underlineStyleValue);
 		}
 		else if([aKey isEqualTo:NSUnderlineColorAttributeName]) {

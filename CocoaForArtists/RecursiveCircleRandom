@@ -28,7 +28,7 @@
 	[CFAShape fill:greyValue alpha:0.5]; 
 	[CFAShape circleAt:p radius:radius*2]; if (level > 1) {
 		level--;
-		int num = [CFAMath randomIntBetweenA:2 andB:6];
+		int num = [CFAMath randomIntBetweenA:2 andB:5];
 		for(int i = 0; i < num; i++) {
 			float a = [CFAMath randomIntBetweenA:0 andB:TWO_PI*100]/100.0f;
 			float newX = p.x + [CFAMath cos:a] * 12.0 * level;

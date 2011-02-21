@@ -20,13 +20,13 @@
 }
 
 -(void)draw {
-	[self recursiveCirclesAtX:[self width]*3/4 withRadius:500 andLevels:6];
+	[self recursiveCirclesAtX:self.canvasWidth*3/4 withRadius:500 andLevels:6];
 }
 
 -(void)recursiveCirclesAtX:(int)x withRadius:(int)radius andLevels:(int)levels {
 	float tt = 0.5 * levels / 4.0;
 	[CFAShape fill:tt];
-	[CFAShape ellipseWithXPos:x yPos:[self height]/3 width:radius*2 andHeight:radius*2];
+	[CFAShape ellipseWithXPos:x yPos:self.canvasHeight/3 width:radius*2 andHeight:radius*2];
 	
 	if(levels > 1) {
 		levels = levels - 1;

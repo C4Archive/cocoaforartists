@@ -17,7 +17,7 @@ int divisions = 40;
 	[self drawStyle:ANIMATED];
 	[self windowWidth:400 andHeight:400];
 	[CFAShape noStroke];
-	scale = [self width]/divisions;
+	scale = self.canvasWidth/divisions;
 }
 
 -(void)draw {
@@ -26,7 +26,7 @@ int divisions = 40;
 		float grey = [CFADateTime millis]%(scalefactor);
 		grey = [CFAMath map:grey fromMin:0 max:scalefactor toMin:0 max:1];
 		[CFAShape fill:grey];
-		[CFAShape rectWithXPos:i*scale yPos:0 width:scale andHeight:[self height]];
+		[CFAShape rectWithXPos:i*scale yPos:0 width:scale andHeight:self.canvasHeight];
 	}
 }
 @end

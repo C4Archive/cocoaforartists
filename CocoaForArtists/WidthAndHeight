@@ -17,11 +17,11 @@
 }
 
 -(void)draw {
-	for(int i = 0; i < [self height]; i+=20){
+	for(int i = 0; i < self.canvasHeight; i+=20){
 		[CFAShape fill:0];
-		[CFAShape rectWithXPos:0 yPos:i width:[self width] andHeight:10];
+		[CFAShape rectWithXPos:0 yPos:i width:self.canvasWidth andHeight:10];
 		[CFAShape fill:255];
-		[CFAShape rectWithXPos:i yPos:0 width:10 andHeight:[self height]];
+		[CFAShape rectWithXPos:i yPos:0 width:10 andHeight:self.canvasHeight];
 	}
 }
 

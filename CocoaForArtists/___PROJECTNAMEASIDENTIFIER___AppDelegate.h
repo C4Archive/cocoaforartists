@@ -5,7 +5,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "CFAOpenGLView.h"
+#import "CFACanvas.h"
 
 #if (MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_5)
 @interface ___PROJECTNAMEASIDENTIFIER___AppDelegate : NSObject {
@@ -13,9 +13,10 @@
 	@interface ___PROJECTNAMEASIDENTIFIER___AppDelegate : NSObject <NSApplicationDelegate> {
 #endif
 		NSWindow *window;
-		IBOutlet CFAOpenGLView *cfaOpenGLView;
+		IBOutlet CFACanvas *cfaCanvas;
 		
 	@private
+		CFAOpenGLView	*cfaOpenGLView;
 		CFAColor		*cfaColor;
 		CFADateTime		*cfaDateTime;
 		CFAFoundation	*cfaFoundation;
@@ -25,8 +26,9 @@
 		CFAString		*cfaString;
 		CFAGlobalTypeAttributes	*cfaGlobalTypeAttributes;
 		CFATuio			*cfaTuio;
+		CFANoise		*cfaNoise;
 	}
-	
+
 @property (assign) IBOutlet NSWindow *window;
 	
 @end

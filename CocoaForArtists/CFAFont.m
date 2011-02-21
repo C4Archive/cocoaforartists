@@ -11,6 +11,10 @@
 @implementation CFAFont
 @synthesize font;
 
++(void)load {
+	if(VERBOSELOAD) printf("CFAFont\n");
+}
+
 -(id)init {
 	if(!(self = [super init])) return nil;
 	return self;

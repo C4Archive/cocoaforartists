@@ -22,12 +22,12 @@ float b = 0.0f;
 	[self background:0.2f];
 	a = a+2;
 	b = b+0.75;
-	[CFAShape lineFromX:a Y:0 toX:a Y:[self height]/2];
-	[CFAShape lineFromX:b Y:[self height]/2 toX:b Y:[self height]];
-	if (a > [self width]) {
+	[CFAShape lineFromX:a Y:0 toX:a Y:self.canvasHeight/2];
+	[CFAShape lineFromX:b Y:self.canvasHeight/2 toX:b Y:self.canvasHeight];
+	if (a > self.canvasWidth) {
 		a = 0;
 	}
-	if (b > [self width]) {
+	if (b > self.canvasWidth) {
 		b = 0;
 	}
 }

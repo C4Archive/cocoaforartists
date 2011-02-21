@@ -11,20 +11,25 @@
 @synthesize window;
 
 +(void)load {
-	if(VERBOSELOAD) printf("CFADevelopAppDelegate\n");
+	if(VERBOSELOAD) printf("___PROJECTNAMEASIDENTIFIER___AppDelegate\n");
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-	cfaColor		= [[[CFAColor alloc] initWithRed:0 green:0 blue:0 alpha:0] retain];
+
+-(void)applicationWillFinishLaunching:(NSNotification *)notification {
+	[cfaCanvas setupRect];
+}
+
+- (void)awakeFromNib {
+	/* create instances of singletons */
+	cfaOpenGLView	= [[[CFAOpenGLView alloc] _init] retain];
 	cfaDateTime		= [[[CFADateTime alloc] _init] retain];
 	cfaFoundation	= [[[CFAFoundation alloc] _init] retain];
 	cfaMath			= [[[CFAMath alloc] _init] retain];
 	cfaShape		= [[[CFAShape alloc] _init] retain];
 	cfaTransform	= [[[CFATransform alloc] _init] retain];
-	cfaString		= [[[CFAString alloc] init] retain];
 	cfaGlobalTypeAttributes = [[[CFAGlobalTypeAttributes alloc] _init] retain];
 	cfaTuio			= [[[CFATuio alloc] _init] retain];
-
+	cfaNoise		= [[[CFANoise alloc] _init] retain];
 }
 
 @end

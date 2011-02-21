@@ -11,6 +11,9 @@ static CFATransform *cfaTransform;
 NSAffineTransform *transform;
 
 GENERATE_SINGLETON(CFATransform, cfaTransform);
++(void)load {
+	if(VERBOSELOAD) printf("CFATransform\n");
+}
 
 -(id)_init {
 	return self;
