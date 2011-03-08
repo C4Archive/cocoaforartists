@@ -4,6 +4,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <Quartz/Quartz.h>
 
 @interface CFAImage : CFAObject {
 	@private
@@ -48,8 +49,6 @@
 
 -(void)singleFilter;
 -(void)combinedFilter;
--(void)drawFilteredImageAt:(NSPoint)p;
--(void)drawFilteredImageInRect:(NSRect)aRect;
 
 -(void)gaussianBlur:(CGFloat)radius;
 -(void)motionBlur:(CGFloat)radius angle:(CGFloat)angle;
@@ -112,3 +111,9 @@
 -(void)pixellate:(NSPoint)center scale:(CGFloat)scale;
 -(void)pointillize:(NSPoint)center radius:(CGFloat)radius;
 @end
+
+@interface CFAImage (private)
+-(void)drawFilteredImageAt:(NSPoint)p;
+-(void)drawFilteredImageInRect:(NSRect)aRect;
+@end
+

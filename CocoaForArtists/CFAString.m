@@ -58,6 +58,12 @@ BOOL isClean;
 	return [self initWithString:finalString];
 }
 
+-(void)dealloc {
+	[self setString:nil];
+	[self setAttributes:nil];
+	[super dealloc];
+}
+
 -(CFAString *)stringByAppendingString:(id)aString {
 	NSString *newString;
 	if([aString isKindOfClass:[NSString class]]) {
@@ -235,6 +241,8 @@ BOOL isClean;
 		CTLineDraw(line,pdfContext);
 		CGContextRestoreGState(pdfContext);
 	}
+	
+	CFRelease(cfAttribs);
 }
 
 -(void)drawInRect:(NSRect)rect {
@@ -398,7 +406,6 @@ BOOL isClean;
 	if ([[CFAGlobalTypeAttributes sharedManager] objectForKey:NSUnderlineStyleAttributeName] == nil) {
 		[[CFAGlobalTypeAttributes sharedManager] setObject:[CFAColor colorFromObject:color] forKey:NSUnderlineColorAttributeName];
 	}
-	
 	//CFALog(@"\n-- SharedManager Attributes At Fill-- \n %@ \n",[[CFAGlobalTypeAttributes sharedManager].attributes description]);
 }
 
@@ -488,7 +495,7 @@ BOOL isClean;
 }
 
 +(CFAString *)stringWithString:(id)aString {
-	return [[CFAString alloc] initWithString:aString];
+	return [[[CFAString alloc] initWithString:aString] autorelease];
 }
 
 +(CFAString *)stringWithFormat:(NSString *)aFormatString, ... {
@@ -499,7 +506,7 @@ BOOL isClean;
 	finalString = [[[NSString alloc] initWithFormat:aFormatString arguments:args] autorelease];
 	va_end (args);
 	
-	return [CFAString stringWithString:finalString];	
+	return [[CFAString stringWithString:finalString] autorelease];	
 }
 
 +(void)beginDrawStringsToPDFContext:(CGContextRef)context {

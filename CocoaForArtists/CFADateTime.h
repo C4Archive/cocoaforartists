@@ -5,7 +5,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface CFADateTime : NSObject {
+@interface CFADateTime : CFAObject {
 	@private
 	uint64_t start;
 }

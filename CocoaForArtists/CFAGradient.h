@@ -5,7 +5,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface CFAGradient : NSObject {
+@interface CFAGradient : CFAObject {
 	@private
 	CGGradientRef gradient;
 }

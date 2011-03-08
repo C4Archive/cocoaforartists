@@ -45,8 +45,8 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 
 -(id)_init {
 	strokeWidth = 1.0f;
-	fillColor = [CFAColor colorWithGrey:1];		//white
-	strokeColor = [CFAColor	colorWithGrey:0];	//black
+	fillColor = [[CFAColor colorWithGrey:1] retain];		//white
+	strokeColor = [[CFAColor	colorWithGrey:0] retain];	//black
 	ellipseMode = CENTER;
 	rectMode = CORNER;
 	//CFALog(@"%d",[CFACanvas screenWidth]);
@@ -627,7 +627,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 }
 
 +(void)cgFillColorSet {
-	CGColorRef c = [strokeColor cgColor];	
+	CGColorRef c = [fillColor cgColor];	
 	const CGFloat *colorComponents = CGColorGetComponents(c);
 	if(useFill == YES) CGContextSetRGBFillColor(pdfContext,colorComponents[0],colorComponents[1],colorComponents[2],colorComponents[3]);
 	else CGContextSetRGBFillColor(pdfContext, 0, 0, 0, 0);

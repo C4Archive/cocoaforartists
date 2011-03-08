@@ -22,7 +22,7 @@ BOOL createPDF;
 	if(createPDF) [self setupPDF];
 }
 -(void)draw {
-	if(mousePressed){
+	if(mouseIsPressed){
 		[CFAShape stroke:1.0f];
 		[CFAShape fill:0.0f];
 	} else {

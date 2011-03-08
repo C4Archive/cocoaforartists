@@ -33,7 +33,7 @@ int arrayIndex = 0;
 	
 	xvals[totalPixels-1] = mousePos.x;
 	yvals[totalPixels-1] = mousePos.y;
-	if (mousePressed) {
+	if (mouseIsPressed) {
 		bvals[totalPixels-1] = self.canvasHeight*.98;
 	} else {
 		bvals[totalPixels-1] = 0;

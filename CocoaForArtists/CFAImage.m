@@ -17,7 +17,7 @@
 		return nil;
 	}
 	self.originalImage = [CIImage emptyImage];
-	imageRect = [originalImage extent];
+	imageRect = NSRectFromCGRect([originalImage extent]);
 	filterContext = [[CIContext contextWithCGContext:[[NSGraphicsContext currentContext] graphicsPort]
 											 options:nil] retain];
 	singleFilter = YES;
@@ -26,7 +26,7 @@
 
 -(id)initWithImage:(CFAImage *)image {
 	[self setOriginalImage:image.originalImage];
-	imageRect = [originalImage extent];
+	imageRect = NSRectFromCGRect([originalImage extent]);
 	filterContext = [[CIContext contextWithCGContext:[[NSGraphicsContext currentContext] graphicsPort]
 									  options:nil] retain];
 	singleFilter = YES;
@@ -35,47 +35,42 @@
 
 -(id)initWithImageName:(NSString *)name {
 	NSArray *nameComponents = [name componentsSeparatedByString:@"."];
-	if([nameComponents count] == 2) [self initWithImageName:[nameComponents objectAtIndex:0] andType:[nameComponents objectAtIndex:1]];
+	if([nameComponents count] == 2) [self initWithImageName:[nameComponents objectAtIndex:0]
+													andType:[nameComponents objectAtIndex:1]];
 	return nil;
 }
 
 -(id)initWithImageName:(NSString *)name andType:(NSString *)type{
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; 
 	NSString *   path = [[NSBundle mainBundle] pathForResource:name
 														ofType:type];
 	NSURL *      url = [NSURL fileURLWithPath: path];
 	
 	self.originalImage = [CIImage imageWithContentsOfURL:url];
-	imageRect = [originalImage extent];
-	[self setFilterContext:[CIContext contextWithCGContext:[[NSGraphicsContext currentContext] graphicsPort] options:nil]];
+	imageRect = NSRectFromCGRect([originalImage extent]);
+	[self setFilterContext:[CIContext contextWithCGContext:[[NSGraphicsContext currentContext] graphicsPort]
+												   options:nil]];
 	singleFilter = YES;
-	[pool release];
 	return self;
-}
-
-+(CFAImage *)imageName:(NSString *)name {
-	NSArray *nameComponents = [name componentsSeparatedByString:@"."];
-	if([nameComponents count] == 2) return [CFAImage imageName:[nameComponents objectAtIndex:0] andType:[nameComponents objectAtIndex:1]];
-	return nil;
-			
-}
-
-+(CFAImage *)imageName:(NSString *)name andType:(NSString *)type {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init]; 
-	CFAImage *image = [[CFAImage alloc] initWithImageName:name andType:type];
-	if(image == nil) {
-		[image release];
-		image = nil;
-	} else {
-		[image retain];
-	}
-	[pool release];
-	return image;
 }
 
 -(void)dealloc {
 	free(rawData);
+	
+	[self setFilterContext:nil];
+	[self setOriginalImage:nil];
+	[self setFilteredImage:nil];
 	[super dealloc];
+}
+
++(CFAImage *)imageName:(NSString *)name {
+	NSArray *nameComponents = [name componentsSeparatedByString:@"."];
+	if([nameComponents count] == 2) return [CFAImage imageName:[nameComponents objectAtIndex:0]
+													   andType:[nameComponents objectAtIndex:1]];
+	return nil;
+}
+
++(CFAImage *)imageName:(NSString *)name andType:(NSString *)type {
+	return [[[CFAImage alloc] initWithImageName:name andType:type] autorelease];
 }
 
 -(void)loadPixelData {
@@ -100,13 +95,23 @@
 }
 
 -(CFAColor *)colorAtX:(int)x andY:(int)y {
-	int byteIndex = (bytesPerPixel * self.imageWidth * y) + x * bytesPerPixel;
+	// inverting the y coordinate (a hack, but it works)
+	// might be better to invert the pixels when the loadPixelData method is called
+	int byteIndex = (bytesPerPixel * self.imageWidth * (self.imageHeight-y-1)) + x * bytesPerPixel;
 	CGFloat red   = (rawData[byteIndex]     * 1.0) / 255.0;
 	CGFloat green = (rawData[byteIndex + 1] * 1.0) / 255.0;
 	CGFloat blue  = (rawData[byteIndex + 2] * 1.0) / 255.0;
 	CGFloat alpha = (rawData[byteIndex + 3] * 1.0) / 255.0;
 	
 	return [CFAColor colorWithRed:red green:green blue:blue alpha:alpha];
+}
+
+-(CGFloat)imageWidth {
+	return imageRect.size.width;
+}
+
+-(CGFloat)imageHeight {
+	return imageRect.size.height;
 }
 
 -(void)drawAt:(NSPoint)p {
@@ -162,9 +167,10 @@
  */
 
 -(void)drawFilteredImageAt:(NSPoint)p {
+	
 	[filterContext drawImage:filteredImage
 					 atPoint:NSPointToCGPoint(p)
-					fromRect:[CFACanvas getCanvasRect]];
+					fromRect:NSRectToCGRect(NSIntersectionRect(self.imageRect,[CFACanvas getCanvasRect]))];
 }
 
 -(void)drawFilteredImageInRect:(NSRect)aRect {

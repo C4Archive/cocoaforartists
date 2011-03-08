@@ -25,7 +25,6 @@
 		CFATransform	*cfaTransform;
 		CFAString		*cfaString;
 		CFAGlobalTypeAttributes	*cfaGlobalTypeAttributes;
-		CFATuio			*cfaTuio;
 		CFANoise		*cfaNoise;
 	}
 

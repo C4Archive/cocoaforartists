@@ -1,0 +1,36 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+CFAImage *backgroundImage;
+@end
+
+@implementation CFACanvas
+
+-(void)setup {
+	backgroundImage = [CFAImage imageName:@"3dmaze.JPG"];
+	
+	[self drawStyle:ANIMATED];
+	[self windowWidth:backgroundImage.imageWidth andHeight:backgroundImage.imageHeight];
+}
+
+-(void)draw {	
+	[self background:1];	
+	/*
+	 Filtering creates a copy of an original image, and draws only the copy...
+	 */
+	
+	[backgroundImage gaussianBlur:5.5];
+	
+	backgroundImage.drawFilteredImage = NO;
+	[backgroundImage drawAt:NSZeroPoint];
+	backgroundImage.drawFilteredImage = YES;
+	[backgroundImage drawAt:mousePos];
+}
+@end

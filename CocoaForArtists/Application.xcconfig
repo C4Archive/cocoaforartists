@@ -1,0 +1,11 @@
+//
+//  Application.xcconfig
+//  ___PROJECTNAME___
+//
+//  Created by moi on 11-03-02.
+//  Copyright 2011 Travis Kirton. All rights reserved.
+//
+
+// Release
+INFOPLIST_FILE = ___PROJECTNAMEASIDENTIFIER___-Info.plist
+DEBUG_INFORMATION_FORMAT = dwarf-with-dsym

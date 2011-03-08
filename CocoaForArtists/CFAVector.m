@@ -18,13 +18,14 @@
 @synthesize vec;
 
 +(id)vectorWithX:(float)x Y:(float)y Z:(float)z {
-	return [[[CFAVector alloc] vectorWithX:x Y:y Z:z] retain];
+	return [[[CFAVector alloc] vectorWithX:x Y:y Z:z] autorelease];
 }
 
 -(id)vectorWithX:(float)x Y:(float)y Z:(float)z {
 	if(!(self = [super init])) {
 		return nil;
 	}
+	
 	vec3[0] = x;
 	vec3[1] = y;
 	vec3[2] = z;

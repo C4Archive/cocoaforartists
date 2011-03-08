@@ -11,6 +11,14 @@
 	NSUInteger keyChar, keyCode, mouseButton;
 	NSPoint mousePos, prevMousePos;
 	
+	@private
+	NSRect canvasRect;
+	NSSize canvasSize, screenSize;
+	CGFloat canvasWidth, canvasHeight, screenWidth, screenHeight;	
+	CFAColor *backgroundColor;
+	NSString *exportDir, *exportFileName, *exportFileType;
+	NSUInteger frameCount, currentDrawStyle;
+	CGFloat frameRate;
 }
 
 #pragma mark Singleton
@@ -45,6 +53,7 @@
 -(void)background:(float)grey alpha:(float)alpha;
 -(void)backgroundRed:(float)red green:(float)green blue:(float)blue;
 -(void)backgroundRed:(float)red green:(float)green blue:(float)blue alpha:(float)alpha;
+-(void)backgroundColor:(id)color;
 -(void)backgroundImage:(CFAImage *)bgImage;
 
 #pragma mark Input
@@ -62,7 +71,7 @@
 -(void)endPDF;
 
 @property(readonly) BOOL keyIsPressed, mouseIsPressed;
-@property(readonly) NSUInteger keyChar, keyCode, mouseButton, frameCount, drawStyle;
+@property(readonly) NSUInteger keyChar, keyCode, mouseButton, frameCount, currentDrawStyle;
 @property(readonly) NSPoint mousePos, prevMousePos;
 @property(readonly) NSSize canvasSize, screenSize;
 @property(readonly) NSRect canvasRect;
@@ -77,13 +86,8 @@
 @end
 
 @interface CFAOpenGLView (private)
-NSRect canvasRect;
-NSSize canvasSize, screenSize;
-CGFloat canvasWidth, canvasHeight, screenWidth, screenHeight;
 
 BOOL isClean;
-CFAColor *backgroundColor;
-NSString *exportDir, *exportFileName, *exportFileType;
 
 BOOL readyToDraw;
 BOOL backgroundShouldDraw;
@@ -94,9 +98,6 @@ BOOL drawToPDF;
 CFURLRef pdfURL;
 CGContextRef pdfContext;
 CGDataConsumerRef pdfConsumer;
-
-NSUInteger frameCount, drawstyle;
-CGFloat frameRate;
 
 NSRect	backgroundRect;
 NSTimer *animationTimer;

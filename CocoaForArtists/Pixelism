@@ -21,17 +21,20 @@ CFAImage *image;
 @implementation CFACanvas
 
 -(void)setup {
+	//Usually you should set up your canvas first
+	//But, since we use the image dimensions to set the canvas size, we should create the image first...
 	image = [CFAImage imageName:@"3dmaze" andType:@"JPG"];
-	[image loadPixelData];
-	[self windowWidth:[image width] andHeight:[image height]];
+
+	[self windowWidth:image.imageWidth andHeight:image.imageHeight];
 	[self background:1.0f];
 	
 	//stripe = width of 1 color
-	stripeWidth = [CFAMath maxOfA:1 andB:self.canvasWidth/[image width]];
+	stripeWidth = [CFAMath maxOfA:1 andB:self.canvasWidth/image.imageWidth];
 	//block = 3 * 3 colors (keeping things square)
 	blockHeight = stripeWidth*3;
 	blockWidth = blockHeight;
 	
+	[image loadPixelData];
 	[CFAShape fill];
 	[CFAShape noStroke];
 }
@@ -39,13 +42,13 @@ CFAImage *image;
 -(void)draw {
 	[self background:0];
 	//iterate through the y coordinates of our image
-	for(int y = 0; y <= [image height]; y+=blockHeight) {
+	for(int y = 0; y <= image.imageHeight; y+=blockHeight) {
 		//map a y position from our image to y position in our canvas
-		int y1 = [CFAMath map:y fromMin:0 max:[image height] toMin:0 max:self.canvasHeight];
+		int y1 = [CFAMath map:y fromMin:0 max:image.imageHeight toMin:0 max:self.canvasHeight];
 		//iterate through the x coordinates of our image
-		for(int x = 0; x <= [image width]; x+=blockWidth) {
+		for(int x = 0; x <= image.imageWidth; x+=blockWidth) {
 			//map an x position from our image to an x position in our canvas
-			int x1 = [CFAMath map:x fromMin:0 max:[image width] toMin:0 max:self.canvasWidth];
+			int x1 = [CFAMath map:x fromMin:0 max:image.imageWidth toMin:0 max:self.canvasWidth];
 			
 			//grab the color from our image at (x,y)
 			CFAColor *pixelColor = [image colorAtX:x andY:y];

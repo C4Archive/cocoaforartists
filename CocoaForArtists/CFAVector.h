@@ -9,9 +9,10 @@
 #import <Cocoa/Cocoa.h>
 #import <Accelerate/Accelerate.h>
 
-@interface CFAVector : NSObject {
+@interface CFAVector : CFAObject {
 @private
 	float vec3[3];
+	float *vec;
 }
 
 +(CGFloat)distanceBetweenA:(NSPoint)pointA andB:(NSPoint)pointB;
@@ -36,5 +37,5 @@
 -(void)normalize;
 -(void)limit:(float)max;
 -(NSPoint)point2D;
-@property (readonly) float* vec;
+@property (readonly) float *vec;
 @end

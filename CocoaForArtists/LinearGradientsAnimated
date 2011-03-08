@@ -110,8 +110,10 @@ float radius;
 	theta1+=increment*2;
 	theta2+=increment*3;
 	theta3+=increment*4;
-	//[CFAShape fill:0];
-	//[CFAShape lineFromX:p1.x Y:p1.y toX:p2.x Y:p2.y];
+//	[CFAShape lineFromPoint:p1 toPoint:p2];
+//	[CFAShape lineFromPoint:p3 toPoint:p4];
+//	[CFAShape lineFromPoint:p5 toPoint:p6];
+//	[CFAShape lineFromPoint:p7 toPoint:p8];
 }
 
 @end

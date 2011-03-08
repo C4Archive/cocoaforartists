@@ -15,12 +15,7 @@
 }
 
 -(id)init {
-	if(!(self = [super init])){
-		return nil;
-	}
-	synth = [[[NSSpeechSynthesizer alloc] init] retain];
-	[synth setUsesFeedbackWindow:NO];
-	return self;
+	return [self initWithVoice:ALEX];
 }
 
 -(id)initWithVoice:(id)voice {
@@ -35,7 +30,7 @@
 }
 
 +(CFAVoice *)initWithVoice:(id)voice {
-	return [[CFAVoice alloc] initWithVoice:voice];
+	return [[[CFAVoice alloc] initWithVoice:voice] autorelease];
 }
 
 -(CFAString *)voice {

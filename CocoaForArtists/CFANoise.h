@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface CFANoise : NSObject {
+@interface CFANoise : CFAObject {
 }
 -(id)_init;
 +(CFANoise *)sharedManager;

@@ -7,6 +7,8 @@
 
 @implementation CFAColor
 
+@synthesize color;
+
 +(void)load {
 	if(VERBOSELOAD) printf("CFAColor\n");
 }
@@ -24,8 +26,11 @@
 }
 																			
 +(CFAColor *)colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha {
-	CFAColor *newColor = [[CFAColor alloc] initWithRed:red green:green blue:blue alpha:alpha];
-	return newColor;
+	return [[[CFAColor alloc] initWithRed:red green:green blue:blue alpha:alpha] autorelease];
+}
+
++(CFAColor *)colorWithNSColor:(NSColor *)aColor {
+	return [[[CFAColor alloc] initWithNSColor:aColor] autorelease];
 }
 
 +(NSColor *)colorFromObject:(id)aColor {
@@ -42,12 +47,7 @@
 }
 
 -(id)init {
-	if(![super init]) {
-		return nil;
-	}
-
-	//default to black
-	color = [[NSColor blackColor] retain];
+	[self initWithGrey:0];
 	return self;
 }
 
@@ -64,9 +64,24 @@
 }
 
 -(id)initWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha {
-	[color release];
-	color = [[NSColor colorWithCalibratedRed:red green:green blue:blue alpha:alpha] retain];
+	if(![super init]) {
+		return nil;
+	}
+	[self setColor:[NSColor colorWithCalibratedRed:red green:green blue:blue alpha:alpha]];
 	return self;
+}
+
+-(id)initWithNSColor:(NSColor *)aColor {
+	if(![super init]) {
+		return nil;
+	}
+	[self setColor:aColor];
+	return self;
+}
+
+-(void)dealloc {
+	[self setColor:nil];
+	[super dealloc];
 }
 
 -(void)set {
@@ -93,7 +108,6 @@
 	return [color blueComponent];
 }
 
-
 +(CGColorRef)NSColorToCGColor:(NSColor *)aColor {
 	aColor = [aColor colorUsingColorSpaceName:NSDeviceRGBColorSpace];
 	CGFloat colorComponents[4];
@@ -101,6 +115,7 @@
 	colorComponents[1] = [aColor greenComponent];
 	colorComponents[2] = [aColor blueComponent];
 	colorComponents[3] = [aColor alphaComponent];
+	
 	return CGColorCreate(CGColorSpaceCreateDeviceRGB(), colorComponents);
 }
 @end

@@ -5,19 +5,19 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface CFATransform : NSObject {
+@interface CFATransform : CFAObject {
 
 }
 
 -(id)_init;
 +(CFATransform *)sharedManager;
 
-+(void)begin;
-+(void)concat;
-+(void)end;
-
-+(void)translateByX:(int)x andY:(int)y;
-+(void)translateBy:(NSPoint)point;
-+(void)rotateByAngle:(float)angle;
+//+(void)begin;
+//+(void)concat;
+//+(void)end;
+//
+//+(void)translateByX:(int)x andY:(int)y;
+//+(void)translateBy:(NSPoint)point;
+//+(void)rotateByAngle:(float)angle;
 
 @end

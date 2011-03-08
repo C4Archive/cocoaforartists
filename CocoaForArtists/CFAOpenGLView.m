@@ -15,7 +15,7 @@ GENERATE_SINGLETON(CFAOpenGLView, cfaOpenGLView);
 @synthesize mousePos, prevMousePos;
 @synthesize canvasSize, screenSize;
 @synthesize canvasRect;
-@synthesize canvasWidth, canvasHeight, screenWidth, screenHeight, drawStyle;
+@synthesize canvasWidth, canvasHeight, screenWidth, screenHeight, currentDrawStyle;
 
 +(void)load {
 	if(VERBOSELOAD) printf("CFAOpenGLView\n");
@@ -34,7 +34,7 @@ GENERATE_SINGLETON(CFAOpenGLView, cfaOpenGLView);
 	
 	frameCount = 0;
 	frameRate = 60.0f;
-	drawStyle = SINGLEFRAME;
+	currentDrawStyle = SINGLEFRAME;
 	
 	backgroundRect = NSZeroRect;
 	mouseIsPressed = NO;
@@ -47,9 +47,6 @@ GENERATE_SINGLETON(CFAOpenGLView, cfaOpenGLView);
 	[self windowWidth:100 andHeight:100];
 	fullScreenOptions = [[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES]  
 													 forKey:NSFullScreenModeAllScreens] retain];
-	
-	//need to bury this here, because the openGLview needs to be completely initialized
-	[CFATuio initWithOpenGLContext:[self openGLContext] pixelFormat:[self pixelFormat]];
 }
 
 #pragma mark Structure
@@ -79,8 +76,8 @@ GENERATE_SINGLETON(CFAOpenGLView, cfaOpenGLView);
 }
 
 -(void)drawStyle:(int)style {
-	drawstyle = style;
-	switch (drawstyle) {
+	currentDrawStyle = style;
+	switch (currentDrawStyle) {
 		case ANIMATED:
 			[self setAnimationTimer:frameRate];
 			break;
@@ -146,24 +143,21 @@ GENERATE_SINGLETON(CFAOpenGLView, cfaOpenGLView);
 	NSRect contentRect = [NSWindow contentRectForFrameRect:canvasRect 
 													  styleMask:NSTitledWindowMask];
 	float titleBarHeight = height - contentRect.size.height;
-	// this centers the window to the screen
+	// this centers the window to the screen when it first runs
 	[self.window setFrame:NSMakeRect((screenWidth-canvasWidth)/2, (screenHeight-titleBarHeight-canvasHeight) / 2 , canvasWidth, canvasHeight+titleBarHeight) display:YES];
-	[CFATuio setSize:canvasSize];
 }
 
 -(void)addTrackingArea {
 	[self addTrackingArea:[[NSTrackingArea alloc] initWithRect:self.visibleRect options:(NSTrackingMouseEnteredAndExited | NSTrackingMouseMoved | NSTrackingActiveInKeyWindow ) owner:self userInfo:nil]];
-	backgroundRect = NSMakeRect(self.visibleRect.origin.x-5, self.visibleRect.origin.y-5, self.visibleRect.size.width+10, self.visibleRect.size.height+10);
+	backgroundRect = NSMakeRect(self.visibleRect.origin.x-1, self.visibleRect.origin.y-1, self.visibleRect.size.width+2, self.visibleRect.size.height+2);
 }
 
 -(void)flipCoordinates {
 	flipped = YES;
-	//[CFAShape flipCoordinates];
 }
 
 -(void)nativeCoordinates {
 	flipped = NO;
-	//[CFAShape nativeCoordinates];
 }
 
 -(BOOL)isFlipped {
@@ -240,6 +234,16 @@ GENERATE_SINGLETON(CFAOpenGLView, cfaOpenGLView);
 	backgroundShouldDraw = YES;
 }
 
+-(void)backgroundColor:(id)color {
+	if([color isKindOfClass:[CFAColor class]]) {
+		[self setBackgroundColor:(CFAColor*)color];
+	}
+	else if([color isKindOfClass:[NSColor class]]) {
+		[self setBackgroundColor:[CFAColor colorWithNSColor:(NSColor *)color]];
+	}
+	backgroundShouldDraw = YES;
+}
+
 -(void)backgroundImage:(CFAImage*)bgImage {
 	[bgImage drawAt:NSZeroPoint withWidth:canvasWidth andHeight:canvasHeight];
 }
@@ -266,13 +270,13 @@ GENERATE_SINGLETON(CFAOpenGLView, cfaOpenGLView);
 	keyCode = [theEvent keyCode];
 	keyChar = [[theEvent charactersIgnoringModifiers] characterAtIndex:0];
 	keyIsPressed = YES;
-	if(drawstyle == EVENTBASED) [self redraw];
+	if(currentDrawStyle == EVENTBASED) [self redraw];
 	[self keyPressed];
 }
 
 -(void)keyUp:(NSEvent *)theEvent {
 	keyIsPressed = NO;
-	if(drawstyle == EVENTBASED) [self redraw];
+	if(currentDrawStyle == EVENTBASED) [self redraw];
 	[self keyReleased];
 }
 
@@ -302,7 +306,7 @@ GENERATE_SINGLETON(CFAOpenGLView, cfaOpenGLView);
 		mousePos.y *= -1;
 		mousePos.y += self.visibleRect.size.height;
 	}
-	if (drawstyle == EVENTBASED) [self redraw];
+	if (currentDrawStyle == EVENTBASED) [self redraw];
 	[self mouseMoved];
 }
 
@@ -310,7 +314,7 @@ GENERATE_SINGLETON(CFAOpenGLView, cfaOpenGLView);
 	[[NSNotificationCenter defaultCenter] postNotificationName:MOUSEPRESSED object:self];
 	mouseButton = MOUSELEFT;
 	mouseIsPressed = YES;
-	if(drawstyle == EVENTBASED) [self redraw];
+	if(currentDrawStyle == EVENTBASED) [self redraw];
 	[self mousePressed];
 }
 
@@ -322,7 +326,7 @@ GENERATE_SINGLETON(CFAOpenGLView, cfaOpenGLView);
 		mousePos.y *= -1;
 		mousePos.y += self.visibleRect.size.height;
 	}
-	if(drawstyle == EVENTBASED) [self redraw];
+	if(currentDrawStyle == EVENTBASED) [self redraw];
 	[self mouseDragged];
 }
 
@@ -331,14 +335,14 @@ GENERATE_SINGLETON(CFAOpenGLView, cfaOpenGLView);
 	[self checkClickCount:theEvent];
 	mouseButton = NOMOUSE;
 	mouseIsPressed = NO;
-	if(drawstyle == EVENTBASED) [self redraw];
+	if(currentDrawStyle == EVENTBASED) [self redraw];
 	[self mouseReleased];
 }
 
 -(void)rightMouseDown:(NSEvent *)theEvent {
 	mouseButton = MOUSERIGHT;
 	mouseIsPressed = YES;
-	if(drawstyle == EVENTBASED) [self redraw];
+	if(currentDrawStyle == EVENTBASED) [self redraw];
 	[self mousePressed];
 }
 
@@ -346,7 +350,7 @@ GENERATE_SINGLETON(CFAOpenGLView, cfaOpenGLView);
 	[self checkClickCount:theEvent];
 	mouseButton = NOMOUSE;
 	mouseIsPressed = NO;
-	if(drawstyle == EVENTBASED) [self redraw];
+	if(currentDrawStyle == EVENTBASED) [self redraw];
 	[self mouseReleased];
 }
 
@@ -354,7 +358,7 @@ GENERATE_SINGLETON(CFAOpenGLView, cfaOpenGLView);
 	//[[NSNotificationCenter defaultCenter] postNotificationName: object:self];
 	mouseButton = ([theEvent buttonNumber] == 2) ? MOUSECENTER : (int)[theEvent buttonNumber];
 	mouseIsPressed = YES;
-	if(drawstyle == EVENTBASED) [self redraw];
+	if(currentDrawStyle == EVENTBASED) [self redraw];
 	[self mousePressed];
 }
 
@@ -363,7 +367,7 @@ GENERATE_SINGLETON(CFAOpenGLView, cfaOpenGLView);
 	[self checkClickCount:theEvent];
 	mouseButton = NOMOUSE;
 	mouseIsPressed = NO;
-	if(drawstyle == EVENTBASED) [self redraw];
+	if(currentDrawStyle == EVENTBASED) [self redraw];
 	[self mouseReleased];
 }
 

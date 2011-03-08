@@ -1,0 +1,89 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+CFAImage *foregroundImage, *backgroundImage;
+@end
+
+@implementation CFACanvas
+
+-(void)setup {
+	backgroundImage = [CFAImage imageName:@"CFATest.tif"];
+	foregroundImage = [CFAImage imageName:@"3dmaze.JPG"];
+	
+	[self drawStyle:EVENTBASED];
+	[self windowWidth:backgroundImage.imageWidth andHeight:backgroundImage.imageHeight];
+}
+
+-(void)draw {	
+	/*
+	 Uncomment any line, then draw the filtered image
+	 The last filter called will override all other filters
+	 */
+	
+	backgroundImage.drawFilteredImage = YES;
+	
+	//	[backgroundImage gaussianBlur:5.5];
+	//	[backgroundImage zoomBlur:mousePos amount:10];
+	//	[backgroundImage motionBlur:100 angle:PI/4];
+	//	[backgroundImage kaleidoscope:mousePos count:20 angle:PI/4];
+	//	[backgroundImage opTile:mousePos scale:1.0f angle:PI/4 width:10];
+	//	[backgroundImage parallelogramTile:mousePos angle:PI acuteAngle:PI/3 width:10];
+	//	[backgroundImage perspectiveTile:NSMakePoint(0, self.canvasHeight) 
+	//				  topRight:NSMakePoint(self.canvasWidth/2, self.canvasHeight/2) 
+	//			   bottomRight:NSMakePoint(self.canvasWidth/2, self.canvasHeight/3) 
+	//				bottomLeft:NSZeroPoint];
+	//	[backgroundImage triangleTile:mousePos angle:PI/2 width:100];
+	//	[backgroundImage colorControls:1.0f brightness:0.0f contrast:10.5];
+	//	[backgroundImage exposureAdjust:2.0f];
+	//	[backgroundImage gammaAdjust:2.0f];
+	//	[backgroundImage hueAdjust:2.0f];
+	//	[backgroundImage invert];
+	//	[backgroundImage monochrome:[CFAColor colorWithRed:1 green:0 blue:0] intensity:2.0f];
+	//	[backgroundImage posterize:2.0f];
+	//	[backgroundImage maxGrayscale];
+	//	[backgroundImage minGrayscale];
+	//	[backgroundImage sepia:2.0f];
+	//	[backgroundImage colorBlend:foregroundImage];
+	//	[backgroundImage burnBlend:foregroundImage];
+	//	[backgroundImage darkenBlend:foregroundImage];
+	//	[backgroundImage differenceBlend:foregroundImage];
+	//	[backgroundImage exclusionBlend:foregroundImage];
+	//	[backgroundImage hardLightBlend:foregroundImage];
+	//	[backgroundImage hueBlend:foregroundImage];
+	//	[backgroundImage lightenBlend:foregroundImage];
+	//	[backgroundImage luminosityBlend:foregroundImage];
+	//	[backgroundImage multiplyBlend:foregroundImage];
+	//	[backgroundImage overlayBlend:foregroundImage];
+	//	[backgroundImage saturationBlend:foregroundImage];
+	//	[backgroundImage screenBlend:foregroundImage];
+	//	[backgroundImage softLightBlend:foregroundImage];
+	//	[backgroundImage bumpDistortion:mousePos radius:140 scale:5];
+	//	[backgroundImage bumpLinearDistortion:mousePos radius:80 angle:PI/4 scale:3.0f];
+		[backgroundImage circleDistortion:mousePos radius:100];
+	//	[backgroundImage circularScreen:mousePos width:10 sharpness:1.0f];
+	//	[backgroundImage circularWrap:mousePos radius:100 angle:PI/3];
+	//	[backgroundImage holeDistortion:mousePos radius:10];
+	//	[backgroundImage twirlDistortion:mousePos radius:100 angle:PI/4];
+	//	[backgroundImage vortexDistortion:mousePos radius:100 angle:300];
+	//	[backgroundImage dotScreen:mousePos angle:PI/2 width:3 sharpness:5.5f];
+	//	[backgroundImage hatchedScreen:mousePos angle:-PI/4 width:5 sharpness:0.4f];
+	//	[backgroundImage lineScreen:mousePos angle:45 width:10 sharpness:0.6];
+	//	[backgroundImage bloom:10 intensity:10];
+	//	[backgroundImage comicEffect];
+	//	[backgroundImage crystallize:mousePos radius:10];
+	//	[backgroundImage edges:2.0f];
+	//	[backgroundImage edgeWork:10.5f]; /* something wrong with edgework, maybe it's just tie image i picket*/
+	//	[backgroundImage hexagonalPixellate:mousePos scale:10];
+	//	[backgroundImage pixellate:mousePos scale:20];
+	//	[backgroundImage pointillize:mousePos radius:10];
+	
+	[backgroundImage drawAt:NSZeroPoint];
+}
+@end

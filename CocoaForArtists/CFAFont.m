@@ -47,15 +47,15 @@
 }
 
 +(CFAFont *)fontWithFont:(id)aFont {
-	return [[CFAFont alloc] initWithFont:aFont];
+	return [[[CFAFont alloc] initWithFont:aFont] autorelease];
 }
 
 +(CFAFont *)fontWithName:(id)name {
-	return [[CFAFont alloc] initWithName:name size:14.0f];
+	return [[[CFAFont alloc] initWithName:name size:14.0f] autorelease];
 }
 
 +(CFAFont *)fontWithName:(id)name size:(CGFloat)size {
-	return [[CFAFont alloc] initWithName:name size:size];
+	return [[[CFAFont alloc] initWithName:name size:size] autorelease];
 }
 
 +(CFAFont *)userFontOfSize:(CGFloat)size {

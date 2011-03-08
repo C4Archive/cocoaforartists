@@ -15,10 +15,10 @@ float y = 100;
 
 -(void)setup {
 	[self windowWidth:400 andHeight:400];
+	[self drawStyle:ANIMATED];
+
 	[CFAShape stroke:1.0f];
 	[CFAShape stroke];
-	
-	[self drawStyle:ANIMATED];
 }
 
 -(void)draw {

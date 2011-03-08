@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface CFAGlobalTypeAttributes : NSObject {
+@interface CFAGlobalTypeAttributes : CFAObject {
 	@private
 	NSMutableDictionary	*attributes;
 }

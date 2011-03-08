@@ -5,7 +5,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface CFAFoundation : NSObject {
+@interface CFAFoundation : CFAObject {
 }
 
 #pragma mark Singleton

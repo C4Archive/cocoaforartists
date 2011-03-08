@@ -9,12 +9,12 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface CFASound : NSObject {
+@interface CFASound : CFAObject {
 	@private
 	NSSound *sound;
 }
 
-+(CFASound *)withName:(NSString *)file andType:(NSString *)extension;
++(CFASound *)soundWithName:(NSString *)file andType:(NSString *)extension;
 -(id)initWithName:(NSString *)file andType:(NSString *)extension;
 
 -(CGFloat)volume;

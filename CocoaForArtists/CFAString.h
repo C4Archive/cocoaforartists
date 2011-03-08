@@ -16,8 +16,8 @@
  
  */
 
-@interface CFAString : NSObject {
-	NSString		*string;
+@interface CFAString : CFAObject {
+	NSString			*string;
 	NSMutableDictionary	*attributes;
 }
 /*

@@ -11,6 +11,7 @@
 int width = 400;
 int height = 400;
 float distances[400][400];
+NSPoint center;
 float maxDistance;
 @end
 
@@ -18,10 +19,11 @@ float maxDistance;
 -(void)setup {
 	[self windowWidth:width andHeight:height];
 	[self background:0];
-	maxDistance = [CFAMath distanceFromX:width/2 Y:height/2 toX:width Y:height];
+	center = NSMakePoint(self.canvasWidth/2, self.canvasHeight/2);
+	maxDistance = [CFAVector distanceBetweenA:NSZeroPoint andB:center];
 	for(int i = 0; i < height; i++){
 		for(int j = 0; j < width; j++){
-			float dist = (float)[CFAMath distanceFromX:(float)width/2 Y:(float)height/2 toX:(float)j Y:(float)i];
+			float dist = [CFAVector distanceBetweenA:NSMakePoint(i, j) andB:center];
 			distances[j][i] = dist/maxDistance;
 		}
 	}

@@ -12,7 +12,7 @@
 #define	TWO_PI		pi*2
 #define eCONSTANT	2.71828182845904523536
 
-@interface CFAMath : NSObject {
+@interface CFAMath : CFAObject {
 	
 }
 

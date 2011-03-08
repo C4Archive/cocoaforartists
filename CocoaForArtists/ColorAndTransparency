@@ -17,7 +17,7 @@
 -(void)draw {
 	[CFAShape fillRed:0.0f green:0.0f blue:1.0f];
 	[CFAShape rectWithXPos:0.0f yPos:0.0f width:100 andHeight:200];
-	//255 means 100% opacity
+	//1.0f means 100% opacity
 	[CFAShape fillRed:1.0f green:0.0f blue:0.0f alpha:1.0f];
 	[CFAShape rectWithXPos:0.0f yPos:0.0f width:200 andHeight:40];
 	//75% opacity

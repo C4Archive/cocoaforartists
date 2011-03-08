@@ -15,16 +15,19 @@ CFAImage *myImage;
 
 @implementation CFACanvas
 -(void)setup {
-	myImage = [CFAImage imageName:@"3dmaze" andType:@"JPG"];
-	[myImage loadPixelData];
-	
-	[self windowWidth:[myImage width] andHeight:[myImage height]];
+	//Usually you should set up your canvas first
+	//But, since we use the image dimensions to set the canvas size, we should create the image first...
+	myImage = [CFAImage imageName:@"3dmaze.JPG"];
+
+	[self windowWidth:myImage.imageWidth andHeight:myImage.imageHeight];
 	[self drawStyle:ANIMATED];
 	[self flipCoordinates];
 	[self background:1.0f];
+	
+	[myImage loadPixelData];
 
 	[CFAShape strokeWidth:1];
-	[CFAShape strokeColor:1];
+	[CFAShape stroke:1];
 }
 
 -(void)draw {

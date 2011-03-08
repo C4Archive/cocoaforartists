@@ -28,7 +28,6 @@
 	cfaShape		= [[[CFAShape alloc] _init] retain];
 	cfaTransform	= [[[CFATransform alloc] _init] retain];
 	cfaGlobalTypeAttributes = [[[CFAGlobalTypeAttributes alloc] _init] retain];
-	cfaTuio			= [[[CFATuio alloc] _init] retain];
 	cfaNoise		= [[[CFANoise alloc] _init] retain];
 }
 

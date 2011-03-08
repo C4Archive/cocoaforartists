@@ -1,0 +1,17 @@
+//
+//  Release.xcconfig
+//  ___PROJECTNAME___
+//
+//  Created by moi on 11-03-02.
+//  Copyright 2011 Travis Kirton. All rights reserved.
+//
+
+#include "Shared.xcconfig"
+
+ARCHS = $(ARCHS_STANDARD_32_64_BIT)
+SDKROOT = macosx
+PREBINDING = NO
+GCC_ENABLE_OBJC_GC = required
+GCC_C_LANGUAGE_STANDARD = gnu99
+GCC_WARN_ABOUT_RETURN_TYPE = YES
+GCC_WARN_UNUSED_VARIABLE = YES

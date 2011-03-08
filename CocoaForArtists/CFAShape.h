@@ -6,8 +6,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface CFAShape : NSObject {
-	
+@interface CFAShape : CFAObject {
 }
 
 #pragma mark Singleton
@@ -18,6 +17,8 @@
  Not too sure what to do...
  Should I make this an object container?
  At the moment it simply draws shapes, but doesn't keep them in memory.
+ 
+ I think I should make it an object into which you can add/compound shapes.
  */
 
 #pragma mark Shapes
@@ -98,5 +99,4 @@
 +(BOOL)isClean;
 +(void)beginDrawShapesToPDFContext:(CGContextRef)context;
 +(void)endDrawShapesToPDFContext;
-
 @end

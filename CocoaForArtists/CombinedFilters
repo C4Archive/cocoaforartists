@@ -1,0 +1,42 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+CFAImage *foregroundImage, *backgroundImage;
+@end
+
+@implementation CFACanvas
+
+-(void)setup {
+	backgroundImage = [CFAImage imageName:@"CFATest.tif"];
+	foregroundImage = [CFAImage imageName:@"3dmaze.JPG"];
+	
+	[self drawStyle:ANIMATED];
+	[self windowWidth:backgroundImage.imageWidth andHeight:backgroundImage.imageHeight];
+}
+
+-(void)draw {	
+	[self background:1];	
+	//This line sets up the image to use multiple filters
+	backgroundImage.drawFilteredImage = YES;
+	[backgroundImage combinedFilter];
+		
+	//Filters are applied in order
+	
+	//The distortion, then the dotscreen
+	//[backgroundImage circleDistortion:mousePos radius:100];
+	//[backgroundImage dotScreen:mousePos angle:PI/2 width:3 sharpness:1.5f];
+
+	 //The dotscreen, then the distortion
+	 [backgroundImage dotScreen:mousePos angle:PI/2 width:3 sharpness:1.5f];
+	 [backgroundImage circleDistortion:mousePos radius:100];
+	 
+	[backgroundImage drawAt:NSZeroPoint];
+}
+@end

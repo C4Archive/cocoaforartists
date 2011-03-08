@@ -9,13 +9,12 @@
 #import "CFACanvas.h"
 @interface CFACanvas (private)
 CFAImage *myImage;
-float offset;
 @end
 @implementation CFACanvas
 -(void)setup {
 	[self drawStyle:EVENTBASED];
 	[self windowWidth:400 andHeight:400];
-	myImage = [[[CFAImage alloc] initWithImageName:@"CFATest" andType:@"jpg"] retain];
+	myImage = [CFAImage imageName:@"CFATest.tif"];
 }
 -(void)draw {
 	[self background:1.0f];

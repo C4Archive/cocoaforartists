@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface CFAFont : NSObject {
+@interface CFAFont : CFAObject {
 	NSFont *font;
 }
 

@@ -14,8 +14,8 @@
 	if(VERBOSELOAD) printf("CFASound\n");
 }
 
-+(CFASound *)withName:(NSString *)fileName andType:(NSString *)extension {
-	return [[[CFASound alloc] initWithName:fileName andType:extension] retain];
++(CFASound *)soundWithName:(NSString *)fileName andType:(NSString *)extension {
+	return [[[CFASound alloc] initWithName:fileName andType:extension] autorelease];
 }
 
 -(id)initWithName:(NSString *)fileName andType:(NSString *)extension {
@@ -30,6 +30,12 @@
 																					ofType:extension]
 										byReference:YES] retain];
 	return self;
+}
+
+-(void)dealloc {
+	[sound release];
+	sound = nil;
+	[super dealloc];
 }
 
 -(CGFloat)volume {

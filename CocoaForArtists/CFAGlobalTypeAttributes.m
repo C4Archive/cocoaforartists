@@ -68,7 +68,9 @@ GENERATE_SINGLETON(CFAGlobalTypeAttributes, cfaGlobalTypeAttributes);
 			CFDictionaryAddValue(mDict, kCTKernAttributeName, kernValue);
 		}
 		else if([aKey isEqualTo:NSForegroundColorAttributeName]) {
-			CFDictionaryAddValue(mDict, kCTForegroundColorAttributeName, [CFAColor NSColorToCGColor:[dictionary objectForKey:aKey]]);
+			CGColorRef colorRef = [CFAColor NSColorToCGColor:[dictionary objectForKey:aKey]];
+			CFDictionaryAddValue(mDict, kCTForegroundColorAttributeName, colorRef);
+			CFRelease(colorRef);
 		}
 		else if([aKey isEqualTo:NSStrokeWidthAttributeName]) {
 			CGFloat value[1]; 
@@ -77,7 +79,9 @@ GENERATE_SINGLETON(CFAGlobalTypeAttributes, cfaGlobalTypeAttributes);
 			CFDictionaryAddValue(mDict, kCTStrokeWidthAttributeName, strokeWidthValue);
 		}
 		else if([aKey isEqualTo:NSStrokeColorAttributeName]) {
-			CFDictionaryAddValue(mDict, kCTStrokeColorAttributeName, [CFAColor NSColorToCGColor:[dictionary objectForKey:aKey]]);
+			CGColorRef colorRef = [CFAColor NSColorToCGColor:[dictionary objectForKey:aKey]];
+			CFDictionaryAddValue(mDict, kCTStrokeColorAttributeName, colorRef);
+			CFRelease(colorRef);
 		}
 		else if([aKey isEqualTo:NSUnderlineStyleAttributeName]) {
 			int32_t value[1]; 
@@ -86,19 +90,10 @@ GENERATE_SINGLETON(CFAGlobalTypeAttributes, cfaGlobalTypeAttributes);
 			CFDictionaryAddValue(mDict, kCTUnderlineStyleAttributeName, underlineStyleValue);
 		}
 		else if([aKey isEqualTo:NSUnderlineColorAttributeName]) {
-			CFDictionaryAddValue(mDict, kCTUnderlineColorAttributeName, [CFAColor NSColorToCGColor:[dictionary objectForKey:aKey]]);
+			CGColorRef colorRef = [CFAColor NSColorToCGColor:[dictionary objectForKey:aKey]];
+			CFDictionaryAddValue(mDict, kCTUnderlineColorAttributeName, colorRef);
+			CFRelease(colorRef);
 		}
-		/*
-		else if([aKey isEqualTo:NSBackgroundColorAttributeName]) {
-			//Unfortunately, there is no backgroundColor for strings in CoreText (as of Jan '11)
-		}
-		else if([aKey isEqualTo:NSStrikethroughColorAttributeName]) {
-			//Unfortunately, there is no strikethrough for strings in CoreText (as of Jan '11)
-		}
-		else if([aKey isEqualTo:NSStrikethroughStyleAttributeName]) {
-			//Unfortunately, there is no strikethrough for strings in CoreText (as of Jan '11)
-		}
-		 */
 	}
 	return mDict;
 }

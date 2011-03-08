@@ -15,8 +15,8 @@ float offset;
 -(void)setup {
 	[self drawStyle:ANIMATED];
 	[self windowWidth:400 andHeight:400];
-	a = [CFAImage imageName:@"CFATest" andType:@"tif"];
-	b = [CFAImage imageName:@"CFATest" andType:@"jpg"];
+	a = [CFAImage imageName:@"CFATest.tif"];
+	b = [CFAImage imageName:@"CFATest.jpg"];
 }
 -(void)draw {
 	[self backgroundImage:a];

@@ -16,14 +16,16 @@
 		ED058B4D1307C08900B32A97 /* CFANoise.m in Sources */ = {isa = PBXBuildFile; fileRef = ED058B4C1307C08900B32A97 /* CFANoise.m */; };
 		ED16792912377BEB00A1C814 /* cfaicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = ED16792812377BEB00A1C814 /* cfaicon.icns */; };
 		ED1BFEFB12F9C28A0085091A /* CFAVoice.m in Sources */ = {isa = PBXBuildFile; fileRef = ED1BFEFA12F9C28A0085091A /* CFAVoice.m */; };
+		ED20B172131E346C00337987 /* Shared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ED20B171131E346C00337987 /* Shared.xcconfig */; };
+		ED20B174131E349100337987 /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ED20B173131E349100337987 /* Debug.xcconfig */; };
+		ED20B176131E349800337987 /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ED20B175131E349800337987 /* Release.xcconfig */; };
+		ED20B178131E34A500337987 /* Application.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ED20B177131E34A500337987 /* Application.xcconfig */; };
+		ED20B3E2131E49C600337987 /* FilterWithOriginal in Resources */ = {isa = PBXBuildFile; fileRef = ED20B3E1131E49C600337987 /* FilterWithOriginal */; };
+		ED20B478131E58C100337987 /* CombinedFilters in Resources */ = {isa = PBXBuildFile; fileRef = ED20B477131E58C100337987 /* CombinedFilters */; };
 		ED25C7ED12F59ECE00BB0D84 /* CFAGlobalTypeAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = ED25C7EC12F59ECE00BB0D84 /* CFAGlobalTypeAttributes.m */; };
-		ED2B6E3D1300F32A005BB540 /* TuioClient.qtz in Resources */ = {isa = PBXBuildFile; fileRef = ED2B6E3C1300F32A005BB540 /* TuioClient.qtz */; };
-		ED2B6E401300F342005BB540 /* CFATuio.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2B6E3F1300F342005BB540 /* CFATuio.m */; };
 		ED2B6E6F1300F456005BB540 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2B6E6E1300F456005BB540 /* Quartz.framework */; };
-		ED2B6EFF1300FC9F005BB540 /* TuioObject.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2B6EFE1300FC9F005BB540 /* TuioObject.m */; };
-		ED2B6F021300FCB6005BB540 /* TuioCursor.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2B6F011300FCB6005BB540 /* TuioCursor.m */; };
 		ED321DEC12F5979F0063E57E /* CFAFont.m in Sources */ = {isa = PBXBuildFile; fileRef = ED321DEB12F5979F0063E57E /* CFAFont.m */; };
-		ED333B25130945F600AFB160 /* Filters in Resources */ = {isa = PBXBuildFile; fileRef = ED333B24130945F600AFB160 /* Filters */; };
+		ED333B25130945F600AFB160 /* SingleFilter in Resources */ = {isa = PBXBuildFile; fileRef = ED333B24130945F600AFB160 /* SingleFilter */; };
 		ED3B216E124CC28100AB9816 /* CFATest.tif in Resources */ = {isa = PBXBuildFile; fileRef = ED3B216B124CC28100AB9816 /* CFATest.tif */; };
 		ED3B2170124CC28100AB9816 /* CFATest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED3B216D124CC28100AB9816 /* CFATest.jpg */; };
 		ED6961EB129AB07C0082D888 /* Oscillator in Resources */ = {isa = PBXBuildFile; fileRef = ED6961EA129AB07C0082D888 /* Oscillator */; };
@@ -34,6 +36,7 @@
 		EDAACEF31311EA5F003CEE9B /* CFAImage.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAACEF21311EA5F003CEE9B /* CFAImage.m */; };
 		EDB2D26212FA127800BD2B2C /* EveryLetterEveryFont in Resources */ = {isa = PBXBuildFile; fileRef = EDB2D26112FA127800BD2B2C /* EveryLetterEveryFont */; };
 		EDC2D1AC12F32FB8000B143A /* CFAString.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC2D1AB12F32FB8000B143A /* CFAString.m */; };
+		EDC621FA131C92F60027317E /* CFAGlobalShapeAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC621F9131C92F60027317E /* CFAGlobalShapeAttributes.m */; };
 		EDD92A1D129A9ABD00C6A1F7 /* CFAOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD92A0D129A9ABD00C6A1F7 /* CFAOpenGLView.m */; };
 		EDD92A1E129A9ABD00C6A1F7 /* CFAMath.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD92A0F129A9ABD00C6A1F7 /* CFAMath.m */; };
 		EDD92A1F129A9ABD00C6A1F7 /* CFAFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD92A11129A9ABD00C6A1F7 /* CFAFoundation.m */; };
@@ -138,19 +141,18 @@
 		ED16792812377BEB00A1C814 /* cfaicon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = cfaicon.icns; sourceTree = "<group>"; };
 		ED1BFEF912F9C28A0085091A /* CFAVoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFAVoice.h; sourceTree = "<group>"; };
 		ED1BFEFA12F9C28A0085091A /* CFAVoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFAVoice.m; sourceTree = "<group>"; };
+		ED20B171131E346C00337987 /* Shared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = "<group>"; };
+		ED20B173131E349100337987 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		ED20B175131E349800337987 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		ED20B177131E34A500337987 /* Application.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Application.xcconfig; sourceTree = "<group>"; };
+		ED20B3E1131E49C600337987 /* FilterWithOriginal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FilterWithOriginal; sourceTree = "<group>"; };
+		ED20B477131E58C100337987 /* CombinedFilters */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CombinedFilters; sourceTree = "<group>"; };
 		ED25C7EB12F59ECE00BB0D84 /* CFAGlobalTypeAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFAGlobalTypeAttributes.h; sourceTree = "<group>"; };
 		ED25C7EC12F59ECE00BB0D84 /* CFAGlobalTypeAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFAGlobalTypeAttributes.m; sourceTree = "<group>"; };
-		ED2B6E3C1300F32A005BB540 /* TuioClient.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = TuioClient.qtz; sourceTree = "<group>"; };
-		ED2B6E3E1300F342005BB540 /* CFATuio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFATuio.h; sourceTree = "<group>"; };
-		ED2B6E3F1300F342005BB540 /* CFATuio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFATuio.m; sourceTree = "<group>"; };
 		ED2B6E6E1300F456005BB540 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
-		ED2B6EFD1300FC9F005BB540 /* TuioObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuioObject.h; sourceTree = "<group>"; };
-		ED2B6EFE1300FC9F005BB540 /* TuioObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuioObject.m; sourceTree = "<group>"; };
-		ED2B6F001300FCB6005BB540 /* TuioCursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuioCursor.h; sourceTree = "<group>"; };
-		ED2B6F011300FCB6005BB540 /* TuioCursor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuioCursor.m; sourceTree = "<group>"; };
 		ED321DEA12F5979F0063E57E /* CFAFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFAFont.h; sourceTree = "<group>"; };
 		ED321DEB12F5979F0063E57E /* CFAFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFAFont.m; sourceTree = "<group>"; };
-		ED333B24130945F600AFB160 /* Filters */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Filters; sourceTree = "<group>"; };
+		ED333B24130945F600AFB160 /* SingleFilter */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SingleFilter; sourceTree = "<group>"; };
 		ED36CA5A123D7FDE0055951E /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		ED36CA5B123D7FDE0055951E /* CFADefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFADefines.h; sourceTree = "<group>"; };
 		ED36CA5F123D7FDE0055951E /* CFAImports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFAImports.h; sourceTree = "<group>"; };
@@ -170,6 +172,8 @@
 		EDB2D26112FA127800BD2B2C /* EveryLetterEveryFont */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EveryLetterEveryFont; sourceTree = "<group>"; };
 		EDC2D1AA12F32FB8000B143A /* CFAString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFAString.h; sourceTree = "<group>"; };
 		EDC2D1AB12F32FB8000B143A /* CFAString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFAString.m; sourceTree = "<group>"; };
+		EDC621F8131C92F60027317E /* CFAGlobalShapeAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFAGlobalShapeAttributes.h; sourceTree = "<group>"; };
+		EDC621F9131C92F60027317E /* CFAGlobalShapeAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFAGlobalShapeAttributes.m; sourceTree = "<group>"; };
 		EDD92A0C129A9ABD00C6A1F7 /* CFAOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFAOpenGLView.h; sourceTree = "<group>"; };
 		EDD92A0D129A9ABD00C6A1F7 /* CFAOpenGLView.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = CFAOpenGLView.m; sourceTree = "<group>"; };
 		EDD92A0E129A9ABD00C6A1F7 /* CFAMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFAMath.h; sourceTree = "<group>"; };
@@ -280,14 +284,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* Project */ = {
-			isa = PBXGroup;
-			children = (
-				EDE538281237633C0041895C /* CFACanvas.m */,
-			);
-			name = Project;
-			sourceTree = "<group>";
-		};
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -319,8 +315,9 @@
 		29B97314FDCFA39411CA2CEA /* ___PROJECTNAMEASXML___ */ = {
 			isa = PBXGroup;
 			children = (
-				080E96DDFE201D6D7F000001 /* Project */,
-				29B97315FDCFA39411CA2CEA /* CFA Code & Samples */,
+				EDE538281237633C0041895C /* CFACanvas.m */,
+				29B97315FDCFA39411CA2CEA /* CFA Framework */,
+				EDD92A25129A9ACB00C6A1F7 /* CFA Code Samples */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -328,15 +325,14 @@
 			name = "___PROJECTNAMEASXML___";
 			sourceTree = "<group>";
 		};
-		29B97315FDCFA39411CA2CEA /* CFA Code & Samples */ = {
+		29B97315FDCFA39411CA2CEA /* CFA Framework */ = {
 			isa = PBXGroup;
 			children = (
 				EDE538271237633C0041895C /* CFACanvas.h */,
 				ED36CA62123D7FE10055951E /* CFA Application */,
 				ED36CA63123D80020055951E /* CFA Classes */,
-				EDD92A25129A9ACB00C6A1F7 /* CFA CodeSamples */,
 			);
-			name = "CFA Code & Samples";
+			name = "CFA Framework";
 			sourceTree = "<group>";
 		};
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
@@ -364,23 +360,56 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		ED2B6E381300F2C5005BB540 /* CFATuio */ = {
+		ED20B16F131E343D00337987 /* Build Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				ED2B6E3C1300F32A005BB540 /* TuioClient.qtz */,
-				ED2B6EFD1300FC9F005BB540 /* TuioObject.h */,
-				ED2B6EFE1300FC9F005BB540 /* TuioObject.m */,
-				ED2B6E3E1300F342005BB540 /* CFATuio.h */,
-				ED2B6E3F1300F342005BB540 /* CFATuio.m */,
-				ED2B6F001300FCB6005BB540 /* TuioCursor.h */,
-				ED2B6F011300FCB6005BB540 /* TuioCursor.m */,
+				ED20B171131E346C00337987 /* Shared.xcconfig */,
+				ED20B173131E349100337987 /* Debug.xcconfig */,
+				ED20B175131E349800337987 /* Release.xcconfig */,
+				ED20B177131E34A500337987 /* Application.xcconfig */,
 			);
-			name = CFATuio;
+			name = "Build Configuration";
+			sourceTree = "<group>";
+		};
+		ED20B6B8131E6A7000337987 /* Voices (to do) */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Voices (to do)";
+			sourceTree = "<group>";
+		};
+		ED20B6B9131E6A7D00337987 /* Sounds (to do) */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Sounds (to do)";
+			sourceTree = "<group>";
+		};
+		ED20B6BB131E6AA500337987 /* Strings & Fonts (to do) */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Strings & Fonts (to do)";
+			sourceTree = "<group>";
+		};
+		ED20B6BC131E6AD800337987 /* Vector (to do) */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Vector (to do)";
+			sourceTree = "<group>";
+		};
+		ED20B6BD131E6ADE00337987 /* Noise (to do) */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Noise (to do)";
 			sourceTree = "<group>";
 		};
 		ED36CA62123D7FE10055951E /* CFA Application */ = {
 			isa = PBXGroup;
 			children = (
+				ED20B16F131E343D00337987 /* Build Configuration */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				256AC3D80F4B6AC300CF3369 /* ___PROJECTNAMEASIDENTIFIER___AppDelegate.h */,
 				256AC3D90F4B6AC300CF3369 /* ___PROJECTNAMEASIDENTIFIER___AppDelegate.m */,
@@ -405,6 +434,8 @@
 				EDD92A11129A9ABD00C6A1F7 /* CFAFoundation.m */,
 				ED25C7EB12F59ECE00BB0D84 /* CFAGlobalTypeAttributes.h */,
 				ED25C7EC12F59ECE00BB0D84 /* CFAGlobalTypeAttributes.m */,
+				EDC621F8131C92F60027317E /* CFAGlobalShapeAttributes.h */,
+				EDC621F9131C92F60027317E /* CFAGlobalShapeAttributes.m */,
 				EDD92A18129A9ABD00C6A1F7 /* CFAGradient.h */,
 				EDD92A19129A9ABD00C6A1F7 /* CFAGradient.m */,
 				EDAACEF11311EA5F003CEE9B /* CFAImage.h */,
@@ -421,7 +452,6 @@
 				EDC2D1AB12F32FB8000B143A /* CFAString.m */,
 				EDD92A1A129A9ABD00C6A1F7 /* CFATransform.h */,
 				EDD92A1B129A9ABD00C6A1F7 /* CFATransform.m */,
-				ED2B6E381300F2C5005BB540 /* CFATuio */,
 				ED1BFEF912F9C28A0085091A /* CFAVoice.h */,
 				ED1BFEFA12F9C28A0085091A /* CFAVoice.m */,
 				ED05887D130784A400B32A97 /* CFAVector.h */,
@@ -436,21 +466,26 @@
 			name = "CFA Classes";
 			sourceTree = "<group>";
 		};
-		EDD92A25129A9ACB00C6A1F7 /* CFA CodeSamples */ = {
+		EDD92A25129A9ACB00C6A1F7 /* CFA Code Samples */ = {
 			isa = PBXGroup;
 			children = (
 				EDD92A68129A9ACB00C6A1F7 /* Structure */,
 				EDD92A5E129A9ACB00C6A1F7 /* Shapes */,
 				EDD92A57129A9ACB00C6A1F7 /* Data */,
 				EDD92A51129A9ACB00C6A1F7 /* Control */,
-				EDD92A48129A9ACB00C6A1F7 /* Image */,
 				EDD92A42129A9ACB00C6A1F7 /* Color */,
+				EDD92A48129A9ACB00C6A1F7 /* Image */,
 				EDD92A37129A9ACB00C6A1F7 /* Math */,
 				EDD92A2B129A9ACB00C6A1F7 /* Input */,
 				EDD92A28129A9ACB00C6A1F7 /* Arrays */,
 				EDD92A26129A9ACB00C6A1F7 /* Advanced */,
+				ED20B6BD131E6ADE00337987 /* Noise (to do) */,
+				ED20B6BC131E6AD800337987 /* Vector (to do) */,
+				ED20B6BB131E6AA500337987 /* Strings & Fonts (to do) */,
+				ED20B6B9131E6A7D00337987 /* Sounds (to do) */,
+				ED20B6B8131E6A7000337987 /* Voices (to do) */,
 			);
-			name = "CFA CodeSamples";
+			name = "CFA Code Samples";
 			sourceTree = "<group>";
 		};
 		EDD92A26129A9ACB00C6A1F7 /* Advanced */ = {
@@ -531,7 +566,9 @@
 				EDD92A4E129A9ACB00C6A1F7 /* DynamicImageMatrix */,
 				EDD92A4F129A9ACB00C6A1F7 /* Pointilism */,
 				EDD92A50129A9ACB00C6A1F7 /* Pixelism */,
-				ED333B24130945F600AFB160 /* Filters */,
+				ED333B24130945F600AFB160 /* SingleFilter */,
+				ED20B3E1131E49C600337987 /* FilterWithOriginal */,
+				ED20B477131E58C100337987 /* CombinedFilters */,
 			);
 			name = Image;
 			sourceTree = "<group>";
@@ -541,8 +578,8 @@
 			children = (
 				EDD92A52129A9ACB00C6A1F7 /* IterationForLoops */,
 				EDD92A53129A9ACB00C6A1F7 /* EmbeddedIteration */,
-				EDD92A54129A9ACB00C6A1F7 /* Conditionals2 */,
 				EDD92A55129A9ACB00C6A1F7 /* Conditionals1 */,
+				EDD92A54129A9ACB00C6A1F7 /* Conditionals2 */,
 				EDD92A56129A9ACB00C6A1F7 /* LogicalOperators */,
 			);
 			name = Control;
@@ -726,8 +763,13 @@
 				ED6961EB129AB07C0082D888 /* Oscillator in Resources */,
 				EDECAAA312A2E55E00C79F56 /* Kandinskyish in Resources */,
 				EDB2D26212FA127800BD2B2C /* EveryLetterEveryFont in Resources */,
-				ED2B6E3D1300F32A005BB540 /* TuioClient.qtz in Resources */,
-				ED333B25130945F600AFB160 /* Filters in Resources */,
+				ED333B25130945F600AFB160 /* SingleFilter in Resources */,
+				ED20B172131E346C00337987 /* Shared.xcconfig in Resources */,
+				ED20B174131E349100337987 /* Debug.xcconfig in Resources */,
+				ED20B176131E349800337987 /* Release.xcconfig in Resources */,
+				ED20B178131E34A500337987 /* Application.xcconfig in Resources */,
+				ED20B3E2131E49C600337987 /* FilterWithOriginal in Resources */,
+				ED20B478131E58C100337987 /* CombinedFilters in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -753,15 +795,13 @@
 				ED321DEC12F5979F0063E57E /* CFAFont.m in Sources */,
 				ED25C7ED12F59ECE00BB0D84 /* CFAGlobalTypeAttributes.m in Sources */,
 				ED1BFEFB12F9C28A0085091A /* CFAVoice.m in Sources */,
-				ED2B6E401300F342005BB540 /* CFATuio.m in Sources */,
-				ED2B6EFF1300FC9F005BB540 /* TuioObject.m in Sources */,
-				ED2B6F021300FCB6005BB540 /* TuioCursor.m in Sources */,
 				ED992CDF130158D00079B98B /* CFASound.m in Sources */,
 				ED05887F130784A400B32A97 /* CFAVector.m in Sources */,
 				ED058B4D1307C08900B32A97 /* CFANoise.m in Sources */,
 				ED6C27861307E4FE00BD6C15 /* Perlin.c in Sources */,
 				ED6BD3EB1311C1C600438252 /* CFAObject.m in Sources */,
 				EDAACEF31311EA5F003CEE9B /* CFAImage.m in Sources */,
+				EDC621FA131C92F60027317E /* CFAGlobalShapeAttributes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -789,58 +829,29 @@
 /* Begin XCBuildConfiguration section */
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED20B177131E34A500337987 /* Application.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "___PROJECTNAMEASIDENTIFIER____Prefix.pch";
-				INFOPLIST_FILE = "___PROJECTNAMEASIDENTIFIER___-Info.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = "___PROJECTNAME___";
 			};
 			name = Debug;
 		};
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED20B177131E34A500337987 /* Application.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "___PROJECTNAMEASIDENTIFIER____Prefix.pch";
-				INFOPLIST_FILE = "___PROJECTNAMEASIDENTIFIER___-Info.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = "___PROJECTNAME___";
 			};
 			name = Release;
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED20B173131E349100337987 /* Debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = NO;
-				SDKROOT = macosx10.6;
 			};
 			name = Debug;
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED20B175131E349800337987 /* Release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				PREBINDING = NO;
-				SDKROOT = macosx10.6;
 			};
 			name = Release;
 		};
