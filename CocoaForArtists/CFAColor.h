@@ -31,6 +31,7 @@
 -(CGFloat)redComponent;
 -(CGFloat)greenComponent;
 -(CGFloat)blueComponent;
+-(CGFloat)alphaComponent;
 
 +(NSColor *)colorFromObject:(id)aColor;
 +(CGColorRef)NSColorToCGColor:(NSColor *)aColor;

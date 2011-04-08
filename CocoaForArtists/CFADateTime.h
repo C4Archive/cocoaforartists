@@ -15,18 +15,18 @@
 +(CFADateTime *)sharedManager;
 
 #pragma mark Date & Time
-+(int)day;
++(NSInteger)day;
 +(NSString *)dayString;
-+(int)hour;
++(NSInteger)hour;
 +(NSString *)hourString;
-+(int)minute;
++(NSInteger)minute;
 +(NSString *)minuteString;
-+(int)month;
-+(int)millis;
++(NSInteger)month;
++(NSInteger)millis;
 +(NSString *)monthString;
-+(int)second;
++(NSInteger)second;
 +(NSString *)secondString;
-+(int)year;
++(NSInteger)year;
 
 +(NSString *)dayName;
 +(NSString *)monthName;

@@ -1,0 +1,143 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@implementation CFACanvas
+-(void)setup {
+	/*
+	 The NSMutableArray stores lists of objects which can be changed...
+	 Objects can be of any kind (class)...
+	 */
+	
+	//Let's create a bunch of objects
+	CFAColor *c = [CFAColor colorWithGrey:.66];
+	CFAFont *f = [CFAFont fontWithName:@"Arial" size:20];
+	CFAImage *i = [CFAImage imageName:@"CFATest.tif"];
+	CFAString *s = [CFAString stringWithString:@"a string"];
+	CFAVoice *v	= [CFAVoice initWithVoice:ALEX];
+	CFAVector *vec = [CFAVector vectorWithX:0 Y:1 Z:0];
+	CFAObject *o = [[[CFAObject alloc] init] retain];
+	
+	NSMutableArray *array0, *array1, *array2;
+	CFALog(@"------------------------------------------------");
+	CFALog(@"Create an array, add one object");
+	array0 = [NSMutableArray arrayWithCapacity:0];
+	[array0 addObject:c];
+	CFALog(@"%@ \n",array0);
+
+	CFALog(@"------------------------------------------------");
+	CFALog(@"Add another object");
+	[array0 addObject:f];
+	CFALog(@"%@ \n",array0);
+	
+	CFALog(@"------------------------------------------------");
+	CFALog(@"Create an array, add multiple objects");
+	array1 = [NSMutableArray arrayWithCapacity:0];
+	[array1 addObject:c];
+	[array1 addObject:f];
+	[array1 addObject:i];
+	[array1 addObject:s];
+	[array1 addObject:v];
+	[array1 addObject:vec];
+	[array1 addObject:o];
+	CFALog(@"%@ \n",array1);
+	
+	CFALog(@"------------------------------------------------");
+	CFALog(@"Access various objects");
+	CFALog(@"Number of objects in array:%d",[array1 count]);
+	CFALog(@"object 1: %@",[array1 objectAtIndex:0]);
+	CFALog(@"object 3: %@",[array1 objectAtIndex:3]);
+	CFALog(@"last obj: %@ \n",[array1 lastObject]);
+
+	CFALog(@"------------------------------------------------");
+	CFALog(@"Remove a specific object");
+	[array1 removeObjectAtIndex:0];
+	CFALog(@"Number of objects in array:%d",[array1 count]);
+	CFALog(@"object 1: %@",[array1 objectAtIndex:0]);
+	CFALog(@"object 3: %@",[array1 objectAtIndex:3]);
+	CFALog(@"last obj: %@ \n",[array1 lastObject]);
+
+	CFALog(@"------------------------------------------------");
+	CFALog(@"Remove last object");
+	[array1 removeLastObject];
+	CFALog(@"Number of objects in array:%d",[array1 count]);
+	CFALog(@"object 1: %@",[array1 objectAtIndex:0]);
+	CFALog(@"object 3: %@",[array1 objectAtIndex:3]);
+	CFALog(@"last obj: %@ \n",[array1 lastObject]);
+
+	CFALog(@"------------------------------------------------");
+	CFALog(@"Add object");
+	[array1 addObject:c];
+	CFALog(@"Number of objects in array:%d",[array1 count]);
+	CFALog(@"object 1: %@",[array1 objectAtIndex:0]);
+	CFALog(@"object 3: %@",[array1 objectAtIndex:3]);
+	CFALog(@"last obj: %@ \n",[array1 lastObject]);
+	
+	CFALog(@"------------------------------------------------");
+	CFALog(@"Add objects");
+	[array1 addObject:c];
+	[array1 addObject:c];
+	[array1 addObject:c];
+	[array1 addObject:c];
+	[array1 addObject:c];
+	[array1 addObject:c];
+	[array1 addObject:c];
+	[array1 addObject:c];
+	CFALog(@"Number of objects in array:%d",[array1 count]);
+	CFALog(@"%@ \n",array1);
+	
+	CFALog(@"------------------------------------------------");
+	CFALog(@"Add object at index");
+	[array1 insertObject:vec atIndex:10];
+	CFALog(@"Number of objects in array:%d",[array1 count]);
+	CFALog(@"%@ \n",array1);
+
+	CFALog(@"------------------------------------------------");
+	CFALog(@"Replacing an object");
+	[array1 replaceObjectAtIndex:10 withObject:o];
+	CFALog(@"Number of objects in array:%d",[array1 count]);
+	CFALog(@"%@ \n",array1);
+	
+	CFALog(@"------------------------------------------------");
+	CFALog(@"Exchanging an object");
+	[array1 exchangeObjectAtIndex:10 withObjectAtIndex:0];
+	CFALog(@"Number of objects in array:%d",[array1 count]);
+	CFALog(@"%@ \n",array1);
+	
+	CFALog(@"------------------------------------------------");
+	CFALog(@"Remove Identical Objects");
+	[array1 removeObjectIdenticalTo:c];
+	CFALog(@"Number of objects in array:%d",[array1 count]);
+	CFALog(@"%@ \n",array1);
+	
+	CFALog(@"------------------------------------------------");
+	CFALog(@"Adding Objects From Another Array");
+	[array1 addObjectsFromArray:array0];
+	CFALog(@"Number of objects in array:%d",[array1 count]);
+	CFALog(@"%@ \n",array1);
+	
+	CFALog(@"------------------------------------------------");
+	CFALog(@"Adding Two Arrays into One");
+	array2 = [NSMutableArray arrayWithCapacity:0];
+	[array2 addObjectsFromArray:array0];
+	[array2 addObjectsFromArray:array1];
+	CFALog(@"Number of objects in array:%d",[array2 count]);
+	CFALog(@"%@ \n",array2);
+	
+	CFALog(@"------------------------------------------------");
+	CFALog(@"Removing Objects From Another Array");
+	[array2 removeObjectsInArray:array0];
+	CFALog(@"Number of objects in array:%d",[array2 count]);
+	CFALog(@"%@ \n",array2);
+
+	/*
+	 There are a few more advanced functions for manipulating NSMutableArray objects
+	 Have a look at Apple's documentation for these methods
+	 */
+}
+@end

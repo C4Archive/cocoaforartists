@@ -8,41 +8,69 @@
 static CFATransform *cfaTransform;
 
 @implementation CFATransform
-NSAffineTransform *transform;
 
 GENERATE_SINGLETON(CFATransform, cfaTransform);
+
+@synthesize transformArray;
+
 +(void)load {
 	if(VERBOSELOAD) printf("CFATransform\n");
 }
 
 -(id)_init {
+	transformArray = [[NSMutableArray alloc] initWithCapacity:0];
 	return self;
 }
 
-//+(void)begin{
-//	[[NSGraphicsContext currentContext] saveGraphicsState];
-//	transform = [[NSAffineTransform transform] retain];
-//}
-//
-//+(void)concat{
-//	[transform concat];
-//}
-//
-//+(void)end {
-//	[transform release];
-//	transform = nil;
-//	[[NSGraphicsContext currentContext] restoreGraphicsState];
-//}
-//
-//+(void)translateBy:(NSPoint)point {
-//	[self translateByX:point.x andY:point.y];
-//}
-//
-//+(void)translateByX:(int)x andY:(int)y {
-//	[transform translateXBy:x yBy:y];
-//}
-//
-//+(void)rotateByAngle:(float)angle {
-//	[transform rotateByDegrees:angle];
-//}
++(void)begin{
+	[[CFATransform sharedManager] begin];
+}
+
++(void)concat{
+	[[CFATransform sharedManager] concat];
+}
+
++(void)end {
+	[[CFATransform sharedManager] end];
+}
+
++(void)translateBy:(NSPoint)point {
+	[[CFATransform sharedManager] translateBy:point];
+}
+
++(void)translateByX:(NSInteger)x andY:(NSInteger)y {
+	[[CFATransform sharedManager] translateByX:x andY:y];
+}
+
++(void)rotateByAngle:(CGFloat)angle {
+	[[CFATransform sharedManager] rotateByAngle:angle];
+}
+
+-(void)begin{
+	[[NSGraphicsContext currentContext] saveGraphicsState];
+	[transformArray addObject:[NSAffineTransform transform]];
+}
+
+-(void)concat{
+	[[transformArray lastObject] concat];
+}
+
+-(void)end {
+	int count = [transformArray count];
+	if(count > 1) [[transformArray objectAtIndex:count-2] prependTransform:[transformArray lastObject]];
+	[transformArray removeLastObject];
+	[[NSGraphicsContext currentContext] restoreGraphicsState];
+}
+
+-(void)translateBy:(NSPoint)point {
+	[[CFATransform sharedManager] translateByX:point.x andY:point.y];
+}
+
+-(void)translateByX:(NSInteger)x andY:(NSInteger)y {
+	[[transformArray lastObject] translateXBy:x yBy:y];
+}
+
+-(void)rotateByAngle:(CGFloat)angle {
+	[[transformArray lastObject] rotateByDegrees:angle];
+}
 @end

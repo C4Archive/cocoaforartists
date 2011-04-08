@@ -108,6 +108,10 @@
 	return [color blueComponent];
 }
 
+-(CGFloat)alphaComponent {
+	return [color alphaComponent];
+}
+
 +(CGColorRef)NSColorToCGColor:(NSColor *)aColor {
 	aColor = [aColor colorUsingColorSpaceName:NSDeviceRGBColorSpace];
 	CGFloat colorComponents[4];
@@ -117,5 +121,13 @@
 	colorComponents[3] = [aColor alphaComponent];
 	
 	return CGColorCreate(CGColorSpaceCreateDeviceRGB(), colorComponents);
+}
+
+-(NSString *)description {
+	return [NSString stringWithFormat:@"rgba(%4.2f,%4.2f,%4.2f,%4.2f)",
+			[self redComponent],
+			[self blueComponent],
+			[self greenComponent],
+			[self alphaComponent]];
 }
 @end

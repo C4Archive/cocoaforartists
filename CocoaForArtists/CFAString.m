@@ -91,7 +91,7 @@ BOOL isClean;
 	return [CFAString stringWithString:s];
 }
 
--(int)length {
+-(NSInteger)length {
 	return [self.string length];
 }			
 
@@ -139,11 +139,11 @@ BOOL isClean;
 }
 
 
--(CFAString *)substringFromIndex:(NSUInteger)index {
+-(CFAString *)substringFromIndex:(NSInteger)index {
 	return [self substringWithRange:NSMakeRange(index, [self length]-index)];
 }
 
--(CFAString *)substringToIndex:(NSUInteger)index {
+-(CFAString *)substringToIndex:(NSInteger)index {
 	return [self substringWithRange:NSMakeRange(0,index)];
 }
 
@@ -190,11 +190,11 @@ BOOL isClean;
 	return [self.string doubleValue];
 }
 
--(float)floatValue {
+-(CGFloat)floatValue {
 	return [self.string floatValue];
 }
 
--(int)intValue {
+-(NSInteger)intValue {
 	return [self.string intValue];
 }
 
@@ -269,19 +269,19 @@ BOOL isClean;
 	[self.attributes setObject:newFont forKey:NSFontAttributeName];
 }
 
--(void)fill:(float)grey {
+-(void)fill:(CGFloat)grey {
 	[self fillRed:grey green:grey blue:grey alpha:1];
 }
 
--(void)fill:(float)grey alpha:(float)alpha {
+-(void)fill:(CGFloat)grey alpha:(CGFloat)alpha {
 	[self fillRed:grey green:grey blue:grey alpha:alpha];
 }
 
--(void)fillRed:(float)red green:(float)green blue:(float)blue {
+-(void)fillRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue {
 	[self fillRed:red green:green blue:blue alpha:1];
 }
 
--(void)fillRed:(float)red green:(float)green blue:(float)blue alpha:(float)alpha{
+-(void)fillRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha{
 	NSColor *newColor = [NSColor colorWithDeviceRed:red green:green blue:blue alpha:alpha];
 	[self fillColor:newColor];
 }
@@ -298,24 +298,24 @@ BOOL isClean;
 	[self.attributes setObject:[CFAColor colorFromObject:color] forKey:NSStrokeColorAttributeName];
 }
 
--(void)stroke:(float)grey {
+-(void)stroke:(CGFloat)grey {
 	[self strokeRed:grey green:grey blue:grey alpha:1];
 }
 
--(void)stroke:(float)grey alpha:(float)alpha {
+-(void)stroke:(CGFloat)grey alpha:(CGFloat)alpha {
 	[self strokeRed:grey green:grey blue:grey alpha:1];
 }
 
--(void)strokeRed:(float)red green:(float)green blue:(float)blue {
+-(void)strokeRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue {
 	[self strokeRed:red green:green blue:blue alpha:1];
 }
 
--(void)strokeRed:(float)red green:(float)green blue:(float)blue alpha:(float)alpha{
+-(void)strokeRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha{
 	NSColor *newColor = [NSColor colorWithDeviceRed:red green:green blue:blue alpha:alpha];
 	[self.attributes setObject:newColor forKey:NSStrokeColorAttributeName];
 }
 
--(void)strokeWidth:(float)width {
+-(void)strokeWidth:(CGFloat)width {
 	[self.attributes setValue:[NSNumber numberWithFloat:-1*width] forKey:NSStrokeWidthAttributeName];
 }
 
@@ -331,7 +331,7 @@ BOOL isClean;
 	[self.attributes setObject:[CFAColor colorFromObject:color] forKey:NSStrikethroughColorAttributeName];
 }
 
--(void)underlineStyle:(int)style {
+-(void)underlineStyle:(NSInteger)style {
 	if(style == NONE) {
 		[self.attributes removeObjectForKey:NSUnderlineStyleAttributeName];
 		[self.attributes removeObjectForKey:NSUnderlineColorAttributeName];
@@ -344,7 +344,7 @@ BOOL isClean;
 	}
 }
 
--(void)strikethroughStyle:(int)style {
+-(void)strikethroughStyle:(NSInteger)style {
 	if(style == NONE) {
 		[self.attributes removeObjectForKey:NSStrikethroughStyleAttributeName];
 		[self.attributes removeObjectForKey:NSStrikethroughColorAttributeName];
@@ -355,12 +355,12 @@ BOOL isClean;
 	}
 }
 
--(void)baselineOffset:(float)value {
+-(void)baselineOffset:(CGFloat)value {
 	if(value <= 0.0f) [self.attributes removeObjectForKey:NSBaselineOffsetAttributeName];
 	[self.attributes setValue:[NSNumber numberWithFloat:value] forKey:NSBaselineOffsetAttributeName];
 }
 
--(void)kern:(float)value {
+-(void)kern:(CGFloat)value {
 	if(value <= 0.0f) [self.attributes removeObjectForKey:NSKernAttributeName];
 	[self.attributes setValue:[NSNumber numberWithFloat:value] forKey:NSKernAttributeName];
 }
@@ -383,19 +383,19 @@ BOOL isClean;
 	[[CFAGlobalTypeAttributes sharedManager] setObject:newFont forKey:NSFontAttributeName];
 }
 
-+(void)fill:(float)grey {
++(void)fill:(CGFloat)grey {
 	[CFAString fillRed:grey green:grey blue:grey alpha:1.0f];
 }
 
-+(void)fill:(float)grey alpha:(float)alpha {
++(void)fill:(CGFloat)grey alpha:(CGFloat)alpha {
 	[CFAString fillRed:grey green:grey blue:grey alpha:alpha];
 }
 
-+(void)fillRed:(float)red green:(float)green blue:(float)blue {
++(void)fillRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue {
 	[CFAString fillRed:red green:green blue:blue alpha:1.0f];
 }
 
-+(void)fillRed:(float)red green:(float)green blue:(float)blue alpha:(float)alpha{
++(void)fillRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha{
 	NSColor *newColor = [NSColor colorWithDeviceRed:red green:green blue:blue alpha:alpha];
 	[CFAString fillColor:newColor];
 }
@@ -413,24 +413,24 @@ BOOL isClean;
 	[[CFAGlobalTypeAttributes sharedManager] setObject:[CFAColor colorFromObject:color] forKey:NSStrokeColorAttributeName];
 }
 
-+(void)stroke:(float)grey {
++(void)stroke:(CGFloat)grey {
 	[self strokeRed:grey green:grey blue:grey alpha:1];
 }
 
-+(void)stroke:(float)grey alpha:(float)alpha {
++(void)stroke:(CGFloat)grey alpha:(CGFloat)alpha {
 	[self strokeRed:grey green:grey blue:grey alpha:1];
 }
 
-+(void)strokeRed:(float)red green:(float)green blue:(float)blue {
++(void)strokeRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue {
 	[self strokeRed:red green:green blue:blue alpha:1];
 }
 
-+(void)strokeRed:(float)red green:(float)green blue:(float)blue alpha:(float)alpha{
++(void)strokeRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha{
 	NSColor *newColor = [NSColor colorWithDeviceRed:red green:green blue:blue alpha:alpha];
 	[[CFAGlobalTypeAttributes sharedManager] setObject:newColor forKey:NSStrokeColorAttributeName];
 }
 
-+(void)strokeWidth:(float)width {
++(void)strokeWidth:(CGFloat)width {
 	if (width < 0.1f){
 		width = 0.1f;
 		NSLog(@"stroke width set to 0.1, it cannot be smaller than this");
@@ -450,7 +450,7 @@ BOOL isClean;
 	[[CFAGlobalTypeAttributes sharedManager] setObject:[CFAColor colorFromObject:color] forKey:NSStrikethroughColorAttributeName];
 }
 
-+(void)underlineStyle:(int)style {
++(void)underlineStyle:(NSInteger)style {
 	if(style == NONE) {
 		[[CFAGlobalTypeAttributes sharedManager] removeObjectForKey:NSUnderlineStyleAttributeName];
 		[[CFAGlobalTypeAttributes sharedManager] removeObjectForKey:NSUnderlineColorAttributeName];
@@ -463,7 +463,7 @@ BOOL isClean;
 
 }
 
-+(void)strikethroughStyle:(int)style {
++(void)strikethroughStyle:(NSInteger)style {
 	if(style == NONE) {
 		[[CFAGlobalTypeAttributes sharedManager] removeObjectForKey:NSStrikethroughStyleAttributeName];
 		[[CFAGlobalTypeAttributes sharedManager] removeObjectForKey:NSStrikethroughColorAttributeName];
@@ -475,12 +475,12 @@ BOOL isClean;
 	}
 }
 
-+(void)baselineOffset:(float)value {
++(void)baselineOffset:(CGFloat)value {
 	if(value <= 0.0f) [[CFAGlobalTypeAttributes sharedManager] removeObjectForKey:NSBaselineOffsetAttributeName];
 	[[CFAGlobalTypeAttributes sharedManager] setValue:[NSNumber numberWithFloat:value] forKey:NSBaselineOffsetAttributeName];
 }
 
-+(void)kern:(float)value {
++(void)kern:(CGFloat)value {
 	if(value <= 0.0f) [[CFAGlobalTypeAttributes sharedManager] removeObjectForKey:NSKernAttributeName];
 	[[CFAGlobalTypeAttributes sharedManager] setValue:[NSNumber numberWithFloat:value] forKey:NSKernAttributeName];
 }

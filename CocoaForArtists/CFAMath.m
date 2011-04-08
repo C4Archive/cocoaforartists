@@ -21,45 +21,45 @@ GENERATE_SINGLETON(CFAMath, cfaMath);
 }
 
 #pragma mark Calculation
-+(int)abs:(int)value {
++(NSInteger)abs:(NSInteger)value {
 	return abs(value);
 }
 
-+(float)absf:(float)value {
++(CGFloat)absf:(CGFloat)value {
 	return fabsf(value);
 }
 
-+(int)ceil:(float)value {
++(NSInteger)ceil:(CGFloat)value {
 	return ceilf(value);
 }
 
-+(int)constrain:(int)value min:(int)min max:(int)max {
++(NSInteger)constrain:(NSInteger)value min:(NSInteger)min max:(NSInteger)max {
 	return [self constrainf:value min:min max:max];
 }
 
-+(float)constrainf:(float)value min:(float)min max:(float)max {
++(CGFloat)constrainf:(CGFloat)value min:(CGFloat)min max:(CGFloat)max {
 	if (min < value && value < max) return value;
 	else if (value <= min) return min;
 	else return max;
 }
 
-+(float)exp:(float)value {
++(CGFloat)exp:(CGFloat)value {
 	return [self pow:eCONSTANT raiseTo:value];
 }
 
-+(int)floor:(float)value {
++(NSInteger)floor:(CGFloat)value {
 	return floor((double)value);
 }
 
-+(float)lerpBetweenA:(float)a andB:(float)b byAmount:(float)amount {
++(CGFloat)lerpBetweenA:(CGFloat)a andB:(CGFloat)b byAmount:(CGFloat)amount {
 	return 0;
 }
 
-+(float)log:(float)value {
++(CGFloat)log:(CGFloat)value {
 	return logf(value);
 }
 
-+(float)map:(float)value fromMin:(float)min1 max:(float)max1 toMin:(float)min2 max:(float)max2 {
++(CGFloat)map:(CGFloat)value fromMin:(CGFloat)min1 max:(CGFloat)max1 toMin:(CGFloat)min2 max:(CGFloat)max2 {
 	/* NEED TO FIX THIS PROPERLY */
 	float rangeLength1 = max1-min1;
 	float rangeLength2 = max2-min2;
@@ -67,89 +67,89 @@ GENERATE_SINGLETON(CFAMath, cfaMath);
 	return value*multiplier;
 }
 
-+(float)maxOfA:(float)a andB:(float)b {
++(CGFloat)maxOfA:(CGFloat)a andB:(CGFloat)b {
 	float max = a > b ? a : b;
 	return max;
 }
 
-+(float)maxOfA:(float)a B:(float)b andC:(float)c {
++(CGFloat)maxOfA:(CGFloat)a B:(CGFloat)b andC:(CGFloat)c {
 	return [self maxOfA:[self maxOfA:a andB:b] andB:c];
 }
 
 
-+(float)minOfA:(float)a andB:(float)b {
++(CGFloat)minOfA:(CGFloat)a andB:(CGFloat)b {
 	float min = a < b ? a : b;
 	return min;
 }
 
-+(float)minOfA:(float)a B:(float)b andC:(float)c {
++(CGFloat)minOfA:(CGFloat)a B:(CGFloat)b andC:(CGFloat)c {
 	return [self minOfA:[self minOfA:a andB:b] andB:c];
 }
 
-+(float)norm:(float)value fromMin:(float)min toMax:(float)max {
++(CGFloat)norm:(CGFloat)value fromMin:(CGFloat)min toMax:(CGFloat)max {
 	return 0;
 }
 
-+(float)pow:(float)value raiseTo:(float)degree {
++(CGFloat)pow:(CGFloat)value raiseTo:(CGFloat)degree {
 	return powf(value,degree);
 }
 
-+(float)round:(float)value {
++(CGFloat)round:(CGFloat)value {
 	return roundf(value);
 }
 
-+(float)square:(float)value {
++(CGFloat)square:(CGFloat)value {
 	return powf(value, 2);
 }
 
-+(float)sqrt:(float)value {
++(CGFloat)sqrt:(CGFloat)value {
 	return sqrtf(value);
 }
 
 #pragma mark Trigonometry
-+(float)acos:(float)value {
++(CGFloat)acos:(CGFloat)value {
 	return acosf(value);
 }
 
-+(float)asin:(float)value {
++(CGFloat)asin:(CGFloat)value {
 	return asinf(value);
 }
 
-+(float)atan:(float)value {
++(CGFloat)atan:(CGFloat)value {
 	return atanf(value);
 }
 
-+(float)atan2Y:(float)y X:(float)x {
++(CGFloat)atan2Y:(CGFloat)y X:(CGFloat)x {
 	return atan2f(y,x);
 }
 
-+(float)cos:(float)value {
++(CGFloat)cos:(CGFloat)value {
 	return cosf(value);
 }
 
-+(float)degrees:(float)value {
++(CGFloat)degrees:(CGFloat)value {
 	return RADIANS_TO_DEGREES(value);
 }
 
-+(float)radians:(float)value {
++(CGFloat)radians:(CGFloat)value {
 	return DEGREES_TO_RADIANS(value);
 }
 
-+(float)sin:(float)value {
++(CGFloat)sin:(CGFloat)value {
 	return sinf(value);
 }
 
-+(float)tan:(float)value {
++(CGFloat)tan:(CGFloat)value {
 	return tanf(value);
 }
 #pragma mark Random
-+(int)randomInt:(int)value {
++(NSInteger)randomInt:(NSInteger)value {
 	srandomdev();
 	return random()%value;
 }
 
 #pragma mark arithmetic
-+(int)randomIntBetweenA:(int)a andB:(int)b{
++(NSInteger)randomIntBetweenA:(NSInteger)a andB:(NSInteger)b{
 	if (a == b) return a;
 	
 	int max = a > b ? a : b;
@@ -168,31 +168,31 @@ GENERATE_SINGLETON(CFAMath, cfaMath);
  Is this a good idea (consistent), or should these still be included in CFAMath?
  */
 
-// +(float)distFromX:(float)x1 Y:(float)y1 toX:(float)x2 Y:(float)y2 {
+// +(CGFloat)distFromX:(CGFloat)x1 Y:(CGFloat)y1 toX:(CGFloat)x2 Y:(CGFloat)y2 {
 // return (sqrt(pow(x2-x1,2)+pow(y2-y1,2)));
 // }
  
-// +(float)magPoint:(NSPoint)p {
+// +(CGFloat)magPoint:(NSPoint)p {
 // return [self magX:p.x Y:p.y];
 // }
  
-// +(float)magX:(float)x Y:(float)y {
+// +(CGFloat)magX:(CGFloat)x Y:(CGFloat)y {
 // return [self distFromX:0 Y:0 toX:x Y:y];
 // }
  
-// +(float)maxOfArray:(NSArray *)array {
+// +(CGFloat)maxOfArray:(NSArray *)array {
 // return 0;
 // } 
  
-// +(float)minOfArray:(NSArray *)array {
+// +(CGFloat)minOfArray:(NSArray *)array {
 // return 0;
 // }
 
-// +(float)distanceFromPoint:(NSPoint)p1 toPoint:(NSPoint)p2 {
+// +(CGFloat)distanceFromPoint:(NSPoint)p1 toPoint:(NSPoint)p2 {
 // return [self distanceFromX:p2.x Y:p2.y toX:p1.x Y:p1.y];
 // }
  
-// +(float)distanceFromX:(float)x1 Y:(float)y1 toX:(float)x2 Y:(float)y2 {
+// +(CGFloat)distanceFromX:(CGFloat)x1 Y:(CGFloat)y1 toX:(CGFloat)x2 Y:(CGFloat)y2 {
 // return (sqrt(pow(x2-x1,2)+pow(y2-y1,2)));
 // }
 

@@ -53,8 +53,8 @@ NSInteger strSort(id str1, id str2, void *context) {
 }
 
 NSInteger floatSort(id obj1, id obj2, void *context) {
-	float flt1 = [obj1 floatValue];
-	float flt2 = [obj2 floatValue];
+	float flt1 = [(NSNumber *)obj1 floatValue];
+	float flt2 = [(NSNumber *)obj2 floatValue];
 	if (flt1 < flt2)
         return NSOrderedAscending;
     else if (flt1 > flt2)

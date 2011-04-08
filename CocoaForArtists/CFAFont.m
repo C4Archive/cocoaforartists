@@ -136,4 +136,8 @@
 	return [[NSFontManager sharedFontManager] availableFonts];
 }
 
+-(NSString *)description {
+	return [NSString stringWithFormat:@"%@ %4.2fpt",[self.font fontName],[self.font pointSize]];
+}
+
 @end

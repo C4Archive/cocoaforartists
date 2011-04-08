@@ -78,13 +78,13 @@
 	
 	// First get the image into your data buffer
 	CGImageRef imageRef = [rep CGImage];
-	NSUInteger w = CGImageGetWidth(imageRef);
-	NSUInteger h = CGImageGetHeight(imageRef);
+	NSInteger w = CGImageGetWidth(imageRef);
+	NSInteger h = CGImageGetHeight(imageRef);
 	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
 	rawData = malloc(h * w * 4);
 	bytesPerPixel = 4;
-	NSUInteger bytesPerRow = bytesPerPixel * w;
-	NSUInteger bitsPerComponent = 8;
+	NSInteger bytesPerRow = bytesPerPixel * w;
+	NSInteger bitsPerComponent = 8;
 	CGContextRef context = CGBitmapContextCreate(rawData, w, h,
 												 bitsPerComponent, bytesPerRow, colorSpace,
 												 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
@@ -94,7 +94,7 @@
 	CGContextRelease(context);
 }
 
--(CFAColor *)colorAtX:(int)x andY:(int)y {
+-(CFAColor *)colorAtX:(NSInteger)x andY:(NSInteger)y {
 	// inverting the y coordinate (a hack, but it works)
 	// might be better to invert the pixels when the loadPixelData method is called
 	int byteIndex = (bytesPerPixel * self.imageWidth * (self.imageHeight-y-1)) + x * bytesPerPixel;
@@ -123,7 +123,7 @@
 	}
 }
 
--(void)drawAt:(NSPoint)p withAlpha:(float)alpha{
+-(void)drawAt:(NSPoint)p withAlpha:(CGFloat)alpha{
 	if(!drawFilteredImage) {
 		[originalImage drawAtPoint:p fromRect:imageRect operation:NSCompositeSourceOver fraction:alpha];
 	}
@@ -132,7 +132,7 @@
 	}
 }
 
--(void)drawAt:(NSPoint)p withWidth:(float)w andHeight:(float)h {
+-(void)drawAt:(NSPoint)p withWidth:(CGFloat)w andHeight:(CGFloat)h {
 	if(!drawFilteredImage) {
 		[originalImage drawInRect:NSMakeRect(p.x, p.y, w, h) fromRect:imageRect operation:NSCompositeSourceOver fraction:1.0];
 	}
@@ -141,7 +141,7 @@
 	}
 }
 
--(void)drawAt:(NSPoint)p withWidth:(float)w andHeight:(float)h withAlpha:(float)a{
+-(void)drawAt:(NSPoint)p withWidth:(CGFloat)w andHeight:(CGFloat)h withAlpha:(CGFloat)a{
 	if(!drawFilteredImage) {
 		[originalImage drawInRect:NSMakeRect(p.x, p.y, w, h) fromRect:imageRect operation:NSCompositeSourceOver fraction:a];
 	}
@@ -160,6 +160,10 @@
 	} else {
 		[filteredImage drawInRect:rect fromRect:imageRect operation:NSCompositeSourceOver fraction:1.0];
 	}
+}
+
+-(NSString *)description {
+	return [NSString stringWithFormat:@"CFAImage with size:(%4.2f,%4.2f)",self.imageWidth,self.imageHeight];
 }
 
 /*
@@ -243,7 +247,7 @@
 }
 
 #pragma mark TILE FILTERS
--(void)kaleidoscope:(NSPoint)center count:(NSUInteger)count angle:(CGFloat)angle {
+-(void)kaleidoscope:(NSPoint)center count:(NSInteger)count angle:(CGFloat)angle {
 	CIFilter *filter = [CIFilter filterWithName:@"CIKaleidoscope"];
 	[filter setDefaults];
 	if(singleFilter) {

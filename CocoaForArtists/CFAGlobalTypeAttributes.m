@@ -63,7 +63,7 @@ GENERATE_SINGLETON(CFAGlobalTypeAttributes, cfaGlobalTypeAttributes);
 		}
 		else if([aKey isEqualTo:NSKernAttributeName]) {
 			CGFloat value[1]; 
-			value[0] = [[dictionary objectForKey:aKey] floatValue];
+			value[0] = [(NSNumber *)[dictionary objectForKey:aKey] floatValue];
 			CFNumberRef kernValue = CFNumberCreate(kCFAllocatorDefault, kCFNumberFloatType, &value[0]);
 			CFDictionaryAddValue(mDict, kCTKernAttributeName, kernValue);
 		}
@@ -74,7 +74,7 @@ GENERATE_SINGLETON(CFAGlobalTypeAttributes, cfaGlobalTypeAttributes);
 		}
 		else if([aKey isEqualTo:NSStrokeWidthAttributeName]) {
 			CGFloat value[1]; 
-			value[0] = [[dictionary objectForKey:aKey] floatValue];
+			value[0] = [(NSNumber *)[dictionary objectForKey:aKey] floatValue];
 			CFNumberRef strokeWidthValue = CFNumberCreate(kCFAllocatorDefault, kCFNumberFloatType, &value[0]);
 			CFDictionaryAddValue(mDict, kCTStrokeWidthAttributeName, strokeWidthValue);
 		}
@@ -85,7 +85,7 @@ GENERATE_SINGLETON(CFAGlobalTypeAttributes, cfaGlobalTypeAttributes);
 		}
 		else if([aKey isEqualTo:NSUnderlineStyleAttributeName]) {
 			int32_t value[1]; 
-			value[0] = [[dictionary objectForKey:aKey] intValue];
+			value[0] = [(NSNumber *)[dictionary objectForKey:aKey] intValue];
 			CFNumberRef underlineStyleValue = CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, &value[0]);
 			CFDictionaryAddValue(mDict, kCTUnderlineStyleAttributeName, underlineStyleValue);
 		}

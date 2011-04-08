@@ -26,4 +26,8 @@
 -(void)postNotification:(NSString *)aNotification {
 	[[NSNotificationCenter defaultCenter] postNotificationName:aNotification object:self];
 }
+
+-(NSString *)description {
+	return @"Generic CFAObject";
+}
 @end

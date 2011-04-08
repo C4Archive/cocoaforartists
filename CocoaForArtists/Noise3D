@@ -1,0 +1,38 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+float increment, zincrement, zOff;
+@end 
+
+@implementation CFACanvas
+-(void)setup {
+	[self drawStyle:ANIMATED];
+	[self windowWidth:200 andHeight:200];
+	zOff = 0.0f;
+	zincrement = 0.02f;
+	increment = 0.02f;
+}
+
+-(void)draw {
+	[self background:0];
+	float xOff = 0.0f;
+	for(int x = 0; x < self.canvasWidth; x+=2) {
+		xOff += increment;
+		float yOff = 0.0f;
+		for(int y = 0; y < self.canvasHeight; y+=2) {
+			yOff += increment;
+			float bright = [CFANoise noise3_naX:xOff Y:yOff Z:zOff]+0.2;
+			[CFAShape fill:bright];
+			[CFAShape pointAtX:x Y:y];
+		}
+	}
+	zOff += zincrement; // Increment zoff
+}
+@end

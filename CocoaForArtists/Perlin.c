@@ -30,9 +30,9 @@ static void init(void);
 
 #define setup(i,b0,b1,r0,r1)\
 t = vec[i] + N;\
-b0 = ((int)t) & BM;\
+b0 = ((NSInteger)t) & BM;\
 b1 = (b0+1) & BM;\
-r0 = t - (int)t;\
+r0 = t - (NSInteger)t;\
 r1 = r0 - 1.;
 
 float noise1(float arg)
@@ -187,14 +187,14 @@ static void init(void)
 	for (i = 0 ; i < B ; i++) {
 		p[i] = i;
 		
-		g1[i] = (float)((random() % (B + B)) - B) / B;
+		g1[i] = (CGFloat)((random() % (B + B)) - B) / B;
 		
 		for (j = 0 ; j < 2 ; j++)
-			g2[i][j] = (float)((random() % (B + B)) - B) / B;
+			g2[i][j] = (CGFloat)((random() % (B + B)) - B) / B;
 		normalize2(g2[i]);
 		
 		for (j = 0 ; j < 3 ; j++)
-			g3[i][j] = (float)((random() % (B + B)) - B) / B;
+			g3[i][j] = (CGFloat)((random() % (B + B)) - B) / B;
 		normalize3(g3[i]);
 	}
 	

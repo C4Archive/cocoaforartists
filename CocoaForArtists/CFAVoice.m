@@ -90,7 +90,7 @@
 	return [synth isSpeaking];
 }
 
--(void)pause:(int)pauseBoundary {
+-(void)pause:(NSInteger)pauseBoundary {
 	[synth pauseSpeakingAtBoundary:pauseBoundary];
 }
 
@@ -101,8 +101,12 @@
 -(void)stop {
 }
 
--(void)stop:(int)stopBoundary  {
+-(void)stop:(NSInteger)stopBoundary  {
 	[synth stopSpeakingAtBoundary:stopBoundary];
+}
+
+-(NSString *)description {
+	return [NSString stringWithFormat:@"CFAVoice -> %@",[synth voice]];
 }
 
 @end

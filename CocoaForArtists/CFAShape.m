@@ -54,7 +54,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 }
 
 #pragma mark Shapes
-+(void)arcWithCenterAt:(NSPoint)p radius:(float)r startAngle:(float)startAngle endAngle:(float)endAngle {
++(void)arcWithCenterAt:(NSPoint)p radius:(CGFloat)r startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle {
 	if(useFill == YES) {
 		NSBezierPath *arcPath = [NSBezierPath bezierPath];
 		[arcPath appendBezierPathWithArcWithCenter:p radius:r startAngle:startAngle endAngle:endAngle];
@@ -112,15 +112,15 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	}
 }
 
-+(void)curveFromX:(int)x1 Y:(int)y1 toX:(int)x2 Y:(int)y2 controlPoint1X:(int)cx1 Y:(int)cy1 controlPoint2X:(int)cx2 Y:(int)cy2 {
++(void)curveFromX:(NSInteger)x1 Y:(NSInteger)y1 toX:(NSInteger)x2 Y:(NSInteger)y2 controlPoint1X:(NSInteger)cx1 Y:(NSInteger)cy1 controlPoint2X:(NSInteger)cx2 Y:(NSInteger)cy2 {
 	[self curveFromPoint:NSMakePoint(x1, y1) 
 				 toPoint:NSMakePoint(x2, y2) 
 		   controlPoint1:NSMakePoint(cx1, cy1)
 		   controlPoint2:NSMakePoint(cx2, cy2)];
 }
 
-+(void)circleAt:(NSPoint)p radius:(int)r {
-	[self ellipseAt:p size:NSMakeSize(r*2, r*2)];
++(void)circleAt:(NSPoint)p radius:(CGFloat)r {
+	[self ellipseAt:p size:NSMakeSize(r*2.0f, r*2.0f)];
 }
 
 +(void)ellipseAt:(NSPoint)p	size:(NSSize)s {
@@ -128,8 +128,8 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	circleRect.origin = p;
 	circleRect.size = s;
 	if (ellipseMode == CENTER) {
-		circleRect.origin.x -= circleRect.size.width/2;
-		circleRect.origin.y -= circleRect.size.height/2;
+		circleRect.origin.x -= circleRect.size.width/2.0f;
+		circleRect.origin.y -= circleRect.size.height/2.0f;
 	}
 	NSBezierPath *ellipse = [NSBezierPath bezierPathWithOvalInRect:circleRect];
 	
@@ -153,11 +153,11 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	}
 }
 
-+(void)ellipseWithXPos:(int)x yPos:(int)y width:(int)w andHeight:(int)h {
++(void)ellipseWithXPos:(NSInteger)x yPos:(NSInteger)y width:(NSInteger)w andHeight:(NSInteger)h {
 	[self ellipseAt:NSMakePoint(x,y) size:NSMakeSize(w, h)];
 }
 
-+(void)lineFromX:(int)x1 Y:(int)y1 toX:(int)x2 Y:(int)y2 {
++(void)lineFromX:(NSInteger)x1 Y:(NSInteger)y1 toX:(NSInteger)x2 Y:(NSInteger)y2 {
 	[self lineFromPoint:NSMakePoint(x1, y1) toPoint:NSMakePoint(x2, y2)];
 }
 
@@ -185,7 +185,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 		}
 }
 
-+(void)pointAtX:(int)x1 Y:(int)y1 {
++(void)pointAtX:(NSInteger)x1 Y:(NSInteger)y1 {
 	[self pointAt:NSMakePoint(x1, y1)];
 }
 
@@ -199,7 +199,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	if (!fll) [self noFill]; //set fill off if it was off before
 }
 
-+(void)rectWithXPos:(int)x yPos:(int)y width:(float)w andHeight:(float)h {
++(void)rectWithXPos:(NSInteger)x yPos:(NSInteger)y width:(CGFloat)w andHeight:(CGFloat)h {
 /*
 	if (w < 1) {
 		NSLog(@"Value for width (%f) invalid, width must be >= 1",w);
@@ -242,7 +242,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 }
 
 
-+(void)triangleFromX:(int)x1 Y:(int)y1 toX:(int)x2 Y:(int)y2 toX:(int)x3 Y:(int)y3 {
++(void)triangleFromX:(NSInteger)x1 Y:(NSInteger)y1 toX:(NSInteger)x2 Y:(NSInteger)y2 toX:(NSInteger)x3 Y:(NSInteger)y3 {
 	[self triangleUsingPoint:NSMakePoint(x1, y1) point:NSMakePoint(x2, y2) point:NSMakePoint(x3, y3)];
 }
 
@@ -324,7 +324,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	}
 }
 
-+(void)quadFromX:(int)x1 Y:(int)y1 toX:(int)x2 Y:(int)y2 toX:(int)x3 Y:(int)y3 toX:(int)x4 Y:(int)y4 {	
++(void)quadFromX:(NSInteger)x1 Y:(NSInteger)y1 toX:(NSInteger)x2 Y:(NSInteger)y2 toX:(NSInteger)x3 Y:(NSInteger)y3 toX:(NSInteger)x4 Y:(NSInteger)y4 {	
 	[self quadUsingPoint:NSMakePoint(x1, y1) point:NSMakePoint(x2, y2) point:NSMakePoint(x3, y3) point:NSMakePoint(x4, y4)];
 }
 
@@ -378,7 +378,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	CGContextClosePath(pdfContext);
 }
 
-+(void)vertexAtX:(int)x Y:(int)y {
++(void)vertexAtX:(NSInteger)x Y:(NSInteger)y {
 	[self vertexAt:NSMakePoint(x, y)];
 }
 
@@ -412,11 +412,11 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 +(CGMutablePathRef)currentShape {
 	return currentShape;
 }
-+(void)addArcWithCenterAt:(NSPoint)p radius:(float)r startAngle:(float)startAngle endAngle:(float)endAngle {
++(void)addArcWithCenterAt:(NSPoint)p radius:(CGFloat)r startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle {
 	CGPathAddArc(currentShape, NULL, p.x, p.y, r, DEGREES_TO_RADIANS(startAngle),DEGREES_TO_RADIANS(endAngle), 0);
 }
 
-+(void)addCircleAt:(NSPoint)p radius:(int)r{
++(void)addCircleAt:(NSPoint)p radius:(NSInteger)r{
 	CGRect circleRect;
 	circleRect.origin = NSPointToCGPoint(p);
 	circleRect.size = CGSizeMake(r*2, r*2);
@@ -431,7 +431,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	[self addCurveFromX:p1.x Y:p1.y toX:p2.x Y:p2.y controlPoint1X:c1.x Y:c1.y controlPoint2X:c2.x Y:c2.y];
 }
 
-+(void)addCurveFromX:(int)x1 Y:(int)y1 toX:(int)x2 Y:(int)y2 controlPoint1X:(int)cx1 Y:(int)cy1 controlPoint2X:(int)cx2 Y:(int)cy2{
++(void)addCurveFromX:(NSInteger)x1 Y:(NSInteger)y1 toX:(NSInteger)x2 Y:(NSInteger)y2 controlPoint1X:(NSInteger)cx1 Y:(NSInteger)cy1 controlPoint2X:(NSInteger)cx2 Y:(NSInteger)cy2{
 	CGMutablePathRef curvePath = CGPathCreateMutable();
 	CGPathMoveToPoint(curvePath, NULL, x1, y1);
 	CGPathAddCurveToPoint(curvePath, NULL, cx1, cy1, cx2, cy2, x2, y2);
@@ -449,11 +449,11 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	CGPathAddEllipseInRect(currentShape, NULL, ellipseRect);
 }
 
-+(void)addEllipseWithXPos:(int)x yPos:(int)y width:(int)w andHeight:(int)h {
++(void)addEllipseWithXPos:(NSInteger)x yPos:(NSInteger)y width:(NSInteger)w andHeight:(NSInteger)h {
 	[self addEllipseAt:NSMakePoint(x, y) size:NSMakeSize(w, h)];
 }
 
-+(void)addLineFromX:(int)x1 Y:(int)y1 toX:(int)x2 Y:(int)y2{
++(void)addLineFromX:(NSInteger)x1 Y:(NSInteger)y1 toX:(NSInteger)x2 Y:(NSInteger)y2{
 	CGMutablePathRef linePath = CGPathCreateMutable();
 	CGPathMoveToPoint(linePath, NULL, x1, y1);
 	CGPathAddLineToPoint(linePath, NULL, x2, y2);
@@ -468,20 +468,20 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	[self addLineToX:p.x Y:p.y];
 }
 
-+(void)addLineToX:(int)x Y:(int)y {
++(void)addLineToX:(NSInteger)x Y:(NSInteger)y {
 	CGPathAddLineToPoint(currentShape, NULL, x, y);
 }
 
 +(void)addPointAt:(NSPoint)p{
 	[self addRectWithXPos:p.x yPos:p.y width:1 andHeight:1];
 }
-+(void)addPointAtX:(int)x1 Y:(int)y1{
++(void)addPointAtX:(NSInteger)x1 Y:(NSInteger)y1{
 	[self addPointAt:NSMakePoint(x1,y1)];
 }
-+(void)addRectWithXPos:(int)x yPos:(int)y width:(float)w andHeight:(float)h { 
++(void)addRectWithXPos:(NSInteger)x yPos:(NSInteger)y width:(CGFloat)w andHeight:(CGFloat)h { 
 	CGPathAddRect(currentShape,NULL,CGRectMake(x, y, w, h));
 }
-+(void)addTriangleFromX:(int)x1 Y:(int)y1 toX:(int)x2 Y:(int)y2 toX:(int)x3 Y:(int)y3{
++(void)addTriangleFromX:(NSInteger)x1 Y:(NSInteger)y1 toX:(NSInteger)x2 Y:(NSInteger)y2 toX:(NSInteger)x3 Y:(NSInteger)y3{
 	[self addTriangleUsingPoint:NSMakePoint(x1, y1) point:NSMakePoint(x2, y2) point:NSMakePoint(x3, y3)];
 }
 +(void)addTriangleUsingPoint:(NSPoint)p1 point:(NSPoint)p2 point:(NSPoint)p3 {
@@ -495,7 +495,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 +(void)addQuadUsingPoint:(NSPoint)p1 point:(NSPoint)p2 point:(NSPoint)p3 point:(NSPoint)p4{
 	[self addQuadFromX:p1.x Y:p1.y toX:p2.x Y:p2.y toX:p3.x Y:p3.y toX:p4.x Y:p4.y];
 }
-+(void)addQuadFromX:(int)x1 Y:(int)y1 toX:(int)x2 Y:(int)y2 toX:(int)x3 Y:(int)y3 toX:(int)x4 Y:(int)y4{
++(void)addQuadFromX:(NSInteger)x1 Y:(NSInteger)y1 toX:(NSInteger)x2 Y:(NSInteger)y2 toX:(NSInteger)x3 Y:(NSInteger)y3 toX:(NSInteger)x4 Y:(NSInteger)y4{
 	CGMutablePathRef quadPath = CGPathCreateMutable();
 	CGPathMoveToPoint(quadPath, NULL, x1, y1);
 	CGPathAddLineToPoint(quadPath, NULL, x2, y2);
@@ -506,7 +506,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 }
 
 #pragma mark Attributes
-+(void)strokeWidth:(float)width {
++(void)strokeWidth:(CGFloat)width {
 	if (strokeWidth > 0.1) {
 		strokeWidth = width;
 	} else {
@@ -515,7 +515,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	}
 }
 
-+(void)rectMode:(int)mode {
++(void)rectMode:(NSInteger)mode {
 	if (mode == CENTER || mode == CORNER) {
 		rectMode = mode;
 	} else {
@@ -523,7 +523,7 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	}
 }
 
-+(void)ellipseMode:(int)mode {
++(void)ellipseMode:(NSInteger)mode {
 	if (mode == CENTER || mode == CORNER) {
 		ellipseMode = mode;
 	} else {
@@ -531,21 +531,21 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	}
 }
 
-+(void)strokeCapMode:(int)mode {
++(void)strokeCapMode:(NSInteger)mode {
 	if(mode >= NSButtLineCapStyle && mode <= NSSquareLineCapStyle)
 		[NSBezierPath setDefaultLineCapStyle:mode];
 	else
 		CFALog(@"Stroke Cap Mode must be one of: CAPBUTT, CAPROUND, CAPSQUARE");		
 }
 
-+(void)strokeJoinMode:(int)mode {
++(void)strokeJoinMode:(NSInteger)mode {
 	if (mode >= NSMiterLineJoinStyle && mode <= NSBevelLineJoinStyle)
 		[NSBezierPath setDefaultLineJoinStyle:mode];
 	else
 		CFALog(@"Stroke Join Mode must be one of: JOINMITRE, JOINROUND, JOINBEVEL");
 }
 
-+(void)strokeDetail:(float)level {
++(void)strokeDetail:(CGFloat)level {
 	[NSBezierPath setDefaultFlatness:fabsf(level)];
 }
 
@@ -555,22 +555,22 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	fillColor = [color retain];
 }
 
-+(void)fill:(float)grey {
++(void)fill:(CGFloat)grey {
 	[fillColor release];
 	fillColor = [[CFAColor colorWithGrey:grey] retain];
 }
 
-+(void)fill:(float)grey alpha:(float)alpha{
++(void)fill:(CGFloat)grey alpha:(CGFloat)alpha{
 	[fillColor release];
 	fillColor = [[CFAColor colorWithGrey:grey alpha:alpha] retain];
 }
 
-+(void)fillRed:(float)red green:(float)green blue:(float)blue {
++(void)fillRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue {
 	[fillColor release];
 	fillColor = [[CFAColor colorWithRed:red green:green blue:blue] retain];
 }
 
-+(void)fillRed:(float)red green:(float)green blue:(float)blue alpha:(float)alpha{
++(void)fillRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha{
 	[fillColor release];
 	fillColor = [[CFAColor colorWithRed:red green:green blue:blue alpha:alpha] retain];
 }
@@ -592,22 +592,22 @@ GENERATE_SINGLETON(CFAShape, cfaShape);
 	strokeColor = [color retain];
 }
 
-+(void)stroke:(float)grey {
++(void)stroke:(CGFloat)grey {
 	[strokeColor release];
 	strokeColor = [[CFAColor colorWithRed:grey green:grey blue:grey alpha:1.0f] retain];
 }
 
-+(void)stroke:(float)grey alpha:(float)alpha {
++(void)stroke:(CGFloat)grey alpha:(CGFloat)alpha {
 	[strokeColor release];
 	strokeColor = [[CFAColor colorWithRed:grey green:grey blue:grey alpha:alpha] retain];
 }
 
-+(void)strokeRed:(float)red green:(float)green blue:(float)blue {
++(void)strokeRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue {
 	[strokeColor release];
 	strokeColor = [[CFAColor colorWithRed:red green:green blue:blue alpha:255] retain];
 }
 
-+(void)strokeRed:(float)red green:(float)green blue:(float)blue alpha:(float)alpha{
++(void)strokeRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha{
 	[strokeColor release];
 	strokeColor = [[CFAColor colorWithRed:red green:green blue:blue alpha:alpha] retain];
 }

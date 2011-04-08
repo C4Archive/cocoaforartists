@@ -17,11 +17,11 @@
 
 @synthesize vec;
 
-+(id)vectorWithX:(float)x Y:(float)y Z:(float)z {
++(id)vectorWithX:(CGFloat)x Y:(CGFloat)y Z:(CGFloat)z {
 	return [[[CFAVector alloc] vectorWithX:x Y:y Z:z] autorelease];
 }
 
--(id)vectorWithX:(float)x Y:(float)y Z:(float)z {
+-(id)vectorWithX:(CGFloat)x Y:(CGFloat)y Z:(CGFloat)z {
 	if(!(self = [super init])) {
 		return nil;
 	}
@@ -29,10 +29,14 @@
 	vec3[0] = x;
 	vec3[1] = y;
 	vec3[2] = z;
+	
+	pVec3[0] = 0;
+	pVec3[1] = 0;
+	pVec3[2] = 0;
 	return self;
 }
 
--(void)setX:(float)x Y:(float)y Z:(float)z {
+-(void)setX:(CGFloat)x Y:(CGFloat)y Z:(CGFloat)z {
 	vec3[0] = x;
 	vec3[1] = y;
 	vec3[2] = z;
@@ -70,31 +74,25 @@
 	[self addScalar:-1*scalar];
 }
 
--(float)distance:(CFAVector *)aVec {
+-(CGFloat)distance:(CFAVector *)aVec {
 	return sqrt(pow(vec3[0]-(aVec.vec)[0], 2)+pow(vec3[1]-(aVec.vec)[1], 2)+pow(vec3[2]-(aVec.vec)[2], 2));
 }
 
--(float)dot:(CFAVector *)aVec {
+-(CGFloat)dot:(CFAVector *)aVec {
 	return cblas_sdot(3, vec3, 1, aVec.vec, 1);
 }
 
--(float)magnitude {
+-(CGFloat)magnitude {
 	return sqrt(pow(vec3[0], 2)+pow(vec3[1], 2)+pow(vec3[2], 2));
 }
 
--(float)angleBetween:(CFAVector *)aVec {
+-(CGFloat)angleBetween:(CFAVector *)aVec {
 	float dotProduct = [self dot:aVec];
 	float cosTheta = dotProduct/([self magnitude]*[aVec magnitude]);
 	return acosf(cosTheta);
 }
 
 -(void)cross:(CFAVector *)aVec {
-	//vec3 = a;
-	//aVec.vec = b;
-	//via wikipedia 
-	// axb =   (a2b3 − a3b2, 
-	//			a3b1 − a1b3, 
-	//			a1b2 − a2b1)
 	float newVec[3];
 	newVec[0] = vec3[1]*(aVec.vec)[2] - vec3[2]*(aVec.vec)[1];
 	newVec[1] = vec3[2]*(aVec.vec)[0] - vec3[0]*(aVec.vec)[2];
@@ -108,7 +106,7 @@
 	[self limit:1.0f];
 }
 
--(void)limit:(float)max {
+-(void)limit:(CGFloat)max {
 	cblas_sscal(3, max/cblas_snrm2(3, vec3, 1), vec3, 1);
 }
 
@@ -121,7 +119,7 @@
 }
 
 -(NSString *)description {
-	return [NSString stringWithFormat:@"(%4.2f,%4.2f,%4.2f)",vec3[0],vec3[1],vec3[2]];
+	return [NSString stringWithFormat:@"vec(%4.2f,%4.2f,%4.2f)",vec3[0],vec3[1],vec3[2]];
 }
 
 +(CGFloat)distanceBetweenA:(NSPoint)pointA andB:(NSPoint)pointB {
@@ -136,5 +134,26 @@
 	return [a angleBetween:b];
 }
 
+-(CGFloat)x {
+	return vec3[0];
+}
 
+-(CGFloat)y {
+	return vec3[1];
+}
+
+-(CGFloat)z {
+	return vec3[2];
+}
+
+-(CGFloat)heading {
+    CGFloat angle = [CFAMath atan2Y:-1*vec3[1] X:vec3[0]];
+    return -1*angle;
+}
+
+-(void)updatePVec {
+	pVec3[0] = vec3[0];
+	pVec3[1] = vec3[1];
+	pVec3[2] = vec3[2];
+}
 @end

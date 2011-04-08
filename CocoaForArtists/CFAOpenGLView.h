@@ -8,7 +8,7 @@
 @interface CFAOpenGLView : NSOpenGLView {
 	
 	BOOL keyIsPressed, mouseIsPressed;
-	NSUInteger keyChar, keyCode, mouseButton;
+	NSInteger keyChar, keyCode, mouseButton;
 	NSPoint mousePos, prevMousePos;
 	
 	@private
@@ -17,7 +17,7 @@
 	CGFloat canvasWidth, canvasHeight, screenWidth, screenHeight;	
 	CFAColor *backgroundColor;
 	NSString *exportDir, *exportFileName, *exportFileType;
-	NSUInteger frameCount, currentDrawStyle;
+	NSInteger frameCount, currentDrawStyle;
 	CGFloat frameRate;
 }
 
@@ -29,30 +29,31 @@
 -(void)setup;
 -(void)draw;
 -(void)redraw;
--(void)windowWidth:(int)width andHeight:(int)height;
+-(void)windowWidth:(NSInteger)width andHeight:(NSInteger)height;
 -(void)flipCoordinates;
 -(void)nativeCoordinates;
--(void)drawStyle:(int)style;
+-(void)drawStyle:(NSInteger)style;
 
 #pragma mark Environment
 -(void)cursor;
 -(void)noCursor;
 -(void)enterFullScreen;
 -(void)exitFullScreen;
+-(IBAction)switchFullScreen:(id)sender;
 +(CGFloat)getScreenWidth;
 +(CGFloat)getScreenHeight;
 +(CGFloat)getCanvasWidth;
 +(CGFloat)getCanvasHeight;
 +(NSRect)getCanvasRect;
 +(NSPoint)getMousePos;
-+(NSUInteger)getMouseButton;
++(NSInteger)getMouseButton;
 
 #pragma mark Background
 -(void)drawBackground;
--(void)background:(float)grey;
--(void)background:(float)grey alpha:(float)alpha;
--(void)backgroundRed:(float)red green:(float)green blue:(float)blue;
--(void)backgroundRed:(float)red green:(float)green blue:(float)blue alpha:(float)alpha;
+-(void)background:(CGFloat)grey;
+-(void)background:(CGFloat)grey alpha:(CGFloat)alpha;
+-(void)backgroundRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;
+-(void)backgroundRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
 -(void)backgroundColor:(id)color;
 -(void)backgroundImage:(CFAImage *)bgImage;
 
@@ -71,7 +72,7 @@
 -(void)endPDF;
 
 @property(readonly) BOOL keyIsPressed, mouseIsPressed;
-@property(readonly) NSUInteger keyChar, keyCode, mouseButton, frameCount, currentDrawStyle;
+@property(readonly) NSInteger keyChar, keyCode, mouseButton, frameCount, currentDrawStyle;
 @property(readonly) NSPoint mousePos, prevMousePos;
 @property(readonly) NSSize canvasSize, screenSize;
 @property(readonly) NSRect canvasRect;

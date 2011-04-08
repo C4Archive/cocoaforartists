@@ -21,48 +21,48 @@
 +(CFAMath *)sharedManager;
 
 #pragma mark Calculation
-+(int)abs:(int)value;
-+(float)absf:(float)value;
-+(int)ceil:(float)value;
-+(int)constrain:(int)value min:(int)min max:(int)max;
-+(float)constrainf:(float)value min:(float)min max:(float)max;
-+(float)exp:(float)value;
-+(int)floor:(float)value;
-+(float)lerpBetweenA:(float)a andB:(float)b byAmount:(float)amount;
-+(float)log:(float)value;
-+(float)map:(float)value fromMin:(float)min1 max:(float)max1 toMin:(float)min2 max:(float)max2;
-+(float)maxOfA:(float)a andB:(float)b;
-+(float)maxOfA:(float)a B:(float)b andC:(float)c;
-+(float)minOfA:(float)a andB:(float)b;
-+(float)minOfA:(float)a B:(float)b andC:(float)c;
-+(float)norm:(float)value fromMin:(float)min toMax:(float)max;
-+(float)pow:(float)value raiseTo:(float)degree;
-+(float)round:(float)value;
-+(float)square:(float)value;
-+(float)sqrt:(float)value;
++(NSInteger)abs:(NSInteger)value;
++(CGFloat)absf:(CGFloat)value;
++(NSInteger)ceil:(CGFloat)value;
++(NSInteger)constrain:(NSInteger)value min:(NSInteger)min max:(NSInteger)max;
++(CGFloat)constrainf:(CGFloat)value min:(CGFloat)min max:(CGFloat)max;
++(CGFloat)exp:(CGFloat)value;
++(NSInteger)floor:(CGFloat)value;
++(CGFloat)lerpBetweenA:(CGFloat)a andB:(CGFloat)b byAmount:(CGFloat)amount;
++(CGFloat)log:(CGFloat)value;
++(CGFloat)map:(CGFloat)value fromMin:(CGFloat)min1 max:(CGFloat)max1 toMin:(CGFloat)min2 max:(CGFloat)max2;
++(CGFloat)maxOfA:(CGFloat)a andB:(CGFloat)b;
++(CGFloat)maxOfA:(CGFloat)a B:(CGFloat)b andC:(CGFloat)c;
++(CGFloat)minOfA:(CGFloat)a andB:(CGFloat)b;
++(CGFloat)minOfA:(CGFloat)a B:(CGFloat)b andC:(CGFloat)c;
++(CGFloat)norm:(CGFloat)value fromMin:(CGFloat)min toMax:(CGFloat)max;
++(CGFloat)pow:(CGFloat)value raiseTo:(CGFloat)degree;
++(CGFloat)round:(CGFloat)value;
++(CGFloat)square:(CGFloat)value;
++(CGFloat)sqrt:(CGFloat)value;
 
 #pragma mark Trigonometry
-+(float)acos:(float)value;
-+(float)asin:(float)value;
-+(float)atan:(float)value;
-+(float)atan2Y:(float)y X:(float)x;
-+(float)cos:(float)value;
-+(float)degrees:(float)value;
-+(float)radians:(float)value;
-+(float)sin:(float)value;
-+(float)tan:(float)value;
++(CGFloat)acos:(CGFloat)value;
++(CGFloat)asin:(CGFloat)value;
++(CGFloat)atan:(CGFloat)value;
++(CGFloat)atan2Y:(CGFloat)y X:(CGFloat)x;
++(CGFloat)cos:(CGFloat)value;
++(CGFloat)degrees:(CGFloat)value;
++(CGFloat)radians:(CGFloat)value;
++(CGFloat)sin:(CGFloat)value;
++(CGFloat)tan:(CGFloat)value;
 
 #pragma mark Random
-+(int)randomInt:(int)value;
-+(int)randomIntBetweenA:(int)a andB:(int)b;
++(NSInteger)randomInt:(NSInteger)value;
++(NSInteger)randomIntBetweenA:(NSInteger)a andB:(NSInteger)b;
 
 #pragma mark Unused
-//+(float)distFromX:(float)x1 Y:(float)y1 toX:(float)x2 Y:(float)y2;
-//+(float)magPoint:(NSPoint)p;
-//+(float)magX:(float)x Y:(float)y;
-//+(float)maxOfArray:(NSArray *)array;
-//+(float)minOfArray:(NSArray *)array;
-//+(float)distanceFromPoint:(NSPoint)p1 toPoint:(NSPoint)p2;
-//+(float)distanceFromX:(float)x1 Y:(float)y1 toX:(float)x2 Y:(float)y2;
+//+(CGFloat)distFromX:(CGFloat)x1 Y:(CGFloat)y1 toX:(CGFloat)x2 Y:(CGFloat)y2;
+//+(CGFloat)magPoint:(NSPoint)p;
+//+(CGFloat)magX:(CGFloat)x Y:(CGFloat)y;
+//+(CGFloat)maxOfArray:(NSArray *)array;
+//+(CGFloat)minOfArray:(NSArray *)array;
+//+(CGFloat)distanceFromPoint:(NSPoint)p1 toPoint:(NSPoint)p2;
+//+(CGFloat)distanceFromX:(CGFloat)x1 Y:(CGFloat)y1 toX:(CGFloat)x2 Y:(CGFloat)y2;
 
 @end

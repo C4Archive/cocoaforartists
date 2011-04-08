@@ -28,8 +28,8 @@
 -(CFAString *)stringByAppendingString:(id)aString;
 -(CFAString *)stringByAppendingFormat:(NSString *)aFormatString, ...;
 -(CFAString *)substringWithRange:(NSRange)range;
--(CFAString *)substringFromIndex:(NSUInteger)index;
--(CFAString *)substringToIndex:(NSUInteger)index;
+-(CFAString *)substringFromIndex:(NSInteger)index;
+-(CFAString *)substringToIndex:(NSInteger)index;
 -(CFAString *)stringByReplacingOccurencesOfString:(id)aString withString:(id)bString;
 -(NSArray *)componentsSeparatedByString:(id)aString;
 
@@ -39,11 +39,11 @@
 -(void)lowercaseString;
 -(void)uppercaseString;
 
--(int) length;
+-(NSInteger) length;
 
 -(double)doubleValue;
--(float)floatValue;
--(int)intValue;
+-(CGFloat)floatValue;
+-(NSInteger)intValue;
 -(NSInteger)integerValue;
 -(BOOL)boolValue;
 
@@ -59,23 +59,23 @@
 -(void)font:(id)font;
 
 -(void)fillColor:(id)color;
--(void)fill:(float)grey;
--(void)fill:(float)grey alpha:(float)alpha;
--(void)fillRed:(float)red green:(float)green blue:(float)blue;
--(void)fillRed:(float)red green:(float)green blue:(float)blue alpha:(float)a;
+-(void)fill:(CGFloat)grey;
+-(void)fill:(CGFloat)grey alpha:(CGFloat)alpha;
+-(void)fillRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;
+-(void)fillRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)a;
 -(void)strokeColor:(id)color;
--(void)stroke:(float)grey;
--(void)stroke:(float)grey alpha:(float)alpha;
--(void)strokeRed:(float)red green:(float)green blue:(float)blue;
--(void)strokeRed:(float)red green:(float)green blue:(float)blue alpha:(float)a;
--(void)strokeWidth:(float)width;
+-(void)stroke:(CGFloat)grey;
+-(void)stroke:(CGFloat)grey alpha:(CGFloat)alpha;
+-(void)strokeRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;
+-(void)strokeRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)a;
+-(void)strokeWidth:(CGFloat)width;
 -(void)underlineColor:(id)color;
--(void)underlineStyle:(int)style;
+-(void)underlineStyle:(NSInteger)style;
 -(void)strikethroughColor:(id)color;
--(void)strikethroughStyle:(int)style;
+-(void)strikethroughStyle:(NSInteger)style;
 -(void)backgroundColor:(id)color;
--(void)baselineOffset:(float)value;
--(void)kern:(float)value;
+-(void)baselineOffset:(CGFloat)value;
+-(void)kern:(CGFloat)value;
 
 -(void)noFill;
 -(void)noStroke;
@@ -89,23 +89,23 @@
 // change global settings in GlobalTypeAttributes
 +(void)font:(id)font;
 +(void)fillColor:(id)color;
-+(void)fill:(float)grey;
-+(void)fill:(float)grey alpha:(float)alpha;
-+(void)fillRed:(float)red green:(float)green blue:(float)blue;
-+(void)fillRed:(float)red green:(float)green blue:(float)blue alpha:(float)a;
++(void)fill:(CGFloat)grey;
++(void)fill:(CGFloat)grey alpha:(CGFloat)alpha;
++(void)fillRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;
++(void)fillRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)a;
 +(void)strokeColor:(id)color;
-+(void)stroke:(float)grey;
-+(void)stroke:(float)grey alpha:(float)alpha;
-+(void)strokeRed:(float)red green:(float)green blue:(float)blue;
-+(void)strokeRed:(float)red green:(float)green blue:(float)blue alpha:(float)a;
-+(void)strokeWidth:(float)width;
++(void)stroke:(CGFloat)grey;
++(void)stroke:(CGFloat)grey alpha:(CGFloat)alpha;
++(void)strokeRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;
++(void)strokeRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)a;
++(void)strokeWidth:(CGFloat)width;
 +(void)underlineColor:(id)color;
-+(void)underlineStyle:(int)style;
++(void)underlineStyle:(NSInteger)style;
 +(void)strikethroughColor:(id)color;
-+(void)strikethroughStyle:(int)style;
++(void)strikethroughStyle:(NSInteger)style;
 +(void)backgroundColor:(id)color;
-+(void)baselineOffset:(float)value;
-+(void)kern:(float)value;
++(void)baselineOffset:(CGFloat)value;
++(void)kern:(CGFloat)value;
 +(void)noFill;
 +(void)noStroke;
 

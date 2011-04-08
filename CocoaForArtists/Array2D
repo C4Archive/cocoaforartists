@@ -8,6 +8,13 @@
 
 #import "CFACanvas.h"
 @interface CFACanvas (private)
+
+/*
+	NOTE:	The array used in this example is called a "C array"
+			It is NOT the same kind of array as an NSArray, or NSMutableArray
+			You cannot call methods on a "C array"
+*/
+
 int width = 400;
 int height = 400;
 float distances[400][400];

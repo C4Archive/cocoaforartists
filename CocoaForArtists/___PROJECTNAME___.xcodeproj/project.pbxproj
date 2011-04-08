@@ -23,7 +23,18 @@
 		ED20B3E2131E49C600337987 /* FilterWithOriginal in Resources */ = {isa = PBXBuildFile; fileRef = ED20B3E1131E49C600337987 /* FilterWithOriginal */; };
 		ED20B478131E58C100337987 /* CombinedFilters in Resources */ = {isa = PBXBuildFile; fileRef = ED20B477131E58C100337987 /* CombinedFilters */; };
 		ED25C7ED12F59ECE00BB0D84 /* CFAGlobalTypeAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = ED25C7EC12F59ECE00BB0D84 /* CFAGlobalTypeAttributes.m */; };
+		ED2B38BF132C1ED50037AA7C /* NumberObject in Resources */ = {isa = PBXBuildFile; fileRef = ED2B38BE132C1ED50037AA7C /* NumberObject */; };
+		ED2B38C1132C1F2C0037AA7C /* ObjectArrays in Resources */ = {isa = PBXBuildFile; fileRef = ED2B38C0132C1F2C0037AA7C /* ObjectArrays */; };
+		ED2B38EF132C23880037AA7C /* MutableArrays in Resources */ = {isa = PBXBuildFile; fileRef = ED2B38EE132C23880037AA7C /* MutableArrays */; };
+		ED2B398E132CBEB50037AA7C /* MoreOnCArrays in Resources */ = {isa = PBXBuildFile; fileRef = ED2B398D132CBEB50037AA7C /* MoreOnCArrays */; };
+		ED2B3A57132CCAF80037AA7C /* ObjectArray2D in Resources */ = {isa = PBXBuildFile; fileRef = ED2B3A56132CCAF80037AA7C /* ObjectArray2D */; };
+		ED2B3A6C132CCB580037AA7C /* ObjectArray1D in Resources */ = {isa = PBXBuildFile; fileRef = ED2B3A6B132CCB580037AA7C /* ObjectArray1D */; };
+		ED2B3AB4132CCFC10037AA7C /* Noise1D in Resources */ = {isa = PBXBuildFile; fileRef = ED2B3AB3132CCFC10037AA7C /* Noise1D */; };
+		ED2B3B35132CD3B90037AA7C /* Noise2D in Resources */ = {isa = PBXBuildFile; fileRef = ED2B3B34132CD3B90037AA7C /* Noise2D */; };
+		ED2B3BA8132CD6BD0037AA7C /* Noise3D in Resources */ = {isa = PBXBuildFile; fileRef = ED2B3BA7132CD6BD0037AA7C /* Noise3D */; };
+		ED2B3BF9132CD9E80037AA7C /* NoiseWave in Resources */ = {isa = PBXBuildFile; fileRef = ED2B3BF8132CD9E80037AA7C /* NoiseWave */; };
 		ED2B6E6F1300F456005BB540 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2B6E6E1300F456005BB540 /* Quartz.framework */; };
+		ED31FB841345F50A0051110A /* hat.wav in Resources */ = {isa = PBXBuildFile; fileRef = ED31FB831345F50A0051110A /* hat.wav */; };
 		ED321DEC12F5979F0063E57E /* CFAFont.m in Sources */ = {isa = PBXBuildFile; fileRef = ED321DEB12F5979F0063E57E /* CFAFont.m */; };
 		ED333B25130945F600AFB160 /* SingleFilter in Resources */ = {isa = PBXBuildFile; fileRef = ED333B24130945F600AFB160 /* SingleFilter */; };
 		ED3B216E124CC28100AB9816 /* CFATest.tif in Resources */ = {isa = PBXBuildFile; fileRef = ED3B216B124CC28100AB9816 /* CFATest.tif */; };
@@ -149,7 +160,18 @@
 		ED20B477131E58C100337987 /* CombinedFilters */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CombinedFilters; sourceTree = "<group>"; };
 		ED25C7EB12F59ECE00BB0D84 /* CFAGlobalTypeAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFAGlobalTypeAttributes.h; sourceTree = "<group>"; };
 		ED25C7EC12F59ECE00BB0D84 /* CFAGlobalTypeAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFAGlobalTypeAttributes.m; sourceTree = "<group>"; };
+		ED2B38BE132C1ED50037AA7C /* NumberObject */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NumberObject; sourceTree = "<group>"; };
+		ED2B38C0132C1F2C0037AA7C /* ObjectArrays */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ObjectArrays; sourceTree = "<group>"; };
+		ED2B38EE132C23880037AA7C /* MutableArrays */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MutableArrays; sourceTree = "<group>"; };
+		ED2B398D132CBEB50037AA7C /* MoreOnCArrays */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MoreOnCArrays; sourceTree = "<group>"; };
+		ED2B3A56132CCAF80037AA7C /* ObjectArray2D */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ObjectArray2D; sourceTree = "<group>"; };
+		ED2B3A6B132CCB580037AA7C /* ObjectArray1D */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ObjectArray1D; sourceTree = "<group>"; };
+		ED2B3AB3132CCFC10037AA7C /* Noise1D */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Noise1D; sourceTree = "<group>"; };
+		ED2B3B34132CD3B90037AA7C /* Noise2D */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Noise2D; sourceTree = "<group>"; };
+		ED2B3BA7132CD6BD0037AA7C /* Noise3D */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Noise3D; sourceTree = "<group>"; };
+		ED2B3BF8132CD9E80037AA7C /* NoiseWave */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NoiseWave; sourceTree = "<group>"; };
 		ED2B6E6E1300F456005BB540 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		ED31FB831345F50A0051110A /* hat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hat.wav; sourceTree = "<group>"; };
 		ED321DEA12F5979F0063E57E /* CFAFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFAFont.h; sourceTree = "<group>"; };
 		ED321DEB12F5979F0063E57E /* CFAFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFAFont.m; sourceTree = "<group>"; };
 		ED333B24130945F600AFB160 /* SingleFilter */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SingleFilter; sourceTree = "<group>"; };
@@ -338,6 +360,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ED31FB831345F50A0051110A /* hat.wav */,
 				EDD92ABC129A9AE800C6A1F7 /* 3dmaze.JPG */,
 				ED3B216B124CC28100AB9816 /* CFATest.tif */,
 				ED3B216D124CC28100AB9816 /* CFATest.jpg */,
@@ -399,11 +422,30 @@
 			name = "Vector (to do)";
 			sourceTree = "<group>";
 		};
-		ED20B6BD131E6ADE00337987 /* Noise (to do) */ = {
+		ED20B6BD131E6ADE00337987 /* Noise */ = {
+			isa = PBXGroup;
+			children = (
+				ED2B3AB3132CCFC10037AA7C /* Noise1D */,
+				ED2B3B34132CD3B90037AA7C /* Noise2D */,
+				ED2B3BA7132CD6BD0037AA7C /* Noise3D */,
+				ED2B3BF8132CD9E80037AA7C /* NoiseWave */,
+			);
+			name = Noise;
+			sourceTree = "<group>";
+		};
+		ED2B38BD132C1ED50037AA7C /* Numbers */ = {
+			isa = PBXGroup;
+			children = (
+				ED2B38BE132C1ED50037AA7C /* NumberObject */,
+			);
+			name = Numbers;
+			sourceTree = "<group>";
+		};
+		ED2B396D132C2FB80037AA7C /* Objects (to do) */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = "Noise (to do)";
+			name = "Objects (to do)";
 			sourceTree = "<group>";
 		};
 		ED36CA62123D7FE10055951E /* CFA Application */ = {
@@ -476,10 +518,12 @@
 				EDD92A42129A9ACB00C6A1F7 /* Color */,
 				EDD92A48129A9ACB00C6A1F7 /* Image */,
 				EDD92A37129A9ACB00C6A1F7 /* Math */,
+				ED2B38BD132C1ED50037AA7C /* Numbers */,
+				ED2B396D132C2FB80037AA7C /* Objects (to do) */,
 				EDD92A2B129A9ACB00C6A1F7 /* Input */,
 				EDD92A28129A9ACB00C6A1F7 /* Arrays */,
 				EDD92A26129A9ACB00C6A1F7 /* Advanced */,
-				ED20B6BD131E6ADE00337987 /* Noise (to do) */,
+				ED20B6BD131E6ADE00337987 /* Noise */,
 				ED20B6BC131E6AD800337987 /* Vector (to do) */,
 				ED20B6BB131E6AA500337987 /* Strings & Fonts (to do) */,
 				ED20B6B9131E6A7D00337987 /* Sounds (to do) */,
@@ -504,6 +548,11 @@
 			children = (
 				EDD92A29129A9ACB00C6A1F7 /* Array1D */,
 				EDD92A2A129A9ACB00C6A1F7 /* Array2D */,
+				ED2B398D132CBEB50037AA7C /* MoreOnCArrays */,
+				ED2B38C0132C1F2C0037AA7C /* ObjectArrays */,
+				ED2B38EE132C23880037AA7C /* MutableArrays */,
+				ED2B3A6B132CCB580037AA7C /* ObjectArray1D */,
+				ED2B3A56132CCAF80037AA7C /* ObjectArray2D */,
 			);
 			name = Arrays;
 			sourceTree = "<group>";
@@ -770,6 +819,17 @@
 				ED20B178131E34A500337987 /* Application.xcconfig in Resources */,
 				ED20B3E2131E49C600337987 /* FilterWithOriginal in Resources */,
 				ED20B478131E58C100337987 /* CombinedFilters in Resources */,
+				ED2B38BF132C1ED50037AA7C /* NumberObject in Resources */,
+				ED2B38C1132C1F2C0037AA7C /* ObjectArrays in Resources */,
+				ED2B38EF132C23880037AA7C /* MutableArrays in Resources */,
+				ED2B398E132CBEB50037AA7C /* MoreOnCArrays in Resources */,
+				ED2B3A57132CCAF80037AA7C /* ObjectArray2D in Resources */,
+				ED2B3A6C132CCB580037AA7C /* ObjectArray1D in Resources */,
+				ED2B3AB4132CCFC10037AA7C /* Noise1D in Resources */,
+				ED2B3B35132CD3B90037AA7C /* Noise2D in Resources */,
+				ED2B3BA8132CD6BD0037AA7C /* Noise3D in Resources */,
+				ED2B3BF9132CD9E80037AA7C /* NoiseWave in Resources */,
+				ED31FB841345F50A0051110A /* hat.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

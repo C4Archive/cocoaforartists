@@ -31,19 +31,19 @@ GENERATE_SINGLETON(CFADateTime, cfaDateTime);
 }
 
 #pragma mark Date & Time
-+(int)year{
++(NSInteger)year{
 	NSDateComponents *dateComponents = [gregorian components:NSYearCalendarUnit fromDate:[NSDate date]];
 	//CFALog(@"year:%d",[dateComponents year]);
 	return [dateComponents year];
 }
 
-+(int)month{
++(NSInteger)month{
 	NSDateComponents *dateComponents = [gregorian components:NSMonthCalendarUnit fromDate:[NSDate date]];
 	return [dateComponents month];
 }
 
 +(NSString *)monthString {
-	int value = [self month];
+	NSInteger value = [self month];
 	NSString *month = @"";
 	if (value < 10) {
 		month = [NSString stringWithFormat:@"0"];
@@ -56,13 +56,13 @@ GENERATE_SINGLETON(CFADateTime, cfaDateTime);
 	return [[[[[NSDateFormatter alloc] init] autorelease] monthSymbols] objectAtIndex:[self month]-1];
 }
 
-+(int)week{
++(NSInteger)week{
 	NSDateComponents *dateComponents = [gregorian components:NSWeekCalendarUnit fromDate:[NSDate date]];
 	return [dateComponents week];
 }
 
 +(NSString *)weekString {
-	int value = [self week];
+	NSInteger value = [self week];
 	NSString *week = @"";
 	if (value < 10) {
 		week = [NSString stringWithFormat:@"0"];
@@ -71,13 +71,13 @@ GENERATE_SINGLETON(CFADateTime, cfaDateTime);
 	return week;
 }
 
-+(int)weekday {
++(NSInteger)weekday {
 	NSDateComponents *dateComponents = [gregorian components:NSWeekdayCalendarUnit fromDate:[NSDate date]];
 	return [dateComponents weekday];
 }
 
 +(NSString *)weekdayString {
-	int value = [self weekday];
+	NSInteger value = [self weekday];
 	NSString *weekday = @"";
 	if (value < 10) {
 		weekday = [NSString stringWithFormat:@"0"];
@@ -86,7 +86,7 @@ GENERATE_SINGLETON(CFADateTime, cfaDateTime);
 	return weekday;
 }
 
-+(int)day{
++(NSInteger)day{
 	NSDateComponents *dateComponents = [gregorian components:NSDayCalendarUnit fromDate:[NSDate date]];
 	return [dateComponents day];
 }
@@ -96,7 +96,7 @@ GENERATE_SINGLETON(CFADateTime, cfaDateTime);
 }
 
 +(NSString *)dayString {
-	int value = [self day];
+	NSInteger value = [self day];
 	NSString *day = @"";
 	if (value < 10) {
 		day = [NSString stringWithFormat:@"0"];
@@ -105,13 +105,13 @@ GENERATE_SINGLETON(CFADateTime, cfaDateTime);
 	return day;
 }
 
-+(int)hour{
++(NSInteger)hour{
 	NSDateComponents *dateComponents = [gregorian components:NSHourCalendarUnit fromDate:[NSDate date]];
 	return [dateComponents hour];
 }
 
 +(NSString *)hourString {
-	int value = [self hour];
+	NSInteger value = [self hour];
 	NSString *hour = @"";
 	if (value < 10) {
 		hour = [NSString stringWithFormat:@"0"];
@@ -120,13 +120,13 @@ GENERATE_SINGLETON(CFADateTime, cfaDateTime);
 	return hour;
 }
 
-+(int)minute{
++(NSInteger)minute{
 	NSDateComponents *dateComponents = [gregorian components:NSMinuteCalendarUnit fromDate:[NSDate date]];
 	return [dateComponents minute];
 }
 
 +(NSString *)minuteString {
-	int value = [self minute];
+	NSInteger value = [self minute];
 	NSString *minute = @"";
 	if (value < 10) {
 		minute = [NSString stringWithFormat:@"0"];
@@ -135,13 +135,13 @@ GENERATE_SINGLETON(CFADateTime, cfaDateTime);
 	return minute;
 }
 
-+(int)second{
++(NSInteger)second{
 	NSDateComponents *dateComponents = [gregorian components:NSSecondCalendarUnit fromDate:[NSDate date]];
 	return [dateComponents second];
 }
 
 +(NSString *)secondString {
-	int value = [self second];
+	NSInteger value = [self second];
 	NSString *second = @"";
 	if (value < 10) {
 		second = [NSString stringWithFormat:@"0"];
@@ -150,7 +150,7 @@ GENERATE_SINGLETON(CFADateTime, cfaDateTime);
 	return second;
 }
 
-+(int)millis {
++(NSInteger)millis {
 	uint64_t difference = mach_absolute_time() - starttime;
     static double conversion = 0.0;
     
@@ -164,7 +164,7 @@ GENERATE_SINGLETON(CFADateTime, cfaDateTime);
             conversion = 1e-6 * (double) info.numer / (double) info.denom;
     }
     
-    return (int) (conversion * (double) difference);
+    return (NSInteger) (conversion * (double) difference);
 }
 
 @end

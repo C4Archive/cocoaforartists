@@ -32,10 +32,10 @@
 -(void)speak:(id)sentence;
 -(void)speak:(id)sentence withVoice:(id)voice;
 -(BOOL)isSpeaking;
--(void)pause:(int)pauseBoundary;
+-(void)pause:(NSInteger)pauseBoundary;
 -(void)continueSpeaking;
 -(void)stop;
--(void)stop:(int)stopBoundary;
+-(void)stop:(NSInteger)stopBoundary;
 @end
 
 

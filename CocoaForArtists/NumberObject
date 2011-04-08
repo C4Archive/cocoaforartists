@@ -1,0 +1,65 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@implementation CFACanvas
+-(void)setup {
+	/*
+	 This example shows the flexibility of the number object
+	 You can input any kind of number into it with the appropriate method
+	 You can request a variety of different data types from it too
+	 */
+	
+	/*
+	 This example is important, because it allows you to store numbers in objects
+	 This will allow you to pass them through a variety of methods
+	 But! Most importantly, you will be able to use them in Arrays
+	 */
+	
+	NSNumber *n = [NSNumber numberWithFloat:102.0123456789];
+
+	CFALog(@"--- Accessing Different Datatypes from a Number Object ---");
+	CFALog(@"      object %@",n);					//actually calls the description method for the object
+	CFALog(@"         int %d",[n intValue]);
+	CFALog(@"       float %f",[n floatValue]);
+	CFALog(@"      double %f",[n doubleValue]);		//doubles and floats are treated the same
+	CFALog(@"format float %4.2f",[n floatValue]);	//formats 2 numbers after the point 
+	CFALog(@"format float %4.20f",[n floatValue]);	//20 numbers after the point (not precise though)
+	CFALog(@"     boolean %d",[n boolValue]);		//the number object returns a 1 (YES) for any non-zero number
+	CFALog(@"        char %c",[n charValue]);		//prints f, because 102.1 is converted to a whole number 102 and then mapped to a character
+	CFALog(@"");
+
+	CFALog(@"--- Comparing Output With A Regular number ---");
+	CFALog(@"         object %@",102.1);	//prints null because 102.1 is not an objective-c object
+	CFALog(@"         int %d",102.1);		//prints 0, because 102.1 is not a whole number
+	CFALog(@"       float %f",102.1);	
+	CFALog(@"      double %f",102.1);
+	CFALog(@"format float %4.2f",102.1);
+	CFALog(@"format float %4.20f",102.1);	
+	CFALog(@"     boolean %d",102.1);		//prints 0, because anything that isn't 1 is false
+	CFALog(@"        char %c",102.1);		//prints nothing, %c understands only whole numbers	
+	
+	CFALog(@"--- Creating A Number From Different Datatypes ---");
+	n = [NSNumber numberWithBool:YES];
+	CFALog(@"         object %@",n);
+	n = [NSNumber numberWithBool:NO];
+	CFALog(@"         object %@",n);
+	n = [NSNumber numberWithChar:'c'];
+	CFALog(@"         object %@",n);
+	n = [NSNumber numberWithDouble:2.0123456789];
+	CFALog(@"         object %@",n);
+	n = [NSNumber numberWithFloat:2390.0123456789];	//numbers will be formatted a little bit
+	CFALog(@"         object %@",n);
+	n = [NSNumber numberWithInt:1];
+	CFALog(@"         object %@",n);
+}
+
+-(void)draw {
+	
+}
+@end

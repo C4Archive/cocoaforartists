@@ -12,15 +12,16 @@
 @interface CFAVector : CFAObject {
 @private
 	float vec3[3];
+	float pVec3[3];
 	float *vec;
 }
 
 +(CGFloat)distanceBetweenA:(NSPoint)pointA andB:(NSPoint)pointB;
 +(CGFloat)angleBetweenA:(NSPoint)pointA andB:(NSPoint)pointB;
 
-+(id)vectorWithX:(float)x Y:(float)y Z:(float)z;
--(id)vectorWithX:(float)x Y:(float)y Z:(float)z;
--(void)setX:(float)x Y:(float)y Z:(float)z;
++(id)vectorWithX:(CGFloat)x Y:(CGFloat)y Z:(CGFloat)z;
+-(id)vectorWithX:(CGFloat)x Y:(CGFloat)y Z:(CGFloat)z;
+-(void)setX:(CGFloat)x Y:(CGFloat)y Z:(CGFloat)z;
 -(void)add:(CFAVector *)aVec;
 -(void)addScalar:(float)scalar;
 -(void)divide:(CFAVector *)aVec;
@@ -29,13 +30,17 @@
 -(void)multiplyScalar:(float)scalar;
 -(void)subtract:(CFAVector *)aVec;
 -(void)subtractScalar:(float)scalar;
--(float)distance:(CFAVector *)aVec;
--(float)dot:(CFAVector *)aVec;
--(float)magnitude;
--(float)angleBetween:(CFAVector *)aVec;
+-(CGFloat)distance:(CFAVector *)aVec;
+-(CGFloat)dot:(CFAVector *)aVec;
+-(CGFloat)magnitude;
+-(CGFloat)angleBetween:(CFAVector *)aVec;
 -(void)cross:(CFAVector *)aVec;
 -(void)normalize;
--(void)limit:(float)max;
+-(void)limit:(CGFloat)max;
 -(NSPoint)point2D;
+-(CGFloat)heading;
+-(CGFloat)x;
+-(CGFloat)y;
+-(CGFloat)z;
 @property (readonly) float *vec;
 @end

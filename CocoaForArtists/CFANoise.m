@@ -18,7 +18,7 @@ GENERATE_SINGLETON(CFANoise, cfaNoise);
 	return self;
 }
 
-+(CGFloat)noise1:(float)arg {
++(CGFloat)noise1:(CGFloat)arg {
 	return [[CFANoise sharedManager] noise1:arg];
 }
 
@@ -78,7 +78,7 @@ GENERATE_SINGLETON(CFANoise, cfaNoise);
 }
 
 
--(CGFloat)noise1:(float)arg {
+-(CGFloat)noise1:(CGFloat)arg {
 	return (CGFloat)noise1(arg);
 }
 

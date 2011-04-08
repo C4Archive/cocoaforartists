@@ -1,0 +1,48 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@implementation CFACanvas
+-(void)setup {
+	/*
+	 The NSArray stores lists of objects...
+	 Objects can be of any kind (class)...
+	 So, NSArray is quite flexible and very very useful
+	 */
+	
+	//Let's create a bunch of objects
+	CFAColor *c = [CFAColor colorWithGrey:.66];
+	CFAFont *f = [CFAFont fontWithName:@"Arial" size:20];
+	CFAImage *i = [CFAImage imageName:@"CFATest.tif"];
+	CFAString *s = [CFAString stringWithString:@"a string"];
+	CFAVoice *v	= [CFAVoice initWithVoice:ALEX];
+	CFAVector *vec = [CFAVector vectorWithX:0 Y:1 Z:0];
+	CFAObject *o = [[[CFAObject alloc] init] retain];
+	
+	NSArray *array0, *array1, *array2;
+	
+	CFALog(@"Create an array with one object");
+	array0 = [NSArray arrayWithObject:c];
+	CFALog(@"%@",array0);
+
+	CFALog(@"Create an array with multiple objects");
+	array1 = [NSArray arrayWithObjects:c,f,i,s,v,vec,o,nil];
+	CFALog(@"%@",array1);
+	
+	CFALog(@"Create an array with object from another array");
+	array2 = [NSArray arrayWithArray:array1];
+	CFALog(@"%@",array2);
+
+	/*
+	 There are a few more advanced functions for manipulating NSArray objects
+	 Have a look at Apple's documentation for these methods
+	 Right-click on the word: NSArray
+	 Then, select the option: Find Text In Documentation 
+	 */
+}
+@end

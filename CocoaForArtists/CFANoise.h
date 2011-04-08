@@ -13,7 +13,7 @@
 -(id)_init;
 +(CFANoise *)sharedManager;
 
-+(CGFloat)noise1:(float)arg;
++(CGFloat)noise1:(CGFloat)arg;
 +(CGFloat)noise2:(float*)vec;
 +(CGFloat)noise2UsingPoint:(NSPoint)pt;
 +(CGFloat)noise2UsingVector:(CFAVector*)vector;
@@ -31,7 +31,7 @@
 
 @interface CFANoise (private)
 
--(CGFloat)noise1:(float)arg;
+-(CGFloat)noise1:(CGFloat)arg;
 -(CGFloat)noise2:(float*)vec;
 -(CGFloat)noise2UsingPoint:(NSPoint)pt;
 -(CGFloat)noise2UsingVector:(CFAVector*)vector;

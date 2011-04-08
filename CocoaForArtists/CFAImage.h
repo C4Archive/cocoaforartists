@@ -15,7 +15,8 @@
 	unsigned char *rawData;
 	CIImage *originalImage, *filteredImage;
 	BOOL singleFilter, drawFilteredImage;
-	NSUInteger bytesPerPixel;
+	NSInteger bytesPerPixel;
+	NSString *fileName;
 }
 
 
@@ -27,13 +28,13 @@
 -(id)initWithImageName:(NSString *)name andType:(NSString *)type;
 
 -(void)drawAt:(NSPoint)p;
--(void)drawAt:(NSPoint)p withAlpha:(float)alpha;
--(void)drawAt:(NSPoint)p withWidth:(float)w andHeight:(float)h;
--(void)drawAt:(NSPoint)p withWidth:(float)w andHeight:(float)h withAlpha:(float)a;
+-(void)drawAt:(NSPoint)p withAlpha:(CGFloat)alpha;
+-(void)drawAt:(NSPoint)p withWidth:(CGFloat)w andHeight:(CGFloat)h;
+-(void)drawAt:(NSPoint)p withWidth:(CGFloat)w andHeight:(CGFloat)h withAlpha:(CGFloat)a;
 -(void)drawInRect:(NSRect)rect;
 -(void)drawInRect:(NSRect)rect withAlpha:(CGFloat)alpha;
 
--(CFAColor *)colorAtX:(int)x andY:(int)y;
+-(CFAColor *)colorAtX:(NSInteger)x andY:(NSInteger)y;
 -(void)loadPixelData;
 
 @property(readwrite,retain) CIImage *originalImage, *filteredImage;
@@ -54,7 +55,7 @@
 -(void)motionBlur:(CGFloat)radius angle:(CGFloat)angle;
 -(void)zoomBlur:(NSPoint)center amount:(CGFloat)amount;
 
--(void)kaleidoscope:(NSPoint)center count:(NSUInteger)count angle:(CGFloat)angle;
+-(void)kaleidoscope:(NSPoint)center count:(NSInteger)count angle:(CGFloat)angle;
 -(void)opTile:(NSPoint)center scale:(CGFloat)scale angle:(CGFloat)angle width:(CGFloat)width;
 -(void)parallelogramTile:(NSPoint)center angle:(CGFloat)angle acuteAngle:(CGFloat)acute width:(CGFloat)width;
 -(void)perspectiveTile:(NSPoint)topLeft topRight:(NSPoint)topRight bottomRight:(NSPoint)bottomRight bottomLeft:(NSPoint)bottomLeft;

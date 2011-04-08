@@ -1,0 +1,50 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@interface CFACanvas (private)
+
+/*
+ NOTE:	The array used in this example is called a "C array"
+ It is NOT the same kind of array as an NSArray, or NSMutableArray
+ You cannot call methods on a "C array"
+ */
+
+NSMutableArray *distances;
+@end
+
+@implementation CFACanvas
+-(void)setup {
+	[self windowWidth:400 andHeight:400];
+	[self background:0];
+	NSPoint center = NSMakePoint(self.canvasWidth/2, self.canvasHeight/2);
+	float maxDistance = [CFAVector distanceBetweenA:NSZeroPoint andB:center];
+	distances = [NSMutableArray arrayWithCapacity:0];
+	for(int i = 0; i < self.canvasHeight; i++){
+		NSMutableArray *rowOfDistances = [NSMutableArray arrayWithCapacity:0];
+		for(int j = 0; j < self.canvasWidth; j++){
+			float dist = [CFAVector distanceBetweenA:NSMakePoint(i, j) andB:center];
+			[rowOfDistances addObject:[NSNumber numberWithFloat:dist/maxDistance]];
+		}
+		[distances addObject:rowOfDistances];
+	}
+}
+
+-(void)draw {
+	[self background:0];
+	for(int i = 0; i < [distances count]; i+=2) {
+		for(int j = 0; j < [[distances objectAtIndex:i] count]; j+=2) {
+			float color = [[[distances objectAtIndex:i] objectAtIndex:j] floatValue];
+			[CFAShape fill:color];
+			[CFAShape pointAtX:j Y:i];
+			//A Different Drawing Scheme
+			//[CFAShape pointAtX:j/2+self.canvasWidth/4 Y:i/2+self.canvasHeight/4];
+		}
+	}
+}
+@end

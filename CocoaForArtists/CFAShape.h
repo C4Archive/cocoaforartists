@@ -3,7 +3,6 @@
 //  Created by Travis Kirton
 //
 
-
 #import <Cocoa/Cocoa.h>
 
 @interface CFAShape : CFAObject {
@@ -22,73 +21,73 @@
  */
 
 #pragma mark Shapes
-+(void)arcWithCenterAt:(NSPoint)p radius:(float)r startAngle:(float)startAngle endAngle:(float)endAngle;
-+(void)circleAt:(NSPoint)p radius:(int)r;
++(void)arcWithCenterAt:(NSPoint)p radius:(CGFloat)r startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle;
++(void)circleAt:(NSPoint)p radius:(CGFloat)r;
 +(void)curveFromPoint:(NSPoint)p1 toPoint:(NSPoint)p2 controlPoint1:(NSPoint)c1 controlPoint2:(NSPoint)c2;
-+(void)curveFromX:(int)x1 Y:(int)y1 toX:(int)x2 Y:(int)y2 controlPoint1X:(int)cx1 Y:(int)cx1 controlPoint2X:(int)cx2 Y:(int)cy2;
++(void)curveFromX:(NSInteger)x1 Y:(NSInteger)y1 toX:(NSInteger)x2 Y:(NSInteger)y2 controlPoint1X:(NSInteger)cx1 Y:(NSInteger)cx1 controlPoint2X:(NSInteger)cx2 Y:(NSInteger)cy2;
 +(void)ellipseAt:(NSPoint)p size:(NSSize)s;
-+(void)ellipseWithXPos:(int)x yPos:(int)y width:(int)w andHeight:(int)h;
-+(void)lineFromX:(int)x1 Y:(int)y1 toX:(int)x2 Y:(int)y2;
++(void)ellipseWithXPos:(NSInteger)x yPos:(NSInteger)y width:(NSInteger)w andHeight:(NSInteger)h;
++(void)lineFromX:(NSInteger)x1 Y:(NSInteger)y1 toX:(NSInteger)x2 Y:(NSInteger)y2;
 +(void)lineFromPoint:(NSPoint)p1 toPoint:(NSPoint)p2;
-+(void)pointAtX:(int)x1 Y:(int)y1;
++(void)pointAtX:(NSInteger)x1 Y:(NSInteger)y1;
 +(void)pointAt:(NSPoint)p;
-+(void)rectWithXPos:(int)x yPos:(int)y width:(float)w andHeight:(float)h;
++(void)rectWithXPos:(NSInteger)x yPos:(NSInteger)y width:(CGFloat)w andHeight:(CGFloat)h;
 +(void)rectAt:(NSPoint)p size:(NSSize)s;
-+(void)triangleFromX:(int)x1 Y:(int)y1 toX:(int)x2 Y:(int)y2 toX:(int)x3 Y:(int)y3;
++(void)triangleFromX:(NSInteger)x1 Y:(NSInteger)y1 toX:(NSInteger)x2 Y:(NSInteger)y2 toX:(NSInteger)x3 Y:(NSInteger)y3;
 +(void)triangleUsingPoint:(NSPoint)p1 point:(NSPoint)p2 point:(NSPoint)p3;
 +(void)quadUsingPoint:(NSPoint)p1 point:(NSPoint)p2 point:(NSPoint)p3 point:(NSPoint)p4;
-+(void)quadFromX:(int)x1 Y:(int)y1 toX:(int)x2 Y:(int)y2 toX:(int)x3 Y:(int)y3 toX:(int)x4 Y:(int)y4;
++(void)quadFromX:(NSInteger)x1 Y:(NSInteger)y1 toX:(NSInteger)x2 Y:(NSInteger)y2 toX:(NSInteger)x3 Y:(NSInteger)y3 toX:(NSInteger)x4 Y:(NSInteger)y4;
 
 #pragma mark Vertex Shapes
 +(void)beginShape;
 +(void)endShape;
 +(void)closeShape;
-+(void)vertexAtX:(int)x Y:(int)y;
++(void)vertexAtX:(NSInteger)x Y:(NSInteger)y;
 +(void)vertexAt:(NSPoint)point;
 
 #pragma mark Current Shape 
 +(void)clearCurrentShape;
 +(CGMutablePathRef)currentShape;
-+(void)addArcWithCenterAt:(NSPoint)p radius:(float)r startAngle:(float)startAngle endAngle:(float)endAngle;
-+(void)addCircleAt:(NSPoint)p radius:(int)r;
++(void)addArcWithCenterAt:(NSPoint)p radius:(CGFloat)r startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle;
++(void)addCircleAt:(NSPoint)p radius:(NSInteger)r;
 +(void)addCurveFromPoint:(NSPoint)p1 toPoint:(NSPoint)p2 controlPoint1:(NSPoint)c1 controlPoint2:(NSPoint)c2;
-+(void)addCurveFromX:(int)x1 Y:(int)y1 toX:(int)x2 Y:(int)y2 controlPoint1X:(int)cx1 Y:(int)cx1 controlPoint2X:(int)cx2 Y:(int)cy2;
++(void)addCurveFromX:(NSInteger)x1 Y:(NSInteger)y1 toX:(NSInteger)x2 Y:(NSInteger)y2 controlPoint1X:(NSInteger)cx1 Y:(NSInteger)cx1 controlPoint2X:(NSInteger)cx2 Y:(NSInteger)cy2;
 +(void)addEllipseAt:(NSPoint)p size:(NSSize)s;
-+(void)addEllipseWithXPos:(int)x yPos:(int)y width:(int)w andHeight:(int)h;
-+(void)addLineFromX:(int)x1 Y:(int)y1 toX:(int)x2 Y:(int)y2;
++(void)addEllipseWithXPos:(NSInteger)x yPos:(NSInteger)y width:(NSInteger)w andHeight:(NSInteger)h;
++(void)addLineFromX:(NSInteger)x1 Y:(NSInteger)y1 toX:(NSInteger)x2 Y:(NSInteger)y2;
 +(void)addLineFromPoint:(NSPoint)p1 toPoint:(NSPoint)p2;
 +(void)addLineTo:(NSPoint)p;
-+(void)addLineToX:(int)x Y:(int)y;
-+(void)addPointAtX:(int)x1 Y:(int)y1;
++(void)addLineToX:(NSInteger)x Y:(NSInteger)y;
++(void)addPointAtX:(NSInteger)x1 Y:(NSInteger)y1;
 +(void)addPointAt:(NSPoint)p;
-+(void)addRectWithXPos:(int)x yPos:(int)y width:(float)w andHeight:(float)h;
-+(void)addTriangleFromX:(int)x1 Y:(int)y1 toX:(int)x2 Y:(int)y2 toX:(int)x3 Y:(int)y3;
++(void)addRectWithXPos:(NSInteger)x yPos:(NSInteger)y width:(CGFloat)w andHeight:(CGFloat)h;
++(void)addTriangleFromX:(NSInteger)x1 Y:(NSInteger)y1 toX:(NSInteger)x2 Y:(NSInteger)y2 toX:(NSInteger)x3 Y:(NSInteger)y3;
 +(void)addTriangleUsingPoint:(NSPoint)p1 point:(NSPoint)p2 point:(NSPoint)p3;
 +(void)addQuadUsingPoint:(NSPoint)p1 point:(NSPoint)p2 point:(NSPoint)p3 point:(NSPoint)p4;
-+(void)addQuadFromX:(int)x1 Y:(int)y1 toX:(int)x2 Y:(int)y2 toX:(int)x3 Y:(int)y3 toX:(int)x4 Y:(int)y4;
++(void)addQuadFromX:(NSInteger)x1 Y:(NSInteger)y1 toX:(NSInteger)x2 Y:(NSInteger)y2 toX:(NSInteger)x3 Y:(NSInteger)y3 toX:(NSInteger)x4 Y:(NSInteger)y4;
 
 #pragma mark Attributes
-+(void)strokeWidth:(float)width;
-+(void)rectMode:(int)mode;
-+(void)ellipseMode:(int)mode;
-+(void)strokeCapMode:(int)mode;
-+(void)strokeJoinMode:(int)mode;
-+(void)strokeDetail:(float)level;
++(void)strokeWidth:(CGFloat)width;
++(void)rectMode:(NSInteger)mode;
++(void)ellipseMode:(NSInteger)mode;
++(void)strokeCapMode:(NSInteger)mode;
++(void)strokeJoinMode:(NSInteger)mode;
++(void)strokeDetail:(CGFloat)level;
 
 #pragma mark Colors
 +(void)fill;
 +(void)fillColor:(CFAColor *)color;
-+(void)fill:(float)grey;
-+(void)fill:(float)grey alpha:(float)alpha;
-+(void)fillRed:(float)red green:(float)green blue:(float)blue;
-+(void)fillRed:(float)red green:(float)green blue:(float)blue alpha:(float)alpha;
++(void)fill:(CGFloat)grey;
++(void)fill:(CGFloat)grey alpha:(CGFloat)alpha;
++(void)fillRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;
++(void)fillRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
 +(void)noFill;
 +(void)stroke;
 +(void)strokeColor:(CFAColor *)color;
-+(void)stroke:(float)grey;
-+(void)stroke:(float)grey alpha:(float)alpha;
-+(void)strokeRed:(float)red green:(float)green blue:(float)blue;
-+(void)strokeRed:(float)red green:(float)green blue:(float)blue alpha:(float)a;
++(void)stroke:(CGFloat)grey;
++(void)stroke:(CGFloat)grey alpha:(CGFloat)alpha;
++(void)strokeRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;
++(void)strokeRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)a;
 +(void)noStroke;
 
 #pragma mark Coordinates

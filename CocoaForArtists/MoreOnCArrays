@@ -1,0 +1,65 @@
+//
+//  CFACanvas.h
+//  CodeSamples
+//
+//	A Cocoa For Artists project
+//  Created by Travis Kirton
+//
+
+#import "CFACanvas.h"
+@implementation CFACanvas
+/*
+ The C Array has a basic format where specifying the size of the array generally looks like:
+
+	Class *array[numberOfElements];
+ 
+ You can set the contents of each element in the list by:
+
+	array[0] = some kind of data;
+ 
+ You can get the contents of each element in the list like this:
+ 
+	new data = array[0]; 
+ 
+ You can use this structure to hold objects, as well as data types, but it is not very flexible.
+ For instance, you cannot call any class functions on this list (e.g. no NSArray methods)
+ And, even though the following call looks longer:
+ 
+	new data = [anNSArray objectAtIndex:0]
+ 
+ It is quite fast, so you should not worry about overhead / speed limitations.
+ 
+ */
+-(void)setup {
+	//Create two arrays
+	CFAString *stringArray[5];
+	NSArray *stringObjectArray;
+	
+	//Create some objects
+	CFAString *s0, *s1, *s2, *s3, *s4;
+	s0 = [CFAString stringWithFormat:@"string 0"];
+	s1 = [CFAString stringWithFormat:@"string 1"];
+	s2 = [CFAString stringWithFormat:@"string 2"];
+	s3 = [CFAString stringWithFormat:@"string 3"];
+	s4 = [CFAString stringWithFormat:@"string 4"];
+
+	//Load the arrays
+	stringArray[0] = s0;
+	stringArray[1] = s1;
+	stringArray[2] = s2;
+	stringArray[3] = s3;
+	stringArray[4] = s4;
+	
+	stringObjectArray = [NSArray arrayWithObjects:s0,s1,s2,s3,s4,nil]; //nil indicates that the list is finished
+	
+	CFALog(@"The C Array");
+	for(int i = 0; i < 5; i++) { // we need to remember how many objects are in the C Array ourselves
+		CFALog(@"%@",stringArray[i]);
+	}
+	
+	CFALog(@"The NSArray");
+	for(int i = 0; i < [stringObjectArray count]; i++) {  //notice the COUNT method? we cannot call this on the C Array
+		CFALog(@"%@",[stringObjectArray objectAtIndex:i]);
+	}
+}
+@end

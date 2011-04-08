@@ -75,7 +75,7 @@ GENERATE_SINGLETON(CFAOpenGLView, cfaOpenGLView);
 	}
 }
 
--(void)drawStyle:(int)style {
+-(void)drawStyle:(NSInteger)style {
 	currentDrawStyle = style;
 	switch (currentDrawStyle) {
 		case ANIMATED:
@@ -134,7 +134,7 @@ GENERATE_SINGLETON(CFAOpenGLView, cfaOpenGLView);
 	return YES;
 }
 
--(void)windowWidth:(int)width andHeight:(int)height {
+-(void)windowWidth:(NSInteger)width andHeight:(NSInteger)height {
 	canvasSize = NSMakeSize(width, height);
 	canvasWidth = canvasSize.width;
 	canvasHeight = canvasSize.height;
@@ -192,7 +192,7 @@ GENERATE_SINGLETON(CFAOpenGLView, cfaOpenGLView);
 	return [self sharedManager].mousePos;
 }
 
-+(NSUInteger)getMouseButton {
++(NSInteger)getMouseButton {
 	return [self sharedManager].mouseButton;
 }
 
@@ -216,20 +216,30 @@ GENERATE_SINGLETON(CFAOpenGLView, cfaOpenGLView);
 	canvasWidth = canvasSize.width;
 }
 
+-(IBAction)switchFullScreen:(id)sender {
+	if([self isInFullScreenMode]) {
+		[self exitFullScreen];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"enteredFullScreen" object:self];
+	} else {
+		[self enterFullScreen];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"exitedFullScreen" object:self];
+	}
+}
+
 #pragma mark Background 
--(void)background:(float)grey {
+-(void)background:(CGFloat)grey {
 	[self backgroundRed:grey green:grey blue:grey alpha:1.0f];
 }
 
--(void)background:(float)grey alpha:(float)alpha {
+-(void)background:(CGFloat)grey alpha:(CGFloat)alpha {
 	[self backgroundRed:grey green:grey blue:grey alpha:alpha];
 }
 
--(void)backgroundRed:(float)red green:(float)green blue:(float)blue {
+-(void)backgroundRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue {
 	[self backgroundRed:red green:green blue:blue alpha:1.0f];
 }
 
--(void)backgroundRed:(float)red green:(float)green blue:(float)blue alpha:(float)alpha{
+-(void)backgroundRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha{
 	[self setBackgroundColor:[CFAColor colorWithRed:red green:green blue:blue alpha:alpha]];
 	backgroundShouldDraw = YES;
 }
@@ -356,7 +366,7 @@ GENERATE_SINGLETON(CFAOpenGLView, cfaOpenGLView);
 
 -(void)otherMouseDown:(NSEvent *)theEvent {
 	//[[NSNotificationCenter defaultCenter] postNotificationName: object:self];
-	mouseButton = ([theEvent buttonNumber] == 2) ? MOUSECENTER : (int)[theEvent buttonNumber];
+	mouseButton = ([theEvent buttonNumber] == 2) ? MOUSECENTER : (NSInteger)[theEvent buttonNumber];
 	mouseIsPressed = YES;
 	if(currentDrawStyle == EVENTBASED) [self redraw];
 	[self mousePressed];
